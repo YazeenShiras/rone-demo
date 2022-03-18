@@ -88,7 +88,7 @@ const ProfileDetails = () => {
     if (useridLogin !== "") {
       getUserLogin();
     }
-  }, [userid]);
+  }, [userid, useridLogin]);
 
   const shareToSocial = () => {
     var shareButton = document.getElementById("shareButton");
