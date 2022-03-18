@@ -7,6 +7,86 @@
 
 .buttonContainer__imageGallery {
   margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.browseImageContainer {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.searchBox__container {
+  width: 50%;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  background-color: #d52a33;
+}
+
+.searchBox__container > input {
+  width: calc(100% - 100px);
+  height: 90%;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: 20px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #ffffff;
+}
+
+.searchBox__container > img {
+  margin: 0px 20px;
+  cursor: pointer;
+  height: 20px;
+  object-fit: contain;
+}
+
+.cardsContainer__imageBrowse {
+  margin-top: 30px;
+  width: 100%;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.card__image {
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #fbe9e9;
+}
+
+.selectButton__image {
+  padding: 3px 10px;
+  margin: 0px 10px 10px 0px;
+  background-color: #d52a33;
+  font-size: 12px;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 50px;
+}
+
+.imagePageButton__conatiner {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
 }
 
 .AddPhotosButton {
@@ -19,6 +99,7 @@
   justify-content: center;
   color: #ffffff;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .AddPhotosButton > input {
@@ -40,28 +121,31 @@
   visibility: hidden;
 }
 
-/* .addButtonImageGallery::before {
-  content: "Upload Image";
+.BrowsePhotoButton {
+  margin-left: 20px;
+  height: 50px;
+  width: 190px;
+  background-color: #d52a33;
+  border-radius: 50px;
   display: flex;
-  flex-direction: column;
-  border-radius: 3px;
-  padding: 50px;
-  outline: none;
-  user-select: none;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 15px;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 13px;
-  height: 100%;
-  margin-top: 20px;
-  border: none;
-  width: 100%;
-  font-family: inherit;
-  padding-left: 80px;
 }
 
-.custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-} */
+.BrowsePhotoButton > img {
+  margin-left: 0px;
+  margin-right: 10px;
+  height: 15px;
+  object-fit: contain;
+}
+
+.pageChange {
+  height: 40px;
+  width: 130px;
+}
 
 .title__container__imageGalleryMain {
   width: 100%;

@@ -50,7 +50,7 @@ const ProfileDetails = () => {
 
     let url = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
-      user_id: userid,
+      user_id: parseInt(userid),
     });
 
     const getUser = async () => {
@@ -67,7 +67,7 @@ const ProfileDetails = () => {
 
     let urllogin = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
-      user_id: useridLogin,
+      user_id: parseInt(useridLogin),
     });
 
     const getUserLogin = async () => {
@@ -88,7 +88,7 @@ const ProfileDetails = () => {
     if (useridLogin !== "") {
       getUserLogin();
     }
-  }, [userid]);
+  }, [userid, useridLogin]);
 
   const shareToSocial = () => {
     var shareButton = document.getElementById("shareButton");

@@ -2,6 +2,7 @@
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
+import searchIcon from "../assets/searchIcon.svg";
 import img2 from "../assets/images/img2.jpg";
 import img3 from "../assets/images/img3.jpg";
 import img4 from "../assets/images/img4.jpg";
@@ -12,23 +13,11 @@ import axios from "axios";
 
 const ImageGalleryMain = () => {
   const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState("products");
+  const [search, setSearch] = useState("");
+  const [browse, setBrowse] = useState([]);
+  const [page, setPage] = useState(1);
 
-  const url = `https://api.unsplash.com/search/photos?page=2&query=${query}&client_id=jlSQhIiSODwibS2U8gwvnjJCYsWdwXs8-2jpyRRvn8c`;
-
-  useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get(url)
-        .then((response) => {
-          setPhotos(response.data.results);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getData();
-  }, [query, url]);
+  const url = `https://api.unsplash.com/search/photos?page=${page}&query=${search}&client_id=jlSQhIiSODwibS2U8gwvnjJCYsWdwXs8-2jpyRRvn8c`;
 
   const loadMore = () => {
     var loadMoreButton = document.getElementById("loadMore__button");
@@ -42,13 +31,96 @@ const ImageGalleryMain = () => {
     }
   };
 
+  const storeSearchInput = () => {
+    setSearch(document.getElementById("searchInput").value);
+  };
+
+  const viewBrowsePhoto = () => {
+    document.getElementById("browseImageContainer").style.display = "flex";
+  };
+
+  const getBrowseData = () => {
+    document.getElementById("imagePageButtonConatiner").style.display = "flex";
+    const getData = async () => {
+      await axios
+        .get(url)
+        .then((response) => {
+          setBrowse(response.data.results);
+          console.log(response.data.results);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getData();
+  };
+
+  const nextClick = () => {
+    setPage(page + 1);
+    if (page !== 0 && page <= 5) {
+      getBrowseData();
+    }
+  };
+
+  const prevClick = () => {
+    setPage(page - 1);
+    if (page !== 0 && page <= 5) {
+      getBrowseData();
+    }
+  };
+
   return (
     <div className="imageGalleryMain">
       <div className="buttonContainer__imageGallery">
         <div className="AddPhotosButton">
           <input type="file" />
           <img src={image} alt="" />
-          Add Photos
+          Choose Photo
+        </div>
+        <div onClick={viewBrowsePhoto} className="BrowsePhotoButton">
+          <img src={image} alt="" />
+          Browse Photo
+        </div>
+      </div>
+      <div className="browseImageContainer" id="browseImageContainer">
+        <div className="searchBox__container">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search Photos for Image Gallery"
+            onChange={storeSearchInput}
+          />
+          <img onClick={getBrowseData} src={searchIcon} alt="" />
+        </div>
+        <div
+          className="cardsContainer__imageBrowse"
+          id="cardsContainerimageBrowse"
+        >
+          {browse.map((img) => {
+            return (
+              <div
+                key={img.id}
+                style={{
+                  backgroundColor: img.color,
+                  backgroundImage: `url(${img.urls.full})`,
+                }}
+                className="card__image"
+              >
+                <div className="selectButton__image">Select</div>
+              </div>
+            );
+          })}
+        </div>
+        <div
+          className="imagePageButton__conatiner"
+          id="imagePageButtonConatiner"
+        >
+          <div onClick={prevClick} className="AddPhotosButton pageChange">
+            Previous
+          </div>
+          <div className=" BrowsePhotoButton pageChange" onClick={nextClick}>
+            Next
+          </div>
         </div>
       </div>
       <div className="title__container__imageGalleryMain">
