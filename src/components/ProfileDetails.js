@@ -37,15 +37,18 @@ const ProfileDetails = () => {
   };
 
   useEffect(() => {
-    window.onbeforeunload = function (e) {
+    /* window.onbeforeunload = function (e) {
       window.onunload = function () {
         window.localStorage.isMySessionActive = "false";
       };
       return undefined;
-    };
-    window.onload = function () {
+    }; */
+    /* window.onload = function () {
       window.localStorage.isMySessionActive = "true";
-    };
+    }; */
+
+    /* window.localStorage.isMySessionActive = "true"; */
+
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
     var newuseridLogin = localStorage.getItem("useridlogin");
@@ -56,7 +59,7 @@ const ProfileDetails = () => {
 
     let url = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
-      user_id: parseInt(userid),
+      user_id: userid,
     });
 
     const getUser = async () => {
@@ -71,9 +74,9 @@ const ProfileDetails = () => {
       setUserData(data);
     };
 
-    let urllogin = new URL("https://rone111.herokuapp.com/user_details");
+    /* let urllogin = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
-      user_id: parseInt(useridLogin),
+      user_id: useridLogin,
     });
 
     const getUserLogin = async () => {
@@ -86,14 +89,14 @@ const ProfileDetails = () => {
       const data = await req.json();
       console.log(data);
       setUserData(data);
-    };
+    }; */
 
     if (userid !== "") {
       getUser();
     }
-    if (useridLogin !== "") {
+    /* if (useridLogin !== "") {
       getUserLogin();
-    }
+    } */
   }, [userid, useridLogin]);
 
   const shareToSocial = () => {
