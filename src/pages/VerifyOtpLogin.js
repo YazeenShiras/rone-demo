@@ -39,10 +39,11 @@ const VerifyOtpLogin = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === "true") {
-      localStorage.removeItem("newuserid");
-      localStorage.setItem("useridlogin", data.user_id);
-      console.log(data.user_id);
-      window.location.href = "/profile";
+      document.getElementById("errorVarifyOtp").innerHTML =
+        "This operation temporary disabled by Developer";
+      document.getElementById("errorVarifyOtp").style.display = "block";
+      document.getElementById("errorVarifyOtp").style.color = "#d52a33";
+      /* window.location.href = "/profile"; */
     } else {
       console.error();
     }
