@@ -170,38 +170,29 @@ const ProfileDetails = () => {
             <div className="right__profile__title">
               <div className="qrCode__container">
                 <QRCode
-                  size={75}
+                  size={70}
                   level="H"
                   title="Rone"
-                  value="www.inyazn.com"
+                  value="https://rone-demo.vercel.app/"
                 />
                 <div className="shareThisqr__button">
                   <img src={shareWhite} alt="" />
-                  Share QR+
+                  Share QR
                 </div>
               </div>
             </div>
           </div>
           <p>{userData.bio}</p>
           <div className="socialButton__container">
-            <a
-              href="https://www.facebook.com/yazeenshiraz/"
-              className="facebook__contain social__button__profile"
-            >
+            <a href="/" className="facebook__contain social__button__profile">
               <img src={facebook} alt="" />
               Facebook
             </a>
-            <a
-              href="https://www.linkedin.com/in/muhammed-yaseen-294889207/"
-              className="linkedIn__contain social__button__profile"
-            >
+            <a href="/" className="linkedIn__contain social__button__profile">
               <img src={linkedin} alt="" />
               LinkedIn
             </a>
-            <a
-              href="https://twitter.com/inyazn_"
-              className="twitter__contain social__button__profile"
-            >
+            <a href="/" className="twitter__contain social__button__profile">
               <img src={twitter} alt="" />
               Twitter
             </a>
