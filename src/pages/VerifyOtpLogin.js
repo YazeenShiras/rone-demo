@@ -40,7 +40,7 @@ const VerifyOtpLogin = () => {
     console.log(data);
     if (data.status === "true") {
       document.getElementById("errorVarifyOtp").innerHTML =
-        "This operation temporary disabled by Developer";
+        "This operation temporarily disabled by Developer";
       document.getElementById("errorVarifyOtp").style.display = "block";
       document.getElementById("errorVarifyOtp").style.color = "#d52a33";
       /* window.location.href = "/profile"; */
