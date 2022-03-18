@@ -26,7 +26,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <Link to="/register" className="buttonContainer">
+        <Link to="/" className="buttonContainer">
           <PrimaryButton content="Register / Login" />
         </Link>
       </div>

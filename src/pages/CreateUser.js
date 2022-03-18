@@ -43,7 +43,8 @@ const CreateUser = () => {
     if (data.status === "true") {
       localStorage.setItem("username", name);
       localStorage.setItem("usermob", number);
-      localStorage.setItem("userid", data.id);
+      localStorage.removeItem("useridlogin");
+      localStorage.setItem("newuserid", data.id);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("refresh_token", data.refresh_token);
       localStorage.setItem("action", data.Registered);

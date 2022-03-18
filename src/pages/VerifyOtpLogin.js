@@ -39,6 +39,7 @@ const VerifyOtpLogin = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === "true") {
+      localStorage.removeItem("newuserid");
       localStorage.setItem("useridlogin", data.user_id);
       console.log(data.user_id);
       window.location.href = "/profile";

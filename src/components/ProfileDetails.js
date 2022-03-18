@@ -44,7 +44,8 @@ const ProfileDetails = () => {
     var newuseridLogin = localStorage.getItem("useridlogin");
     setUseridLogin(newuseridLogin);
 
-    console.log("id " + useridLogin);
+    console.log("userid : " + userid);
+    console.log("useridLogin : " + useridLogin);
 
     let url = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
@@ -62,10 +63,31 @@ const ProfileDetails = () => {
       console.log(data);
       setUserData(data);
     };
+
+    let urllogin = new URL("https://rone111.herokuapp.com/user_details");
+    url.search = new URLSearchParams({
+      user_id: useridLogin,
+    });
+
+    const getUserLogin = async () => {
+      const req = await fetch(urllogin, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await req.json();
+      console.log(data);
+      setUserData(data);
+    };
+
     if (userid !== "") {
       getUser();
     }
-  }, [userid]);
+    if (useridLogin !== "") {
+      getUserLogin();
+    }
+  }, [userid, useridLogin]);
 
   const shareToSocial = () => {
     var shareButton = document.getElementById("shareButton");
