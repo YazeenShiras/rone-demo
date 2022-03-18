@@ -1,0 +1,161 @@
+/* .bodyEditProfile {
+  margin-top: 100px;
+  padding: 0px 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addImagesContainer {
+  margin-top: 50px;
+  padding: 0px 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content__bodyEditProfile {
+  margin-top: 30px;
+}
+
+.content__bodyEditProfile > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer__editProfile {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1px solid #d52a33;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+}
+
+.imageContainer__editProfile > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.imageChageButton__editProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.imageChageButton__editProfile > h5 {
+  margin-bottom: 5px;
+}
+
+.imageChageButton__editProfile > input {
+  margin-left: 160px;
+}
+
+.centerPopup {
+  height: 35px;
+  width: 300px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d52a33;
+  border-radius: 5px;
+}
+
+.editBio {
+  height: 100px;
+  width: 302px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d52a33;
+  border-radius: 5px;
+}
+
+.centerPopup > input {
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.editName {
+  margin-top: 20px;
+}
+
+.editBio > textarea {
+  width: 90%;
+  height: 80%;
+  resize: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.addImagesContainer {
+  padding: 0px 0px 50px 0px;
+}
+
+.updateProfileButton,
+.imageSelectButtonBg {
+  height: 40px;
+  width: 300px;
+  background-color: #d52a33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.imageSelectButtonBg {
+  height: 40px;
+  width: 300px;
+  background-color: #d52a33;
+  margin-top: 30px;
+}
+
+.addButtonImageGallery::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.addButtonImageGallery::before {
+  content: "Upload Image";
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  padding: 50px;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  height: 100%;
+  margin-top: 20px;
+  border: none;
+  width: 100%;
+  font-family: inherit;
+  padding-left: 80px;
+}
+
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+ */

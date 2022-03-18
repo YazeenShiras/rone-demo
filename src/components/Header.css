@@ -1,0 +1,51 @@
+.header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #fbe9e9;
+}
+
+.header__logo {
+  margin-left: 8vw;
+}
+
+.header__logo > a > img {
+  height: 50px;
+  object-fit: contain;
+}
+
+.header__right__main {
+  display: flex;
+  align-items: center;
+}
+
+.header__right__main > nav {
+  margin-right: 30px;
+}
+
+.header__right__main > nav > ul {
+  display: flex;
+  align-items: center;
+}
+
+.header__right__main > nav > ul > li {
+  list-style: none;
+  margin-left: 30px;
+}
+
+.header__right__main > nav > ul > li > a {
+  font-size: 13px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buttonContainer {
+  margin-right: 8vw;
+}

@@ -1,0 +1,227 @@
+.imageGalleryMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 8vw;
+}
+
+.buttonContainer__imageGallery {
+  margin-top: 30px;
+}
+
+.AddPhotosButton {
+  height: 50px;
+  width: 190px;
+  background-color: #d52a33;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.AddPhotosButton > input {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  margin-left: -30px;
+}
+
+.AddPhotosButton > img {
+  height: 15px;
+  object-fit: contain;
+  margin-right: 10px;
+  margin-left: -150px;
+}
+
+.AddPhotosButton > input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+/* .addButtonImageGallery::before {
+  content: "Upload Image";
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  padding: 50px;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  height: 100%;
+  margin-top: 20px;
+  border: none;
+  width: 100%;
+  font-family: inherit;
+  padding-left: 80px;
+}
+
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+} */
+
+.title__container__imageGalleryMain {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.title__container__imageGalleryMain > h3 {
+  font-size: 22px;
+  margin-right: 10px;
+  width: 200px;
+}
+
+.viewAll__button {
+  height: 25px;
+  width: 100px;
+  background-color: #feefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #d52a33;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.title__container__imageGalleryMain > span {
+  width: 100%;
+  height: 2px;
+  background-color: #fbe9e9;
+}
+
+.sort__button {
+  font-size: 14px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sort__button > img {
+  height: 16px;
+  object-fit: contain;
+  margin-left: 5px;
+}
+
+.content__container__imageGalleryMain {
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+  height: 75vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left__imageContainer__content__imageContainer {
+  width: 50%;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.mainCard__imageContainer {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid #fbe9e9;
+}
+
+.mainCard__imageContainer > h3 {
+  font-size: 20px;
+  padding: 0px 50px 30px 30px;
+  color: #ffffff;
+}
+
+.right__imageContainer__content__imageContainer {
+  width: 50%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card__products__imageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #fbe9e9;
+}
+
+.card__products__imageContainer > h4 {
+  font-size: 15px;
+  padding: 0px 40px 20px 20px;
+  color: #ffffff;
+}
+
+.loadMore__contaner__imageContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.buttonContainer__imageContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.loadMore__button {
+  height: 40px;
+  width: 150px;
+  border: 2px solid #d52a33;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d52a33;
+  cursor: pointer;
+}
+
+.loadMore__contaner__imageContainer {
+  width: 100%;
+  display: none;
+}
+
+.extendedImageGalleryContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.imageCard__imageGallery {
+  height: calc(75vh / 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #fbe9e9;
+}
+
+.imageCard__imageGallery > h4 {
+  font-size: 15px;
+  padding: 0px 40px 20px 20px;
+  color: #ffffff;
+}
