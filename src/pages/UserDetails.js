@@ -42,7 +42,7 @@ function EditPage() {
     setUserName(newName);
     var newMob = localStorage.getItem("usermob");
     setUsermob(newMob);
-    var newid = localStorage.getItem("userid");
+    var newid = localStorage.getItem("newuserid");
     setUserId(newid);
   }, []);
 

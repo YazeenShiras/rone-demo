@@ -30,6 +30,12 @@ const ProfileDetails = () => {
   const [useridLogin, setUseridLogin] = useState("");
   /* const [action, setAction] = useState(""); */
 
+  window.onload = function () {
+    document.onkeydown = function (e) {
+      return (e.which || e.keyCode) !== 116;
+    };
+  };
+
   useEffect(() => {
     window.onbeforeunload = function (e) {
       window.onunload = function () {
