@@ -15,6 +15,7 @@ import twitter from "../assets/twitter.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
 import file from "../assets/download/file.pdf";
+import user from "../assets/user.png";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -110,7 +111,7 @@ const ProfileDetails = () => {
   return (
     <div className="profileDetails" style={{ backgroundImage: `url(${bg})` }}>
       <div className="imageContainer">
-        <img src={userData.img} alt="" />
+        <img src={userData.img ? userData.img : user} alt="" />
       </div>
       <div className="rightContainer__profile">
         <div className="header__rightConatiner__profile">
