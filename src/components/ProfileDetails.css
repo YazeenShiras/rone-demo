@@ -1,6 +1,7 @@
 .profileDetails {
   height: calc(100vh - 80px);
   width: 100%;
+  padding: 0px 8vw;
   display: flex;
   flex-direction: column;
   background-repeat: no-repeat;
@@ -10,7 +11,6 @@
 
 .headerConatiner__profile {
   width: 100%;
-  padding-right: 8vw;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -18,7 +18,6 @@
 
 .shareIconsContainer {
   width: 100%;
-  padding-right: 8vw;
   display: flex;
   justify-content: flex-end;
   display: none;
@@ -28,12 +27,12 @@
 .profileContainer__profileDetails {
   backdrop-filter: blur(10px);
   height: 80%;
-  margin: 0px 8vw;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin-top: 30px;
@@ -41,12 +40,12 @@
 
 .leftContainer__profileDetails {
   height: 100%;
-  width: 35%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-left: 5vw;
+  padding-left: 3vw;
 }
 
 .imgContainer__profile {
@@ -68,19 +67,20 @@
 
 .rightContainer__profile {
   height: 100%;
-  width: 65%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding-right: 5vw;
   color: #ffffff;
-  padding-left: 30px;
+  padding-right: 5vw;
 }
 
 .topContainer__rightProfile {
+  width: 100%;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .topContainer__rightProfile > p {
@@ -100,7 +100,7 @@
   justify-content: space-between;
   border: 1px solid #c4c4c4;
   padding-top: 8px;
-  margin-top: -20px;
+  margin-top: -10px;
 }
 
 .shareThisqr__button {
