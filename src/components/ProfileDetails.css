@@ -1,7 +1,6 @@
 .profileDetails {
   height: calc(100vh - 80px);
-  width: 100%;
-  padding: 0px 8vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   background-repeat: no-repeat;
@@ -10,9 +9,9 @@
 }
 
 .headerConatiner__profile {
-  width: 100%;
   margin-top: 30px;
   display: flex;
+  width: 100%;
   justify-content: flex-end;
 }
 
@@ -26,8 +25,8 @@
 
 .profileContainer__profileDetails {
   backdrop-filter: blur(10px);
+  margin: 0px 8vw;
   height: 80%;
-  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -52,17 +51,13 @@
   width: 40vh;
   height: 40vh;
   border-radius: 50%;
-  background-color: #d52a33;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.imgContainer__profile > img {
-  width: 97%;
-  height: 97%;
-  border-radius: 50%;
-  object-fit: cover;
+  border: 3px solid #d52a33;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .rightContainer__profile {
@@ -170,6 +165,14 @@
 .settingsButton,
 .shareButton {
   cursor: pointer;
+}
+
+.settingsButton {
+  margin-right: 8vw;
+}
+
+.instagramIconShare {
+  margin-right: 8vw;
 }
 
 .shareIcon__profile {

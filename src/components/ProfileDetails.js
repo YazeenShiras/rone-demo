@@ -49,16 +49,6 @@ const ProfileDetails = () => {
   var loggedBio = localStorage.getItem("loggedBio");
 
   useEffect(() => {
-    /* setLoggedAccess(loggedAccess); */
-    /* if (loggedAccessState !== "") {
-      setLoggedImg(loggedImg);
-      setLoggedName(loggedName);
-      setLoggedProff(loggedProff);
-      setLoggedBio(loggedBio);
-    } */
-  }, []);
-
-  useEffect(() => {
     /* window.onbeforeunload = function (e) {
       window.onunload = function () {
         window.localStorage.isMySessionActive = "false";
@@ -131,7 +121,7 @@ const ProfileDetails = () => {
           <p>Share</p>
         </div>
         <Link
-          to="/settings/editprofile"
+          to="/settings"
           className="settingsButton buttons__header__profile"
         >
           <img src={settings} alt="" />
@@ -163,7 +153,11 @@ const ProfileDetails = () => {
         />
         <InstapaperShareButton
           children={
-            <img src={instagram} className="shareIcon__profile" alt="" />
+            <img
+              src={instagram}
+              className="shareIcon__profile instagramIconShare"
+              alt=""
+            />
           }
           url="https://rone-demo.vercel.app/"
         />
@@ -173,9 +167,14 @@ const ProfileDetails = () => {
         id="profileContainer__profileDetails"
       >
         <div className="leftContainer__profileDetails">
-          <div className="imgContainer__profile">
-            <img src={userData.img ? userData.img : loggedImgState} alt="" />
-          </div>
+          <div
+            className="imgContainer__profile"
+            style={{
+              backgroundImage: `url(${
+                userData.img ? userData.img : loggedImgState
+              })`,
+            }}
+          ></div>
           <div className="left__profile__title">
             <h2>{userData.name ? userData.name : loggedNameState}</h2>
             <p>{userData.proff ? userData.proff : loggedProffState}</p>

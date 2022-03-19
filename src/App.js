@@ -7,7 +7,7 @@ import CreateUser from "./pages/CreateUser";
 import UserDetails from "./pages/UserDetails";
 import LoginSendOtp from "./pages/LoginSendOtp";
 import VerifyOtpLogin from "./pages/VerifyOtpLogin";
-import EditProfile from "./pages/EditProfile";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/userdetails" component={UserDetails} />
           <Route path="/login" component={LoginSendOtp} />
           <Route path="/verifyotplogin" component={VerifyOtpLogin} />
-          <Route path="/settings/editprofile" component={EditProfile} />
+          <Route path="/settings" component={Settings} />
         </Switch>
       </div>
     </Router>
