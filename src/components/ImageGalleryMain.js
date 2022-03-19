@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
@@ -10,12 +11,108 @@ import img5 from "../assets/images/img5.jpg";
 import img10 from "../assets/images/img10.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ClockLoader from "react-spinners/ClipLoader";
 
 const ImageGalleryMain = () => {
   const [photos, setPhotos] = useState([]);
   const [search, setSearch] = useState("");
   const [browse, setBrowse] = useState([]);
   const [page, setPage] = useState(1);
+  const [idForImg, setIdForImg] = useState("");
+  const [urlSelect, setUrlSelect] = useState("");
+
+  const inpFile = document.getElementById("inpFile");
+  var idForImageGallery = localStorage.getItem("idForImageGallery");
+
+  const [imgtest, setImgtest] = useState("");
+
+  useEffect(() => {
+    setIdForImg(idForImageGallery);
+    console.log(idForImg);
+  }, [idForImg]);
+
+  async function uploadPhotofromFiles() {
+    console.log("access to UploadPhotofromFiles");
+    document.getElementById("selectFromFileContainer").style.display = "flex";
+
+    const endpoint = "https://rone111.herokuapp.com/self_upload-file";
+
+    let url = new URL(endpoint);
+    url.search = new URLSearchParams({
+      user_id: idForImg,
+    });
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    const formData = new FormData();
+    formData.append("file", inpFile.files[0]);
+
+    await axios
+      .post(url, formData, config)
+      .then((res) => {
+        console.log(res.data);
+        const data = res.data;
+        if (data.Result === "OK") {
+          document.getElementById("selectFromFileContainer").style.display =
+            "none";
+          setImgtest(data.path);
+        }
+      })
+      .catch(console.error);
+  }
+
+  const confirmFetch = () => {
+    console.log("access to confirmFetch");
+    if (idForImg !== "") {
+      uploadPhotofromFiles();
+    }
+  };
+
+  async function uploadPhotofromSearch() {
+    console.log("access to UploadPhotofromSearch");
+    const endpoint = "https://rone111.herokuapp.com/public_img_urls";
+
+    let url = new URL(endpoint);
+    url.search = new URLSearchParams({
+      user_id: idForImg,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        img_url: urlSelect,
+      }),
+    };
+
+    await axios
+      .post(url, config)
+      .then((res) => {
+        console.log(res.data);
+        const data = res.data;
+        console.log("success respose from img adding server");
+        /* if (data.Result === "OK") {
+          document.getElementById("selectFromFileContainer").style.display =
+            "none";
+          setImgtest(data.path);
+        } */
+      })
+      .catch(console.error);
+  }
+
+  /* const makeUrlParam = (imgurlcode) => {
+    console.log("calling makeUrlParam");
+    setUrlSelect(imgurlcode);
+    if (urlSelect !== "") {
+      console.log("url found" + urlSelect);
+      uploadPhotofromSearch();
+    }
+  }; */
 
   const url = `https://api.unsplash.com/search/photos?page=${page}&query=${search}&client_id=jlSQhIiSODwibS2U8gwvnjJCYsWdwXs8-2jpyRRvn8c`;
 
@@ -73,13 +170,25 @@ const ImageGalleryMain = () => {
     <div className="imageGalleryMain">
       <div className="buttonContainer__imageGallery">
         <div className="AddPhotosButton">
-          <input type="file" />
+          <input
+            name="file"
+            id="inpFile"
+            accept=".png"
+            type="file"
+            onChange={confirmFetch}
+          />
           <img src={image} alt="" />
           Choose Photo
         </div>
         <div onClick={viewBrowsePhoto} className="BrowsePhotoButton">
           <img src={image} alt="" />
           Browse Photo
+        </div>
+      </div>
+      <div className="selectFromFile__container" id="selectFromFileContainer">
+        <div className="loading__animation" id="loadingAnimation">
+          <ClockLoader size={30} color="#d52a33" />
+          <p> Uploading...</p>
         </div>
       </div>
       <div className="browseImageContainer" id="browseImageContainer">
@@ -89,6 +198,7 @@ const ImageGalleryMain = () => {
             type="text"
             placeholder="Search Photos for Image Gallery"
             onChange={storeSearchInput}
+            autoComplete="off"
           />
           <img onClick={getBrowseData} src={searchIcon} alt="" />
         </div>
@@ -97,6 +207,7 @@ const ImageGalleryMain = () => {
           id="cardsContainerimageBrowse"
         >
           {browse.map((img) => {
+            console.log(img);
             return (
               <div
                 key={img.id}
@@ -106,7 +217,12 @@ const ImageGalleryMain = () => {
                 }}
                 className="card__image"
               >
-                <div className="selectButton__image">Select</div>
+                <div
+                  className="selectButton__image"
+                  onClick={console.log("click")}
+                >
+                  Select
+                </div>
               </div>
             );
           })}
@@ -136,7 +252,9 @@ const ImageGalleryMain = () => {
         <div className="left__imageContainer__content__imageContainer">
           <div
             className="mainCard__imageContainer"
-            style={{ backgroundImage: `url('${img10}')` }}
+            style={{
+              backgroundImage: `url('${imgtest !== "" ? imgtest : img10}')`,
+            }}
           >
             <h3>Lorem Ipsum is simply dummy text of the printing.</h3>
           </div>

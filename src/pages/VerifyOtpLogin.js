@@ -48,7 +48,7 @@ const VerifyOtpLogin = () => {
       otp: otp,
     });
     const res = await fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
@@ -63,10 +63,11 @@ const VerifyOtpLogin = () => {
       localStorage.removeItem("newuserid");
       localStorage.setItem("loggedAccessToken", data.access_token);
       localStorage.setItem("loggedRefreshToken", data.refresh_token);
-      localStorage.setItem("loggedImg", data.profile.img_url);
+      localStorage.setItem("loggedImg", data.profile);
       localStorage.setItem("loggedName", data.user_name);
       localStorage.setItem("loggedProff", data.proff);
       localStorage.setItem("loggedBio", data.bio);
+      localStorage.setItem("idForImageGallery", data.user_id);
 
       window.location.href = "/profile";
     } else if (data.status === 404) {
