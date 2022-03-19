@@ -190,17 +190,7 @@ const ProfileDetails = () => {
         </div>
         <div className="rightContainer__profile">
           <div className="topContainer__rightProfile">
-            <p>
-              {/* {userData.bio ? userData.bio : loggedBioState} */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-              tenetur amet consequatur delectus recusandae, dolor eos minima
-              natus, modi veniam aperiam cupiditate quo. Consequatur nostrum
-              exercitationem esse magnam reiciendis nihil. Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Omnis velit exercitationem
-              quod, quisquam rerum totam maiores odio molestiae similique soluta
-              at neque adipisci odit vitae deleniti quis blanditiis nobis!
-              Labore.
-            </p>
+            <p>{userData.bio ? userData.bio : loggedBioState}</p>
             <div className="qrCode__container">
               <QRCode
                 size={70}
