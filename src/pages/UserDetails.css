@@ -58,6 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid #d52a33;
 }
 
 .loader__container {

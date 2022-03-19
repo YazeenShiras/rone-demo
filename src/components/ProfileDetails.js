@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./ProfileDetails.css";
-import bg from "../assets/profilebg.svg";
+import bg from "../assets/images/mainBg.png";
 import share from "../assets/shareGray.svg";
 import settings from "../assets/settings.svg";
 import star from "../assets/star.svg";
@@ -27,6 +27,28 @@ const ProfileDetails = () => {
   const [isShare, setShare] = useState(false);
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
+
+  /* const [loggedAccessState, setLoggedAccess] = useState(""); */
+  const [loggedImgState, setLoggedImg] = useState("");
+  const [loggedNameState, setLoggedName] = useState("");
+  const [loggedProffState, setLoggedProff] = useState("");
+  const [loggedBioState, setLoggedBio] = useState("");
+
+  /*  var loggedAccess = localStorage.getItem("loggedAccessToken"); */
+  var loggedImg = localStorage.getItem("loggedImg");
+  var loggedName = localStorage.getItem("loggedName");
+  var loggedProff = localStorage.getItem("loggedProff");
+  var loggedBio = localStorage.getItem("loggedBio");
+
+  useEffect(() => {
+    /* setLoggedAccess(loggedAccess); */
+    /* if (loggedAccessState !== "") {
+      setLoggedImg(loggedImg);
+      setLoggedName(loggedName);
+      setLoggedProff(loggedProff);
+      setLoggedBio(loggedBio);
+    } */
+  }, []);
 
   useEffect(() => {
     /* window.onbeforeunload = function (e) {
@@ -65,6 +87,11 @@ const ProfileDetails = () => {
 
     if (userid !== "") {
       getUser();
+    } else {
+      setLoggedImg(loggedImg);
+      setLoggedName(loggedName);
+      setLoggedProff(loggedProff);
+      setLoggedBio(loggedBio);
     }
   }, [userid]);
 
@@ -88,102 +115,106 @@ const ProfileDetails = () => {
 
   return (
     <div className="profileDetails" style={{ backgroundImage: `url(${bg})` }}>
-      <div className="imageContainer">
-        <img src={userData.img ? userData.img : user} alt="" />
-      </div>
-      <div className="rightContainer__profile">
-        <div className="header__rightConatiner__profile">
-          <div
-            onClick={shareToSocial}
-            id="shareButton"
-            className="shareButton buttons__header__profile"
-          >
-            <img src={share} alt="" />
-            <p>Share</p>
+      <div className="profileContainer__profileDetails">
+        <div className="leftContainer__profileDetails">
+          <div className="imgContainer__profile">
+            <img src={userData.img ? userData.img : loggedImgState} alt="" />
           </div>
-          <Link
-            to="/settings/editprofile"
-            className="settingsButton buttons__header__profile"
-          >
-            <img src={settings} alt="" />
-            <p>Settings</p>
-          </Link>
-        </div>
-        <div className="shareIconsContainer" id="shareIconsContainer">
-          <FacebookShareButton
-            children={
-              <img className="shareIcon__profile" src={facebook} alt="" />
-            }
-            url="https://rone-demo.vercel.app/"
-          />
-          <LinkedinShareButton
-            children={
-              <img src={linkedin} className="shareIcon__profile" alt="" />
-            }
-            url="https://rone-demo.vercel.app/"
-          />
-          <TwitterShareButton
-            children={
-              <img src={twitter} className="shareIcon__profile" alt="" />
-            }
-            url="https://rone-demo.vercel.app/"
-          />
-        </div>
-        <div
-          className="profileMain__text__container"
-          id="profileMain__text__container"
-        >
-          <div className="profile__title__container">
-            <div className="left__profile__title">
-              <h2>{userData.name}</h2>
-              <p>{userData.proff}</p>
-              <div className="rating__container">
-                <img src={starRed} alt="" />
-                <img src={starRed} alt="" />
-                <img src={starRed} alt="" />
-                <img src={starRed} alt="" />
-                <img src={star} alt="" />
-              </div>
+          <div className="left__profile__title">
+            <h2>{userData.name ? userData.name : loggedNameState}</h2>
+            <p>{userData.proff ? userData.proff : loggedProffState}</p>
+            <div className="rating__container">
+              <img src={starRed} alt="" />
+              <img src={starRed} alt="" />
+              <img src={starRed} alt="" />
+              <img src={starRed} alt="" />
+              <img src={star} alt="" />
             </div>
-            <div className="right__profile__title">
-              <div className="qrCode__container">
-                <QRCode
-                  size={70}
-                  level="H"
-                  title="Rone"
-                  value="https://rone-demo.vercel.app/"
-                />
-                <div className="shareThisqr__button">
-                  <img src={shareWhite} alt="" />
-                  Share QR
+          </div>
+        </div>
+        <div className="rightContainer__profile">
+          <div className="header__rightConatiner__profile">
+            <div
+              onClick={shareToSocial}
+              id="shareButton"
+              className="shareButton buttons__header__profile"
+            >
+              <img src={share} alt="" />
+              <p>Share</p>
+            </div>
+            <Link
+              to="/settings/editprofile"
+              className="settingsButton buttons__header__profile"
+            >
+              <img src={settings} alt="" />
+              <p>Settings</p>
+            </Link>
+          </div>
+          <div className="shareIconsContainer" id="shareIconsContainer">
+            <FacebookShareButton
+              children={
+                <img className="shareIcon__profile" src={facebook} alt="" />
+              }
+              url="https://rone-demo.vercel.app/"
+            />
+            <LinkedinShareButton
+              children={
+                <img src={linkedin} className="shareIcon__profile" alt="" />
+              }
+              url="https://rone-demo.vercel.app/"
+            />
+            <TwitterShareButton
+              children={
+                <img src={twitter} className="shareIcon__profile" alt="" />
+              }
+              url="https://rone-demo.vercel.app/"
+            />
+          </div>
+          <div
+            className="profileMain__text__container"
+            id="profileMain__text__container"
+          >
+            <div className="profile__title__container">
+              <div className="right__profile__title">
+                <div className="qrCode__container">
+                  <QRCode
+                    size={70}
+                    level="H"
+                    title="Rone"
+                    value="https://rone-demo.vercel.app/"
+                  />
+                  <div className="shareThisqr__button">
+                    <img src={shareWhite} alt="" />
+                    Share QR
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <p>{userData.bio}</p>
-          <div className="socialButton__container">
-            <a href="/" className="facebook__contain social__button__profile">
-              <img src={facebook} alt="" />
-              Facebook
-            </a>
-            <a href="/" className="linkedIn__contain social__button__profile">
-              <img src={linkedin} alt="" />
-              LinkedIn
-            </a>
-            <a href="/" className="twitter__contain social__button__profile">
-              <img src={twitter} alt="" />
-              Twitter
-            </a>
-          </div>
-          <div className="other__buttons__container">
-            <div className="payment__button">
-              <img src={payment} alt="" />
-              Make Payment
+            <p>{userData.bio ? userData.bio : loggedBioState}</p>
+            <div className="socialButton__container">
+              <a href="/" className="facebook__contain social__button__profile">
+                <img src={facebook} alt="" />
+                Facebook
+              </a>
+              <a href="/" className="linkedIn__contain social__button__profile">
+                <img src={linkedin} alt="" />
+                LinkedIn
+              </a>
+              <a href="/" className="twitter__contain social__button__profile">
+                <img src={twitter} alt="" />
+                Twitter
+              </a>
             </div>
-            <a href={file} download className="download__button">
-              <img src={download} alt="" />
-              Download Profile
-            </a>
+            <div className="other__buttons__container">
+              <div className="payment__button">
+                <img src={payment} alt="" />
+                Make Payment
+              </div>
+              <a href={file} download className="download__button">
+                <img src={download} alt="" />
+                Download Profile
+              </a>
+            </div>
           </div>
         </div>
       </div>

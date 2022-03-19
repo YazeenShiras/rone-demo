@@ -26,7 +26,7 @@ const VerifyOtpLogin = () => {
     setMob(mob);
   }, []);
 
-  async function loginUser() {
+  /* async function loginUser() {
     const res = await fetch("https://rone111.herokuapp.com/login", {
       method: "POST",
       headers: {
@@ -38,16 +38,8 @@ const VerifyOtpLogin = () => {
     });
     const data = await res.json();
     console.log(data);
-    if (data.status === "true") {
-      document.getElementById("errorVarifyOtp").innerHTML =
-        "This operation temporarily disabled by Developer";
-      document.getElementById("errorVarifyOtp").style.display = "block";
-      document.getElementById("errorVarifyOtp").style.color = "#d52a33";
-      /* window.location.href = "/profile"; */
-    } else {
-      console.error();
-    }
-  }
+    
+  } */
 
   async function handleSubmit() {
     let url = new URL("https://rone111.herokuapp.com/otp_verification_login");
@@ -64,7 +56,19 @@ const VerifyOtpLogin = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === 202) {
-      loginUser();
+      /*  document.getElementById("errorVarifyOtp").innerHTML =
+        "This operation temporarily disabled by Developer";
+      document.getElementById("errorVarifyOtp").style.display = "block";
+      document.getElementById("errorVarifyOtp").style.color = "#d52a33"; */
+      localStorage.removeItem("newuserid");
+      localStorage.setItem("loggedAccessToken", data.access_token);
+      localStorage.setItem("loggedRefreshToken", data.refresh_token);
+      localStorage.setItem("loggedImg", data.profile.img_url);
+      localStorage.setItem("loggedName", data.user_name);
+      localStorage.setItem("loggedProff", data.proff);
+      localStorage.setItem("loggedBio", data.bio);
+
+      window.location.href = "/profile";
     } else if (data.status === 404) {
       document.getElementById("errorVarifyOtp").innerHTML = data.message;
       document.getElementById("errorVarifyOtp").style.display = "block";

@@ -116,7 +116,6 @@ function EditPage() {
     });
     const data = await response.json();
     console.log(data);
-
     if (data.status === 200) {
       console.log("ok");
       if (isProfilePhotoUploaded) {
@@ -126,7 +125,7 @@ function EditPage() {
         console.log("No profile pic");
       }
     } else {
-      console.log("error");
+      console.log("error no status code 200");
     }
   }
 
