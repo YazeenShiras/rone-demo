@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileDetails.css";
 import bg from "../assets/images/mainBg.png";
-import share from "../assets/shareGray.svg";
+import share from "../assets/shareWhite.svg";
 import settings from "../assets/settings.svg";
 import star from "../assets/star.svg";
 import starRed from "../assets/starRed.svg";
@@ -12,16 +12,24 @@ import QRCode from "react-qr-code";
 import facebook from "../assets/facebook.svg";
 import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
+import whatsapp from "../assets/whatsapp.svg";
+import instagram from "../assets/instagram.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
 import file from "../assets/download/file.pdf";
 import user from "../assets/user.png";
 import {
   FacebookShareButton,
+  InstapaperShareButton,
   LinkedinShareButton,
   TwitterShareButton,
+  WhatsappShareButton,
 } from "react-share";
 import { Link } from "react-router-dom";
+import phoneIcon from "../assets/phone.svg";
+import mailIcon from "../assets/mail.svg";
+import locationIcon from "../assets/location.svg";
+import copy from "../assets/copy.svg";
 
 const ProfileDetails = () => {
   const [isShare, setShare] = useState(false);
@@ -98,24 +106,72 @@ const ProfileDetails = () => {
   const shareToSocial = () => {
     var shareButton = document.getElementById("shareButton");
     var shareIconsContainer = document.getElementById("shareIconsContainer");
-    var profileMainTextContainer = document.getElementById(
-      "profileMain__text__container"
+    var profileContainerProfileDetails = document.getElementById(
+      "profileContainer__profileDetails"
     );
     shareIconsContainer.style.display = "flex";
-    profileMainTextContainer.style.marginTop = "20px";
-    shareButton.style.color = "#d52a33";
+    profileContainerProfileDetails.style.marginTop = "10px";
     setShare(true);
     if (isShare) {
       shareIconsContainer.style.display = "none";
-      profileMainTextContainer.style.marginTop = "50px";
-      shareButton.style.color = "#000000";
+      profileContainerProfileDetails.style.marginTop = "30px";
       setShare(false);
     }
   };
 
   return (
     <div className="profileDetails" style={{ backgroundImage: `url(${bg})` }}>
-      <div className="profileContainer__profileDetails">
+      <div className="headerConatiner__profile">
+        <div
+          onClick={shareToSocial}
+          id="shareButton"
+          className="shareButton buttons__header__profile"
+        >
+          <img src={share} alt="" />
+          <p>Share</p>
+        </div>
+        <Link
+          to="/settings/editprofile"
+          className="settingsButton buttons__header__profile"
+        >
+          <img src={settings} alt="" />
+          <p>Settings</p>
+        </Link>
+      </div>
+      <div className="shareIconsContainer" id="shareIconsContainer">
+        <FacebookShareButton
+          children={
+            <img className="shareIcon__profile" src={facebook} alt="" />
+          }
+          url="https://rone-demo.vercel.app/"
+        />
+        <LinkedinShareButton
+          children={
+            <img src={linkedin} className="shareIcon__profile" alt="" />
+          }
+          url="https://rone-demo.vercel.app/"
+        />
+        <TwitterShareButton
+          children={<img src={twitter} className="shareIcon__profile" alt="" />}
+          url="https://rone-demo.vercel.app/"
+        />
+        <WhatsappShareButton
+          children={
+            <img src={whatsapp} className="shareIcon__profile" alt="" />
+          }
+          url="https://rone-demo.vercel.app/"
+        />
+        <InstapaperShareButton
+          children={
+            <img src={instagram} className="shareIcon__profile" alt="" />
+          }
+          url="https://rone-demo.vercel.app/"
+        />
+      </div>
+      <div
+        className="profileContainer__profileDetails"
+        id="profileContainer__profileDetails"
+      >
         <div className="leftContainer__profileDetails">
           <div className="imgContainer__profile">
             <img src={userData.img ? userData.img : loggedImgState} alt="" />
@@ -133,87 +189,78 @@ const ProfileDetails = () => {
           </div>
         </div>
         <div className="rightContainer__profile">
-          <div className="header__rightConatiner__profile">
-            <div
-              onClick={shareToSocial}
-              id="shareButton"
-              className="shareButton buttons__header__profile"
-            >
-              <img src={share} alt="" />
-              <p>Share</p>
-            </div>
-            <Link
-              to="/settings/editprofile"
-              className="settingsButton buttons__header__profile"
-            >
-              <img src={settings} alt="" />
-              <p>Settings</p>
-            </Link>
-          </div>
-          <div className="shareIconsContainer" id="shareIconsContainer">
-            <FacebookShareButton
-              children={
-                <img className="shareIcon__profile" src={facebook} alt="" />
-              }
-              url="https://rone-demo.vercel.app/"
-            />
-            <LinkedinShareButton
-              children={
-                <img src={linkedin} className="shareIcon__profile" alt="" />
-              }
-              url="https://rone-demo.vercel.app/"
-            />
-            <TwitterShareButton
-              children={
-                <img src={twitter} className="shareIcon__profile" alt="" />
-              }
-              url="https://rone-demo.vercel.app/"
-            />
-          </div>
-          <div
-            className="profileMain__text__container"
-            id="profileMain__text__container"
-          >
-            <div className="profile__title__container">
-              <div className="right__profile__title">
-                <div className="qrCode__container">
-                  <QRCode
-                    size={70}
-                    level="H"
-                    title="Rone"
-                    value="https://rone-demo.vercel.app/"
-                  />
-                  <div className="shareThisqr__button">
-                    <img src={shareWhite} alt="" />
-                    Share QR
-                  </div>
-                </div>
+          <div className="topContainer__rightProfile">
+            <p>
+              {/* {userData.bio ? userData.bio : loggedBioState} */}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+              tenetur amet consequatur delectus recusandae, dolor eos minima
+              natus, modi veniam aperiam cupiditate quo. Consequatur nostrum
+              exercitationem esse magnam reiciendis nihil. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Omnis velit exercitationem
+              quod, quisquam rerum totam maiores odio molestiae similique soluta
+              at neque adipisci odit vitae deleniti quis blanditiis nobis!
+              Labore.
+            </p>
+            <div className="qrCode__container">
+              <QRCode
+                size={70}
+                level="H"
+                title="Rone"
+                value="https://rone-demo.vercel.app/"
+              />
+              <div className="shareThisqr__button">
+                <img src={shareWhite} alt="" />
+                Share QR
               </div>
             </div>
-            <p>{userData.bio ? userData.bio : loggedBioState}</p>
-            <div className="socialButton__container">
-              <a href="/" className="facebook__contain social__button__profile">
-                <img src={facebook} alt="" />
-                Facebook
-              </a>
-              <a href="/" className="linkedIn__contain social__button__profile">
-                <img src={linkedin} alt="" />
-                LinkedIn
-              </a>
-              <a href="/" className="twitter__contain social__button__profile">
-                <img src={twitter} alt="" />
-                Twitter
-              </a>
+          </div>
+          <div className="socialButton__container">
+            <a href="/" className="facebook__contain social__button__profile">
+              <img src={facebook} alt="" />
+            </a>
+            <a href="/" className="linkedIn__contain social__button__profile">
+              <img src={linkedin} alt="" />
+            </a>
+            <a href="/" className="twitter__contain social__button__profile">
+              <img src={twitter} alt="" />
+            </a>
+            <a href="/" className="whatsapp__contain social__button__profile">
+              <img src={whatsapp} alt="" />
+            </a>
+            <a href="/" className="insta__contain social__button__profile">
+              <img src={instagram} alt="" />
+            </a>
+          </div>
+          <div className="otherOptions__container">
+            <a href="/" className="optionButton__profile">
+              <img src={phoneIcon} alt="" />
+              Call
+            </a>
+            <a href="/" className="optionButton__profile">
+              <img src={mailIcon} alt="" />
+              Mail
+            </a>
+            <a href="/" className="optionButton__profile">
+              <img src={locationIcon} alt="" />
+              Locate Us
+            </a>
+          </div>
+          <div className="other__buttons__container">
+            <div className="payment__button">
+              <img src={payment} alt="" />
+              Make Payment
             </div>
-            <div className="other__buttons__container">
-              <div className="payment__button">
-                <img src={payment} alt="" />
-                Make Payment
-              </div>
-              <a href={file} download className="download__button">
-                <img src={download} alt="" />
-                Download Profile
-              </a>
+            <a href={file} download className="download__button">
+              <img src={download} alt="" />
+              Download Profile
+            </a>
+          </div>
+          <div className="refer__container">
+            <img src={copy} alt="" />
+            <div className="text__container__refer">
+              <p>Refer your friends and earn use code </p>
+              <span className="refer__code">RONE12345</span>
+              <span className="clicktocopy">click to copy</span>
             </div>
           </div>
         </div>
