@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
-import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import "./AuthStyles.css";
 
@@ -104,9 +103,6 @@ const VerifyOtpLogin = () => {
         <div className="header__right">
           <Link to="/">
             <SecondaryButton content="Register" />
-          </Link>
-          <Link className="loginButton__container" to="/login">
-            <PrimaryButton content="Login" />
           </Link>
           <div className="header__menu__container">
             <img src={menu} alt="" />
