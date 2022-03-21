@@ -14,6 +14,8 @@ import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
+import youtube from "../assets/youtube.svg";
+import telegram from "../assets/telegram.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
 import file from "../assets/download/file.pdf";
@@ -22,6 +24,7 @@ import {
   FacebookShareButton,
   InstapaperShareButton,
   LinkedinShareButton,
+  TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
@@ -36,31 +39,7 @@ const ProfileDetails = () => {
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
 
-  /* const [loggedAccessState, setLoggedAccess] = useState(""); */
-  const [loggedImgState, setLoggedImg] = useState("");
-  const [loggedNameState, setLoggedName] = useState("");
-  const [loggedProffState, setLoggedProff] = useState("");
-  const [loggedBioState, setLoggedBio] = useState("");
-
-  /*  var loggedAccess = localStorage.getItem("loggedAccessToken"); */
-  var loggedImg = localStorage.getItem("loggedImg");
-  var loggedName = localStorage.getItem("loggedName");
-  var loggedProff = localStorage.getItem("loggedProff");
-  var loggedBio = localStorage.getItem("loggedBio");
-
   useEffect(() => {
-    /* window.onbeforeunload = function (e) {
-      window.onunload = function () {
-        window.localStorage.isMySessionActive = "false";
-      };
-      return undefined;
-    }; */
-    /* window.onload = function () {
-      window.localStorage.isMySessionActive = "true";
-    }; */
-
-    /* window.localStorage.isMySessionActive = "true"; */
-
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
 
@@ -86,10 +65,7 @@ const ProfileDetails = () => {
     if (userid !== "") {
       getUser();
     } else {
-      setLoggedImg(loggedImg);
-      setLoggedName(loggedName);
-      setLoggedProff(loggedProff);
-      setLoggedBio(loggedBio);
+      console.log("userid not found or null");
     }
   }, [userid]);
 
@@ -121,7 +97,7 @@ const ProfileDetails = () => {
           <p>Share</p>
         </div>
         <Link
-          to="/settings"
+          to="/settings/profile"
           className="settingsButton buttons__header__profile"
         >
           <img src={settings} alt="" />
@@ -153,8 +129,24 @@ const ProfileDetails = () => {
         />
         <InstapaperShareButton
           children={
+            <img src={instagram} className="shareIcon__profile " alt="" />
+          }
+          url="https://rone-demo.vercel.app/"
+        />
+        <InstapaperShareButton
+          children={
             <img
-              src={instagram}
+              src={youtube}
+              className="shareIcon__profile youtubeIconShare"
+              alt=""
+            />
+          }
+          url="https://rone-demo.vercel.app/"
+        />
+        <TelegramShareButton
+          children={
+            <img
+              src={telegram}
               className="shareIcon__profile instagramIconShare"
               alt=""
             />
@@ -170,14 +162,12 @@ const ProfileDetails = () => {
           <div
             className="imgContainer__profile"
             style={{
-              backgroundImage: `url(${
-                userData.img ? userData.img : loggedImgState
-              })`,
+              backgroundImage: `url(${userData.img})`,
             }}
           ></div>
           <div className="left__profile__title">
-            <h2>{userData.name ? userData.name : loggedNameState}</h2>
-            <p>{userData.proff ? userData.proff : loggedProffState}</p>
+            <h2>{userData.name}</h2>
+            <p>{userData.proff}</p>
             <div className="rating__container">
               <img src={starRed} alt="" />
               <img src={starRed} alt="" />
@@ -189,7 +179,7 @@ const ProfileDetails = () => {
         </div>
         <div className="rightContainer__profile">
           <div className="topContainer__rightProfile">
-            <p>{userData.bio ? userData.bio : loggedBioState}</p>
+            <p>{userData.bio}</p>
             <div className="qrCode__container">
               <QRCode
                 size={70}
@@ -218,6 +208,12 @@ const ProfileDetails = () => {
             </a>
             <a href="/" className="insta__contain social__button__profile">
               <img src={instagram} alt="" />
+            </a>
+            <a href="/" className="youtube__contain social__button__profile">
+              <img src={youtube} alt="" />
+            </a>
+            <a href="/" className="telegram__contain social__button__profile">
+              <img src={telegram} alt="" />
             </a>
           </div>
           <div className="otherOptions__container">

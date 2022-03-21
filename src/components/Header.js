@@ -3,6 +3,7 @@ import "./Header.css";
 import logo from "../assets/Logo1.svg";
 import PrimaryButton from "./PrimaryButton";
 import { Link } from "react-router-dom";
+import menuIcon from "../assets/menuIcon.svg";
 
 const Header = () => {
   return (
@@ -19,6 +20,9 @@ const Header = () => {
               <a href="https://roneinfotrade.in">Legal</a>
             </li>
             <li>
+              <a href="/">Forum</a>
+            </li>
+            <li>
               <a href="https://roneinfotrade.in">FAQ</a>
             </li>
             <li>
@@ -29,6 +33,9 @@ const Header = () => {
         <Link to="/" className="buttonContainer">
           <PrimaryButton content="Register / Login" />
         </Link>
+        <div className="headerMenuContainer">
+          <img className="headermenuButton" src={menuIcon} alt="" />
+        </div>
       </div>
     </div>
   );

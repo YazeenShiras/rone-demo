@@ -7,7 +7,8 @@ import CreateUser from "./pages/CreateUser";
 import UserDetails from "./pages/UserDetails";
 import LoginSendOtp from "./pages/LoginSendOtp";
 import VerifyOtpLogin from "./pages/VerifyOtpLogin";
-import Settings from "./pages/Settings";
+import ProfileSettings from "./pages/ProfileSettings";
+import Wallet from "./pages/Wallet";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Route path="/userdetails" component={UserDetails} />
           <Route path="/login" component={LoginSendOtp} />
           <Route path="/verifyotplogin" component={VerifyOtpLogin} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/settings/profile" component={ProfileSettings} />
+          <Route path="/settings/Wallet" component={Wallet} />
         </Switch>
       </div>
     </Router>

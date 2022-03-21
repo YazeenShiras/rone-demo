@@ -177,3 +177,9 @@
 .saveProfileButton:hover {
   background-color: #ed2d37;
 }
+
+@media only screen and (max-width: 500px) {
+  .title__container__userDetails > h2 {
+    font-size: 20px;
+  }
+}

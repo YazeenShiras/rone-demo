@@ -23,6 +23,7 @@
 .header__right__main {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .header__right__main > nav {
@@ -48,4 +49,28 @@
 
 .buttonContainer {
   margin-right: 8vw;
+}
+
+.headerMenuContainer {
+  display: none;
+  margin-top: 5px;
+}
+
+.headermenuButton {
+  height: 20px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .header__right__main > nav {
+    display: none;
+  }
+  .buttonContainer {
+    margin-right: 10px;
+  }
+  .headerMenuContainer {
+    display: block;
+    margin-right: 8vw;
+  }
 }

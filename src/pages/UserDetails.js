@@ -11,7 +11,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
 
-function EditPage() {
+function UserDetails() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [profession, setProfession] = useState("");
@@ -138,12 +138,12 @@ function EditPage() {
           </div>
         </div>
         <div className="header__right">
-          <Link to="/">
+          {/* <Link to="/">
             <SecondaryButton content="Register" />
           </Link>
           <Link className="loginButton__container" to="/login">
             <PrimaryButton content="Login" />
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="title__container__userDetails">
@@ -263,4 +263,4 @@ function EditPage() {
   );
 }
 
-export default EditPage;
+export default UserDetails;

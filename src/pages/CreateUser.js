@@ -4,7 +4,6 @@ import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton";
 import "./AuthStyles.css";
 
 const CreateUser = () => {
@@ -43,11 +42,9 @@ const CreateUser = () => {
     if (data.status === "true") {
       localStorage.setItem("username", name);
       localStorage.setItem("usermob", number);
-      localStorage.setItem("idForImageGallery", data.id);
       localStorage.setItem("newuserid", data.id);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("refresh_token", data.refresh_token);
-      localStorage.setItem("action", data.Registered);
       window.location.href = "/userdetails";
     }
     if (data.detail === "mobile  number already exists!") {
@@ -125,9 +122,6 @@ const CreateUser = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link to="/">
-            <SecondaryButton content="Register" />
-          </Link>
           <Link className="loginButton__container" to="/login">
             <PrimaryButton content="Login" />
           </Link>
@@ -144,12 +138,6 @@ const CreateUser = () => {
           <h2>Register Now</h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
-              <legend>Name</legend>
-              <div className="input__box">
-                <input onChange={storeValues} id="name" type="text" />
-              </div>
-            </fieldset>
-            <fieldset className="input__container">
               <legend>Mobile Number</legend>
               <div className="input__box">
                 <input
@@ -158,6 +146,12 @@ const CreateUser = () => {
                   id="number"
                   type="text"
                 />
+              </div>
+            </fieldset>
+            <fieldset className="input__container">
+              <legend>Name</legend>
+              <div className="input__box">
+                <input onChange={storeValues} id="name" type="text" />
               </div>
             </fieldset>
             <div id="errorContainer" className="errorContainer">

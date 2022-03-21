@@ -190,3 +190,13 @@
   height: 400px;
   object-fit: contain;
 }
+
+@media only screen and (max-width: 500px) {
+  .content__bodyRegister {
+    flex-direction: column;
+  }
+  .image__container__bodyRegister > img {
+    height: 200px;
+    object-fit: contain;
+  }
+}
