@@ -19,7 +19,6 @@ import telegram from "../assets/telegram.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
 import file from "../assets/download/file.pdf";
-import user from "../assets/user.png";
 import {
   FacebookShareButton,
   InstapaperShareButton,
@@ -217,15 +216,27 @@ const ProfileDetails = () => {
             </a>
           </div>
           <div className="otherOptions__container">
-            <a href="/" className="optionButton__profile">
+            <a
+              href={`tel:` + userData.phone_num}
+              className="optionButton__profile"
+            >
               <img src={phoneIcon} alt="" />
               Call
             </a>
-            <a href="/" className="optionButton__profile">
+            <a
+              href={`mailto:` + userData.email}
+              className="optionButton__profile"
+            >
               <img src={mailIcon} alt="" />
               Mail
             </a>
-            <a href="/" className="optionButton__profile">
+            <a
+              href={
+                `https://www.google.com/maps/search/?api=1&query=` +
+                userData.location
+              }
+              className="optionButton__profile"
+            >
               <img src={locationIcon} alt="" />
               Locate Us
             </a>

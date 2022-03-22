@@ -26,9 +26,12 @@ const EditProfile = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
 
+  const [img, setImg] = useState("");
   const [updatedImg, setUpdatedImg] = useState("");
 
   const [idForUpdate, setIdForUpdate] = useState();
+
+  /* const [allfield, setAllField] = useState(false); */
 
   var idForUpdateForm = localStorage.getItem("newuserid");
 
@@ -55,6 +58,7 @@ const EditProfile = () => {
       const data = await req.json();
       console.log(data);
       setUserData(data);
+      setImg(data.img);
     };
 
     if (idForUpdate !== "" && idForUpdate !== undefined) {
@@ -138,18 +142,47 @@ const EditProfile = () => {
     });
     const data = await response.json();
     console.log(data);
-    /* if (data.status === 200) {
+    if (data.status === 200) {
       console.log("ok");
-      if (isProfilePhotoUploaded) {
-        localStorage.setItem("newuserid", userid);
-        window.location.href = "/profile";
-      } else {
-        console.log("No profile pic");
-      }
+      window.location.href = "/profile";
     } else {
       console.log("error no status code 200");
-    } */
+    }
   }
+
+  /* const checkForNull = () => {
+    if (address === "") {
+      setAddress(userData.address);
+    }
+    if (bio === "") {
+      setBio(userData.bio);
+    }
+    if (profession === "") {
+      setProfession(userData.proff);
+    }
+    if (email === "") {
+      setEmail(userData.email);
+    }
+    if (location === "") {
+      setEmail(userData.location);
+    }
+    if (name === "") {
+      setName(userData.name);
+    }
+    if (
+      name !== "" &&
+      address !== "" &&
+      bio !== "" &&
+      profession !== "" &&
+      email !== "" &&
+      location !== ""
+    ) {
+      setAllField(true);
+    }
+    if (allfield) {
+      updateProfile();
+    }
+  }; */
 
   return (
     <div className="settingsPage">
@@ -175,7 +208,7 @@ const EditProfile = () => {
             <div
               className="imageUpdateContainer"
               style={{
-                backgroundImage: `url(${updatedImg})`,
+                backgroundImage: `url(${img !== "" ? img : updatedImg})`,
               }}
             >
               <div className="loader__container" id="loaderImage">
