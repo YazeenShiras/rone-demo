@@ -68,7 +68,6 @@ const ProfileDetails = () => {
   }, [userid]);
 
   const shareToSocial = () => {
-    var shareButton = document.getElementById("shareButton");
     var shareIconsContainer = document.getElementById("shareIconsContainer");
     var profileContainerProfileDetails = document.getElementById(
       "profileContainer__profileDetails"
@@ -125,13 +124,13 @@ const ProfileDetails = () => {
           }
           url="https://rone-demo.vercel.app/"
         />
-        <InstapaperShareButton
+        {/* <InstapaperShareButton
           children={
             <img src={instagram} className="shareIcon__profile " alt="" />
           }
           url="https://rone-demo.vercel.app/"
         />
-        <InstapaperShareButton
+        <WhatsappShareButton
           children={
             <img
               src={youtube}
@@ -140,7 +139,7 @@ const ProfileDetails = () => {
             />
           }
           url="https://rone-demo.vercel.app/"
-        />
+        /> */}
         <TelegramShareButton
           children={
             <img
@@ -180,7 +179,7 @@ const ProfileDetails = () => {
             <p>{userData.bio}</p>
             <div className="qrCode__container">
               <QRCode
-                size={70}
+                size={window.innerWidth <= "500px" ? 70 : 50}
                 level="H"
                 title="Rone"
                 value="https://rone-demo.vercel.app/"
