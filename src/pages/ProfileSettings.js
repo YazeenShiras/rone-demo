@@ -31,8 +31,6 @@ const EditProfile = () => {
 
   const [idForUpdate, setIdForUpdate] = useState();
 
-  const [allfield, setAllField] = useState(false);
-
   var idForUpdateForm = localStorage.getItem("newuserid");
 
   const inpFile = document.getElementById("inpFile");
