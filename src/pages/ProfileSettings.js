@@ -31,7 +31,7 @@ const EditProfile = () => {
 
   const [idForUpdate, setIdForUpdate] = useState();
 
-  /* const [allfield, setAllField] = useState(false); */
+  const [allfield, setAllField] = useState(false);
 
   var idForUpdateForm = localStorage.getItem("newuserid");
 
@@ -113,6 +113,26 @@ const EditProfile = () => {
   }
 
   async function updateProfile() {
+    if (name === "") {
+      console.log("value Null name");
+      setName(userData.name);
+    }
+    if (email === "") {
+      setEmail(document.getElementById("email").defaultValue);
+    }
+    if (location === "") {
+      setLocation(document.getElementById("location").defaultValue);
+    }
+    if (profession === "") {
+      setProfession(document.getElementById("profession").defaultValue);
+    }
+    if (address === "") {
+      setAddress(document.getElementById("address").defaultValue);
+    }
+    if (bio === "") {
+      setBio(document.getElementById("bio").defaultValue);
+    }
+
     console.log(name);
     console.log(email);
     console.log(location);
@@ -132,57 +152,27 @@ const EditProfile = () => {
         "content-Type": "application/json",
       },
       body: JSON.stringify({
-        /* name: name, */
-        profession: profession,
-        bio: bio,
-        location: location,
-        address: address,
-        email_id: email,
+        client: {
+          email_id: email,
+          location: location,
+          address: address,
+          profession: profession,
+          bio: bio,
+        },
+        up_name: {
+          name: name,
+        },
       }),
     });
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
       console.log("ok");
-      window.location.href = "/profile";
+      /* window.location.href = "/profile"; */
     } else {
       console.log("error no status code 200");
     }
   }
-
-  /* const checkForNull = () => {
-    if (address === "") {
-      setAddress(userData.address);
-    }
-    if (bio === "") {
-      setBio(userData.bio);
-    }
-    if (profession === "") {
-      setProfession(userData.proff);
-    }
-    if (email === "") {
-      setEmail(userData.email);
-    }
-    if (location === "") {
-      setEmail(userData.location);
-    }
-    if (name === "") {
-      setName(userData.name);
-    }
-    if (
-      name !== "" &&
-      address !== "" &&
-      bio !== "" &&
-      profession !== "" &&
-      email !== "" &&
-      location !== ""
-    ) {
-      setAllField(true);
-    }
-    if (allfield) {
-      updateProfile();
-    }
-  }; */
 
   return (
     <div className="settingsPage">
