@@ -101,9 +101,7 @@ const EditProfile = () => {
         if (data.Result === "OK") {
           document.getElementById("loaderImage").style.display = "none";
           setUpdatedImg(data.path);
-          /* setIsProfilePhotoUploaded(true); */
         } else {
-          /* setIsProfilePhotoUploaded(false); */
           console.log("failed update Profile");
         }
       })
@@ -166,7 +164,7 @@ const EditProfile = () => {
     console.log(data);
     if (data.status === 200) {
       console.log("ok");
-      /* window.location.href = "/profile"; */
+      window.location.href = "/profile";
     } else {
       console.log("error no status code 200");
     }
