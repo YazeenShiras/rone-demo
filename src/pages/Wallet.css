@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .roneCard__container {
@@ -234,4 +235,141 @@
 .footerContainerWallet {
   margin-top: 750px;
   box-shadow: 0 1px 30px 0 #0000001a;
+}
+
+@media only screen and (max-width: 414px) {
+  .footerContainerWallet {
+    margin-top: 400px;
+  }
+  .roneCard__container {
+    height: 220px;
+    display: flex;
+  }
+  .leftContaniner__roneCard {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .leftContaniner__roneCard > img {
+    height: 40px;
+    margin-left: -50px;
+  }
+  .bottomContainer__leftContainer__roneCard {
+    margin-top: 70px;
+  }
+  .bottomContainer__leftContainer__roneCard > h5 {
+    margin-left: 10px;
+  }
+  .cardBalanceContainer {
+    margin-left: 120px;
+    display: flex;
+    flex-direction: column;
+  }
+  .roneCard__container > p {
+    margin-right: -125px;
+    font-size: 12px;
+  }
+  .buyMoretext {
+    font-size: 15px;
+  }
+  .left__card__transaction > p {
+    font-size: 12px;
+    width: 80px;
+  }
+  .left__card__transaction > p > span {
+    margin-left: 0px;
+  }
+  .middleLeft__card__transaction > p {
+    font-size: 12px;
+    width: 110px;
+  }
+  .middleRight__card__transaction > img {
+    height: 15px;
+  }
+  .middleRight__card__transaction > p {
+    font-size: 11px;
+    margin-left: 3px;
+    width: 30px;
+  }
+  .deleteButton__transaction__card {
+    height: 25px;
+    width: 60px;
+    font-size: 11px;
+  }
+  .generateNewLink__button {
+    height: 40px;
+    width: 150px;
+    background-color: #d52a33;
+    border-radius: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .footerContainerWallet {
+    margin-top: 500px;
+  }
+  .roneCard__container {
+    height: 190px;
+    display: flex;
+  }
+  .leftContaniner__roneCard {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .leftContaniner__roneCard > img {
+    height: 40px;
+    margin-left: -50px;
+  }
+  .bottomContainer__leftContainer__roneCard {
+    margin-top: 50px;
+  }
+  .bottomContainer__leftContainer__roneCard > h5 {
+    margin-left: 10px;
+  }
+  .cardBalanceContainer {
+    margin-left: 90px;
+    display: flex;
+    flex-direction: column;
+  }
+  .roneCard__container > p {
+    margin-right: -115px;
+    font-size: 12px;
+  }
+  .buyMoretext {
+    font-size: 15px;
+  }
+  .left__card__transaction > p {
+    font-size: 12px;
+    width: 70px;
+  }
+  .left__card__transaction > p > span {
+    margin-left: 0px;
+  }
+  .middleLeft__card__transaction > p {
+    font-size: 12px;
+    width: 110px;
+  }
+  .middleRight__card__transaction > img {
+    height: 13px;
+  }
+  .middleRight__card__transaction > p {
+    font-size: 11px;
+    margin-left: 3px;
+    width: 35px;
+  }
+  .deleteButton__transaction__card {
+    font-size: 10px;
+  }
+
+  .typetransactionHistory,
+  .dateTransactionHistory,
+  .statusTransactionHistory {
+    font-size: 12px;
+  }
 }

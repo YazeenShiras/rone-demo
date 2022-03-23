@@ -24,9 +24,9 @@ const Wallet = () => {
               to="/settings/profile"
               className=" titleHeaderlink mainSettings"
             >
-              Profile Settings
+              Profile
             </Link>
-            <p className="accountSettings titleHeaderlink">Account Settings</p>
+            <p className="accountSettings titleHeaderlink">Account</p>
             <Link
               to="/settings/Wallet"
               className="activeHeaderWallet titleHeaderlink"
@@ -70,7 +70,7 @@ const Wallet = () => {
                 </div>
                 <div className="middleRight__card__transaction">
                   <img src={copy} alt="" />
-                  <p>Copy Link</p>
+                  <p>Copy</p>
                 </div>
                 <div className="deleteButton__transaction__card">Delete</div>
               </div>
@@ -86,7 +86,7 @@ const Wallet = () => {
                 </div>
                 <div className="middleRight__card__transaction">
                   <img src={copy} alt="" />
-                  <p>Copy Link</p>
+                  <p>Copy</p>
                 </div>
                 <div className="deleteButton__transaction__card">Delete</div>
               </div>
@@ -102,7 +102,7 @@ const Wallet = () => {
                 </div>
                 <div className="middleRight__card__transaction">
                   <img src={copy} alt="" />
-                  <p>Copy Link</p>
+                  <p>Copy</p>
                 </div>
                 <div className="deleteButton__transaction__card">Delete</div>
               </div>

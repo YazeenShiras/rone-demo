@@ -73,4 +73,9 @@
     display: block;
     margin-right: 8vw;
   }
+  .header__logo > a > img {
+    height: 40px;
+    object-fit: contain;
+    margin-top: 5px;
+  }
 }

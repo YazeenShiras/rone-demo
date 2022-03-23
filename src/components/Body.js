@@ -1,18 +1,18 @@
 import React from "react";
 import "./Body.css";
-import ImageGalleryMain from "./ImageGalleryMain";
+/* import ImageGalleryMain from "./ImageGalleryMain"; */
 import ProfileDetails from "./ProfileDetails";
-import Products from "./Products";
+/* import Products from "./Products"; */
 import Footer from "./Footer.js";
-import AdContainer from "./AdContainer";
+/* import AdContainer from "./AdContainer"; */
 
 const Body = () => {
   return (
     <div className="body">
       <ProfileDetails />
-      <ImageGalleryMain />
+      {/* <ImageGalleryMain />
       <AdContainer />
-      <Products />
+      <Products /> */}
       <Footer />
     </div>
   );

@@ -186,8 +186,8 @@ const EditProfile = () => {
         <h2>Settings</h2>
         <div className="formContainer__settings">
           <div className="titleContainer__formContainer">
-            <p className="activeHeader titleHeaderlink">Profile Settings</p>
-            <p className="accountSettings titleHeaderlink">Account Settings</p>
+            <p className="activeHeader titleHeaderlink">Profile</p>
+            <p className="accountSettings titleHeaderlink">Account</p>
             <Link
               to="/settings/Wallet"
               className="walletSettings titleHeaderlink"

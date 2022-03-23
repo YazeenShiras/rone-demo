@@ -463,3 +463,41 @@
     margin: 0;
   }
 }
+
+@media only screen and (max-width: 414px) {
+  .profileDetails {
+    height: calc(85vh - 80px);
+  }
+  .profileContainer__profileDetails {
+    height: 85%;
+  }
+  .imgContainer__profile {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #d52a33;
+    margin-left: 20px;
+  }
+  .left__profile__title > h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+  .payment__button {
+    height: 35px;
+    width: 140px;
+    font-size: 12px;
+  }
+  .download__button {
+    height: 35px;
+    width: 140px;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .profileDetails {
+    height: calc(95vh - 80px);
+  }
+  .profileContainer__profileDetails {
+    height: 85%;
+  }
+}

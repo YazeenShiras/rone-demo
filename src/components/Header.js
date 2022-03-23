@@ -31,7 +31,7 @@ const Header = () => {
           </ul>
         </nav>
         <Link to="/" className="buttonContainer">
-          <PrimaryButton content="Register / Login" />
+          <PrimaryButton content="Log Out" />
         </Link>
         <div className="headerMenuContainer">
           <img className="headermenuButton" src={menuIcon} alt="" />
