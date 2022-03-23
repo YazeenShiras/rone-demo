@@ -18,7 +18,6 @@ import youtube from "../assets/youtube.svg";
 import telegram from "../assets/telegram.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
-import file from "../assets/download/file.pdf";
 import {
   FacebookShareButton,
   InstapaperShareButton,
@@ -246,7 +245,11 @@ const ProfileDetails = () => {
               <img src={payment} alt="" />
               Make Payment
             </div>
-            <a href={file} download className="download__button">
+            <a
+              href="https://rone-demo.vercel.app/profile"
+              download
+              className="download__button"
+            >
               <img src={download} alt="" />
               Download Profile
             </a>

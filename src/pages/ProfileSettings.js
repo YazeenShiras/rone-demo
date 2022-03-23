@@ -57,6 +57,12 @@ const EditProfile = () => {
       console.log(data);
       setUserData(data);
       setImg(data.img);
+      setName(data.name);
+      setProfession(data.proff);
+      setLocation(data.location);
+      setBio(data.bio);
+      setEmail(data.email);
+      setAddress(data.address);
     };
 
     if (idForUpdate !== "" && idForUpdate !== undefined) {
@@ -109,7 +115,7 @@ const EditProfile = () => {
   }
 
   async function updateProfile() {
-    if (name === "") {
+    /* if (name === "") {
       console.log("value Null name");
       setName(userData.name);
     }
@@ -127,7 +133,7 @@ const EditProfile = () => {
     }
     if (bio === "") {
       setBio(document.getElementById("bio").defaultValue);
-    }
+    } */
 
     console.log(name);
     console.log(email);
