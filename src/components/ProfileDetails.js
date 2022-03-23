@@ -58,6 +58,8 @@ const ProfileDetails = () => {
       const data = await req.json();
       console.log(data);
       setUserData(data);
+      localStorage.setItem("nameForWallet", data.name);
+      localStorage.setItem("NumberForWallet", data.phone_num);
     };
 
     if (userid !== "") {

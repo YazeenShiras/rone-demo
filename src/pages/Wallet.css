@@ -40,7 +40,7 @@
 }
 
 .cardBalanceContainer {
-  margin-left: 150px;
+  margin-left: 110px;
   display: flex;
   flex-direction: column;
 }
@@ -115,6 +115,7 @@
 
 .transactionLinks__container {
   width: 100%;
+  display: none;
 }
 
 .TransactionLink__card {
@@ -126,6 +127,16 @@
   height: 50px;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+.card__transactionHistory {
+  justify-content: center;
+}
+
+.card__transactionHistory > h4 {
+  color: #686868;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 .left__card__transaction > p {
@@ -163,7 +174,7 @@
 
 .deleteButton__transaction__card {
   height: 25px;
-  width: 70px;
+  width: 50px;
   background-color: #ffacac;
   border-radius: 50px;
   display: flex;
