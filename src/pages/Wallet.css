@@ -185,6 +185,11 @@
   margin-right: 10px;
 }
 
+.loader__container__widget {
+  margin-bottom: 20px;
+  display: none;
+}
+
 .generateNewLink__button {
   height: 40px;
   width: 150px;

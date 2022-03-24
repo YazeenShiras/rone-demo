@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+/* import { Link } from "react-router-dom"; */
 import user from "../assets/user.png";
 import logo from "../assets/Logo1.svg";
 import photoIcon from "../assets/image.svg";
 import "./AuthStyles.css";
-import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton";
+/* import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton"; */
 import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
 

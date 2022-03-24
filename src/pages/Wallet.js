@@ -9,6 +9,7 @@ import copy from "../assets/copyRed.svg";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import copyLink from "copy-to-clipboard";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Wallet = () => {
   const [userid, setUserId] = useState("");
@@ -40,6 +41,7 @@ const Wallet = () => {
   };
 
   async function generateLink() {
+    document.getElementById("loaderWidget").style.display = "block";
     let url = "https://arclifs-services.herokuapp.com/generateLink";
 
     const response = await fetch(url, {
@@ -55,6 +57,7 @@ const Wallet = () => {
     console.log(data);
     setCopyLinkText(data.referral);
     if (data) {
+      document.getElementById("loaderWidget").style.display = "none";
       document.getElementById("transactionLinksContainer").style.display =
         "flex";
     }
@@ -107,6 +110,9 @@ const Wallet = () => {
             <div className="TransactionContainerTitle">
               <span></span>
               <div className="TransactionLinks">Transactions Links</div>
+            </div>
+            <div className="loader__container__widget" id="loaderWidget">
+              <PropagateLoader color="#d52a33" />
             </div>
             <div
               className="transactionLinks__container"
