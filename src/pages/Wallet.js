@@ -25,7 +25,12 @@ const Wallet = () => {
 
   const [isdetails, setIsdetails] = useState(false);
 
-  const [cardBalance, setCardBalance] = useState("50");
+  const [cardBalance, setCardBalance] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [cardUsed, setCardUsed] = useState(0);
+
+  const [buyCardCount, setBuyCardCount] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(1500);
 
   useEffect(() => {
     window.onbeforeunload = function (e) {
@@ -42,6 +47,27 @@ const Wallet = () => {
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
   }, []);
+
+  useEffect(() => {
+    async function getRefferralDetails() {
+      let url = "https://arclifs-services.herokuapp.com/referralDetails";
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          UserId: userid,
+        }),
+      });
+      const data = await response.json();
+      console.log("refferal : " + data);
+    }
+    if (userid !== "" && userid !== undefined) {
+      getRefferralDetails();
+    }
+  }, [userid, resName]);
 
   useEffect(() => {
     if (name !== "") {
@@ -75,13 +101,10 @@ const Wallet = () => {
 
   const generateLink = () => {
     document.getElementById("formForGenerateLink").style.display = "block";
-    setName("");
-    setNumber("");
-    setEmail("");
   };
 
   async function handleSubmit() {
-    setCardBalance(cardBalance - 1);
+    setCardBalance(cardUsed + 1);
     document.getElementById("formForGenerateLink").style.display = "none";
     document.getElementById("loaderWidget").style.display = "block";
     let url = "https://arclifs-services.herokuapp.com/generateLink";
@@ -111,31 +134,23 @@ const Wallet = () => {
   }
 
   const submitClick = () => {
-    console.log("clicked to submit");
-    console.log(name);
-    console.log(number);
     if (name === "" || number === "") {
-      console.log("name or number null");
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
         "Enter Name and Mobile Number";
     } else {
-      console.log("number and Name check");
       let isnum = /^\d+$/.test(number);
       if (number.length === 10) {
-        console.log("10 digit number true");
         if (isnum) {
           console.log("number true");
           document.getElementById("errorMobile").style.display = "none";
         } else {
-          console.log("number false");
           document.getElementById("errorMobile").style.display = "block";
           document.getElementById("errorMobile").innerHTML =
             "Enter a Mobile Number";
         }
       } else {
-        console.log("10 digit number false");
         document.getElementById("errorMobile").style.display = "block";
         document.getElementById("errorMobile").innerHTML =
           "Enter a valid Mobile Number";
@@ -144,6 +159,22 @@ const Wallet = () => {
         handleSubmit();
       }
     }
+  };
+
+  const buyMoreCarsClick = () => {
+    document.getElementById("buyMoreCardsContainer").style.display = "flex";
+  };
+
+  const onCardInputChange = () => {
+    setBuyCardCount(document.getElementById("numberOfCards").value);
+  };
+
+  useEffect(() => {
+    setTotalPrice(buyCardCount * 1500);
+  }, [buyCardCount]);
+
+  const buyRoneCardClick = () => {
+    setCardBalance(buyCardCount);
   };
 
   return (
@@ -182,14 +213,50 @@ const Wallet = () => {
                   <h5>{userNameCard}</h5>
                   <div className="cardBalanceContainer">
                     <p>Card Balance</p>
-                    <h3>{cardBalance}\50</h3>
+                    <h3>
+                      {cardUsed}\{cardBalance}
+                    </h3>
                   </div>
                 </div>
               </div>
               <p>RONE CARD</p>
             </div>
             <p className="buyMoretext">Low card balance? Buy More</p>
-            <div className="buyMoreCards__button">Buy More Cards</div>
+            <div onClick={buyMoreCarsClick} className="buyMoreCards__button">
+              Buy More Cards
+            </div>
+            <div className="buyMoreCardsContainer" id="buyMoreCardsContainer">
+              <div className="cardCountContainer">
+                <div className="inputContainerbuyMoreCard">
+                  <p>Enter number of Cards</p>
+                  <div className="inputBuyMoreCard">
+                    <input
+                      id="numberOfCards"
+                      type="text"
+                      name="numberOfCards"
+                      defaultValue="1"
+                      onChangeCapture={onCardInputChange}
+                    />
+                  </div>
+                </div>
+                <h3>X</h3>
+                <div className="priceCountContainer">
+                  <p>Price of 1 card</p>
+                  <h2>1500</h2>
+                </div>
+                <h3>=</h3>
+                <div className="totalCountContainer">
+                  <p>Total Price</p>
+                  <h2>{totalPrice}</h2>
+                </div>
+              </div>
+              <div
+                onClick={buyRoneCardClick}
+                className="generateNewLink__button"
+              >
+                BUY RONE CARD
+              </div>
+            </div>
             <div className="TransactionContainerTitle">
               <span></span>
               <div className="TransactionLinks">Transactions Links</div>

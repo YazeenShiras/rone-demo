@@ -84,6 +84,88 @@
   cursor: pointer;
 }
 
+.cardCountContainer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cardCountContainer > h3 {
+  margin-top: 20px;
+  color: #686868;
+}
+
+.inputContainerbuyMoreCard > p {
+  font-size: 11px;
+  color: #686868;
+  margin-bottom: 5px;
+}
+
+.priceCountContainer,
+.totalCountContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.priceCountContainer > h2,
+.totalCountContainer > h2 {
+  margin-top: 8px;
+  color: #d52a33;
+}
+
+.priceCountContainer > p,
+.totalCountContainer > p {
+  font-size: 11px;
+  color: #686868;
+}
+
+.inputBuyMoreCard {
+  width: 120px;
+  height: 40px;
+  border: 1px solid #d52a33;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputBuyMoreCard > input {
+  width: 70%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  font-family: inherit;
+  color: #686868;
+}
+
+.counterContainer__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counterContainer__card > img {
+  height: 20px;
+  object-fit: contain;
+}
+
+.buyMoreCardsContainer {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
 .TransactionContainerTitle {
   width: 100%;
   display: flex;
