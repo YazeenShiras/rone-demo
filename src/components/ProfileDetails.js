@@ -59,7 +59,6 @@ const ProfileDetails = () => {
       console.log(data);
       setUserData(data);
       localStorage.setItem("nameForWallet", data.name);
-      localStorage.setItem("NumberForWallet", data.phone_num);
     };
 
     if (userid !== "") {

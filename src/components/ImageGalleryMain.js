@@ -180,10 +180,10 @@ const ImageGalleryMain = () => {
           <img src={image} alt="" />
           Choose Photo
         </div>
-        <div onClick={viewBrowsePhoto} className="BrowsePhotoButton">
+        {/* <div onClick={viewBrowsePhoto} className="BrowsePhotoButton">
           <img src={image} alt="" />
           Browse Photo
-        </div>
+        </div> */}
       </div>
       <div className="selectFromFile__container" id="selectFromFileContainer">
         <div className="loading__animation" id="loadingAnimation">
@@ -191,7 +191,7 @@ const ImageGalleryMain = () => {
           <p> Uploading...</p>
         </div>
       </div>
-      <div className="browseImageContainer" id="browseImageContainer">
+      {/* <div className="browseImageContainer" id="browseImageContainer">
         <div className="searchBox__container">
           <input
             id="searchInput"
@@ -238,7 +238,7 @@ const ImageGalleryMain = () => {
             Next
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="title__container__imageGalleryMain">
         <h3>Image Gallery</h3>
         <div className="viewAll__button">View All</div>

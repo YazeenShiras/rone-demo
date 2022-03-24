@@ -13,9 +13,19 @@ import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Wallet = () => {
   const [userid, setUserId] = useState("");
+  const [userNameCard, SetUserNameCard] = useState("");
+
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
+
   const [copyLinkText, setCopyLinkText] = useState("");
+  const [resName, setResName] = useState("");
+  const [resNumber, setResNumber] = useState("");
+
+  const [isdetails, setIsdetails] = useState(false);
+
+  const [cardBalance, setCardBalance] = useState("50");
 
   useEffect(() => {
     window.onbeforeunload = function (e) {
@@ -27,20 +37,52 @@ const Wallet = () => {
     window.onload = function () {
       window.localStorage.isMySessionActive = "true";
     };
+    var newName = localStorage.getItem("nameForWallet");
+    SetUserNameCard(newName);
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
-    var username = localStorage.getItem("nameForWallet");
-    setName(username);
-    var usernumber = localStorage.getItem("NumberForWallet");
-    setNumber(usernumber);
   }, []);
+
+  useEffect(() => {
+    if (name !== "") {
+      if (number !== "") {
+        let isnum = /^\d+$/.test(number);
+        if (number.length === 10) {
+          if (isnum) {
+            setIsdetails(true);
+          } else {
+            setIsdetails(false);
+          }
+        } else {
+          setIsdetails(false);
+        }
+      } else {
+        setIsdetails(false);
+      }
+    }
+  }, [name, number]);
+
+  const storeValues = () => {
+    setName(document.getElementById("name").value);
+    setNumber(document.getElementById("number").value);
+    setEmail(document.getElementById("email").value);
+  };
 
   const copyToClipboard = () => {
     console.log(copyLinkText);
     copyLink(copyLinkText);
   };
 
-  async function generateLink() {
+  const generateLink = () => {
+    document.getElementById("formForGenerateLink").style.display = "block";
+    setName("");
+    setNumber("");
+    setEmail("");
+  };
+
+  async function handleSubmit() {
+    setCardBalance(cardBalance - 1);
+    document.getElementById("formForGenerateLink").style.display = "none";
     document.getElementById("loaderWidget").style.display = "block";
     let url = "https://arclifs-services.herokuapp.com/generateLink";
 
@@ -51,17 +93,58 @@ const Wallet = () => {
       },
       body: JSON.stringify({
         Id: userid,
+        username: name,
+        phone: number,
+        email: email,
       }),
     });
     const data = await response.json();
     console.log(data);
     setCopyLinkText(data.referral);
+    setResName(data.username);
+    setResNumber(data.phone);
     if (data) {
       document.getElementById("loaderWidget").style.display = "none";
       document.getElementById("transactionLinksContainer").style.display =
         "flex";
     }
   }
+
+  const submitClick = () => {
+    console.log("clicked to submit");
+    console.log(name);
+    console.log(number);
+    if (name === "" || number === "") {
+      console.log("name or number null");
+      setIsdetails(false);
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML =
+        "Enter Name and Mobile Number";
+    } else {
+      console.log("number and Name check");
+      let isnum = /^\d+$/.test(number);
+      if (number.length === 10) {
+        console.log("10 digit number true");
+        if (isnum) {
+          console.log("number true");
+          document.getElementById("errorMobile").style.display = "none";
+        } else {
+          console.log("number false");
+          document.getElementById("errorMobile").style.display = "block";
+          document.getElementById("errorMobile").innerHTML =
+            "Enter a Mobile Number";
+        }
+      } else {
+        console.log("10 digit number false");
+        document.getElementById("errorMobile").style.display = "block";
+        document.getElementById("errorMobile").innerHTML =
+          "Enter a valid Mobile Number";
+      }
+      if (isdetails) {
+        handleSubmit();
+      }
+    }
+  };
 
   return (
     <div className="settingsPage">
@@ -96,10 +179,10 @@ const Wallet = () => {
               <div className="leftContaniner__roneCard">
                 <img src={ronelogoCard} alt="" />
                 <div className="bottomContainer__leftContainer__roneCard">
-                  <h5>{name}</h5>
+                  <h5>{userNameCard}</h5>
                   <div className="cardBalanceContainer">
                     <p>Card Balance</p>
-                    <h3>0\50</h3>
+                    <h3>{cardBalance}\50</h3>
                   </div>
                 </div>
               </div>
@@ -121,11 +204,11 @@ const Wallet = () => {
               <div className="TransactionLink__card">
                 <div className="left__card__transaction">
                   <p>
-                    1.<span>{name}</span>
+                    1.<span>{resName}</span>
                   </p>
                 </div>
                 <div className="middleLeft__card__transaction">
-                  <p>{`+91 ` + number}</p>
+                  <p>{`+91 ` + resNumber}</p>
                 </div>
                 <div
                   onClick={copyToClipboard}
@@ -136,48 +219,57 @@ const Wallet = () => {
                 </div>
                 <div className="deleteButton__transaction__card">Delete</div>
               </div>
-
-              {/* <div className="TransactionLink__card">
-                <div className="left__card__transaction">
-                  <p>
-                    2. <span>{name}</span>
-                  </p>
-                </div>
-                <div className="middleLeft__card__transaction">
-                  <p>{`+91 ` + number}</p>
-                </div>
-                <div
-                  onClick={copyToClipboard}
-                  className="middleRight__card__transaction"
-                >
-                  <img src={copy} alt="" />
-                  <p>Copy</p>
-                </div>
-                <div className="deleteButton__transaction__card">Delete</div>
-              </div>
-
-              <div className="TransactionLink__card">
-                <div className="left__card__transaction">
-                  <p>
-                    3. <span>{name}</span>
-                  </p>
-                </div>
-                <div className="middleLeft__card__transaction">
-                  <p>{`+91 ` + number}</p>
-                </div>
-                <div
-                  onClick={copyToClipboard}
-                  className="middleRight__card__transaction"
-                >
-                  <img src={copy} alt="" />
-                  <p>Copy</p>
-                </div>
-                <div className="deleteButton__transaction__card">Delete</div>
-              </div> */}
             </div>
 
             <div onClick={generateLink} className="generateNewLink__button">
               Generate New Link
+            </div>
+
+            <div className="formForGenerateLink" id="formForGenerateLink">
+              <form autoComplete="off" className="form__sumbitForGenerate">
+                <fieldset className="input__container__form__update">
+                  <legend>Name</legend>
+                  <div className="input__box__form__update">
+                    <input
+                      onChange={storeValues}
+                      id="name"
+                      type="text"
+                      name="username"
+                    />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>Mobile Number</legend>
+                  <div className="input__box__form__update">
+                    <input
+                      onChange={storeValues}
+                      id="number"
+                      type="text"
+                      name="number"
+                    />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>Email</legend>
+                  <div className="input__box__form__update">
+                    <input
+                      onChange={storeValues}
+                      id="email"
+                      type="email"
+                      name="email"
+                    />
+                  </div>
+                </fieldset>
+              </form>
+              <p className="errorName" id="errorName">
+                Please Enter Name
+              </p>
+              <p className="errorMobile" id="errorMobile">
+                Enter a valid Mobile Number
+              </p>
+              <div onClick={submitClick} className="submitButtonGenerateLink">
+                SUBMIT
+              </div>
             </div>
 
             <div className="TransactionContainerTitle transactionHistoryTitle">

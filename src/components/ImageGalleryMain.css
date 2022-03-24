@@ -324,3 +324,14 @@
 .loading__animation > p {
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 500px) {
+  .title__container__imageGalleryMain > h3 {
+    font-size: 18px;
+    min-width: 120px;
+  }
+  .viewAll__button {
+    min-width: 70px;
+    font-size: 13px;
+  }
+}
