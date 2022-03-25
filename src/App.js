@@ -9,6 +9,7 @@ import LoginSendOtp from "./pages/LoginSendOtp";
 import VerifyOtpLogin from "./pages/VerifyOtpLogin";
 import ProfileSettings from "./pages/ProfileSettings";
 import Wallet from "./pages/Wallet";
+import BuyRoneCard from "./pages/BuyRoneCard";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/verifyotplogin" component={VerifyOtpLogin} />
           <Route path="/settings/profile" component={ProfileSettings} />
           <Route path="/settings/Wallet" component={Wallet} />
+          <Route path="/buyronecard" component={BuyRoneCard} />
         </Switch>
       </div>
     </Router>

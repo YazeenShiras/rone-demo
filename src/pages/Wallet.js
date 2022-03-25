@@ -5,10 +5,8 @@ import Header from "../components/Header";
 import bg from "../assets/settingsBg.png";
 import roneCardbg from "../assets/roneCard.svg";
 import ronelogoCard from "../assets/roneCardLogo.svg";
-import copy from "../assets/copyRed.svg";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import copyLink from "copy-to-clipboard";
 import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Wallet = () => {
@@ -48,6 +46,8 @@ const Wallet = () => {
     setUserId(newid);
   }, []);
 
+  var dataLinks = [];
+
   useEffect(() => {
     async function getRefferralDetails() {
       let url = "https://arclifs-services.herokuapp.com/referralDetails";
@@ -58,15 +58,18 @@ const Wallet = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          UserId: userid,
+          userId: userid,
         }),
       });
       const data = await response.json();
-      console.log("refferal : " + data);
+      console.log(data);
+      dataLinks.push(data);
+      console.log(dataLinks);
     }
     if (userid !== "" && userid !== undefined) {
       getRefferralDetails();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userid, resName]);
 
   useEffect(() => {
@@ -92,11 +95,6 @@ const Wallet = () => {
     setName(document.getElementById("name").value);
     setNumber(document.getElementById("number").value);
     setEmail(document.getElementById("email").value);
-  };
-
-  const copyToClipboard = () => {
-    console.log(copyLinkText);
-    copyLink(copyLinkText);
   };
 
   const generateLink = () => {
@@ -176,6 +174,23 @@ const Wallet = () => {
   const buyRoneCardClick = () => {
     setCardBalance(buyCardCount);
   };
+
+  async function sendClick() {
+    let urlSend = "https://arclifs-services.herokuapp.com/shareLink";
+
+    const response = await fetch(urlSend, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        url: copyLinkText,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <div className="settingsPage">
@@ -264,6 +279,7 @@ const Wallet = () => {
             <div className="loader__container__widget" id="loaderWidget">
               <PropagateLoader color="#d52a33" />
             </div>
+
             <div
               className="transactionLinks__container"
               id="transactionLinksContainer"
@@ -278,11 +294,11 @@ const Wallet = () => {
                   <p>{`+91 ` + resNumber}</p>
                 </div>
                 <div
-                  onClick={copyToClipboard}
+                  onClick={sendClick}
                   className="middleRight__card__transaction"
                 >
-                  <img src={copy} alt="" />
-                  <p>Copy</p>
+                  {/* <img src={copy} alt="" /> */}
+                  <p>Send</p>
                 </div>
                 <div className="deleteButton__transaction__card">Delete</div>
               </div>
