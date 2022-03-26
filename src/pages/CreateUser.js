@@ -38,7 +38,6 @@ const CreateUser = () => {
       }),
     });
     const data = await res.json();
-    console.log(data);
     if (data.status === "true") {
       localStorage.setItem("username", name);
       localStorage.setItem("usermob", number);
@@ -50,8 +49,6 @@ const CreateUser = () => {
     if (data.detail === "mobile  number already exists!") {
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML = data.detail;
-    } else {
-      console.error();
     }
   }
 

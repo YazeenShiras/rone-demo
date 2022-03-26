@@ -26,7 +26,7 @@ const VerifyOtpLogin = () => {
   }, []);
 
   async function handleSubmit() {
-    let url = new URL("https://rone111.herokuapp.com/otp_verification_login");
+    let url = new URL("http://54.211.9.164/otp_verification_login");
     url.search = new URLSearchParams({
       mobile: mob,
       otp: otp,
@@ -38,7 +38,6 @@ const VerifyOtpLogin = () => {
       },
     });
     const data = await res.json();
-    console.log(data);
     if (data.status === 202) {
       localStorage.setItem("loggedAccessToken", data.access_token);
       localStorage.setItem("loggedRefreshToken", data.refresh_token);
@@ -49,8 +48,23 @@ const VerifyOtpLogin = () => {
     } else if (data.status === 404) {
       document.getElementById("errorVarifyOtp").innerHTML = data.message;
       document.getElementById("errorVarifyOtp").style.display = "block";
-      console.log(otp);
     }
+  }
+
+  async function resendOtp() {
+    let url = new URL("http://54.211.9.164/OTP_Genarator/rone/login");
+    url.search = new URLSearchParams({
+      mobile_num: mob,
+    });
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // eslint-disable-next-line no-unused-vars
+    const data = await res.json();
   }
 
   const storeOtp = () => {
@@ -129,6 +143,15 @@ const VerifyOtpLogin = () => {
               VERIFY & LOGIN
             </div>
           </form>
+          <div className="alreadyRegistered__container">
+            <p
+              onClick={resendOtp}
+              style={{ cursor: "pointer" }}
+              className="alreadyRegisterd"
+            >
+              Resend OTP
+            </p>
+          </div>
         </div>
       </div>
     </div>

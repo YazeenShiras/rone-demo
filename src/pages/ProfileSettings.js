@@ -15,6 +15,7 @@ import youtube from "../assets/youtube.svg";
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import PlaceSearch from "../components/PlaceSearch";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState("");
@@ -231,6 +232,7 @@ const EditProfile = () => {
                     />
                   </div>
                 </fieldset>
+
                 <fieldset className="input__container__form__update">
                   <legend>Profession</legend>
                   <div className="input__box__form__update">
@@ -254,6 +256,7 @@ const EditProfile = () => {
                     ></textarea>
                   </div>
                 </fieldset>
+                <PlaceSearch />
                 <fieldset className="input__container__form__update">
                   <legend>Location</legend>
                   <div className="input__box__form__update">
@@ -290,12 +293,10 @@ const EditProfile = () => {
                     />
                   </div>
                 </fieldset>
-
                 <div className="socialContainerTitle">
                   <span></span>
                   <div className="socialMedia">Social Media</div>
                 </div>
-
                 <div className="socialLinksinputContainer">
                   <img src={facebook} alt="" />
                   <input type="text" placeholder="Enter your facebook link" />
@@ -324,7 +325,6 @@ const EditProfile = () => {
                   <img src={telegram} alt="" />
                   <input type="text" placeholder="Enter your Telegram link" />
                 </div>
-
                 {/* <div id="errorContainer" className="errorContainer">
                   <p id="errorName">Enter a valid Email</p>
                   <p id="errorMobile">Enter a valid Mobile Number</p>

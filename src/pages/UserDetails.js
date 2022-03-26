@@ -1,13 +1,10 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-/* import { Link } from "react-router-dom"; */
-import user from "../assets/user.png";
+import user from "../assets/user.svg";
 import logo from "../assets/Logo1.svg";
 import photoIcon from "../assets/image.svg";
 import "./AuthStyles.css";
-/* import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton"; */
 import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
 
@@ -23,6 +20,8 @@ function UserDetails() {
   const [userid, setUserId] = useState("");
 
   const [img, setImg] = useState("");
+
+  const [isdetails, setIsdetails] = useState(false);
 
   const [isProfilePhotoUploaded, setIsProfilePhotoUploaded] = useState(false);
 
@@ -75,7 +74,6 @@ function UserDetails() {
     await axios
       .post(url, formData, config)
       .then((res) => {
-        console.log(res.data);
         const data = res.data;
         if (data.Result === "OK") {
           document.getElementById("loaderImage").style.display = "none";
@@ -115,19 +113,66 @@ function UserDetails() {
       }),
     });
     const data = await response.json();
-    console.log(data);
     if (data.status === 200) {
-      console.log("ok");
       if (isProfilePhotoUploaded) {
         localStorage.setItem("newuserid", userid);
         window.location.href = "/profile";
       } else {
-        console.log("No profile pic");
+        document.getElementById("errorMobile").style.display = "block";
+        document.getElementById("errorMobile").innerHTML =
+          "Please upload profile photo";
       }
-    } else {
-      console.log("error no status code 200");
     }
   }
+
+  useEffect(() => {
+    if (email !== "") {
+      let isEmail = email.includes("@") && email.includes(".com");
+      if (isEmail) {
+        setIsdetails(true);
+      } else {
+        setIsdetails(false);
+      }
+      if (location !== "") {
+        setIsdetails(true);
+        if (profession !== "") {
+          setIsdetails(true);
+          if (address !== "") {
+            setIsdetails(true);
+            if (bio !== "") {
+              setIsdetails(true);
+            }
+          }
+        }
+      }
+    }
+  }, [email, location, address, bio, profession]);
+
+  const saveClick = () => {
+    if (
+      email === "" ||
+      location === "" ||
+      profession === "" ||
+      address === "" ||
+      bio === ""
+    ) {
+      setIsdetails(false);
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML = "Must fill all fields";
+    } else {
+      let isEmail = email.includes("@") && email.includes(".com");
+      if (isEmail) {
+        document.getElementById("errorMobile").style.display = "none";
+      } else {
+        document.getElementById("errorMobile").style.display = "block";
+        document.getElementById("errorMobile").innerHTML =
+          "Enter a valid Email";
+      }
+      if (isdetails) {
+        saveProfile();
+      }
+    }
+  };
 
   return (
     <div className="userDetails">
@@ -137,14 +182,7 @@ function UserDetails() {
             <img className="header__logo" src={logo} alt="Rone Logo" />
           </div>
         </div>
-        <div className="header__right">
-          {/* <Link to="/">
-            <SecondaryButton content="Register" />
-          </Link>
-          <Link className="loginButton__container" to="/login">
-            <PrimaryButton content="Login" />
-          </Link> */}
-        </div>
+        <div className="header__right"></div>
       </div>
       <div className="title__container__userDetails">
         <h2>Create Profile</h2>
@@ -251,10 +289,9 @@ function UserDetails() {
             </div>
           </fieldset>
           <div id="errorContainer" className="errorContainer">
-            <p id="errorName">Enter a valid Email</p>
-            <p id="errorMobile">Enter a valid Mobile Number</p>
+            <p id="errorMobile">Enter a valid Email</p>
           </div>
-          <div onClick={saveProfile} className="saveProfileButton">
+          <div onClick={saveClick} className="saveProfileButton">
             SAVE PROFILE
           </div>
         </form>

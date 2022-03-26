@@ -38,14 +38,30 @@ const VerifyOtpRegister = () => {
       },
     });
     const data = await res.json();
-    console.log(data);
     if (data.status === 202) {
       window.location.href = "/createuser";
     } else if (data.status === 404) {
-      console.log(otp);
       document.getElementById("errorVarifyOtp").innerHTML = data.message;
       document.getElementById("errorVarifyOtp").style.display = "block";
     }
+  }
+
+  async function resendOtp() {
+    let url = new URL(
+      "https://rone111.herokuapp.com/OTP_Genarator/rone/singup"
+    );
+    url.search = new URLSearchParams({
+      mobile_num: newmob,
+    });
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // eslint-disable-next-line no-unused-vars
+    const data = await res.json();
   }
 
   const storeOtp = () => {
@@ -124,6 +140,15 @@ const VerifyOtpRegister = () => {
               VERIFY & REGISTER
             </div>
           </form>
+          <div className="alreadyRegistered__container">
+            <p
+              onClick={resendOtp}
+              style={{ cursor: "pointer" }}
+              className="alreadyRegisterd"
+            >
+              Resend OTP
+            </p>
+          </div>
         </div>
       </div>
     </div>

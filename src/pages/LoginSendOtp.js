@@ -11,7 +11,7 @@ const LoginSendOtp = () => {
   const [loginNumber, setLoginNumber] = useState("");
 
   async function handleSubmit() {
-    let url = new URL("https://rone111.herokuapp.com/OTP_Genarator/rone/login");
+    let url = new URL("http://54.211.9.164/OTP_Genarator/rone/login");
     url.search = new URLSearchParams({
       mobile_num: loginNumber,
     });
@@ -23,7 +23,6 @@ const LoginSendOtp = () => {
       },
     });
     const data = await res.json();
-    console.log(data);
     if (data.status === 202) {
       window.onbeforeunload = function (e) {
         window.onunload = function () {
