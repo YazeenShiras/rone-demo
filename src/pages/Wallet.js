@@ -85,11 +85,19 @@ const Wallet = () => {
         } else {
           setIsdetails(false);
         }
+        if (email !== "") {
+          let isEmail = email.includes("@") && email.includes(".com");
+          if (isEmail) {
+            setIsdetails(true);
+          } else {
+            setIsdetails(false);
+          }
+        }
       } else {
         setIsdetails(false);
       }
     }
-  }, [name, number]);
+  }, [name, number, email]);
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
@@ -132,16 +140,15 @@ const Wallet = () => {
   }
 
   const submitClick = () => {
-    if (name === "" || number === "") {
+    if (name === "" || number === "" || email === "") {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
-        "Enter Name and Mobile Number";
+        "Enter Name, Mobile Number and Email";
     } else {
       let isnum = /^\d+$/.test(number);
       if (number.length === 10) {
         if (isnum) {
-          console.log("number true");
           document.getElementById("errorMobile").style.display = "none";
         } else {
           document.getElementById("errorMobile").style.display = "block";
@@ -152,6 +159,14 @@ const Wallet = () => {
         document.getElementById("errorMobile").style.display = "block";
         document.getElementById("errorMobile").innerHTML =
           "Enter a valid Mobile Number";
+      }
+      let isEmail = email.includes("@") && email.includes(".com");
+      if (isEmail) {
+        document.getElementById("errorMobile").style.display = "none";
+      } else {
+        document.getElementById("errorMobile").style.display = "block";
+        document.getElementById("errorMobile").innerHTML =
+          "Enter a valid Email";
       }
       if (isdetails) {
         handleSubmit();
