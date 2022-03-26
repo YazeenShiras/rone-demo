@@ -15,7 +15,7 @@ import youtube from "../assets/youtube.svg";
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import PlaceSearch from "../components/PlaceSearch";
+/* import PlaceSearch from "../components/PlaceSearch"; */
 
 const EditProfile = () => {
   const [userData, setUserData] = useState("");
@@ -33,6 +33,8 @@ const EditProfile = () => {
   const [idForUpdate, setIdForUpdate] = useState();
 
   var idForUpdateForm = localStorage.getItem("newuserid");
+
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
   const inpFile = document.getElementById("inpFile");
 
@@ -116,26 +118,6 @@ const EditProfile = () => {
   }
 
   async function updateProfile() {
-    /* if (name === "") {
-      console.log("value Null name");
-      setName(userData.name);
-    }
-    if (email === "") {
-      setEmail(document.getElementById("email").defaultValue);
-    }
-    if (location === "") {
-      setLocation(document.getElementById("location").defaultValue);
-    }
-    if (profession === "") {
-      setProfession(document.getElementById("profession").defaultValue);
-    }
-    if (address === "") {
-      setAddress(document.getElementById("address").defaultValue);
-    }
-    if (bio === "") {
-      setBio(document.getElementById("bio").defaultValue);
-    } */
-
     console.log(name);
     console.log(email);
     console.log(location);
@@ -176,6 +158,30 @@ const EditProfile = () => {
       console.log("error no status code 200");
     }
   }
+
+  useEffect(() => {
+    if (email !== "") {
+      let isEmail = email.includes("@") && email.includes(".com");
+      if (isEmail) {
+        setIsEmailValid(true);
+      } else {
+        setIsEmailValid(false);
+      }
+    }
+  }, [email]);
+
+  const updateClick = () => {
+    let isEmail = email.includes("@") && email.includes(".com");
+    if (isEmail) {
+      document.getElementById("errorMobile").style.display = "none";
+    } else {
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML = "Enter a valid Email";
+    }
+    if (isEmailValid) {
+      updateProfile();
+    }
+  };
 
   return (
     <div className="settingsPage">
@@ -256,7 +262,7 @@ const EditProfile = () => {
                     ></textarea>
                   </div>
                 </fieldset>
-                <PlaceSearch />
+                {/* <PlaceSearch /> */}
                 <fieldset className="input__container__form__update">
                   <legend>Location</legend>
                   <div className="input__box__form__update">
@@ -275,10 +281,28 @@ const EditProfile = () => {
                     <input
                       onChange={storeValues}
                       type="text"
-                      name="addess"
+                      name="address"
                       id="address"
                       defaultValue={userData.address}
                     />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>Country</legend>
+                  <div className="input__box__form__update">
+                    <input type="text" name="country" id="country" />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>State</legend>
+                  <div className="input__box__form__update">
+                    <input type="text" name="state" id="state" />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>District</legend>
+                  <div className="input__box__form__update">
+                    <input type="text" name="district" id="district" />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
@@ -325,11 +349,10 @@ const EditProfile = () => {
                   <img src={telegram} alt="" />
                   <input type="text" placeholder="Enter your Telegram link" />
                 </div>
-                {/* <div id="errorContainer" className="errorContainer">
-                  <p id="errorName">Enter a valid Email</p>
-                  <p id="errorMobile">Enter a valid Mobile Number</p>
-                </div> */}
-                <div onClick={updateProfile} className="updateProfileButton">
+                <div id="errorContainer" className="errorContainer">
+                  <p id="errorMobile">Enter a valid Email</p>
+                </div>
+                <div onClick={updateClick} className="updateProfileButton">
                   UPDATE
                 </div>
               </form>

@@ -266,6 +266,24 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
+            <legend>Country</legend>
+            <div className="input__box">
+              <input id="country" type="text" name="country" />
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
+            <legend>State</legend>
+            <div className="input__box">
+              <input id="state" type="text" name="state" />
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
+            <legend>District</legend>
+            <div className="input__box">
+              <input id="district" type="text" name="district" />
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
             <legend>Address</legend>
             <div className="input__box">
               <input
