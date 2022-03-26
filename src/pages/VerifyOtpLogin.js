@@ -26,7 +26,7 @@ const VerifyOtpLogin = () => {
   }, []);
 
   async function handleSubmit() {
-    let url = new URL("http://54.211.9.164/otp_verification_login");
+    let url = new URL("https://rone111.herokuapp.com/otp_verification_login");
     url.search = new URLSearchParams({
       mobile: mob,
       otp: otp,
@@ -52,7 +52,7 @@ const VerifyOtpLogin = () => {
   }
 
   async function resendOtp() {
-    let url = new URL("http://54.211.9.164/OTP_Genarator/rone/login");
+    let url = new URL("https://rone111.herokuapp.com/OTP_Genarator/rone/login");
     url.search = new URLSearchParams({
       mobile_num: mob,
     });
