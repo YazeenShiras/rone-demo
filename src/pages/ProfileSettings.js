@@ -34,8 +34,6 @@ const EditProfile = () => {
 
   var idForUpdateForm = localStorage.getItem("newuserid");
 
-  const [isEmailValid, setIsEmailValid] = useState(false);
-
   const inpFile = document.getElementById("inpFile");
 
   useEffect(() => {
@@ -102,19 +100,13 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append("file", inpFile.files[0]);
 
-    await axios
-      .post(url, formData, config)
-      .then((res) => {
-        console.log(res.data);
-        const data = res.data;
-        if (data.Result === "OK") {
-          document.getElementById("loaderImage").style.display = "none";
-          setUpdatedImg(data.path);
-        } else {
-          console.log("failed update Profile");
-        }
-      })
-      .catch(console.error);
+    await axios.post(url, formData, config).then((res) => {
+      const data = res.data;
+      if (data.Result === "OK") {
+        document.getElementById("loaderImage").style.display = "none";
+        setUpdatedImg(data.path);
+      }
+    });
   }
 
   async function updateProfile() {
@@ -152,36 +144,9 @@ const EditProfile = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
-      console.log("ok");
       window.location.href = "/profile";
-    } else {
-      console.log("error no status code 200");
     }
   }
-
-  useEffect(() => {
-    if (email !== "") {
-      let isEmail = email.includes("@") && email.includes(".com");
-      if (isEmail) {
-        setIsEmailValid(true);
-      } else {
-        setIsEmailValid(false);
-      }
-    }
-  }, [email]);
-
-  const updateClick = () => {
-    let isEmail = email.includes("@") && email.includes(".com");
-    if (isEmail) {
-      document.getElementById("errorMobile").style.display = "none";
-    } else {
-      document.getElementById("errorMobile").style.display = "block";
-      document.getElementById("errorMobile").innerHTML = "Enter a valid Email";
-    }
-    if (isEmailValid) {
-      updateProfile();
-    }
-  };
 
   return (
     <div className="settingsPage">
@@ -238,7 +203,6 @@ const EditProfile = () => {
                     />
                   </div>
                 </fieldset>
-
                 <fieldset className="input__container__form__update">
                   <legend>Profession</legend>
                   <div className="input__box__form__update">
@@ -349,10 +313,7 @@ const EditProfile = () => {
                   <img src={telegram} alt="" />
                   <input type="text" placeholder="Enter your Telegram link" />
                 </div>
-                <div id="errorContainer" className="errorContainer">
-                  <p id="errorMobile">Enter a valid Email</p>
-                </div>
-                <div onClick={updateClick} className="updateProfileButton">
+                <div onClick={updateProfile} className="updateProfileButton">
                   UPDATE
                 </div>
               </form>
