@@ -46,7 +46,7 @@ const Wallet = () => {
     setUserId(newid);
   }, []);
 
-  var dataLinks = [];
+  const [refDetails, setRefDetails] = useState([]);
 
   useEffect(() => {
     async function getRefferralDetails() {
@@ -63,8 +63,8 @@ const Wallet = () => {
       });
       const data = await response.json();
       console.log(data);
-      dataLinks.push(data);
-      console.log(dataLinks);
+      setRefDetails(data);
+      console.log(refDetails);
     }
     if (userid !== "" && userid !== undefined) {
       getRefferralDetails();
@@ -191,6 +191,31 @@ const Wallet = () => {
   };
 
   async function sendClick() {
+    if (document.getElementById("sendText").innerHTML === "Send") {
+      document.getElementById("sendText").innerHTML = "sending...";
+      document.getElementById("sendText").style.color = "#F48D43";
+      let urlSend = "https://arclifs-services.herokuapp.com/shareLink";
+
+      const response = await fetch(urlSend, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          url: copyLinkText,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.status === 202) {
+        document.getElementById("sendText").innerHTML = "success";
+        document.getElementById("sendText").style.color = "#00ad07";
+      }
+    }
+  }
+
+  /* async function sendClickLoop(link) {
     let urlSend = "https://arclifs-services.herokuapp.com/shareLink";
 
     const response = await fetch(urlSend, {
@@ -200,12 +225,12 @@ const Wallet = () => {
       },
       body: JSON.stringify({
         email: email,
-        url: copyLinkText,
+        url: link,
       }),
     });
     const data = await response.json();
     console.log(data);
-  }
+  } */
 
   return (
     <div className="settingsPage">
@@ -295,6 +320,32 @@ const Wallet = () => {
               <PropagateLoader color="#d52a33" />
             </div>
 
+            {/* <div className="transactionLinks__container">
+              {refDetails.map((data, index) => {
+                return (
+                  <div className="TransactionLink__card" key={index}>
+                    <div className="left__card__transaction">
+                      <p>
+                        {index + 1}.<span>{data.username}</span>
+                      </p>
+                    </div>
+                    <div className="middleLeft__card__transaction">
+                      <p>{`+91 ` + data.phone}</p>
+                    </div>
+                    <div
+                      onClick={() => sendClickLoop(data.referral)}
+                      className="middleRight__card__transaction"
+                    >
+                      <p>Send</p>
+                    </div>
+                    <div className="deleteButton__transaction__card">
+                      Delete
+                    </div>
+                  </div>
+                );
+              })}
+            </div> */}
+
             <div
               className="transactionLinks__container"
               id="transactionLinksContainer"
@@ -313,7 +364,7 @@ const Wallet = () => {
                   className="middleRight__card__transaction"
                 >
                   {/* <img src={copy} alt="" /> */}
-                  <p>Send</p>
+                  <p id="sendText">Send</p>
                 </div>
                 <div className="deleteButton__transaction__card">Delete</div>
               </div>
