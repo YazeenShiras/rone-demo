@@ -6,7 +6,7 @@ import bg from "../assets/settingsBg.png";
 import roneCardbg from "../assets/roneCard.svg";
 import ronelogoCard from "../assets/roneCardLogo.svg";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
+/* import Footer from "../components/Footer"; */
 import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Wallet = () => {
@@ -63,14 +63,14 @@ const Wallet = () => {
       });
       const data = await response.json();
       console.log(data);
-      setRefDetails(data);
+      setRefDetails(data.referral);
       console.log(refDetails);
     }
     if (userid !== "" && userid !== undefined) {
       getRefferralDetails();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid, resName]);
+  }, [userid]);
 
   useEffect(() => {
     if (name !== "") {
@@ -316,11 +316,8 @@ const Wallet = () => {
               <span></span>
               <div className="TransactionLinks">Transactions Links</div>
             </div>
-            <div className="loader__container__widget" id="loaderWidget">
-              <PropagateLoader color="#d52a33" />
-            </div>
 
-            {/* <div className="transactionLinks__container">
+            <div className="transactionLinks__containerMount">
               {refDetails.map((data, index) => {
                 return (
                   <div className="TransactionLink__card" key={index}>
@@ -332,11 +329,8 @@ const Wallet = () => {
                     <div className="middleLeft__card__transaction">
                       <p>{`+91 ` + data.phone}</p>
                     </div>
-                    <div
-                      onClick={() => sendClickLoop(data.referral)}
-                      className="middleRight__card__transaction"
-                    >
-                      <p>Send</p>
+                    <div className="middleRight__card__transaction">
+                      <p>Expired</p>
                     </div>
                     <div className="deleteButton__transaction__card">
                       Delete
@@ -344,7 +338,11 @@ const Wallet = () => {
                   </div>
                 );
               })}
-            </div> */}
+            </div>
+
+            <div className="loader__container__widget" id="loaderWidget">
+              <PropagateLoader color="#d52a33" />
+            </div>
 
             <div
               className="transactionLinks__container"
@@ -353,7 +351,7 @@ const Wallet = () => {
               <div className="TransactionLink__card">
                 <div className="left__card__transaction">
                   <p>
-                    1.<span>{resName}</span>
+                    {refDetails.length + 1}.<span>{resName}</span>
                   </p>
                 </div>
                 <div className="middleLeft__card__transaction">
@@ -453,9 +451,9 @@ const Wallet = () => {
           </div>
         </div>
       </div>
-      <div className="footerContainerWallet">
+      {/* <div className="footerContainerWallet">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };
