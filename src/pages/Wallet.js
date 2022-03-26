@@ -317,57 +317,6 @@ const Wallet = () => {
               <div className="TransactionLinks">Transactions Links</div>
             </div>
 
-            <div className="transactionLinks__containerMount">
-              {refDetails.map((data, index) => {
-                return (
-                  <div className="TransactionLink__card" key={index}>
-                    <div className="left__card__transaction">
-                      <p>
-                        {index + 1}.<span>{data.username}</span>
-                      </p>
-                    </div>
-                    <div className="middleLeft__card__transaction">
-                      <p>{`+91 ` + data.phone}</p>
-                    </div>
-                    <div className="middleRight__card__transaction">
-                      <p>Expired</p>
-                    </div>
-                    <div className="deleteButton__transaction__card">
-                      Delete
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="loader__container__widget" id="loaderWidget">
-              <PropagateLoader color="#d52a33" />
-            </div>
-
-            <div
-              className="transactionLinks__container"
-              id="transactionLinksContainer"
-            >
-              <div className="TransactionLink__card">
-                <div className="left__card__transaction">
-                  <p>
-                    {refDetails.length + 1}.<span>{resName}</span>
-                  </p>
-                </div>
-                <div className="middleLeft__card__transaction">
-                  <p>{`+91 ` + resNumber}</p>
-                </div>
-                <div
-                  onClick={sendClick}
-                  className="middleRight__card__transaction"
-                >
-                  {/* <img src={copy} alt="" /> */}
-                  <p id="sendText">Send</p>
-                </div>
-                <div className="deleteButton__transaction__card">Delete</div>
-              </div>
-            </div>
-
             <div onClick={generateLink} className="generateNewLink__button">
               Generate New Link
             </div>
@@ -417,6 +366,60 @@ const Wallet = () => {
               <div onClick={submitClick} className="submitButtonGenerateLink">
                 SUBMIT
               </div>
+            </div>
+
+            <div className="loader__container__widget" id="loaderWidget">
+              <PropagateLoader color="#d52a33" />
+            </div>
+
+            <div
+              className="transactionLinks__container"
+              id="transactionLinksContainer"
+            >
+              <div className="TransactionLink__card">
+                <div className="left__card__transaction">
+                  <p>
+                    {refDetails.length + 1}.<span>{resName}</span>
+                  </p>
+                </div>
+                <div className="middleLeft__card__transaction">
+                  <p>{`+91 ` + resNumber}</p>
+                </div>
+                <div
+                  onClick={sendClick}
+                  className="middleRight__card__transaction"
+                >
+                  <p id="sendText">Send</p>
+                </div>
+                <div className="deleteButton__transaction__card">Delete</div>
+              </div>
+            </div>
+
+            <div className="transactionLinks__containerMount">
+              {refDetails
+                .slice(0)
+                .reverse()
+                .map((data, index) => {
+                  return (
+                    <div className="TransactionLink__card" key={index}>
+                      <div className="left__card__transaction">
+                        <p>
+                          {refDetails.length - index}.
+                          <span>{data.username}</span>
+                        </p>
+                      </div>
+                      <div className="middleLeft__card__transaction">
+                        <p>{`+91 ` + data.phone}</p>
+                      </div>
+                      <div className="middleRight__card__transaction">
+                        <p>Expired</p>
+                      </div>
+                      <div className="deleteButton__transaction__card">
+                        Delete
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
 
             <div className="TransactionContainerTitle transactionHistoryTitle">
