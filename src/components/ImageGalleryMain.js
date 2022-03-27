@@ -33,7 +33,7 @@ const ImageGalleryMain = () => {
 
   const [images, setImages] = useState([]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     async function getAllImages() {
       console.log("access to getAllImages");
 
@@ -54,9 +54,7 @@ const ImageGalleryMain = () => {
         .get(url, config)
         .then((res) => {
           const data = res.data;
-          console.log(data);
           setImages(data.d);
-          console.log(images);
         })
         .catch(console.error);
     }
@@ -64,7 +62,7 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg]);
+  }, [idForImg]); */
 
   async function uploadPhotofromFiles() {
     console.log("access to UploadPhotofromFiles");
@@ -86,18 +84,14 @@ const ImageGalleryMain = () => {
     const formData = new FormData();
     formData.append("file", inpFile.files[0]);
 
-    await axios
-      .post(url, formData, config)
-      .then((res) => {
-        console.log(res.data);
-        const data = res.data;
-        if (data.Result === "OK") {
-          document.getElementById("selectFromFileContainer").style.display =
-            "none";
-          setImgtest(data.path);
-        }
-      })
-      .catch(console.error);
+    await axios.post(url, formData, config).then((res) => {
+      const data = res.data;
+      if (data.Result === "OK") {
+        document.getElementById("selectFromFileContainer").style.display =
+          "none";
+        setImgtest(data.path);
+      }
+    });
   }
 
   const confirmFetch = () => {

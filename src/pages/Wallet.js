@@ -62,9 +62,7 @@ const Wallet = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
       setRefDetails(data.referral);
-      console.log(refDetails);
     }
     if (userid !== "" && userid !== undefined) {
       getRefferralDetails();
@@ -128,7 +126,6 @@ const Wallet = () => {
       }),
     });
     const data = await response.json();
-    console.log(data);
     setCopyLinkText(data.referral);
     setResName(data.username);
     setResNumber(data.phone);
@@ -207,7 +204,6 @@ const Wallet = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
       if (data.status === 202) {
         document.getElementById("sendText").innerHTML = "success";
         document.getElementById("sendText").style.color = "#00ad07";
