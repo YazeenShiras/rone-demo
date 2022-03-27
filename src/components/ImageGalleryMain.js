@@ -22,13 +22,48 @@ const ImageGalleryMain = () => {
   const [urlSelect, setUrlSelect] = useState("");
 
   const inpFile = document.getElementById("inpFile");
-  var idForImageGallery = localStorage.getItem("idForImageGallery");
+  var idForImageGallery = localStorage.getItem("newuserid");
 
   const [imgtest, setImgtest] = useState("");
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
     console.log(idForImg);
+  }, [idForImg]);
+
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    async function getAllImages() {
+      console.log("access to getAllImages");
+
+      const endpoint = "https://rone111.herokuapp.com/access_image_gallery";
+
+      let url = new URL(endpoint);
+      url.search = new URLSearchParams({
+        user_id: idForImg,
+      });
+
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+
+      await axios
+        .get(url, config)
+        .then((res) => {
+          const data = res.data;
+          console.log(data);
+          setImages(data.d);
+          console.log(images);
+        })
+        .catch(console.error);
+    }
+
+    if (idForImg !== "" && idForImg !== undefined) {
+      getAllImages();
+    }
   }, [idForImg]);
 
   async function uploadPhotofromFiles() {
@@ -72,7 +107,7 @@ const ImageGalleryMain = () => {
     }
   };
 
-  async function uploadPhotofromSearch() {
+  /* async function uploadPhotofromSearch() {
     console.log("access to UploadPhotofromSearch");
     const endpoint = "https://rone111.herokuapp.com/public_img_urls";
 
@@ -96,14 +131,14 @@ const ImageGalleryMain = () => {
         console.log(res.data);
         const data = res.data;
         console.log("success respose from img adding server");
-        /* if (data.Result === "OK") {
+        if (data.Result === "OK") {
           document.getElementById("selectFromFileContainer").style.display =
             "none";
           setImgtest(data.path);
-        } */
+        }
       })
       .catch(console.error);
-  }
+  } */
 
   /* const makeUrlParam = (imgurlcode) => {
     console.log("calling makeUrlParam");

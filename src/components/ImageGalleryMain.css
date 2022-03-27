@@ -334,4 +334,21 @@
     min-width: 70px;
     font-size: 13px;
   }
+  .content__container__imageGalleryMain {
+    flex-direction: column;
+    height: 100%;
+  }
+  .left__imageContainer__content__imageContainer {
+    width: 100%;
+    height: calc(100vw - 16vw);
+    margin-right: 0px;
+  }
+  .mainCard__imageContainer > h3 {
+    font-size: 18px;
+  }
+  .right__imageContainer__content__imageContainer {
+    margin-top: 10px;
+    width: 100%;
+    height: calc(95vw - 16vw);
+  }
 }
