@@ -14,7 +14,7 @@ import instagram from "../assets/instagram.svg";
 import youtube from "../assets/youtube.svg";
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
+/* import Footer from "../components/Footer"; */
 /* import PlaceSearch from "../components/PlaceSearch"; */
 
 const EditProfile = () => {
@@ -222,24 +222,6 @@ const EditProfile = () => {
               Wallet
             </Link>
             <p className="themesSettings titleHeaderlink">Themes</p>
-          </div>
-          <div className="getUserProfileWithIDContainer">
-            <h5>Enter your Rone ID to get your profile</h5>
-            <h6>(only for existing users)</h6>
-            <div className="actionContainerUserId">
-              <fieldset className="input__container__form__profileID">
-                <legend>RONE ID</legend>
-                <div className="input__box__form__update">
-                  <input
-                    onChange={storeValues}
-                    id="userIDProfile"
-                    type="text"
-                    name="userIDProfile"
-                  />
-                </div>
-              </fieldset>
-              <div className="getProfileButton">GET PROFILE</div>
-            </div>
           </div>
           <div className="profileImageContainer__form__update">
             <h3>Edit Profile</h3>

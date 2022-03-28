@@ -10,13 +10,15 @@ import VerifyOtpLogin from "./pages/VerifyOtpLogin";
 import ProfileSettings from "./pages/ProfileSettings";
 import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/" exact component={RegisterSendOtp} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/register" component={RegisterSendOtp} />
           <Route path="/profile" component={Main} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
           <Route path="/createuser" component={CreateUser} />
