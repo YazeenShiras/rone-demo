@@ -27,6 +27,14 @@ const EditProfile = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
 
+  const [facebookLink, setFacebookLink] = useState("");
+  const [linkedInLink, setLinkedInLink] = useState("");
+  const [twitterLink, setTwitterLink] = useState("");
+  const [whatsappLink, setWhatsappLink] = useState("");
+  const [instagramLink, setInstagramLink] = useState("");
+  const [youtubeLink, setYoutubeLink] = useState("");
+  const [telegramLink, setTelegramLink] = useState("");
+
   const [img, setImg] = useState("");
   const [updatedImg, setUpdatedImg] = useState("");
 
@@ -80,6 +88,16 @@ const EditProfile = () => {
     setLocation(document.getElementById("location").value);
     setAddress(document.getElementById("address").value);
     setEmail(document.getElementById("email").value);
+  };
+
+  const storeLinks = () => {
+    setFacebookLink(document.getElementById("facebookLink").value);
+    setLinkedInLink(document.getElementById("linkedInLink").value);
+    setTwitterLink(document.getElementById("twitterLink").value);
+    setWhatsappLink(document.getElementById("whatsappLink").value);
+    setYoutubeLink(document.getElementById("youtubeLink").value);
+    setInstagramLink(document.getElementById("instagramLink").value);
+    setTelegramLink(document.getElementById("telegramLink").value);
   };
 
   async function updatePhoto() {
@@ -144,6 +162,43 @@ const EditProfile = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
+      updateSocial();
+    }
+  }
+
+  async function updateSocial() {
+    console.log(facebookLink);
+    console.log(linkedInLink);
+    console.log(twitterLink);
+    console.log(instagramLink);
+    console.log(telegramLink);
+    console.log(whatsappLink);
+    console.log(youtubeLink);
+
+    let url = new URL("https://rone111.herokuapp.com/social_links");
+
+    url.search = new URLSearchParams({
+      user_id: idForUpdate,
+    });
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fb_link: facebookLink,
+        insta_link: instagramLink,
+        linkdin_link: linkedInLink,
+        whatssapp_link: whatsappLink,
+        teligram_link: telegramLink,
+        twitter_link: twitterLink,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.status === 200) {
+      console.log("all set");
       window.location.href = "/profile";
     }
   }
@@ -168,7 +223,26 @@ const EditProfile = () => {
             </Link>
             <p className="themesSettings titleHeaderlink">Themes</p>
           </div>
+          <div className="getUserProfileWithIDContainer">
+            <h5>Enter your Rone ID to get your profile</h5>
+            <h6>(only for existing users)</h6>
+            <div className="actionContainerUserId">
+              <fieldset className="input__container__form__profileID">
+                <legend>RONE ID</legend>
+                <div className="input__box__form__update">
+                  <input
+                    onChange={storeValues}
+                    id="userIDProfile"
+                    type="text"
+                    name="userIDProfile"
+                  />
+                </div>
+              </fieldset>
+              <div className="getProfileButton">GET PROFILE</div>
+            </div>
+          </div>
           <div className="profileImageContainer__form__update">
+            <h3>Edit Profile</h3>
             <div
               className="imageUpdateContainer"
               style={{
@@ -287,31 +361,66 @@ const EditProfile = () => {
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={facebook} alt="" />
-                  <input type="text" placeholder="Enter your facebook link" />
+                  <input
+                    id="facebookLink"
+                    type="text"
+                    placeholder="Enter your facebook link"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={linkedin} alt="" />
-                  <input type="text" placeholder="Enter your LinkedIn link" />
+                  <input
+                    id="linkedInLink"
+                    type="text"
+                    placeholder="Enter your LinkedIn link"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={twitter} alt="" />
-                  <input type="text" placeholder="Enter your Twitter link" />
+                  <input
+                    id="twitterLink"
+                    type="text"
+                    placeholder="Enter your Twitter link"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={whatsapp} alt="" />
-                  <input type="text" placeholder="Enter your Whatsapp Number" />
+                  <input
+                    id="whatsappLink"
+                    type="text"
+                    placeholder="Enter your Whatsapp Number"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={instagram} alt="" />
-                  <input type="text" placeholder="Enter your Instagram link" />
+                  <input
+                    id="instagramLink"
+                    type="text"
+                    placeholder="Enter your Instagram link"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={youtube} alt="" />
-                  <input type="text" placeholder="Enter your Youtube link" />
+                  <input
+                    id="youtubeLink"
+                    type="text"
+                    placeholder="Enter your Youtube link"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div className="socialLinksinputContainer">
                   <img src={telegram} alt="" />
-                  <input type="text" placeholder="Enter your Telegram link" />
+                  <input
+                    id="telegramLink"
+                    type="text"
+                    placeholder="Enter your Telegram link"
+                    onChange={storeLinks}
+                  />
                 </div>
                 <div onClick={updateProfile} className="updateProfileButton">
                   UPDATE
@@ -321,9 +430,9 @@ const EditProfile = () => {
           </div>
         </div>
       </div>
-      <div className="footerContainerProfileSettings">
+      {/* <div className="footerContainerProfileSettings">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };

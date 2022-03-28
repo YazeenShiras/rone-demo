@@ -21,6 +21,43 @@
   font-weight: bold;
 }
 
+.getUserProfileWithIDContainer {
+  margin: 20px 0px;
+}
+
+.getUserProfileWithIDContainer > h5 {
+  color: #686868;
+  margin-bottom: 5px;
+}
+
+.getUserProfileWithIDContainer > h6 {
+  color: #686868;
+}
+
+.actionContainerUserId {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.getProfileButton {
+  height: 40px;
+  width: calc(40% - 2px);
+  background-color: #d52a33;
+  border: 2px solid #d52a33;
+  border-radius: 30px;
+  color: white;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 1px;
+  font-family: inherit;
+  margin-left: 10px;
+}
+
 .formContainer__settings {
   width: 400px;
   background-color: #fff;
@@ -98,6 +135,10 @@
   justify-content: center;
 }
 
+.profileImageContainer__form__update > h3 {
+  margin-bottom: 20px;
+}
+
 .imageUpdateContainer {
   height: 250px;
   width: 250px;
@@ -151,6 +192,13 @@
   margin-bottom: 10px;
 }
 
+.input__container__form__profileID {
+  border: 1px solid #d52a33;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
 .input__container__form__update__textare {
   border: 1px solid #d52a33;
   border-radius: 30px;
@@ -169,6 +217,15 @@
 .input__container__form__update > legend {
   padding: 0px 5px;
   margin-left: 30px;
+  font-size: 15px;
+  color: #d52a33;
+  margin-bottom: -10px;
+  position: relative;
+}
+
+.input__container__form__profileID > legend {
+  padding: 0px 5px;
+  margin-left: 10px;
   font-size: 15px;
   color: #d52a33;
   margin-bottom: -10px;

@@ -71,6 +71,28 @@ const Wallet = () => {
   }, [userid]);
 
   useEffect(() => {
+    async function getTransactionHistory() {
+      let url = "https://arclifs-services.herokuapp.com/transactionHistory";
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userid,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+    }
+    if (userid !== "" && userid !== undefined) {
+      getTransactionHistory();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userid]);
+
+  useEffect(() => {
     if (name !== "") {
       if (number !== "") {
         let isnum = /^\d+$/.test(number);
