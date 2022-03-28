@@ -33,10 +33,9 @@ const ImageGalleryMain = () => {
 
   const [images, setImages] = useState([]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     async function getAllImages() {
       console.log("access to getAllImages");
-
       const endpoint = "https://rone111.herokuapp.com/access_image_gallery";
 
       let url = new URL(endpoint);
@@ -54,7 +53,8 @@ const ImageGalleryMain = () => {
         .get(url, config)
         .then((res) => {
           const data = res.data;
-          setImages(data.d);
+          setImages(data.data);
+          console.log(images);
         })
         .catch(console.error);
     }
@@ -62,7 +62,7 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg]); */
+  }, [idForImg]);
 
   async function uploadPhotofromFiles() {
     console.log("access to UploadPhotofromFiles");
@@ -289,30 +289,17 @@ const ImageGalleryMain = () => {
           </div>
         </div>
         <div className="right__imageContainer__content__imageContainer">
-          <div
-            style={{ backgroundImage: `url('${img2}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          <div
-            style={{ backgroundImage: `url('${img3}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          <div
-            style={{ backgroundImage: `url('${img4}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          <div
-            style={{ backgroundImage: `url('${img5}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
+          {images.map((pic, index) => {
+            return (
+              <div
+                key={index}
+                style={{ backgroundImage: `url('${pic.img_url}')` }}
+                className="card__products__imageContainer"
+              >
+                {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div

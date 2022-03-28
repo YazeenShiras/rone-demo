@@ -70,9 +70,11 @@ const Wallet = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userid]);
 
+  const [refHistory, setRefHistory] = useState([]);
+
   useEffect(() => {
     async function getTransactionHistory() {
-      let url = "https://arclifs-services.herokuapp.com/transactionHistory";
+      let url = "https://arclifs-services.herokuapp.com/transcationHistory";
 
       const response = await fetch(url, {
         method: "POST",
@@ -84,7 +86,7 @@ const Wallet = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+      setRefHistory(data.history);
     }
     if (userid !== "" && userid !== undefined) {
       getTransactionHistory();
@@ -452,22 +454,22 @@ const Wallet = () => {
                 <p className="statusTitle">Status</p>
               </div>
 
-              <div className="card__transactionHistory TransactionLink__card">
-                {/* <p className="dateTransactionHistory">18/03/2022</p>
-                <p className="typetransactionHistory">Rone credit purchase</p>
-                <p className="statusTransactionHistory">Success</p> */}
-                <h4>No Transaction History</h4>
-              </div>
-              {/* <div className="card__transactionHistory TransactionLink__card">
-                <p className="dateTransactionHistory">18/03/2022</p>
-                <p className="typetransactionHistory">Rone credit purchase</p>
-                <p className="statusTransactionHistory">Success</p>
-              </div>
-              <div className="card__transactionHistory TransactionLink__card">
-                <p className="dateTransactionHistory">18/03/2022</p>
-                <p className="typetransactionHistory">Rone credit purchase</p>
-                <p className="statusTransactionHistory">Success</p>
-              </div> */}
+              {refHistory
+                .slice(0)
+                .reverse()
+                .map((history, index) => {
+                  return (
+                    <div key={index} className="TransactionLink__card">
+                      <p className="dateTransactionHistory">{history.Date}</p>
+                      <p className="typetransactionHistory">
+                        {history.transcation}
+                      </p>
+                      <p className="statusTransactionHistory">
+                        {history.status}
+                      </p>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
