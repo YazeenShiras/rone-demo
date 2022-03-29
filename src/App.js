@@ -17,8 +17,8 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/register" component={RegisterSendOtp} />
+          <Route path="/" exact component={RegisterSendOtp} />
+          <Route path="/roneidlogin" component={HomePage} />
           <Route path="/profile" component={Main} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
           <Route path="/createuser" component={CreateUser} />

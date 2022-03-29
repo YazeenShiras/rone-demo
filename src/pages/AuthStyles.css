@@ -191,6 +191,11 @@
   object-fit: contain;
 }
 
+.loginWithRoneID {
+  display: flex;
+  margin-top: 5px;
+}
+
 @media only screen and (max-width: 500px) {
   .content__bodyRegister {
     flex-direction: column;

@@ -115,7 +115,7 @@ const VerifyOtpLogin = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link to="/register">
+          <Link to="/">
             <SecondaryButton content="Register" />
           </Link>
           <div className="header__menu__container">

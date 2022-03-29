@@ -44,7 +44,7 @@ const HomePage = () => {
           </form>
           <div className="alreadyRegistered__container">
             <p className="alreadyRegisterd">Don't have a Rone ID? </p>
-            <Link to="/register">
+            <Link to="/">
               <p className="login__AlreadyRegisterd"> Register / Login</p>
             </Link>
           </div>
