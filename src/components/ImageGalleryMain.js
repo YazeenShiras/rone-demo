@@ -15,11 +15,11 @@ import ClockLoader from "react-spinners/ClipLoader";
 
 const ImageGalleryMain = () => {
   const [photos, setPhotos] = useState([]);
-  const [search, setSearch] = useState("");
+  /* const [search, setSearch] = useState("");
   const [browse, setBrowse] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); */
   const [idForImg, setIdForImg] = useState("");
-  const [urlSelect, setUrlSelect] = useState("");
+  /* const [urlSelect, setUrlSelect] = useState(""); */
 
   const inpFile = document.getElementById("inpFile");
   var idForImageGallery = localStorage.getItem("newuserid");
@@ -31,7 +31,7 @@ const ImageGalleryMain = () => {
     console.log(idForImg);
   }, [idForImg]);
 
-  const [images, setImages] = useState([]);
+  /* const [images, setImages] = useState([]);
 
   useEffect(() => {
     async function getAllImages() {
@@ -62,7 +62,7 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg]);
+  }, [idForImg]); */
 
   async function uploadPhotofromFiles() {
     console.log("access to UploadPhotofromFiles");
@@ -143,7 +143,7 @@ const ImageGalleryMain = () => {
     }
   }; */
 
-  const url = `https://api.unsplash.com/search/photos?page=${page}&query=${search}&client_id=jlSQhIiSODwibS2U8gwvnjJCYsWdwXs8-2jpyRRvn8c`;
+  /* const url = `https://api.unsplash.com/search/photos?page=${page}&query=${search}&client_id=jlSQhIiSODwibS2U8gwvnjJCYsWdwXs8-2jpyRRvn8c`; */
 
   const loadMore = () => {
     var loadMoreButton = document.getElementById("loadMore__button");
@@ -157,7 +157,7 @@ const ImageGalleryMain = () => {
     }
   };
 
-  const storeSearchInput = () => {
+  /* const storeSearchInput = () => {
     setSearch(document.getElementById("searchInput").value);
   };
 
@@ -179,9 +179,9 @@ const ImageGalleryMain = () => {
         });
     };
     getData();
-  };
+  }; */
 
-  const nextClick = () => {
+  /* const nextClick = () => {
     setPage(page + 1);
     if (page !== 0 && page <= 5) {
       getBrowseData();
@@ -193,7 +193,7 @@ const ImageGalleryMain = () => {
     if (page !== 0 && page <= 5) {
       getBrowseData();
     }
-  };
+  }; */
 
   return (
     <div className="imageGalleryMain">
@@ -289,17 +289,41 @@ const ImageGalleryMain = () => {
           </div>
         </div>
         <div className="right__imageContainer__content__imageContainer">
-          {images.map((pic, index) => {
+          <div
+            style={{ backgroundImage: `url('${img2}')` }}
+            className="card__products__imageContainer"
+          >
+            <h4>Lorem Ipsum is simply dummy text of the</h4>
+          </div>
+          <div
+            style={{ backgroundImage: `url('${img3}')` }}
+            className="card__products__imageContainer"
+          >
+            <h4>Lorem Ipsum is simply dummy text of the</h4>
+          </div>
+          <div
+            style={{ backgroundImage: `url('${img4}')` }}
+            className="card__products__imageContainer"
+          >
+            <h4>Lorem Ipsum is simply dummy text of the</h4>
+          </div>
+          <div
+            style={{ backgroundImage: `url('${img5}')` }}
+            className="card__products__imageContainer"
+          >
+            <h4>Lorem Ipsum is simply dummy text of the</h4>
+          </div>
+          {/* {images.map((pic, index) => {
             return (
               <div
                 key={index}
                 style={{ backgroundImage: `url('${pic.img_url}')` }}
                 className="card__products__imageContainer"
               >
-                {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+                <h4>Lorem Ipsum is simply dummy text of the</h4>
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
       <div
