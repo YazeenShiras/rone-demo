@@ -11,6 +11,7 @@ import ProfileSettings from "./pages/ProfileSettings";
 import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={RegisterSendOtp} />
           <Route path="/roneidlogin" component={HomePage} />
-          <Route path="/profile" component={Main} />
+          <Route exact path="/profile" component={Main} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
           <Route path="/createuser" component={CreateUser} />
           <Route path="/userdetails" component={UserDetails} />
@@ -28,6 +29,7 @@ function App() {
           <Route path="/settings/profile" component={ProfileSettings} />
           <Route path="/settings/Wallet" component={Wallet} />
           <Route path="/buyronecard" component={BuyRoneCard} />
+          <Route path="/profile/:id" component={Test} />
         </Switch>
       </div>
     </Router>

@@ -1,56 +1,49 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import "./ProfileDetails.css";
+import "../components/ProfileDetails.css";
 import bg from "../assets/images/mainBg.png";
-import share from "../assets/shareWhite.svg";
-import settings from "../assets/settings.svg";
 import star from "../assets/star.svg";
 import starRed from "../assets/starRed.svg";
 import shareWhite from "../assets/share.svg";
 import QRCode from "react-qr-code";
-import facebook from "../assets/facebook.svg";
+/* import facebook from "../assets/facebook.svg";
 import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
-/* import youtube from "../assets/youtube.svg"; */
-import telegram from "../assets/telegram.svg";
+import telegram from "../assets/telegram.svg"; */
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TelegramShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-} from "react-share";
-import { Link } from "react-router-dom";
 import phoneIcon from "../assets/phone.svg";
 import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import copy from "../assets/copy.svg";
 
-const ProfileDetails = () => {
-  const [isShare, setShare] = useState(false);
+const Test = () => {
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
   const [userSocial, setUserSocial] = useState("");
-  const [origin, setOrigin] = useState("");
+
+  function getParameters() {
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let queryString = new URLSearchParams(paramString);
+    for (let pair of queryString.entries()) {
+      console.log("Key is:" + pair[0]);
+      console.log("Value is:" + pair[1]);
+      setUserId(pair[1]);
+    }
+  }
 
   useEffect(() => {
-    var newid = localStorage.getItem("newuserid");
-    setUserId(newid);
+    /* getParameters(); */
 
     console.log("userid : " + userid);
 
-    const endpoint = `${window.location.href}/share`;
-    let originForShare = new URL(endpoint);
-    originForShare.searchParams.set("id", userid);
-
     let url = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
-      user_id: userid,
+      user_id: 3,
     });
 
     const getUser = async () => {
@@ -62,12 +55,11 @@ const ProfileDetails = () => {
       });
       const data = await req.json();
       setUserData(data);
-      localStorage.setItem("nameForWallet", data.name);
     };
 
     let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
     socialUrl.search = new URLSearchParams({
-      user_id: userid,
+      user_id: 3,
     });
 
     const getSocial = async () => {
@@ -81,87 +73,16 @@ const ProfileDetails = () => {
       setUserSocial(data.data);
     };
 
-    if (userid !== "") {
+    if (userid !== "" && userid !== undefined) {
       getUser();
       getSocial();
-      setOrigin(originForShare.href);
-      console.log(originForShare.href);
     } else {
       console.log("userid not found or null");
     }
   }, [userid]);
 
-  const shareToSocial = () => {
-    var shareIconsContainer = document.getElementById("shareIconsContainer");
-    var profileContainerProfileDetails = document.getElementById(
-      "profileContainer__profileDetails"
-    );
-    shareIconsContainer.style.display = "flex";
-    profileContainerProfileDetails.style.marginTop = "10px";
-    setShare(true);
-    if (isShare) {
-      shareIconsContainer.style.display = "none";
-      profileContainerProfileDetails.style.marginTop = "30px";
-      setShare(false);
-    }
-  };
-
   return (
     <div className="profileDetails" style={{ backgroundImage: `url(${bg})` }}>
-      <div className="headerConatiner__profile">
-        <div
-          onClick={shareToSocial}
-          id="shareButton"
-          className="shareButton buttons__header__profile"
-        >
-          <img src={share} alt="" />
-          <p>Share</p>
-        </div>
-        {/* <Link to={`/profile/share?id=${userid}`}>
-          <h2 style={{ color: "white" }}>SHARE</h2>
-        </Link> */}
-        <Link
-          to="/settings/profile"
-          className="settingsButton buttons__header__profile"
-        >
-          <img src={settings} alt="" />
-          <p>Settings</p>
-        </Link>
-      </div>
-      <div className="shareIconsContainer" id="shareIconsContainer">
-        <FacebookShareButton
-          children={
-            <img className="shareIcon__profile" src={facebook} alt="" />
-          }
-          url={origin}
-        />
-        <LinkedinShareButton
-          children={
-            <img src={linkedin} className="shareIcon__profile" alt="" />
-          }
-          url={origin}
-        />
-        <TwitterShareButton
-          children={<img src={twitter} className="shareIcon__profile" alt="" />}
-          url={origin}
-        />
-        <WhatsappShareButton
-          children={
-            <img src={whatsapp} className="shareIcon__profile" alt="" />
-          }
-          url={origin}
-        />
-        <TelegramShareButton
-          children={
-            <img
-              src={telegram}
-              className="shareIcon__profile instagramIconShare"
-              alt=""
-            />
-          }
-          url={origin}
-        />
-      </div>
       <div
         className="profileContainer__profileDetails"
         id="profileContainer__profileDetails"
@@ -193,7 +114,7 @@ const ProfileDetails = () => {
                 size={window.outerWidth <= "500px" ? 70 : 50}
                 level="H"
                 title="Rone"
-                value=""
+                value="https://rone-demo.vercel.app/"
               />
               <div className="shareThisqr__button">
                 <img src={shareWhite} alt="" />
@@ -203,50 +124,41 @@ const ProfileDetails = () => {
           </div>
           <div className="socialButton__container">
             {/* <a
-              href={`https://www.facebook.com/${userSocial.fb_link ? userSocial.fb_link : ""}`}
+              href={`https://www.facebook.com/${userSocial.fb_link}`}
               className="facebook__contain social__button__profile"
-            > */}
-            <a href="/" className="facebook__contain social__button__profile">
+            >
               <img src={facebook} alt="" />
             </a>
-            {/* <a
+            <a
               href={userSocial.linkdin_link}
               className="linkedIn__contain social__button__profile"
-            > */}
-            <a href="/" className="linkedIn__contain social__button__profile">
+            >
               <img src={linkedin} alt="" />
             </a>
-            {/* <a
+            <a
               href={`https://twitter.com/${userSocial.twitter_link}`}
               className="twitter__contain social__button__profile"
-            > */}
-            <a href="/" className="twitter__contain social__button__profile">
+            >
               <img src={twitter} alt="" />
             </a>
-            {/* <a
+            <a
               href={`https://api.whatsapp.com/send?phone=${userSocial.whatssapp_link}`}
               className="whatsapp__contain social__button__profile"
-            > */}
-            <a href="/" className="whatsapp__contain social__button__profile">
+            >
               <img src={whatsapp} alt="" />
             </a>
-            {/* <a
+            <a
               href={`https://www.instagram.com/${userSocial.insta_link}/`}
               className="insta__contain social__button__profile"
-            > */}
-            <a href="/" className="insta__contain social__button__profile">
+            >
               <img src={instagram} alt="" />
             </a>
-            {/* <a href="/" className="youtube__contain social__button__profile">
-              <img src={youtube} alt="" />
-            </a> */}
-            {/* <a
+            <a
               href={`https://t.me/${userSocial.teligram_link}`}
               className="telegram__contain social__button__profile"
-            > */}
-            <a href="/" className="telegram__contain social__button__profile">
+            >
               <img src={telegram} alt="" />
-            </a>
+            </a> */}
           </div>
           <div className="otherOptions__container">
             <a
@@ -302,4 +214,4 @@ const ProfileDetails = () => {
   );
 };
 
-export default ProfileDetails;
+export default Test;

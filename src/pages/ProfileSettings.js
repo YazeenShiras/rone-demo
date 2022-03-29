@@ -74,8 +74,38 @@ const EditProfile = () => {
       setAddress(data.address);
     };
 
+    let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
+    socialUrl.search = new URLSearchParams({
+      user_id: idForUpdate,
+    });
+
+    const getSocial = async () => {
+      const req = await fetch(socialUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await req.json();
+      console.log(data.data);
+      setFacebookLink(data.data.fb_link);
+      setInstagramLink(data.data.insta_link);
+      setTwitterLink(data.data.twitter_link);
+      setLinkedInLink(data.data.linkdin_link);
+      setTelegramLink(data.data.teligram_link);
+      setWhatsappLink(data.data.whatssapp_link);
+
+      console.log(data.data.fb_link);
+      console.log(data.data.insta_link);
+      console.log(data.data.twitter_link);
+      console.log(data.data.linkdin_link);
+      console.log(data.data.teligram_link);
+      console.log(data.data.whatssapp_link);
+    };
+
     if (idForUpdate !== "" && idForUpdate !== undefined) {
       getUser();
+      getSocial();
     } else {
       console.log("error: idForUpdate not found or null");
     }
@@ -182,7 +212,7 @@ const EditProfile = () => {
     });
 
     const response = await fetch(url, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "content-Type": "application/json",
       },
