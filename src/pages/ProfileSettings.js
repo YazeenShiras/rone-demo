@@ -11,7 +11,7 @@ import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
-import youtube from "../assets/youtube.svg";
+/* import youtube from "../assets/youtube.svg"; */
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
 /* import Footer from "../components/Footer"; */
@@ -32,7 +32,7 @@ const EditProfile = () => {
   const [twitterLink, setTwitterLink] = useState("");
   const [whatsappLink, setWhatsappLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
-  const [youtubeLink, setYoutubeLink] = useState("");
+  /* const [youtubeLink, setYoutubeLink] = useState(""); */
   const [telegramLink, setTelegramLink] = useState("");
 
   const [img, setImg] = useState("");
@@ -95,7 +95,7 @@ const EditProfile = () => {
     setLinkedInLink(document.getElementById("linkedInLink").value);
     setTwitterLink(document.getElementById("twitterLink").value);
     setWhatsappLink(document.getElementById("whatsappLink").value);
-    setYoutubeLink(document.getElementById("youtubeLink").value);
+    /* setYoutubeLink(document.getElementById("youtubeLink").value); */
     setInstagramLink(document.getElementById("instagramLink").value);
     setTelegramLink(document.getElementById("telegramLink").value);
   };
@@ -173,7 +173,7 @@ const EditProfile = () => {
     console.log(instagramLink);
     console.log(telegramLink);
     console.log(whatsappLink);
-    console.log(youtubeLink);
+    /* console.log(youtubeLink); */
 
     let url = new URL("https://rone111.herokuapp.com/social_links");
 
@@ -224,7 +224,6 @@ const EditProfile = () => {
             <p className="themesSettings titleHeaderlink">Themes</p>
           </div>
           <div className="profileImageContainer__form__update">
-            <h3>Edit Profile</h3>
             <div
               className="imageUpdateContainer"
               style={{
@@ -346,7 +345,7 @@ const EditProfile = () => {
                   <input
                     id="facebookLink"
                     type="text"
-                    placeholder="Enter your facebook link"
+                    placeholder="Enter your facebook username"
                     onChange={storeLinks}
                   />
                 </div>
@@ -364,7 +363,7 @@ const EditProfile = () => {
                   <input
                     id="twitterLink"
                     type="text"
-                    placeholder="Enter your Twitter link"
+                    placeholder="Enter your Twitter username"
                     onChange={storeLinks}
                   />
                 </div>
@@ -373,7 +372,7 @@ const EditProfile = () => {
                   <input
                     id="whatsappLink"
                     type="text"
-                    placeholder="Enter your Whatsapp Number"
+                    placeholder="Enter your Whatsapp number"
                     onChange={storeLinks}
                   />
                 </div>
@@ -382,25 +381,25 @@ const EditProfile = () => {
                   <input
                     id="instagramLink"
                     type="text"
-                    placeholder="Enter your Instagram link"
+                    placeholder="Enter your Instagram username"
                     onChange={storeLinks}
                   />
                 </div>
-                <div className="socialLinksinputContainer">
+                {/* <div className="socialLinksinputContainer">
                   <img src={youtube} alt="" />
                   <input
                     id="youtubeLink"
                     type="text"
-                    placeholder="Enter your Youtube link"
+                    placeholder="Enter your Youtube channel name"
                     onChange={storeLinks}
                   />
-                </div>
+                </div> */}
                 <div className="socialLinksinputContainer">
                   <img src={telegram} alt="" />
                   <input
                     id="telegramLink"
                     type="text"
-                    placeholder="Enter your Telegram link"
+                    placeholder="Enter your Telegram username"
                     onChange={storeLinks}
                   />
                 </div>

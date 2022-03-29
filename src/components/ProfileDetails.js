@@ -14,13 +14,12 @@ import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
-import youtube from "../assets/youtube.svg";
+/* import youtube from "../assets/youtube.svg"; */
 import telegram from "../assets/telegram.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
 import {
   FacebookShareButton,
-  InstapaperShareButton,
   LinkedinShareButton,
   TelegramShareButton,
   TwitterShareButton,
@@ -36,6 +35,7 @@ const ProfileDetails = () => {
   const [isShare, setShare] = useState(false);
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
+  const [userSocial, setUserSocial] = useState("");
 
   useEffect(() => {
     var newid = localStorage.getItem("newuserid");
@@ -61,8 +61,26 @@ const ProfileDetails = () => {
       localStorage.setItem("nameForWallet", data.name);
     };
 
+    let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
+    socialUrl.search = new URLSearchParams({
+      user_id: userid,
+    });
+
+    const getSocial = async () => {
+      const req = await fetch(socialUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await req.json();
+      console.log(data);
+      setUserSocial(data.data);
+    };
+
     if (userid !== "") {
       getUser();
+      getSocial();
     } else {
       console.log("userid not found or null");
     }
@@ -180,7 +198,7 @@ const ProfileDetails = () => {
             <p>{userData.bio}</p>
             <div className="qrCode__container">
               <QRCode
-                size={window.innerWidth <= "500px" ? 70 : 50}
+                size={window.outerWidth <= "500px" ? 70 : 50}
                 level="H"
                 title="Rone"
                 value="https://rone-demo.vercel.app/"
@@ -192,25 +210,43 @@ const ProfileDetails = () => {
             </div>
           </div>
           <div className="socialButton__container">
-            <a href="/" className="facebook__contain social__button__profile">
+            <a
+              href={`https://www.facebook.com/${userSocial.fb_link}`}
+              className="facebook__contain social__button__profile"
+            >
               <img src={facebook} alt="" />
             </a>
-            <a href="/" className="linkedIn__contain social__button__profile">
+            <a
+              href={userSocial.linkdin_link}
+              className="linkedIn__contain social__button__profile"
+            >
               <img src={linkedin} alt="" />
             </a>
-            <a href="/" className="twitter__contain social__button__profile">
+            <a
+              href={`https://twitter.com/${userSocial.twitter_link}`}
+              className="twitter__contain social__button__profile"
+            >
               <img src={twitter} alt="" />
             </a>
-            <a href="/" className="whatsapp__contain social__button__profile">
+            <a
+              href={`https://api.whatsapp.com/send?phone=${userSocial.whatssapp_link}`}
+              className="whatsapp__contain social__button__profile"
+            >
               <img src={whatsapp} alt="" />
             </a>
-            <a href="/" className="insta__contain social__button__profile">
+            <a
+              href={`https://www.instagram.com/${userSocial.insta_link}/`}
+              className="insta__contain social__button__profile"
+            >
               <img src={instagram} alt="" />
             </a>
-            <a href="/" className="youtube__contain social__button__profile">
+            {/* <a href="/" className="youtube__contain social__button__profile">
               <img src={youtube} alt="" />
-            </a>
-            <a href="/" className="telegram__contain social__button__profile">
+            </a> */}
+            <a
+              href={`https://t.me/${userSocial.teligram_link}`}
+              className="telegram__contain social__button__profile"
+            >
               <img src={telegram} alt="" />
             </a>
           </div>
