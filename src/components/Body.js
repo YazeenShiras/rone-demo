@@ -2,7 +2,7 @@ import React from "react";
 import "./Body.css";
 import ImageGalleryMain from "./ImageGalleryMain";
 import ProfileDetails from "./ProfileDetails";
-import Products from "./Products";
+/* import Products from "./Products"; */
 import Footer from "./Footer.js";
 import AdContainer from "./AdContainer";
 
@@ -12,7 +12,7 @@ const Body = () => {
       <ProfileDetails />
       <ImageGalleryMain />
       <AdContainer />
-      <Products />
+      {/* <Products /> */}
       <Footer />
     </div>
   );
