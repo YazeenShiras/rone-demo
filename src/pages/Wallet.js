@@ -46,7 +46,7 @@ const Wallet = () => {
     setUserId(newid);
   }, []);
 
-  const [refDetails, setRefDetails] = useState([]);
+  /* const [refDetails, setRefDetails] = useState([]);
 
   useEffect(() => {
     async function getRefferralDetails() {
@@ -68,9 +68,9 @@ const Wallet = () => {
       getRefferralDetails();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid]);
+  }, [userid]); */
 
-  const [refHistory, setRefHistory] = useState([]);
+  /* const [refHistory, setRefHistory] = useState([]);
 
   useEffect(() => {
     async function getTransactionHistory() {
@@ -92,7 +92,7 @@ const Wallet = () => {
       getTransactionHistory();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid]);
+  }, [userid]); */
 
   useEffect(() => {
     if (name !== "") {
@@ -399,7 +399,7 @@ const Wallet = () => {
               <div className="TransactionLink__card">
                 <div className="left__card__transaction">
                   <p>
-                    {refDetails.length + 1}.<span>{resName}</span>
+                    1.<span>{resName}</span>
                   </p>
                 </div>
                 <div className="middleLeft__card__transaction">
@@ -415,7 +415,7 @@ const Wallet = () => {
               </div>
             </div>
 
-            <div className="transactionLinks__containerMount">
+            {/* <div className="transactionLinks__containerMount">
               {refDetails
                 .slice(0)
                 .reverse()
@@ -440,7 +440,7 @@ const Wallet = () => {
                     </div>
                   );
                 })}
-            </div>
+            </div> */}
 
             <div className="TransactionContainerTitle transactionHistoryTitle">
               <span></span>
@@ -454,7 +454,7 @@ const Wallet = () => {
                 <p className="statusTitle">Status</p>
               </div>
 
-              {refHistory
+              {/* {refHistory
                 .slice(0)
                 .reverse()
                 .map((history, index) => {
@@ -469,7 +469,7 @@ const Wallet = () => {
                       </p>
                     </div>
                   );
-                })}
+                })} */}
             </div>
           </div>
         </div>

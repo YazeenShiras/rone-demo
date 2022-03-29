@@ -37,13 +37,13 @@ const Test = () => {
   }
 
   useEffect(() => {
-    /* getParameters(); */
+    getParameters();
 
     console.log("userid : " + userid);
 
     let url = new URL("https://rone111.herokuapp.com/user_details");
     url.search = new URLSearchParams({
-      user_id: 3,
+      user_id: userid,
     });
 
     const getUser = async () => {
@@ -59,7 +59,7 @@ const Test = () => {
 
     let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
     socialUrl.search = new URLSearchParams({
-      user_id: 3,
+      user_id: userid,
     });
 
     const getSocial = async () => {
