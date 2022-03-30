@@ -35,7 +35,7 @@ const ref = React.createRef();
 const options = {
   orientation: "landscape",
   unit: "in",
-  format: [6, 13],
+  format: [8, 13],
 };
 
 const ProfileDetails = () => {
