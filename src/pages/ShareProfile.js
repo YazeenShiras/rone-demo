@@ -2,6 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "../components/ProfileDetails.css";
+import ClockLoader from "react-spinners/ClipLoader";
+import "../components/ImageGalleryMain.css";
+import sort from "../assets/sort.svg";
+import image from "../assets/image.svg";
 import "./ShareProfile.css";
 import bg from "../assets/images/mainBg.png";
 import star from "../assets/star.svg";
@@ -22,6 +26,7 @@ import locationIcon from "../assets/location.svg";
 import copy from "../assets/copy.svg";
 import Pdf from "react-to-pdf";
 import Header from "../components/Header";
+import axios from "axios";
 const ref = React.createRef();
 const options = {
   orientation: "landscape",
@@ -45,6 +50,9 @@ const ShareProfile = () => {
   const [whatsappLink, setWhatsappLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
   const [telegramLink, setTelegramLink] = useState("");
+
+  const [allImages, setAllImages] = useState([]);
+  const [imgtest, setImgtest] = useState("");
 
   function getParameters() {
     let urlString = window.location.href;
@@ -107,6 +115,85 @@ const ShareProfile = () => {
       console.log("userid not found or null");
     }
   }, [userid]);
+
+  useEffect(() => {
+    async function getAllImages() {
+      console.log("access to getAllImages");
+      const endpoint = "https://rone111.herokuapp.com/access_image_gallery";
+
+      let url = new URL(endpoint);
+      url.search = new URLSearchParams({
+        user_id: userid,
+      });
+
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+
+      await axios
+        .get(url, config)
+        .then((res) => {
+          const data = res.data;
+          console.log(data);
+          if (data.sts === 404) {
+            document.getElementById("imageGalleryContent").style.display =
+              "none";
+            document.getElementById("loadMore__button").innerHTML = "No Images";
+          }
+          if (data.data) {
+            setAllImages(data.data);
+            console.log(allImages);
+          }
+        })
+        .catch(console.error);
+    }
+
+    if (userid !== "" && userid !== undefined) {
+      getAllImages();
+    }
+  }, [userid]);
+
+  const inpFile = document.getElementById("inpFile");
+
+  async function uploadPhotofromFiles() {
+    console.log("access to UploadPhotofromFiles");
+    document.getElementById("selectFromFileContainer").style.display = "flex";
+
+    const endpoint = "https://rone111.herokuapp.com/self_upload-file";
+
+    let url = new URL(endpoint);
+    url.search = new URLSearchParams({
+      user_id: userid,
+    });
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    const formData = new FormData();
+    formData.append("file", inpFile.files[0]);
+
+    await axios.post(url, formData, config).then((res) => {
+      const data = res.data;
+      if (data.Result === "OK") {
+        document.getElementById("imgUploaded").style.display = "flex";
+        document.getElementById("selectFromFileContainer").style.display =
+          "none";
+        setImgtest(data.path);
+      }
+    });
+  }
+
+  const confirmFetch = () => {
+    console.log("access to confirmFetch");
+    if (userid !== "") {
+      uploadPhotofromFiles();
+    }
+  };
 
   return (
     <div className="shareProfile">
@@ -267,6 +354,40 @@ const ShareProfile = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="imageGalleryMain" style={{ marginBottom: "50px" }}>
+        <div className="title__container__imageGalleryMain">
+          <h3>Image Gallery</h3>
+          <div className="viewAll__button">View All</div>
+          <span></span>
+          <div className="sort__button">
+            Sort
+            <img src={sort} alt="" />
+          </div>
+        </div>
+        <div
+          id="imageGalleryContent"
+          className="content__container__imageGalleryMain"
+        >
+          <div
+            id="imgUploaded"
+            style={{ backgroundImage: `url('${imgtest}')` }}
+            className="card__products__imageContainer imgUploaded"
+          >
+            {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+          </div>
+          {allImages.map((imageForGallery, index) => {
+            return (
+              <div
+                key={index}
+                style={{ backgroundImage: `url('${imageForGallery.img_url}')` }}
+                className="card__products__imageContainer"
+              >
+                {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

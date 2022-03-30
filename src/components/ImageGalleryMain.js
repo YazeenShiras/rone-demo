@@ -6,12 +6,7 @@ import ClockLoader from "react-spinners/ClipLoader";
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
-import img2 from "../assets/images/img2.jpg";
-import img3 from "../assets/images/img3.jpg";
-import img4 from "../assets/images/img4.jpg";
-import img5 from "../assets/images/img5.jpg";
-/* import searchIcon from "../assets/searchIcon.svg";
-import img10 from "../assets/images/img10.jpg"; */
+import searchIcon from "../assets/searchIcon.svg";
 
 const ImageGalleryMain = () => {
   const [idForImg, setIdForImg] = useState("");
@@ -57,7 +52,8 @@ const ImageGalleryMain = () => {
             document.getElementById("imageGalleryContent").style.display =
               "none";
             document.getElementById("loadMore__button").innerHTML = "No Images";
-          } else {
+          }
+          if (data.data) {
             setAllImages(data.data);
             console.log(allImages);
           }
