@@ -334,7 +334,22 @@
   cursor: pointer;
 }
 
+.download__mobile {
+  display: none;
+}
+
+.download__web {
+  display: block;
+}
+
 @media only screen and (max-width: 500px) {
+  .download__mobile {
+    display: block;
+  }
+
+  .download__web {
+    display: none;
+  }
   .profileDetails {
     height: calc(100vh);
   }

@@ -35,7 +35,13 @@ const ref = React.createRef();
 const options = {
   orientation: "landscape",
   unit: "in",
-  format: [8, 13],
+  format: [7, 13],
+};
+
+const optionsMobile = {
+  orientation: "portrait",
+  unit: "in",
+  format: [8, 11],
 };
 
 const ProfileDetails = () => {
@@ -50,6 +56,8 @@ const ProfileDetails = () => {
   const [whatsappLink, setWhatsappLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
   const [telegramLink, setTelegramLink] = useState("");
+
+  let innerwidth = window.innerWidth;
 
   useEffect(() => {
     var newid = localStorage.getItem("newuserid");
@@ -286,21 +294,40 @@ const ProfileDetails = () => {
               <img src={payment} alt="" />
               Make Payment
             </div>
-            <Pdf
-              targetRef={ref}
-              options={options}
-              x={0.5}
-              y={0.5}
-              scale={1}
-              filename={`${userData.name}.pdf`}
-            >
-              {({ toPdf }) => (
-                <div onClick={toPdf} className="download__button">
-                  <img src={download} alt="" />
-                  Download Profile
-                </div>
-              )}
-            </Pdf>
+            <div className="download__web" id="downloadWeb">
+              <Pdf
+                targetRef={ref}
+                options={options}
+                x={0.5}
+                y={0.5}
+                scale={1}
+                filename={`${userData.name}.pdf`}
+              >
+                {({ toPdf }) => (
+                  <div onClick={toPdf} className="download__button">
+                    <img src={download} alt="" />
+                    Download Profile
+                  </div>
+                )}
+              </Pdf>
+            </div>
+            <div className="download__mobile" id="downloadMobile">
+              <Pdf
+                targetRef={ref}
+                options={optionsMobile}
+                x={0.5}
+                y={0.5}
+                scale={1.5}
+                filename={`${userData.name}.pdf`}
+              >
+                {({ toPdf }) => (
+                  <div onClick={toPdf} className="download__button">
+                    <img src={download} alt="" />
+                    Download Profile
+                  </div>
+                )}
+              </Pdf>
+            </div>
           </div>
           <div className="refer__container">
             <img src={copy} alt="" />
