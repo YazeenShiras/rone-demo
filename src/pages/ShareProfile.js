@@ -317,14 +317,6 @@ const ShareProfile = () => {
                 </Pdf>
               </div>
             </div>
-            <div className="refer__container">
-              <img src={copy} alt="" />
-              <div className="text__container__refer">
-                <p>Refer your friends and earn use code </p>
-                <span className="refer__code">RONE12345</span>
-                <span className="clicktocopy">click to copy</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
