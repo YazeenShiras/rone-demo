@@ -11,7 +11,7 @@ import ProfileSettings from "./pages/ProfileSettings";
 import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";
-import Test from "./pages/Test";
+import ShareProfile from "./pages/ShareProfile";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path="/settings/profile" component={ProfileSettings} />
           <Route path="/settings/Wallet" component={Wallet} />
           <Route path="/buyronecard" component={BuyRoneCard} />
-          <Route path="/profile/:id" component={Test} />
+          <Route path="/profile/:id" component={ShareProfile} />
         </Switch>
       </div>
     </Router>

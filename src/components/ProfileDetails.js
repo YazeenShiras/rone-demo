@@ -14,7 +14,6 @@ import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
-/* import youtube from "../assets/youtube.svg"; */
 import telegram from "../assets/telegram.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
@@ -56,8 +55,6 @@ const ProfileDetails = () => {
   const [whatsappLink, setWhatsappLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
   const [telegramLink, setTelegramLink] = useState("");
-
-  let innerwidth = window.innerWidth;
 
   useEffect(() => {
     var newid = localStorage.getItem("newuserid");
@@ -133,7 +130,10 @@ const ProfileDetails = () => {
   };
 
   return (
-    <div className="profileDetails" style={{ backgroundImage: `url(${bg})` }}>
+    <div
+      className="profileDetailsShare"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
       <div className="headerConatiner__profile">
         <div
           onClick={shareToSocial}
@@ -216,7 +216,7 @@ const ProfileDetails = () => {
               <QRCode
                 size={window.outerWidth <= "500px" ? 70 : 50}
                 level="H"
-                title="Rone"
+                title={`${userData.name} - Rone`}
                 value={origin}
               />
               <div className="shareThisqr__button">

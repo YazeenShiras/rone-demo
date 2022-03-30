@@ -125,7 +125,6 @@ const EditProfile = () => {
     setLinkedInLink(document.getElementById("linkedInLink").value);
     setTwitterLink(document.getElementById("twitterLink").value);
     setWhatsappLink(document.getElementById("whatsappLink").value);
-    /* setYoutubeLink(document.getElementById("youtubeLink").value); */
     setInstagramLink(document.getElementById("instagramLink").value);
     setTelegramLink(document.getElementById("telegramLink").value);
   };
@@ -415,15 +414,6 @@ const EditProfile = () => {
                     onChange={storeLinks}
                   />
                 </div>
-                {/* <div className="socialLinksinputContainer">
-                  <img src={youtube} alt="" />
-                  <input
-                    id="youtubeLink"
-                    type="text"
-                    placeholder="Enter your Youtube channel name"
-                    onChange={storeLinks}
-                  />
-                </div> */}
                 <div className="socialLinksinputContainer">
                   <img src={telegram} alt="" />
                   <input

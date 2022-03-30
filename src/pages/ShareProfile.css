@@ -1,0 +1,10 @@
+.profileDetailsShare {
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+}
