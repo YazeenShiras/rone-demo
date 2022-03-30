@@ -64,7 +64,7 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg]);
+  }, [idForImg, imgtest]);
 
   async function uploadPhotofromFiles() {
     console.log("access to UploadPhotofromFiles");
@@ -89,7 +89,6 @@ const ImageGalleryMain = () => {
     await axios.post(url, formData, config).then((res) => {
       const data = res.data;
       if (data.Result === "OK") {
-        document.getElementById("imgUploaded").style.display = "flex";
         document.getElementById("selectFromFileContainer").style.display =
           "none";
         setImgtest(data.path);
@@ -150,13 +149,6 @@ const ImageGalleryMain = () => {
         id="imageGalleryContent"
         className="content__container__imageGalleryMain"
       >
-        <div
-          id="imgUploaded"
-          style={{ backgroundImage: `url('${imgtest}')` }}
-          className="card__products__imageContainer imgUploaded"
-        >
-          {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
-        </div>
         {allImages.map((imageForGallery, index) => {
           return (
             <div

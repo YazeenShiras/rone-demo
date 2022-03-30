@@ -50,7 +50,6 @@ const ShareProfile = () => {
   const [telegramLink, setTelegramLink] = useState("");
 
   const [allImages, setAllImages] = useState([]);
-  const [imgtest, setImgtest] = useState("");
 
   function getParameters() {
     let urlString = window.location.href;
@@ -328,13 +327,6 @@ const ShareProfile = () => {
           id="imageGalleryContent"
           className="content__container__imageGalleryMain"
         >
-          <div
-            id="imgUploaded"
-            style={{ backgroundImage: `url('${imgtest}')` }}
-            className="card__products__imageContainer imgUploaded"
-          >
-            {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
-          </div>
           {allImages.map((imageForGallery, index) => {
             return (
               <div

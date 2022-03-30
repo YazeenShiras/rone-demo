@@ -67,6 +67,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   border: 1px solid #fbe9e9;
 }
@@ -304,25 +305,29 @@
     font-size: 18px;
     min-width: 120px;
   }
+
   .viewAll__button {
     min-width: 70px;
     font-size: 13px;
   }
   .content__container__imageGalleryMain {
+    width: 100%;
+    display: grid;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .card__products__imageContainer {
+    display: flex;
     flex-direction: column;
-    height: 100%;
-  }
-  .left__imageContainer__content__imageContainer {
-    width: 100%;
-    height: calc(100vw - 16vw);
-    margin-right: 0px;
-  }
-  .mainCard__imageContainer > h3 {
-    font-size: 18px;
-  }
-  .right__imageContainer__content__imageContainer {
-    margin-top: 10px;
-    width: 100%;
-    height: calc(95vw - 16vw);
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #fbe9e9;
+    height: 200px;
   }
 }
