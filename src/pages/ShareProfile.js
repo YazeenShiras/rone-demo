@@ -23,8 +23,12 @@ import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import copy from "../assets/copy.svg";
 import Pdf from "react-to-pdf";
-import Header from "../components/Header";
+import menuIcon from "../assets/menuIcon.svg";
+import "../components/Header.css";
+import logo from "../assets/Logo1.svg";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import PrimaryButton from "../components/PrimaryButton";
 const ref = React.createRef();
 const options = {
   orientation: "landscape",
@@ -154,7 +158,21 @@ const ShareProfile = () => {
 
   return (
     <div className="shareProfile">
-      <Header />
+      <div className="header">
+        <div className="header__logo">
+          <a href="/">
+            <img src={logo} alt="Rone-logo" />
+          </a>
+        </div>
+        <div className="header__right__main">
+          <Link to="/" className="buttonContainer">
+            <PrimaryButton content="Register" />
+          </Link>
+          <div className="headerMenuContainer">
+            <img className="headermenuButton" src={menuIcon} alt="" />
+          </div>
+        </div>
+      </div>
       <div
         className="profileDetails"
         style={{ marginTop: "80px", backgroundImage: `url(${bg})` }}
@@ -192,10 +210,10 @@ const ShareProfile = () => {
                   title={`${userData.name} - Rone`}
                   value={window.location.href}
                 />
-                <div className="shareThisqr__button">
+                {/* <div className="shareThisqr__button">
                   <img src={shareWhite} alt="" />
                   Share QR
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="socialButton__container">
