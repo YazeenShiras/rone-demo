@@ -5,6 +5,7 @@ import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import SecondaryButton from "../components/SecondaryButton";
 import "./AuthStyles.css";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const VerifyOtpLogin = () => {
   const [otp, setOtp] = useState("");
@@ -26,6 +27,8 @@ const VerifyOtpLogin = () => {
   }, []);
 
   async function handleSubmit() {
+    document.getElementById("loaderVeryfyLogin").style.display = "block";
+    document.getElementById("veryfyLogin").style.display = "none";
     let url = new URL("https://rone111.herokuapp.com/otp_verification_login");
     url.search = new URLSearchParams({
       mobile: mob,
@@ -43,7 +46,8 @@ const VerifyOtpLogin = () => {
       localStorage.setItem("loggedRefreshToken", data.refresh_token);
       localStorage.setItem("loggedImg", data.profile);
       localStorage.setItem("newuserid", data.user_id);
-
+      document.getElementById("loaderVeryfyLogin").style.display = "none";
+      document.getElementById("veryfyLogin").style.display = "block";
       window.location.href = "/profile";
     } else if (data.status === 404) {
       document.getElementById("errorVarifyOtp").innerHTML = data.message;
@@ -140,7 +144,10 @@ const VerifyOtpLogin = () => {
               Please enter OTP
             </p>
             <div onClick={verifyClick} className="register__button__form">
-              VERIFY & LOGIN
+              <div className="loader__container__login" id="loaderVeryfyLogin">
+                <PulseLoader color="#ffffff" />
+              </div>
+              <p id="veryfyLogin">VERIFY & LOGIN</p>
             </div>
           </form>
           <div className="alreadyRegistered__container">

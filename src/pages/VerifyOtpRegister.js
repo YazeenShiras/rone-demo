@@ -5,6 +5,7 @@ import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import PrimaryButton from "../components/PrimaryButton";
 import "./AuthStyles.css";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const VerifyOtpRegister = () => {
   const [otp, setOtp] = useState("");
@@ -26,6 +27,9 @@ const VerifyOtpRegister = () => {
   }, []);
 
   async function handleSubmit() {
+    document.getElementById("loaderVerifyRegister").style.display = "block";
+    document.getElementById("veryfyRegister").style.display = "none";
+
     let url = new URL("https://rone111.herokuapp.com/otp_verification_singup");
     url.search = new URLSearchParams({
       mobile: newmob,
@@ -39,6 +43,8 @@ const VerifyOtpRegister = () => {
     });
     const data = await res.json();
     if (data.status === 202) {
+      document.getElementById("loaderVerifyRegister").style.display = "none";
+      document.getElementById("veryfyRegister").style.display = "block";
       window.location.href = "/createuser";
     } else if (data.status === 404) {
       document.getElementById("errorVarifyOtp").innerHTML = data.message;
@@ -137,7 +143,13 @@ const VerifyOtpRegister = () => {
               Please enter OTP
             </p>
             <div onClick={verifyClick} className="register__button__form">
-              VERIFY & REGISTER
+              <div
+                className="loader__container__login"
+                id="loaderVerifyRegister"
+              >
+                <PulseLoader color="#ffffff" />
+              </div>
+              <p id="veryfyRegister">VERIFY & REGISTER</p>
             </div>
           </form>
           <div className="alreadyRegistered__container">

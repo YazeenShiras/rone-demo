@@ -5,12 +5,15 @@ import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import SecondaryButton from "../components/SecondaryButton";
 import "./AuthStyles.css";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const LoginSendOtp = () => {
   const [isdetails, setIsdetails] = useState(false);
   const [loginNumber, setLoginNumber] = useState("");
 
   async function handleSubmit() {
+    document.getElementById("loaderSentOtp").style.display = "block";
+    document.getElementById("sentOTP").style.display = "none";
     let url = new URL("https://rone111.herokuapp.com/OTP_Genarator/rone/login");
     url.search = new URLSearchParams({
       mobile_num: loginNumber,
@@ -34,6 +37,8 @@ const LoginSendOtp = () => {
         window.localStorage.isMySessionActive = "true";
       };
       localStorage.setItem("mob", loginNumber);
+      document.getElementById("loaderSentOtp").style.display = "none";
+      document.getElementById("sentOTP").style.display = "block";
       window.location.href = "/verifyotplogin";
     } else if (data.status === 404) {
       document.getElementById("errorMobile").style.display = "block";
@@ -128,7 +133,10 @@ const LoginSendOtp = () => {
               Enter a valid Mobile Number
             </p>
             <div onClick={loginClick} className="register__button__form">
-              SENT OTP
+              <div className="loader__container__login" id="loaderSentOtp">
+                <PulseLoader color="#ffffff" />
+              </div>
+              <p id="sentOTP">SENT OTP</p>
             </div>
           </form>
           <div className="alreadyRegistered__container">

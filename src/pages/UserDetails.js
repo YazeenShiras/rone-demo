@@ -7,6 +7,7 @@ import photoIcon from "../assets/image.svg";
 import "./AuthStyles.css";
 import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function UserDetails() {
   const [email, setEmail] = useState("");
@@ -87,6 +88,8 @@ function UserDetails() {
   }
 
   async function saveProfile() {
+    document.getElementById("saveProfileLoader").style.display = "block";
+    document.getElementById("saveProfileText").style.display = "none";
     console.log(email);
     console.log(location);
     console.log(profession);
@@ -116,8 +119,12 @@ function UserDetails() {
     if (data.status === 200) {
       if (isProfilePhotoUploaded) {
         localStorage.setItem("newuserid", userid);
+        document.getElementById("saveProfileLoader").style.display = "none";
+        document.getElementById("saveProfileText").style.display = "block";
         window.location.href = "/profile";
       } else {
+        document.getElementById("saveProfileLoader").style.display = "none";
+        document.getElementById("saveProfileText").style.display = "block";
         document.getElementById("errorMobile").style.display = "block";
         document.getElementById("errorMobile").innerHTML =
           "Please upload profile photo";
@@ -310,7 +317,10 @@ function UserDetails() {
             <p id="errorMobile">Enter a valid Email</p>
           </div>
           <div onClick={saveClick} className="saveProfileButton">
-            SAVE PROFILE
+            <div className="loader__container__login" id="saveProfileLoader">
+              <PulseLoader color="#ffffff" />
+            </div>
+            <p id="saveProfileText">SAVE PROFILE</p>
           </div>
         </form>
       </div>

@@ -5,9 +5,11 @@ import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import PrimaryButton from "../components/PrimaryButton";
 import "./AuthStyles.css";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const CreateUser = () => {
   const [name, setName] = useState("");
+  const [username, setusername] = useState("");
   const [number, setNumber] = useState("");
   const [isdetails, setIsdetails] = useState(false);
   const [newmob, setNewMob] = useState("");
@@ -27,6 +29,9 @@ const CreateUser = () => {
   }, []);
 
   async function handleSubmit() {
+    document.getElementById("loaderRegisterUser").style.display = "block";
+    document.getElementById("RegisterUser").style.display = "none";
+
     const res = await fetch("https://rone111.herokuapp.com/create_user", {
       method: "POST",
       headers: {
@@ -44,6 +49,8 @@ const CreateUser = () => {
       localStorage.setItem("newuserid", data.id);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("refresh_token", data.refresh_token);
+      document.getElementById("loaderRegisterUser").style.display = "none";
+      document.getElementById("RegisterUser").style.display = "block";
       window.location.href = "/userdetails";
     }
     if (data.detail === "mobile  number already exists!") {
@@ -74,10 +81,11 @@ const CreateUser = () => {
   const storeValues = () => {
     setName(document.getElementById("name").value);
     setNumber(document.getElementById("number").value);
+    setusername(document.getElementById("username").value);
   };
 
   const registerClick = () => {
-    if (name === "" || number === "") {
+    if (name === "" || number === "" || username === "") {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML = "Must fill all fields";
@@ -151,12 +159,21 @@ const CreateUser = () => {
                 <input onChange={storeValues} id="name" type="text" />
               </div>
             </fieldset>
+            <fieldset className="input__container">
+              <legend>Username</legend>
+              <div className="input__box">
+                <input onChange={storeValues} id="username" type="text" />
+              </div>
+            </fieldset>
             <div id="errorContainer" className="errorContainer">
               <p id="errorName">Enter a valid Email</p>
               <p id="errorMobile">Enter a valid Mobile Number</p>
             </div>
             <div onClick={registerClick} className="register__button__form">
-              REGISTER
+              <div className="loader__container__login" id="loaderRegisterUser">
+                <PulseLoader color="#ffffff" />
+              </div>
+              <p id="RegisterUser">REGISTER</p>
             </div>
           </form>
         </div>

@@ -196,6 +196,10 @@
   margin-top: 5px;
 }
 
+.loader__container__login {
+  display: none;
+}
+
 @media only screen and (max-width: 500px) {
   .content__bodyRegister {
     flex-direction: column;
