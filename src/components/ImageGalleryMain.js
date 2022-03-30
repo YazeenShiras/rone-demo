@@ -1,37 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ClockLoader from "react-spinners/ClipLoader";
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
-import searchIcon from "../assets/searchIcon.svg";
 import img2 from "../assets/images/img2.jpg";
 import img3 from "../assets/images/img3.jpg";
 import img4 from "../assets/images/img4.jpg";
 import img5 from "../assets/images/img5.jpg";
-import img10 from "../assets/images/img10.jpg";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import ClockLoader from "react-spinners/ClipLoader";
+/* import searchIcon from "../assets/searchIcon.svg";
+import img10 from "../assets/images/img10.jpg"; */
 
 const ImageGalleryMain = () => {
-  const [photos, setPhotos] = useState([]);
-  /* const [search, setSearch] = useState("");
-  const [browse, setBrowse] = useState([]);
-  const [page, setPage] = useState(1); */
   const [idForImg, setIdForImg] = useState("");
-  /* const [urlSelect, setUrlSelect] = useState(""); */
+  const [imgtest, setImgtest] = useState("");
+  const [allImages, setAllImages] = useState([]);
+
+  /* const [photos, setPhotos] = useState([]);
+  const [search, setSearch] = useState("");
+  const [browse, setBrowse] = useState([]);
+  const [page, setPage] = useState(1);
+  const [urlSelect, setUrlSelect] = useState(""); */
 
   const inpFile = document.getElementById("inpFile");
   var idForImageGallery = localStorage.getItem("newuserid");
-
-  const [imgtest, setImgtest] = useState("");
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
     console.log(idForImg);
   }, [idForImg]);
-
-  /* const [images, setImages] = useState([]);
 
   useEffect(() => {
     async function getAllImages() {
@@ -53,8 +52,15 @@ const ImageGalleryMain = () => {
         .get(url, config)
         .then((res) => {
           const data = res.data;
-          setImages(data.data);
-          console.log(images);
+          console.log(data);
+          if (data.sts === 404) {
+            document.getElementById("imageGalleryContent").style.display =
+              "none";
+            document.getElementById("loadMore__button").innerHTML = "No Images";
+          } else {
+            setAllImages(data.data);
+            console.log(allImages);
+          }
         })
         .catch(console.error);
     }
@@ -62,7 +68,7 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg]); */
+  }, [idForImg]);
 
   async function uploadPhotofromFiles() {
     console.log("access to UploadPhotofromFiles");
@@ -87,6 +93,7 @@ const ImageGalleryMain = () => {
     await axios.post(url, formData, config).then((res) => {
       const data = res.data;
       if (data.Result === "OK") {
+        document.getElementById("imgUploaded").style.display = "flex";
         document.getElementById("selectFromFileContainer").style.display =
           "none";
         setImgtest(data.path);
@@ -101,51 +108,7 @@ const ImageGalleryMain = () => {
     }
   };
 
-  /* async function uploadPhotofromSearch() {
-    console.log("access to UploadPhotofromSearch");
-    const endpoint = "https://rone111.herokuapp.com/public_img_urls";
-
-    let url = new URL(endpoint);
-    url.search = new URLSearchParams({
-      user_id: idForImg,
-    });
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        img_url: urlSelect,
-      }),
-    };
-
-    await axios
-      .post(url, config)
-      .then((res) => {
-        console.log(res.data);
-        const data = res.data;
-        console.log("success respose from img adding server");
-        if (data.Result === "OK") {
-          document.getElementById("selectFromFileContainer").style.display =
-            "none";
-          setImgtest(data.path);
-        }
-      })
-      .catch(console.error);
-  } */
-
-  /* const makeUrlParam = (imgurlcode) => {
-    console.log("calling makeUrlParam");
-    setUrlSelect(imgurlcode);
-    if (urlSelect !== "") {
-      console.log("url found" + urlSelect);
-      uploadPhotofromSearch();
-    }
-  }; */
-
-  /* const url = `https://api.unsplash.com/search/photos?page=${page}&query=${search}&client_id=jlSQhIiSODwibS2U8gwvnjJCYsWdwXs8-2jpyRRvn8c`; */
-
-  const loadMore = () => {
+  /* const loadMore = () => {
     var loadMoreButton = document.getElementById("loadMore__button");
     var loadMoreContainer = document.getElementById("loadmoreContainer");
     if (loadMoreButton.innerHTML === "Show Less") {
@@ -154,44 +117,6 @@ const ImageGalleryMain = () => {
     } else {
       loadMoreContainer.style.display = "flex";
       loadMoreButton.innerHTML = "Show Less";
-    }
-  };
-
-  /* const storeSearchInput = () => {
-    setSearch(document.getElementById("searchInput").value);
-  };
-
-  const viewBrowsePhoto = () => {
-    document.getElementById("browseImageContainer").style.display = "flex";
-  };
-
-  const getBrowseData = () => {
-    document.getElementById("imagePageButtonConatiner").style.display = "flex";
-    const getData = async () => {
-      await axios
-        .get(url)
-        .then((response) => {
-          setBrowse(response.data.results);
-          console.log(response.data.results);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getData();
-  }; */
-
-  /* const nextClick = () => {
-    setPage(page + 1);
-    if (page !== 0 && page <= 5) {
-      getBrowseData();
-    }
-  };
-
-  const prevClick = () => {
-    setPage(page - 1);
-    if (page !== 0 && page <= 5) {
-      getBrowseData();
     }
   }; */
 
@@ -209,10 +134,6 @@ const ImageGalleryMain = () => {
           <img src={image} alt="" />
           Choose Photo
         </div>
-        {/* <div onClick={viewBrowsePhoto} className="BrowsePhotoButton">
-          <img src={image} alt="" />
-          Browse Photo
-        </div> */}
       </div>
       <div className="selectFromFile__container" id="selectFromFileContainer">
         <div className="loading__animation" id="loadingAnimation">
@@ -220,54 +141,6 @@ const ImageGalleryMain = () => {
           <p> Uploading...</p>
         </div>
       </div>
-      {/* <div className="browseImageContainer" id="browseImageContainer">
-        <div className="searchBox__container">
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Search Photos for Image Gallery"
-            onChange={storeSearchInput}
-            autoComplete="off"
-          />
-          <img onClick={getBrowseData} src={searchIcon} alt="" />
-        </div>
-        <div
-          className="cardsContainer__imageBrowse"
-          id="cardsContainerimageBrowse"
-        >
-          {browse.map((img) => {
-            console.log(img);
-            return (
-              <div
-                key={img.id}
-                style={{
-                  backgroundColor: img.color,
-                  backgroundImage: `url(${img.urls.full})`,
-                }}
-                className="card__image"
-              >
-                <div
-                  className="selectButton__image"
-                  onClick={console.log("click")}
-                >
-                  Select
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div
-          className="imagePageButton__conatiner"
-          id="imagePageButtonConatiner"
-        >
-          <div onClick={prevClick} className="AddPhotosButton pageChange">
-            Previous
-          </div>
-          <div className=" BrowsePhotoButton pageChange" onClick={nextClick}>
-            Next
-          </div>
-        </div>
-      </div> */}
       <div className="title__container__imageGalleryMain">
         <h3>Image Gallery</h3>
         <div className="viewAll__button">View All</div>
@@ -277,56 +150,30 @@ const ImageGalleryMain = () => {
           <img src={sort} alt="" />
         </div>
       </div>
-      <div className="content__container__imageGalleryMain">
-        <div className="left__imageContainer__content__imageContainer">
-          <div
-            className="mainCard__imageContainer"
-            style={{
-              backgroundImage: `url('${imgtest !== "" ? imgtest : img10}')`,
-            }}
-          >
-            <h3>Lorem Ipsum is simply dummy text of the printing.</h3>
-          </div>
-        </div>
-        <div className="right__imageContainer__content__imageContainer">
-          <div
-            style={{ backgroundImage: `url('${img2}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          <div
-            style={{ backgroundImage: `url('${img3}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          <div
-            style={{ backgroundImage: `url('${img4}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          <div
-            style={{ backgroundImage: `url('${img5}')` }}
-            className="card__products__imageContainer"
-          >
-            <h4>Lorem Ipsum is simply dummy text of the</h4>
-          </div>
-          {/* {images.map((pic, index) => {
-            return (
-              <div
-                key={index}
-                style={{ backgroundImage: `url('${pic.img_url}')` }}
-                className="card__products__imageContainer"
-              >
-                <h4>Lorem Ipsum is simply dummy text of the</h4>
-              </div>
-            );
-          })} */}
-        </div>
-      </div>
       <div
+        id="imageGalleryContent"
+        className="content__container__imageGalleryMain"
+      >
+        <div
+          id="imgUploaded"
+          style={{ backgroundImage: `url('${imgtest}')` }}
+          className="card__products__imageContainer imgUploaded"
+        >
+          {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+        </div>
+        {allImages.map((imageForGallery, index) => {
+          return (
+            <div
+              key={index}
+              style={{ backgroundImage: `url('${imageForGallery.img_url}')` }}
+              className="card__products__imageContainer"
+            >
+              {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+            </div>
+          );
+        })}
+      </div>
+      {/* <div
         id="loadmoreContainer"
         className="loadMore__contaner__imageContainer"
       >
@@ -347,13 +194,9 @@ const ImageGalleryMain = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
       <div className="buttonContainer__imageContainer">
-        <div
-          onClick={loadMore}
-          id="loadMore__button"
-          className="loadMore__button"
-        >
+        <div id="loadMore__button" className="loadMore__button">
           Load More
         </div>
       </div>

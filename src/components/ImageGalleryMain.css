@@ -198,42 +198,11 @@
 
 .content__container__imageGalleryMain {
   width: 100%;
-  display: flex;
+  display: grid;
   margin-top: 30px;
-  height: 75vh;
   align-items: center;
   justify-content: space-between;
-}
-
-.left__imageContainer__content__imageContainer {
-  width: 50%;
-  height: 100%;
-  margin-right: 10px;
-}
-
-.mainCard__imageContainer {
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border: 1px solid #fbe9e9;
-}
-
-.mainCard__imageContainer > h3 {
-  font-size: 20px;
-  padding: 0px 50px 30px 30px;
-  color: #ffffff;
-}
-
-.right__imageContainer__content__imageContainer {
-  width: 50%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 
@@ -244,6 +213,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid #fbe9e9;
+  height: 300px;
+}
+
+.imgUploaded {
+  display: none;
 }
 
 .card__products__imageContainer > h4 {
