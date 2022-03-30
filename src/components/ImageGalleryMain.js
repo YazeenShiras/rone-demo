@@ -6,7 +6,7 @@ import ClockLoader from "react-spinners/ClipLoader";
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
-import searchIcon from "../assets/searchIcon.svg";
+/* import searchIcon from "../assets/searchIcon.svg"; */
 
 const ImageGalleryMain = () => {
   const [idForImg, setIdForImg] = useState("");

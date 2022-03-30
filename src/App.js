@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Main from "./pages/Main";
+/* import Main from "./pages/Main";
 import RegisterSendOtp from "./pages/RegisterSendOtp";
 import VerifyOtpRegister from "./pages/VerifyOtpRegister";
 import CreateUser from "./pages/CreateUser";
@@ -11,14 +11,16 @@ import ProfileSettings from "./pages/ProfileSettings";
 import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";
-import ShareProfile from "./pages/ShareProfile";
+import ShareProfile from "./pages/ShareProfile"; */
+import DevelopmentMode from "./pages/DevelopmentMode";
 
 function App() {
   return (
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/" exact component={RegisterSendOtp} />
+          <Route path="/" exact component={DevelopmentMode} />
+          {/* <Route path="/" exact component={RegisterSendOtp} />
           <Route path="/roneidlogin" component={HomePage} />
           <Route exact path="/profile" component={Main} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
@@ -29,7 +31,7 @@ function App() {
           <Route path="/settings/profile" component={ProfileSettings} />
           <Route path="/settings/Wallet" component={Wallet} />
           <Route path="/buyronecard" component={BuyRoneCard} />
-          <Route path="/profile/:id" component={ShareProfile} />
+          <Route path="/profile/:id" component={ShareProfile} /> */}
         </Switch>
       </div>
     </Router>
