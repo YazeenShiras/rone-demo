@@ -168,9 +168,6 @@ const ShareProfile = () => {
           <Link to="/" className="buttonContainer">
             <PrimaryButton content="Register" />
           </Link>
-          <div className="headerMenuContainer">
-            <img className="headermenuButton" src={menuIcon} alt="" />
-          </div>
         </div>
       </div>
       <div
@@ -210,10 +207,10 @@ const ShareProfile = () => {
                   title={`${userData.name} - Rone`}
                   value={window.location.href}
                 />
-                {/* <div className="shareThisqr__button">
-                  <img src={shareWhite} alt="" />
-                  Share QR
-                </div> */}
+                <div className="shareThisqr__button">
+                  {/* <img src={shareWhite} alt="" /> */}
+                  Scan QR
+                </div>
               </div>
             </div>
             <div className="socialButton__container">
