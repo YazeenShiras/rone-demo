@@ -2,10 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "../components/ProfileDetails.css";
-import ClockLoader from "react-spinners/ClipLoader";
 import "../components/ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
-import image from "../assets/image.svg";
 import "./ShareProfile.css";
 import bg from "../assets/images/mainBg.png";
 import star from "../assets/star.svg";
@@ -154,46 +152,6 @@ const ShareProfile = () => {
       getAllImages();
     }
   }, [userid]);
-
-  const inpFile = document.getElementById("inpFile");
-
-  async function uploadPhotofromFiles() {
-    console.log("access to UploadPhotofromFiles");
-    document.getElementById("selectFromFileContainer").style.display = "flex";
-
-    const endpoint = "https://rone111.herokuapp.com/self_upload-file";
-
-    let url = new URL(endpoint);
-    url.search = new URLSearchParams({
-      user_id: userid,
-    });
-
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-
-    const formData = new FormData();
-    formData.append("file", inpFile.files[0]);
-
-    await axios.post(url, formData, config).then((res) => {
-      const data = res.data;
-      if (data.Result === "OK") {
-        document.getElementById("imgUploaded").style.display = "flex";
-        document.getElementById("selectFromFileContainer").style.display =
-          "none";
-        setImgtest(data.path);
-      }
-    });
-  }
-
-  const confirmFetch = () => {
-    console.log("access to confirmFetch");
-    if (userid !== "") {
-      uploadPhotofromFiles();
-    }
-  };
 
   return (
     <div className="shareProfile">
