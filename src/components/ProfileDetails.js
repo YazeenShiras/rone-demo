@@ -30,13 +30,26 @@ import phoneIcon from "../assets/phone.svg";
 import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import copy from "../assets/copy.svg";
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
+const options = {
+  orientation: "landscape",
+  unit: "in",
+  format: [6, 13],
+};
 
 const ProfileDetails = () => {
   const [isShare, setShare] = useState(false);
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
-  const [userSocial, setUserSocial] = useState("");
   const [origin, setOrigin] = useState("");
+
+  const [facebookLink, setFacebookLink] = useState("");
+  const [linkedInLink, setLinkedInLink] = useState("");
+  const [twitterLink, setTwitterLink] = useState("");
+  const [whatsappLink, setWhatsappLink] = useState("");
+  const [instagramLink, setInstagramLink] = useState("");
+  const [telegramLink, setTelegramLink] = useState("");
 
   useEffect(() => {
     var newid = localStorage.getItem("newuserid");
@@ -78,14 +91,19 @@ const ProfileDetails = () => {
         },
       });
       const data = await req.json();
-      setUserSocial(data.data);
+      console.log(data.data.fb_link);
+      setFacebookLink(data.data.fb_link);
+      setTwitterLink(data.data.twitter_link);
+      setLinkedInLink(data.data.linkdin_link);
+      setWhatsappLink(data.data.whatssapp_link);
+      setInstagramLink(data.data.insta_link);
+      setTelegramLink(data.data.teligram_link);
     };
 
     if (userid !== "") {
       getUser();
       getSocial();
       setOrigin(originForShare.href);
-      console.log(originForShare.href);
     } else {
       console.log("userid not found or null");
     }
@@ -117,9 +135,6 @@ const ProfileDetails = () => {
           <img src={share} alt="" />
           <p>Share</p>
         </div>
-        {/* <Link to={`/profile/share?id=${userid}`}>
-          <h2 style={{ color: "white" }}>SHARE</h2>
-        </Link> */}
         <Link
           to="/settings/profile"
           className="settingsButton buttons__header__profile"
@@ -163,6 +178,7 @@ const ProfileDetails = () => {
         />
       </div>
       <div
+        ref={ref}
         className="profileContainer__profileDetails"
         id="profileContainer__profileDetails"
       >
@@ -193,7 +209,7 @@ const ProfileDetails = () => {
                 size={window.outerWidth <= "500px" ? 70 : 50}
                 level="H"
                 title="Rone"
-                value=""
+                value={origin}
               />
               <div className="shareThisqr__button">
                 <img src={shareWhite} alt="" />
@@ -202,49 +218,40 @@ const ProfileDetails = () => {
             </div>
           </div>
           <div className="socialButton__container">
-            {/* <a
-              href={`https://www.facebook.com/${userSocial.fb_link ? userSocial.fb_link : ""}`}
+            <a
+              href={`https://www.facebook.com/${facebookLink}`}
               className="facebook__contain social__button__profile"
-            > */}
-            <a href="/" className="facebook__contain social__button__profile">
+            >
               <img src={facebook} alt="" />
             </a>
-            {/* <a
-              href={userSocial.linkdin_link}
+            <a
+              href={linkedInLink}
               className="linkedIn__contain social__button__profile"
-            > */}
-            <a href="/" className="linkedIn__contain social__button__profile">
+            >
               <img src={linkedin} alt="" />
             </a>
-            {/* <a
-              href={`https://twitter.com/${userSocial.twitter_link}`}
+            <a
+              href={`https://twitter.com/${twitterLink}`}
               className="twitter__contain social__button__profile"
-            > */}
-            <a href="/" className="twitter__contain social__button__profile">
+            >
               <img src={twitter} alt="" />
             </a>
-            {/* <a
-              href={`https://api.whatsapp.com/send?phone=${userSocial.whatssapp_link}`}
+            <a
+              href={`https://api.whatsapp.com/send?phone=${whatsappLink}`}
               className="whatsapp__contain social__button__profile"
-            > */}
-            <a href="/" className="whatsapp__contain social__button__profile">
+            >
               <img src={whatsapp} alt="" />
             </a>
-            {/* <a
-              href={`https://www.instagram.com/${userSocial.insta_link}/`}
+            <a
+              href={`https://www.instagram.com/${instagramLink}/`}
               className="insta__contain social__button__profile"
-            > */}
-            <a href="/" className="insta__contain social__button__profile">
+            >
               <img src={instagram} alt="" />
             </a>
-            {/* <a href="/" className="youtube__contain social__button__profile">
-              <img src={youtube} alt="" />
-            </a> */}
-            {/* <a
-              href={`https://t.me/${userSocial.teligram_link}`}
+            <a
+              href={telegramLink}
               className="telegram__contain social__button__profile"
-            > */}
-            <a href="/" className="telegram__contain social__button__profile">
+            >
               <img src={telegram} alt="" />
             </a>
           </div>
@@ -279,14 +286,21 @@ const ProfileDetails = () => {
               <img src={payment} alt="" />
               Make Payment
             </div>
-            <a
-              href="https://rone-demo.vercel.app/profile"
-              download
-              className="download__button"
+            <Pdf
+              targetRef={ref}
+              options={options}
+              x={0.5}
+              y={0.5}
+              scale={1}
+              filename={`${userData.name}.pdf`}
             >
-              <img src={download} alt="" />
-              Download Profile
-            </a>
+              {({ toPdf }) => (
+                <div onClick={toPdf} className="download__button">
+                  <img src={download} alt="" />
+                  Download Profile
+                </div>
+              )}
+            </Pdf>
           </div>
           <div className="refer__container">
             <img src={copy} alt="" />
