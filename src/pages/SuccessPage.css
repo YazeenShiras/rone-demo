@@ -1,0 +1,16 @@
+.successPageContainer {
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.successPageContainer > p {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-family: inherit;
+}

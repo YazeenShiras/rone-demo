@@ -13,6 +13,7 @@ import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";
 import ShareProfile from "./pages/ShareProfile";
 import PaymentUser from "./pages/PaymentUser";
+import SuccessPage from "./pages/SuccessPage";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
           <Route path="/payment/:id" component={PaymentUser} />
+          <Route path="/payment-success" component={SuccessPage} />
         </Switch>
       </div>
     </Router>
