@@ -12,6 +12,7 @@ import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";
 import ShareProfile from "./pages/ShareProfile";
+import PaymentUser from "./pages/PaymentUser";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/settings/Wallet" component={Wallet} />
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
+          <Route path="/payment" component={PaymentUser} />
         </Switch>
       </div>
     </Router>
