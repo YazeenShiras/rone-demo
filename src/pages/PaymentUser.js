@@ -32,13 +32,17 @@ const PaymentUser = () => {
     getParameters();
 
     async function getUserdata() {
-      let url = "https://arclifs-services.herokuapp.com/paymentUser";
+      console.log(id);
+
+      let endpoint = "https://arclifs-services.herokuapp.com/paymentUser";
+
+      let url = new URL(endpoint);
+      url.search = new URLSearchParams({
+        userId: id,
+      });
 
       const response = await fetch(url, {
         method: "POST",
-        body: JSON.stringify({
-          userId: id,
-        }),
       });
       const data = await response.json();
       console.log(data);
@@ -49,9 +53,7 @@ const PaymentUser = () => {
         setEmail(data.userData.email);
       }
     }
-    if (id !== undefined && id !== "") {
-      getUserdata();
-    }
+    getUserdata();
   }, [id]);
 
   const handlePayment = useCallback(() => {
