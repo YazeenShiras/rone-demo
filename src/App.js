@@ -34,7 +34,7 @@ function App() {
           <Route path="/settings/Wallet" component={Wallet} />
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
-          <Route path="/payment/:id" component={PaymentUser} />
+          <Route path="/:id" component={PaymentUser} />
           <Route path="/payment-success" component={SuccessPage} />
         </Switch>
       </div>
