@@ -49,7 +49,9 @@ const PaymentUser = () => {
         setEmail(data.userData.email);
       }
     }
-    getUserdata();
+    if (id !== undefined && id !== "") {
+      getUserdata();
+    }
   }, [id]);
 
   const handlePayment = useCallback(() => {
