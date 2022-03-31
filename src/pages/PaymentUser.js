@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/Logo1.svg";
@@ -7,6 +8,8 @@ import "../components/Header.css";
 import "./AuthStyles.css";
 import "./UserDetails.css";
 import useRazorpay from "react-razorpay";
+import axios from "axios";
+import GridLoader from "react-spinners/GridLoader";
 
 const PaymentUser = () => {
   const Razorpay = useRazorpay();
@@ -16,6 +19,8 @@ const PaymentUser = () => {
   const [name, setname] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
+
+  const [orderId, setOrderId] = useState("");
 
   function getParameters() {
     let urlString = window.location.href;
@@ -33,45 +38,46 @@ const PaymentUser = () => {
 
     async function getUserdata() {
       console.log(id);
-
-      let endpoint = "https://arclifs-services.herokuapp.com/paymentUser";
-
-      let url = new URL(endpoint);
-      url.search = new URLSearchParams({
-        userId: id,
-      });
-
-      const response = await fetch(url, {
-        method: "POST",
-      });
-      const data = await response.json();
-      console.log(data);
-      if (data.userData) {
-        setUserId(data.userData.userId);
-        setname(data.userData.username);
-        setNumber(data.userData.phone);
-        setEmail(data.userData.email);
-      }
+      axios
+        .post("https://arclifs-services.herokuapp.com/paymentUser", {
+          userId: id,
+        })
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (response.status === 200) {
+            setname(data.userData.username);
+            setEmail(data.userData.email);
+            setNumber(data.userData.phone);
+            setUserId(data.userData.userId);
+            setOrderId(data.order.id);
+            document.getElementById("containerPaymnetUser").style.display =
+              "flex";
+            document.getElementById("loaderPaymnetUser").style.display = "none";
+          }
+        });
     }
-    getUserdata();
+    if (id !== undefined && id !== "") {
+      getUserdata();
+    }
   }, [id]);
 
   const handlePayment = useCallback(() => {
     const options = {
       key: "rzp_test_EHNghn2cibZ5vK",
-      amount: "3000",
+      amount: "1500",
       currency: "INR",
       name: "Rone Payment",
       description: "Test Transaction",
       image: { logo },
-      order_id: userId,
+      order_id: orderId,
       handler: (res) => {
         console.log(res);
       },
       prefill: {
-        name: { name },
-        email: { email },
-        contact: { number },
+        name: `${name}`,
+        email: `${email}`,
+        contact: `${number}`,
       },
       notes: {
         address: "Razorpay Corporate Office",
@@ -83,7 +89,7 @@ const PaymentUser = () => {
 
     const rzpay = new Razorpay(options);
     rzpay.open();
-  }, [userId, Razorpay, name, email, number]);
+  }, [Razorpay, name, email, number, orderId]);
 
   return (
     <div className="paymnetUser">
@@ -99,7 +105,7 @@ const PaymentUser = () => {
           </Link>
         </div>
       </div>
-      <div className="container__paymnetUser">
+      <div className="container__paymnetUser" id="containerPaymnetUser">
         <h2>Rone Payment</h2>
         <form action="" autoComplete="off" className="form">
           <fieldset className="input__container">
@@ -147,6 +153,9 @@ const PaymentUser = () => {
             <p>CASH ON DELIVERY</p>
           </div>
         </form>
+      </div>
+      <div className="loader__container__paymnetUser" id="loaderPaymnetUser">
+        <GridLoader size={25} margin={2} color="#d52a33" />
       </div>
     </div>
   );
