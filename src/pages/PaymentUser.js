@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/Logo1.svg";
 import PrimaryButton from "../components/PrimaryButton";
@@ -6,10 +6,10 @@ import "./PaymentUser.css";
 import "../components/Header.css";
 import "./AuthStyles.css";
 import "./UserDetails.css";
-import useRazorpay from "react-razorpay";
+/* import useRazorpay from "react-razorpay"; */
 
 const PaymentUser = () => {
-  const Razorpay = useRazorpay();
+  /* const Razorpay = useRazorpay(); */
 
   const [id, setId] = useState("");
   const [userId, setUserId] = useState("");
@@ -25,6 +25,7 @@ const PaymentUser = () => {
       console.log("Key is:" + pair[0]);
       console.log("Value is:" + pair[1]);
       setId(pair[1]);
+      console.log(id);
     }
   }
 
@@ -35,7 +36,7 @@ const PaymentUser = () => {
       let url = "https://arclifs-services.herokuapp.com/paymentUser";
 
       const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         body: JSON.stringify({
           userId: id,
         }),
@@ -52,7 +53,7 @@ const PaymentUser = () => {
     getUserdata();
   }, [id]);
 
-  const handlePayment = useCallback(() => {
+  /* const handlePayment = useCallback(() => {
     const options = {
       key: "rzp_test_EHNghn2cibZ5vK",
       amount: "3000",
@@ -79,7 +80,7 @@ const PaymentUser = () => {
 
     const rzpay = new Razorpay(options);
     rzpay.open();
-  }, [userId, Razorpay, name, email, number]);
+  }, [userId, Razorpay, name, email, number]); */
 
   return (
     <div className="paymnetUser">
@@ -134,7 +135,7 @@ const PaymentUser = () => {
               />
             </div>
           </fieldset>
-          <div onClick={handlePayment} className="saveProfileButton">
+          <div className="saveProfileButton">
             <div className="loader__container__login"></div>
             <p>PAY WITH RAZORPAY</p>
           </div>
