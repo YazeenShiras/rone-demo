@@ -161,6 +161,7 @@ const Wallet = () => {
   }
 
   const submitClick = () => {
+    document.getElementById("sendText").innerHTML = "Send";
     if (name === "" || number === "" || email === "") {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
