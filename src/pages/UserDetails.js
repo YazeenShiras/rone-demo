@@ -55,6 +55,7 @@ function UserDetails() {
   };
 
   async function uploadPhoto() {
+    console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
     const endpoint = "https://rone111.herokuapp.com/profile_upload-file";
 
