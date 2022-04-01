@@ -43,6 +43,8 @@ const RegisterSendOtp = () => {
       document.getElementById("sentOTPRegister").style.display = "block";
       window.location.href = "/verifyotpregister";
     } else if (data.status === 400) {
+      document.getElementById("loaderSentOtpRegister").style.display = "none";
+      document.getElementById("sentOTPRegister").style.display = "block";
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
         "Mobile Number already exists";

@@ -41,6 +41,8 @@ const LoginSendOtp = () => {
       document.getElementById("sentOTP").style.display = "block";
       window.location.href = "/verifyotplogin";
     } else if (data.status === 404) {
+      document.getElementById("loaderSentOtp").style.display = "none";
+      document.getElementById("sentOTP").style.display = "block";
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
         "Enter your Registered Mobile Number";

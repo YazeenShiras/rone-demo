@@ -41,6 +41,7 @@ const VerifyOtpLogin = () => {
       },
     });
     const data = await res.json();
+    console.log(data);
     if (data.status === 202) {
       localStorage.setItem("loggedAccessToken", data.access_token);
       localStorage.setItem("loggedRefreshToken", data.refresh_token);
@@ -50,6 +51,8 @@ const VerifyOtpLogin = () => {
       document.getElementById("veryfyLogin").style.display = "block";
       window.location.href = "/profile";
     } else if (data.status === 404) {
+      document.getElementById("loaderVeryfyLogin").style.display = "none";
+      document.getElementById("veryfyLogin").style.display = "block";
       document.getElementById("errorVarifyOtp").innerHTML = data.message;
       document.getElementById("errorVarifyOtp").style.display = "block";
     }
