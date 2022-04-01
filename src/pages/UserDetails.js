@@ -76,6 +76,7 @@ function UserDetails() {
       .post(url, formData, config)
       .then((res) => {
         const data = res.data;
+        console.log(data);
         if (data.Result === "OK") {
           document.getElementById("loaderImage").style.display = "none";
           setImg(data.path);
