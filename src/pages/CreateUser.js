@@ -40,6 +40,7 @@ const CreateUser = () => {
       body: JSON.stringify({
         name: name,
         mobile_number: number,
+        username: username,
       }),
     });
     const data = await res.json();
