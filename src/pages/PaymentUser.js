@@ -71,6 +71,8 @@ const PaymentUser = () => {
       description: "Test Transaction",
       image: { logo },
       order_id: orderId,
+      callback_url: "/verifyPayment",
+      redirect: true,
       handler: (res) => {
         console.log(res);
       },

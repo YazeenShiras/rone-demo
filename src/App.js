@@ -23,6 +23,7 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={DevelopmentMode} /> */}
           <Route path="/" exact component={RegisterSendOtp} />
+          <Route path="/success-payment" component={SuccessPage} />
           <Route path="/roneidlogin" component={HomePage} />
           <Route exact path="/profile" component={Main} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
@@ -35,7 +36,6 @@ function App() {
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
           <Route path="/:id" component={PaymentUser} />
-          <Route path="/payment-success" component={SuccessPage} />
         </Switch>
       </div>
     </Router>
