@@ -50,7 +50,7 @@ const Wallet = () => {
 
   useEffect(() => {
     async function getRefferralDetails() {
-      let url = "https://arclifs-services.herokuapp.com/referralDetails";
+      let url = "https://rone-card.herokuapp.com/referralDetails";
 
       const response = await fetch(url, {
         method: "POST",
@@ -74,7 +74,7 @@ const Wallet = () => {
 
   useEffect(() => {
     async function getTransactionHistory() {
-      let url = "https://arclifs-services.herokuapp.com/transcationHistory";
+      let url = "https://rone-card.herokuapp.com/transcationHistory";
 
       const response = await fetch(url, {
         method: "POST",
@@ -135,7 +135,7 @@ const Wallet = () => {
     setCardBalance(cardUsed + 1);
     document.getElementById("formForGenerateLink").style.display = "none";
     document.getElementById("loaderWidget").style.display = "block";
-    let url = "https://arclifs-services.herokuapp.com/generateLink";
+    let url = "https://rone-card.herokuapp.com/generateLink";
 
     const response = await fetch(url, {
       method: "POST",
@@ -216,7 +216,7 @@ const Wallet = () => {
     if (document.getElementById("sendText").innerHTML === "Send") {
       document.getElementById("sendText").innerHTML = "sending...";
       document.getElementById("sendText").style.color = "#F48D43";
-      let urlSend = "https://arclifs-services.herokuapp.com/shareLink";
+      let urlSend = "https://rone-card.herokuapp.com/shareLink";
 
       const response = await fetch(urlSend, {
         method: "POST",
@@ -237,7 +237,7 @@ const Wallet = () => {
   }
 
   /* async function sendClickLoop(link) {
-    let urlSend = "https://arclifs-services.herokuapp.com/shareLink";
+    let urlSend = "https://rone-card.herokuapp.com/shareLink";
 
     const response = await fetch(urlSend, {
       method: "POST",
