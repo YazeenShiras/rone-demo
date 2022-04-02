@@ -64,12 +64,12 @@ const PaymentUser = () => {
 
   const handlePayment = useCallback(() => {
     const options = {
-      key: "rzp_test_oYc0JB98VkKBJt",
+      key: "rzp_live_WhnoBWAMCJ2AsD",
       amount: "1500",
       currency: "INR",
       name: "Rone Payment",
-      description: "Test Transaction",
-      image: { logo },
+      description: "",
+      image: logo,
       order_id: orderId,
       callback_url: "https://rone-card.herokuapp.com/verifyPayment",
       redirect: true,
