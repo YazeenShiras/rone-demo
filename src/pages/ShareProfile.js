@@ -54,6 +54,7 @@ const ShareProfile = () => {
   const [telegramLink, setTelegramLink] = useState("");
 
   const [allImages, setAllImages] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   function getParameters() {
     let urlString = window.location.href;
@@ -153,6 +154,40 @@ const ShareProfile = () => {
 
     if (userid !== "" && userid !== undefined) {
       getAllImages();
+    }
+  }, [userid]);
+
+  useEffect(() => {
+    async function getAllProducts() {
+      console.log("access to getAllProducts");
+      const endpoint = "https://testdatassz.herokuapp.com/products";
+
+      let url = new URL(endpoint);
+      url.search = new URLSearchParams({
+        user_id: userid,
+      });
+
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+
+      await axios
+        .get(url, config)
+        .then((res) => {
+          const data = res.data;
+          console.log(data);
+          if (data.data) {
+            setAllProducts(data.data);
+            console.log(allProducts);
+          }
+        })
+        .catch(console.error);
+    }
+
+    if (userid !== "" && userid !== undefined) {
+      getAllProducts();
     }
   }, [userid]);
 
@@ -342,6 +377,36 @@ const ShareProfile = () => {
                 className="card__products__imageContainer"
               >
                 {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="products">
+        <div className="title__container__products">
+          <h3>Products</h3>
+          <div className="viewAll__button">View All</div>
+          <span></span>
+          <div className="sort__button">
+            Sort
+            <img src={sort} alt="" />
+          </div>
+        </div>
+        <div className="productsCard__container">
+          {allProducts.map((product, index) => {
+            return (
+              <div className="productCard" key={index}>
+                <div className="imageContainer__productCard">
+                  <img src={product.img_url} alt="" />
+                </div>
+                <div className="productDetails__container__profileCard">
+                  <h3>{product.product_name}</h3>
+                  <p>{product.product_decsription}</p>
+                  <h4>₹{product.product_price}</h4>
+                  <div className="buttonsContainer__productCard">
+                    <div className="sendEnquiry__button">Send Enquiry</div>
+                  </div>
+                </div>
               </div>
             );
           })}

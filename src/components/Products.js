@@ -3,11 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./Products.css";
 import sort from "../assets/sort.svg";
 import union from "../assets/union.svg";
-import shareRed from "../assets/shareRed.svg";
-import product1 from "../assets/product1.png";
-import product2 from "../assets/product2.png";
-import product3 from "../assets/product3.png";
-import product4 from "../assets/product4.png";
 import image from "../assets/image.svg";
 import axios from "axios";
 import { ClockLoader } from "react-spinners";
@@ -15,6 +10,7 @@ import { ClockLoader } from "react-spinners";
 const Products = () => {
   const [productsId, setProductsId] = useState("");
   const [isImage, setIsImage] = useState("false");
+  const [isResponse, setIsResponse] = useState("");
 
   const [resImgUrl, setResImgUrl] = useState("");
   const [resImgId, setResImgId] = useState("");
@@ -71,7 +67,7 @@ const Products = () => {
     if (productsId !== "" && productsId !== undefined) {
       getAllProducts();
     }
-  }, [productsId, resImgId]);
+  }, [productsId, isResponse]);
 
   async function uploadProductImage() {
     document.getElementById("loadingAnimationproducts").style.display = "flex";
@@ -130,6 +126,7 @@ const Products = () => {
     const data = await response.json();
     console.log(data);
     if (data.data) {
+      setIsResponse(true);
       document.getElementById("formContainerProductAdd").style.display = "none";
       document.getElementById("addProductsButtonFirst").style.display = "flex";
     }
