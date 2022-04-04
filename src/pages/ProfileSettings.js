@@ -250,7 +250,12 @@ const EditProfile = () => {
             >
               Wallet
             </Link>
-            <p className="themesSettings titleHeaderlink">Themes</p>
+            <Link
+              to="/settings/QR-code"
+              className="themesSettings titleHeaderlink"
+            >
+              QR Code
+            </Link>
           </div>
           <div className="profileImageContainer__form__update">
             <div

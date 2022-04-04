@@ -276,7 +276,12 @@ const Wallet = () => {
             >
               Wallet
             </Link>
-            <p className="themesSettings titleHeaderlink">Themes</p>
+            <Link
+              to="/settings/QR-code"
+              className="themesSettings titleHeaderlink"
+            >
+              QR Code
+            </Link>
           </div>
           <div className="walletContent__container">
             <div

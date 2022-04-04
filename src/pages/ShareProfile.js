@@ -235,18 +235,6 @@ const ShareProfile = () => {
           <div className="rightContainer__profile">
             <div className="topContainer__rightProfile">
               <p>{userData.bio}</p>
-              <div className="qrCode__container">
-                <QRCode
-                  size={window.outerWidth <= "500px" ? 70 : 50}
-                  level="H"
-                  title={`${userData.name} - Rone`}
-                  value={window.location.href}
-                />
-                <div className="shareThisqr__button">
-                  {/* <img src={shareWhite} alt="" /> */}
-                  Scan QR
-                </div>
-              </div>
             </div>
             <div className="socialButton__container">
               <a

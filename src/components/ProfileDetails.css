@@ -85,40 +85,6 @@
   margin-right: 30px;
 }
 
-.qrCode__container {
-  background-color: #fff;
-  height: 70px;
-  min-width: 70px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #c4c4c4;
-  padding-top: 8px;
-  margin-top: -10px;
-}
-
-.shareThisqr__button {
-  width: 80%;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #d52a33;
-  font-size: 8px;
-  border-radius: 5px;
-  margin-bottom: -10px;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.shareThisqr__button > img {
-  height: 10px;
-  object-fit: contain;
-  margin-right: 5px;
-}
-
 .otherOptions__container {
   display: flex;
   align-items: center;

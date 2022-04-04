@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import ShareProfile from "./pages/ShareProfile";
 import PaymentUser from "./pages/PaymentUser";
 import SuccessPage from "./pages/SuccessPage";
+import QrScan from "./pages/QrScan";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/verifyotplogin" component={VerifyOtpLogin} />
           <Route path="/settings/profile" component={ProfileSettings} />
           <Route path="/settings/Wallet" component={Wallet} />
+          <Route path="/settings/QR-code" component={QrScan} />
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
           <Route path="/:id" component={PaymentUser} />
