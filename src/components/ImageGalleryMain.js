@@ -6,21 +6,45 @@ import ClockLoader from "react-spinners/ClipLoader";
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
-/* import searchIcon from "../assets/searchIcon.svg"; */
+/* import Resizer from "react-image-file-resizer"; */
 
 const ImageGalleryMain = () => {
+  /*  const [imageFile, setImageFile] = useState(""); */
+
   const [idForImg, setIdForImg] = useState("");
   const [imgtest, setImgtest] = useState("");
   const [allImages, setAllImages] = useState([]);
 
-  /* const [photos, setPhotos] = useState([]);
-  const [search, setSearch] = useState("");
-  const [browse, setBrowse] = useState([]);
-  const [page, setPage] = useState(1);
-  const [urlSelect, setUrlSelect] = useState(""); */
-
   const inpFile = document.getElementById("inpFile");
   var idForImageGallery = localStorage.getItem("newuserid");
+
+  /* const fileChangedHandler = (event) => {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          event.target.files[0],
+          200,
+          200,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            setImageFile(uri);
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }; */
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
@@ -86,8 +110,11 @@ const ImageGalleryMain = () => {
     const formData = new FormData();
     formData.append("file", inpFile.files[0]);
 
+    console.log(formData);
+
     await axios.post(url, formData, config).then((res) => {
       const data = res.data;
+      console.log(data);
       if (data.Result === "OK") {
         document.getElementById("selectFromFileContainer").style.display =
           "none";
@@ -117,6 +144,15 @@ const ImageGalleryMain = () => {
 
   return (
     <div className="imageGalleryMain">
+      <div className="title__container__imageGalleryMain">
+        <h3>Image Gallery</h3>
+        <div className="viewAll__button">View All</div>
+        <span></span>
+        <div className="sort__button">
+          Sort
+          <img src={sort} alt="" />
+        </div>
+      </div>
       <div className="buttonContainer__imageGallery">
         <div className="AddPhotosButton">
           <input
@@ -129,22 +165,19 @@ const ImageGalleryMain = () => {
           <img src={image} alt="" />
           Choose Photo
         </div>
+        {/* <img className="displayImageForUpload" src={imageFile} alt="" />
+        <div className="UploadToImageGalleryButton" onClick={confirmFetch}>
+          Upload To Image Gallery
+        </div> */}
       </div>
+
       <div className="selectFromFile__container" id="selectFromFileContainer">
         <div className="loading__animation" id="loadingAnimation">
           <ClockLoader size={30} color="#d52a33" />
           <p> Uploading...</p>
         </div>
       </div>
-      <div className="title__container__imageGalleryMain">
-        <h3>Image Gallery</h3>
-        <div className="viewAll__button">View All</div>
-        <span></span>
-        <div className="sort__button">
-          Sort
-          <img src={sort} alt="" />
-        </div>
-      </div>
+
       <div
         id="imageGalleryContent"
         className="content__container__imageGalleryMain"
