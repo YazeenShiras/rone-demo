@@ -6,10 +6,10 @@ import ClockLoader from "react-spinners/ClipLoader";
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
-/* import Resizer from "react-image-file-resizer"; */
+import Resizer from "react-image-file-resizer";
 
 const ImageGalleryMain = () => {
-  /*  const [imageFile, setImageFile] = useState(""); */
+  const [imageFile, setImageFile] = useState("");
 
   const [idForImg, setIdForImg] = useState("");
   const [imgtest, setImgtest] = useState("");
@@ -18,7 +18,7 @@ const ImageGalleryMain = () => {
   const inpFile = document.getElementById("inpFile");
   var idForImageGallery = localStorage.getItem("newuserid");
 
-  /* const fileChangedHandler = (event) => {
+  const fileChangedHandler = (event) => {
     var fileInput = false;
     if (event.target.files[0]) {
       fileInput = true;
@@ -40,11 +40,12 @@ const ImageGalleryMain = () => {
           200,
           200
         );
+        console.log(imageFile);
       } catch (err) {
         console.log(err);
       }
     }
-  }; */
+  };
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
@@ -54,7 +55,7 @@ const ImageGalleryMain = () => {
   useEffect(() => {
     async function getAllImages() {
       console.log("access to getAllImages");
-      const endpoint = "https://rone111.herokuapp.com/access_image_gallery";
+      const endpoint = "https://testdatassz.herokuapp.com/access_image_gallery";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -94,7 +95,7 @@ const ImageGalleryMain = () => {
     console.log("access to UploadPhotofromFiles");
     document.getElementById("selectFromFileContainer").style.display = "flex";
 
-    const endpoint = "https://rone111.herokuapp.com/self_upload-file";
+    const endpoint = "https://testdatassz.herokuapp.com/self_upload-file";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({

@@ -15,7 +15,7 @@ const RegisterSendOtp = () => {
     document.getElementById("loaderSentOtpRegister").style.display = "block";
     document.getElementById("sentOTPRegister").style.display = "none";
     let url = new URL(
-      "https://rone111.herokuapp.com/OTP_Genarator/rone/singup"
+      "https://testdatassz.herokuapp.com/OTP_Genarator/rone/singup"
     );
     url.search = new URLSearchParams({
       mobile_num: number,

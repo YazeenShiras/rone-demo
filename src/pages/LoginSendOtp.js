@@ -14,7 +14,9 @@ const LoginSendOtp = () => {
   async function handleSubmit() {
     document.getElementById("loaderSentOtp").style.display = "block";
     document.getElementById("sentOTP").style.display = "none";
-    let url = new URL("https://rone111.herokuapp.com/OTP_Genarator/rone/login");
+    let url = new URL(
+      "https://testdatassz.herokuapp.com/OTP_Genarator/rone/login"
+    );
     url.search = new URLSearchParams({
       mobile_num: loginNumber,
     });

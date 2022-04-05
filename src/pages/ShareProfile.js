@@ -8,8 +8,6 @@ import "./ShareProfile.css";
 import bg from "../assets/images/mainBg.png";
 import star from "../assets/star.svg";
 import starRed from "../assets/starRed.svg";
-import shareWhite from "../assets/share.svg";
-import QRCode from "react-qr-code";
 import facebook from "../assets/facebook.svg";
 import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
@@ -21,9 +19,7 @@ import download from "../assets/download.svg";
 import phoneIcon from "../assets/phone.svg";
 import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
-import copy from "../assets/copy.svg";
 import Pdf from "react-to-pdf";
-import menuIcon from "../assets/menuIcon.svg";
 import "../components/Header.css";
 import logo from "../assets/Logo1.svg";
 import axios from "axios";
@@ -72,7 +68,7 @@ const ShareProfile = () => {
 
     console.log("userid : " + userid);
 
-    let url = new URL("https://rone111.herokuapp.com/user_details");
+    let url = new URL("https://testdatassz.herokuapp.com/user_details");
     url.search = new URLSearchParams({
       user_id: userid,
     });
@@ -88,7 +84,9 @@ const ShareProfile = () => {
       setUserData(data);
     };
 
-    let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
+    let socialUrl = new URL(
+      "https://testdatassz.herokuapp.com/get_social_links"
+    );
     socialUrl.search = new URLSearchParams({
       user_id: userid,
     });
@@ -121,7 +119,7 @@ const ShareProfile = () => {
   useEffect(() => {
     async function getAllImages() {
       console.log("access to getAllImages");
-      const endpoint = "https://rone111.herokuapp.com/access_image_gallery";
+      const endpoint = "https://testdatassz.herokuapp.com/access_image_gallery";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({

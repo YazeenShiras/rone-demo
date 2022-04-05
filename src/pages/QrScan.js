@@ -26,7 +26,7 @@ const QrScan = () => {
       setOrigin(originForShare.href);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userid]);
 
   return (
     <div className="settingsPage qrSettings">

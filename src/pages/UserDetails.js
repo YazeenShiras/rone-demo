@@ -8,6 +8,7 @@ import "./AuthStyles.css";
 import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
 import PulseLoader from "react-spinners/PulseLoader";
+import Resizer from "react-image-file-resizer";
 
 function UserDetails() {
   const [email, setEmail] = useState("");
@@ -20,13 +21,42 @@ function UserDetails() {
   const [usermob, setUsermob] = useState("");
   const [userid, setUserId] = useState("");
 
-  const [img, setImg] = useState("");
+  const [imageFile, setImageFile] = useState("");
 
   const [isdetails, setIsdetails] = useState(false);
 
   const [isProfilePhotoUploaded, setIsProfilePhotoUploaded] = useState(false);
 
-  const inpFile = document.getElementById("inpFile");
+  const fileChangedHandler = (event) => {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          event.target.files[0],
+          200,
+          200,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            setImageFile(uri);
+            setIsProfilePhotoUploaded(true);
+          },
+          "base64",
+          200,
+          200
+        );
+        console.log(imageFile);
+      } catch (err) {
+        console.log(err);
+        setIsProfilePhotoUploaded(false);
+      }
+    }
+  };
 
   useEffect(() => {
     window.onbeforeunload = function (e) {
@@ -57,49 +87,9 @@ function UserDetails() {
   async function uploadPhoto() {
     console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
-    const endpoint = "https://rone111.herokuapp.com/profile_upload-file";
+    const endpoint = "https://testdatassz.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
-    url.search = new URLSearchParams({
-      user_id: userid,
-    });
-
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-
-    const formData = new FormData();
-    formData.append("file", inpFile.files[0]);
-
-    await axios
-      .post(url, formData, config)
-      .then((res) => {
-        const data = res.data;
-        console.log(data);
-        if (data.Result === "OK") {
-          document.getElementById("loaderImage").style.display = "none";
-          setImg(data.path);
-          setIsProfilePhotoUploaded(true);
-        } else {
-          setIsProfilePhotoUploaded(false);
-        }
-      })
-      .catch(console.error);
-  }
-
-  async function saveProfile() {
-    document.getElementById("saveProfileLoader").style.display = "block";
-    document.getElementById("saveProfileText").style.display = "none";
-    console.log(email);
-    console.log(location);
-    console.log(profession);
-    console.log(address);
-    console.log(bio);
-
-    let url = new URL("https://rone111.herokuapp.com/user__details");
-
     url.search = new URLSearchParams({
       user_id: userid,
     });
@@ -107,30 +97,65 @@ function UserDetails() {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "content-Type": "application/json",
       },
       body: JSON.stringify({
-        email_id: email,
-        location: location,
-        address: address,
-        profession: profession,
-        bio: bio,
+        img_url: imageFile,
       }),
     });
     const data = await response.json();
-    if (data.status === 200) {
-      if (isProfilePhotoUploaded) {
+    console.log(data);
+    if (data.Result === "OK") {
+      document.getElementById("loaderImage").style.display = "none";
+    }
+  }
+
+  async function saveProfile() {
+    uploadPhoto();
+    if (isProfilePhotoUploaded) {
+      document.getElementById("saveProfileLoader").style.display = "block";
+      document.getElementById("saveProfileText").style.display = "none";
+      console.log(email);
+      console.log(location);
+      console.log(profession);
+      console.log(address);
+      console.log(bio);
+
+      console.log(userid);
+
+      let url = new URL("https://testdatassz.herokuapp.com/user__details");
+
+      url.search = new URLSearchParams({
+        user_id: userid,
+      });
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email_id: email,
+          location: location,
+          address: address,
+          profession: profession,
+          bio: bio,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.status === 200) {
         localStorage.setItem("newuserid", userid);
         document.getElementById("saveProfileLoader").style.display = "none";
         document.getElementById("saveProfileText").style.display = "block";
         window.location.href = "/profile";
-      } else {
-        document.getElementById("saveProfileLoader").style.display = "none";
-        document.getElementById("saveProfileText").style.display = "block";
-        document.getElementById("errorMobile").style.display = "block";
-        document.getElementById("errorMobile").innerHTML =
-          "Please upload profile photo";
       }
+    } else {
+      document.getElementById("saveProfileLoader").style.display = "none";
+      document.getElementById("saveProfileText").style.display = "block";
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML =
+        "Please upload profile photo";
     }
   }
 
@@ -200,7 +225,9 @@ function UserDetails() {
         <div className="userImage__container__userDetails">
           <div
             className="userImage"
-            style={{ backgroundImage: `url(${img !== "" ? img : user})` }}
+            style={{
+              backgroundImage: `url(${imageFile !== "" ? imageFile : user})`,
+            }}
           >
             <div className="loader__container" id="loaderImage">
               <SyncLoader color="#d52a33" />
@@ -212,7 +239,7 @@ function UserDetails() {
               name="file"
               id="inpFile"
               accept=".png"
-              onChange={uploadPhoto}
+              onChange={fileChangedHandler}
             />
             <img src={photoIcon} alt="" />
             Choose Photo

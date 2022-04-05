@@ -32,7 +32,7 @@ const CreateUser = () => {
     document.getElementById("loaderRegisterUser").style.display = "block";
     document.getElementById("RegisterUser").style.display = "none";
 
-    const res = await fetch("https://rone111.herokuapp.com/create_user", {
+    const res = await fetch("https://testdatassz.herokuapp.com/create_user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

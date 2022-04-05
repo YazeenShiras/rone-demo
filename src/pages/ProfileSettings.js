@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import Resizer from "react-image-file-resizer";
 import SyncLoader from "react-spinners/SyncLoader";
 import "./ProfileSettings.css";
 import Header from "../components/Header";
@@ -14,11 +14,14 @@ import instagram from "../assets/instagram.svg";
 /* import youtube from "../assets/youtube.svg"; */
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 /* import Footer from "../components/Footer"; */
 /* import PlaceSearch from "../components/PlaceSearch"; */
 
 const EditProfile = () => {
   const [userData, setUserData] = useState("");
+
+  const [imageFile, setImageFile] = useState("");
 
   const [name, setName] = useState("");
   const [profession, setProfession] = useState("");
@@ -50,7 +53,7 @@ const EditProfile = () => {
 
     console.log("Update Page ID: " + idForUpdate);
 
-    let url = new URL("https://rone111.herokuapp.com/user_details");
+    let url = new URL("https://testdatassz.herokuapp.com/user_details");
     url.search = new URLSearchParams({
       user_id: idForUpdate,
     });
@@ -74,7 +77,9 @@ const EditProfile = () => {
       setAddress(data.address);
     };
 
-    let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
+    let socialUrl = new URL(
+      "https://testdatassz.herokuapp.com/get_social_links"
+    );
     socialUrl.search = new URLSearchParams({
       user_id: idForUpdate,
     });
@@ -129,31 +134,55 @@ const EditProfile = () => {
     setTelegramLink(document.getElementById("telegramLink").value);
   };
 
+  const fileChangedHandler = (event) => {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          event.target.files[0],
+          200,
+          200,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            setImageFile(uri);
+          },
+          "base64",
+          200,
+          200
+        );
+        console.log(imageFile);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   async function updatePhoto() {
     document.getElementById("loaderImage").style.display = "block";
-    const endpoint = "https://rone111.herokuapp.com/profile_upload-file";
+    const endpoint = "https://testdatassz.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
       user_id: idForUpdate,
     });
 
-    const config = {
+    const response = await fetch(url, {
+      method: "POST",
       headers: {
-        "content-type": "multipart/form-data",
+        "content-Type": "application/json",
       },
-    };
-
-    const formData = new FormData();
-    formData.append("file", inpFile.files[0]);
-
-    await axios.post(url, formData, config).then((res) => {
-      const data = res.data;
-      if (data.Result === "OK") {
-        document.getElementById("loaderImage").style.display = "none";
-        setUpdatedImg(data.path);
-      }
+      body: JSON.stringify({
+        img_url: imageFile,
+      }),
     });
+    const data = await response.json();
+    console.log(data);
   }
 
   async function updateProfile() {
@@ -164,7 +193,7 @@ const EditProfile = () => {
     console.log(address);
     console.log(bio);
 
-    let url = new URL("https://rone111.herokuapp.com/updat_user__details");
+    let url = new URL("https://testdatassz.herokuapp.com/updat_user__details");
 
     url.search = new URLSearchParams({
       user_id: idForUpdate,
@@ -191,6 +220,7 @@ const EditProfile = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
+      updatePhoto();
       updateSocial();
     }
   }
@@ -204,7 +234,7 @@ const EditProfile = () => {
     console.log(whatsappLink);
     /* console.log(youtubeLink); */
 
-    let url = new URL("https://rone111.herokuapp.com/social_links");
+    let url = new URL("https://testdatassz.herokuapp.com/social_links");
 
     url.search = new URLSearchParams({
       user_id: idForUpdate,
@@ -261,7 +291,7 @@ const EditProfile = () => {
             <div
               className="imageUpdateContainer"
               style={{
-                backgroundImage: `url(${img !== "" ? img : updatedImg})`,
+                backgroundImage: `url(${imageFile !== "" ? imageFile : img})`,
               }}
             >
               <div className="loader__container" id="loaderImage">
@@ -274,7 +304,7 @@ const EditProfile = () => {
                 name="file"
                 id="inpFile"
                 accept=".png"
-                onChange={updatePhoto}
+                onChange={fileChangedHandler}
               />
               <img src={camera} alt="" />
             </div>

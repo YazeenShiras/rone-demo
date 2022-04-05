@@ -7,8 +7,6 @@ import share from "../assets/shareWhite.svg";
 import settings from "../assets/settings.svg";
 import star from "../assets/star.svg";
 import starRed from "../assets/starRed.svg";
-import shareWhite from "../assets/share.svg";
-import QRCode from "react-qr-code";
 import facebook from "../assets/facebook.svg";
 import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
@@ -66,7 +64,7 @@ const ProfileDetails = () => {
     let originForShare = new URL(endpoint);
     originForShare.searchParams.set("id", userid);
 
-    let url = new URL("https://rone111.herokuapp.com/user_details");
+    let url = new URL("https://testdatassz.herokuapp.com/user_details");
     url.search = new URLSearchParams({
       user_id: userid,
     });
@@ -79,11 +77,14 @@ const ProfileDetails = () => {
         },
       });
       const data = await req.json();
+      console.log(data);
       setUserData(data);
       localStorage.setItem("nameForWallet", data.name);
     };
 
-    let socialUrl = new URL("https://rone111.herokuapp.com/get_social_links");
+    let socialUrl = new URL(
+      "https://testdatassz.herokuapp.com/get_social_links"
+    );
     socialUrl.search = new URLSearchParams({
       user_id: userid,
     });

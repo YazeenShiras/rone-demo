@@ -4,6 +4,7 @@ import "./Products.css";
 import sort from "../assets/sort.svg";
 import union from "../assets/union.svg";
 import image from "../assets/image.svg";
+import deleteIcon from "../assets/delete.svg";
 import axios from "axios";
 import { ClockLoader } from "react-spinners";
 
@@ -234,6 +235,12 @@ const Products = () => {
         {allProducts.map((product, index) => {
           return (
             <div className="productCard" key={index}>
+              <div className="menuContainer">
+                <div className="deleteButton">
+                  <img src={deleteIcon} alt="" />
+                  Delete
+                </div>
+              </div>
               <div className="imageContainer__productCard">
                 <img src={product.img_url} alt="" />
               </div>
