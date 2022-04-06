@@ -211,7 +211,7 @@ const EditProfile = () => {
     console.log(data);
     if (data.status === 200) {
       updatePhoto();
-      /* updateSocial(); */
+      updateSocial();
       window.location.href = "/profile";
     }
   }
@@ -235,7 +235,6 @@ const EditProfile = () => {
     console.log(instagramLink);
     console.log(telegramLink);
     console.log(whatsappLink);
-    /* console.log(youtubeLink); */
 
     let url = new URL("https://testdatassz.herokuapp.com/social_links");
 

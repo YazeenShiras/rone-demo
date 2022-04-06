@@ -88,14 +88,14 @@ const ProfileDetails = () => {
       localStorage.setItem("mobileNumberWtsp", data.phone_num);
     };
 
-    let socialUrl = new URL(
-      "https://testdatassz.herokuapp.com/get_social_links"
-    );
-    socialUrl.search = new URLSearchParams({
-      user_id: userid,
-    });
-
     const getSocial = async () => {
+      let socialUrl = new URL(
+        "https://testdatassz.herokuapp.com/get_social_links"
+      );
+      socialUrl.search = new URLSearchParams({
+        user_id: userid,
+      });
+
       const req = await fetch(socialUrl, {
         method: "GET",
         headers: {
