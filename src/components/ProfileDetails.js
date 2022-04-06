@@ -26,7 +26,6 @@ import { Link } from "react-router-dom";
 import phoneIcon from "../assets/phone.svg";
 import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
-import copy from "../assets/copy.svg";
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 const options = {
@@ -80,6 +79,7 @@ const ProfileDetails = () => {
       console.log(data);
       setUserData(data);
       localStorage.setItem("nameForWallet", data.name);
+      localStorage.setItem("mobileNumberWtsp", data.phone_num);
     };
 
     let socialUrl = new URL(
@@ -246,7 +246,7 @@ const ProfileDetails = () => {
               <img src={instagram} alt="" />
             </a>
             <a
-              href={telegramLink}
+              href={`https://t.me/${telegramLink}`}
               className="telegram__contain social__button__profile"
             >
               <img src={telegram} alt="" />

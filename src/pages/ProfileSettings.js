@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Resizer from "react-image-file-resizer";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -11,12 +10,8 @@ import linkedin from "../assets/linkedin.svg";
 import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
-/* import youtube from "../assets/youtube.svg"; */
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
-import axios from "axios";
-/* import Footer from "../components/Footer"; */
-/* import PlaceSearch from "../components/PlaceSearch"; */
 
 const EditProfile = () => {
   const [userData, setUserData] = useState("");
@@ -35,17 +30,13 @@ const EditProfile = () => {
   const [twitterLink, setTwitterLink] = useState("");
   const [whatsappLink, setWhatsappLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
-  /* const [youtubeLink, setYoutubeLink] = useState(""); */
   const [telegramLink, setTelegramLink] = useState("");
 
   const [img, setImg] = useState("");
-  const [updatedImg, setUpdatedImg] = useState("");
 
   const [idForUpdate, setIdForUpdate] = useState();
 
   var idForUpdateForm = localStorage.getItem("newuserid");
-
-  const inpFile = document.getElementById("inpFile");
 
   useEffect(() => {
     setIdForUpdate(idForUpdateForm);
@@ -66,7 +57,7 @@ const EditProfile = () => {
         },
       });
       const data = await req.json();
-      console.log(data);
+      /* console.log(data); */
       setUserData(data);
       setImg(data.img);
       setName(data.name);
@@ -114,7 +105,7 @@ const EditProfile = () => {
     } else {
       console.log("error: idForUpdate not found or null");
     }
-  }, [idForUpdate]);
+  }, [idForUpdate, idForUpdateForm]);
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
@@ -164,7 +155,6 @@ const EditProfile = () => {
   };
 
   async function updatePhoto() {
-    document.getElementById("loaderImage").style.display = "block";
     const endpoint = "https://testdatassz.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
@@ -221,11 +211,24 @@ const EditProfile = () => {
     console.log(data);
     if (data.status === 200) {
       updatePhoto();
-      updateSocial();
+      /* updateSocial(); */
+      window.location.href = "/profile";
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   async function updateSocial() {
+    if (
+      facebookLink === undefined ||
+      linkedInLink === undefined ||
+      twitterLink === undefined ||
+      instagramLink === undefined ||
+      telegramLink === undefined ||
+      whatsappLink === undefined
+    ) {
+      document.getElementById("errorProfileEdit").style.display = "block";
+    }
+
     console.log(facebookLink);
     console.log(linkedInLink);
     console.log(twitterLink);
@@ -258,7 +261,6 @@ const EditProfile = () => {
     console.log(data);
     if (data.status === 200) {
       console.log("all set");
-      window.location.href = "/profile";
     }
   }
 
@@ -458,6 +460,9 @@ const EditProfile = () => {
                     onChange={storeLinks}
                   />
                 </div>
+                <p id="errorProfileEdit" className="errorProfileEdit">
+                  Please fill all social links fields
+                </p>
                 <div onClick={updateProfile} className="updateProfileButton">
                   UPDATE
                 </div>

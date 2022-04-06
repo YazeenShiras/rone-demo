@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "./Products.css";
 import sort from "../assets/sort.svg";
@@ -13,6 +12,8 @@ const Products = () => {
   const [isImage, setIsImage] = useState("false");
   const [isResponse, setIsResponse] = useState("");
 
+  const [whatsappNumber, setWhatsappNumber] = useState("");
+
   const [resImgUrl, setResImgUrl] = useState("");
   const [resImgId, setResImgId] = useState("");
   const [name, setName] = useState("");
@@ -25,6 +26,11 @@ const Products = () => {
 
   const inpFile = document.getElementById("inpFileProduct");
 
+  useEffect(() => {
+    let num = localStorage.getItem("mobileNumberWtsp");
+    setWhatsappNumber(num);
+  }, []);
+
   const storeValues = () => {
     setName(document.getElementById("productName").value);
     setPrice(document.getElementById("price").value);
@@ -34,6 +40,7 @@ const Products = () => {
   useEffect(() => {
     setProductsId(idForProducts);
     console.log(productsId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsId]);
 
   useEffect(() => {
@@ -68,6 +75,7 @@ const Products = () => {
     if (productsId !== "" && productsId !== undefined) {
       getAllProducts();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsId, isResponse]);
 
   async function uploadProductImage() {
@@ -249,7 +257,12 @@ const Products = () => {
                 <p>{product.product_decsription}</p>
                 <h4>₹{product.product_price}</h4>
                 <div className="buttonsContainer__productCard">
-                  <div className="sendEnquiry__button">Send Enquiry</div>
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20on%20ronedcard.com`}
+                    className="sendEnquiry__button"
+                  >
+                    Send Enquiry
+                  </a>
                 </div>
               </div>
             </div>
