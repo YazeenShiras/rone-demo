@@ -11,6 +11,7 @@ import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Wallet = () => {
   const [userid, setUserId] = useState("");
+  const [roneId, setRoneId] = useState("");
   const [userNameCard, SetUserNameCard] = useState("");
 
   const [name, setName] = useState("");
@@ -44,6 +45,8 @@ const Wallet = () => {
     SetUserNameCard(newName);
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
+    var rone_id = localStorage.getItem("roneid");
+    setRoneId(rone_id);
   }, []);
 
   /* const [refDetails, setRefDetails] = useState([]);
@@ -291,7 +294,10 @@ const Wallet = () => {
               <div className="leftContaniner__roneCard">
                 <img src={ronelogoCard} alt="" />
                 <div className="bottomContainer__leftContainer__roneCard">
-                  <h5>{userNameCard}</h5>
+                  <div className="cardHolder">
+                    <h5>{userNameCard}</h5>
+                    <p>{roneId}</p>
+                  </div>
                   <div className="cardBalanceContainer">
                     <p>Card Balance</p>
                     <h3>

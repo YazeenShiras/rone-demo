@@ -39,6 +39,7 @@ const optionsMobile = {
 };
 
 const ShareProfile = () => {
+  const [username, setUsername] = useState("");
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
 
@@ -59,21 +60,21 @@ const ShareProfile = () => {
     for (let pair of queryString.entries()) {
       console.log("Key is:" + pair[0]);
       console.log("Value is:" + pair[1]);
-      setUserId(pair[1]);
+      setUsername(pair[1]);
     }
   }
 
   useEffect(() => {
     getParameters();
-
-    console.log("userid : " + userid);
-
-    let url = new URL("https://testdatassz.herokuapp.com/user_details");
-    url.search = new URLSearchParams({
-      user_id: userid,
-    });
+    console.log("username : " + username);
 
     const getUser = async () => {
+      let url = new URL(
+        "https://testdatassz.herokuapp.com/user_details_from_username"
+      );
+      url.search = new URLSearchParams({
+        username: username,
+      });
       const req = await fetch(url, {
         method: "GET",
         headers: {
@@ -81,17 +82,19 @@ const ShareProfile = () => {
         },
       });
       const data = await req.json();
+      console.log(data);
       setUserData(data);
+      setUserId(data.user_id);
     };
 
-    let socialUrl = new URL(
-      "https://testdatassz.herokuapp.com/get_social_links"
-    );
-    socialUrl.search = new URLSearchParams({
-      user_id: userid,
-    });
-
     const getSocial = async () => {
+      let socialUrl = new URL(
+        "https://testdatassz.herokuapp.com/get_social_links_from_username"
+      );
+      socialUrl.search = new URLSearchParams({
+        username: username,
+      });
+
       const req = await fetch(socialUrl, {
         method: "GET",
         headers: {
@@ -108,15 +111,17 @@ const ShareProfile = () => {
       setTelegramLink(data.data.teligram_link);
     };
 
-    if (userid !== "" && userid !== undefined) {
+    if (username !== "" && username !== undefined) {
       getUser();
-      getSocial();
+      /* getSocial(); */
     } else {
-      console.log("userid not found or null");
+      console.log("username not found or null");
     }
-  }, [userid]);
+  }, [username]);
 
   useEffect(() => {
+    console.log("userid : " + userid);
+
     async function getAllImages() {
       console.log("access to getAllImages");
       const endpoint = "https://testdatassz.herokuapp.com/access_image_gallery";
@@ -156,6 +161,8 @@ const ShareProfile = () => {
   }, [userid]);
 
   useEffect(() => {
+    console.log("userid : " + userid);
+
     async function getAllProducts() {
       console.log("access to getAllProducts");
       const endpoint = "https://testdatassz.herokuapp.com/products";
@@ -390,7 +397,12 @@ const ShareProfile = () => {
                   <p>{product.product_decsription}</p>
                   <h4>₹{product.product_price}</h4>
                   <div className="buttonsContainer__productCard">
-                    <div className="sendEnquiry__button">Send Enquiry</div>
+                    <a
+                      href={`https://api.whatsapp.com/send?phone=${userData.phone_num}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20from%20ronedcard.com`}
+                      className="sendEnquiry__button"
+                    >
+                      Send Enquiry
+                    </a>
                   </div>
                 </div>
               </div>

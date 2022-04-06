@@ -150,12 +150,6 @@ const RegisterSendOtp = () => {
               <p className="login__AlreadyRegisterd">Login</p>
             </Link>
           </div>
-          <div className="loginWithRoneID">
-            <p className="alreadyRegisterd">are you an existing user?</p>
-            <Link to="/roneidlogin">
-              <p className="login__AlreadyRegisterd">Login with Rone ID</p>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

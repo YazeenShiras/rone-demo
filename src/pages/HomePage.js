@@ -1,10 +1,60 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const HomePage = () => {
+  const [roneId, setRoneId] = useState("");
+  const [pan, setPan] = useState("");
+
+  const storeValue = () => {
+    setRoneId(document.getElementById("roneId").value);
+    setPan(document.getElementById("pan").value);
+  };
+
+  async function handleSubmit() {
+    document.getElementById("loaderNextButton").style.display = "block";
+    document.getElementById("nextText").style.display = "none";
+
+    let url = new URL(
+      "https://testdatassz.herokuapp.com/rone_id_authentication"
+    );
+    url.search = new URLSearchParams({
+      rone_id: roneId,
+    });
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status !== 404) {
+      localStorage.setItem("roneid", data.RONEID);
+      localStorage.setItem("pan", data.PAN);
+      document.getElementById("loaderNextButton").style.display = "none";
+      document.getElementById("nextText").style.display = "block";
+      window.location.href = "/register";
+    } else {
+      document.getElementById("errorRoneId").style.display = "block";
+      document.getElementById("loaderNextButton").style.display = "none";
+      document.getElementById("nextText").style.display = "block";
+      document.getElementById("errorRoneId").innerHTML = "invalid RONE ID";
+    }
+  }
+
+  const nextClick = () => {
+    if (roneId === "" || pan === "") {
+      document.getElementById("errorRoneId").style.display = "block";
+    } else {
+      document.getElementById("errorRoneId").style.display = "none";
+      handleSubmit();
+    }
+  };
+
   return (
     <div
       className="bodyRegister"
@@ -28,26 +78,31 @@ const HomePage = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-            Are you an <br /> existing user?
+            Enter your <br /> RONE ID and PAN
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
-              <legend>Rone ID</legend>
+              <legend>Rone ID*</legend>
               <div className="input__box">
-                <input id="roneID" type="text" />
+                <input onChange={storeValue} id="roneId" type="text" />
               </div>
             </fieldset>
-            <p className="errorText" id="errorMobile">
-              Enter your Rone ID
+            <fieldset className="input__container">
+              <legend>PAN*</legend>
+              <div className="input__box">
+                <input onChange={storeValue} id="pan" type="text" />
+              </div>
+            </fieldset>
+            <p className="errorText" id="errorRoneId">
+              Must fill *Required fields
             </p>
-            <div className="register__button__form">NEXT</div>
+            <div className="register__button__form" onClick={nextClick}>
+              <div className="loader__container__login" id="loaderNextButton">
+                <PulseLoader color="#ffffff" />
+              </div>
+              <p id="nextText">NEXT</p>
+            </div>
           </form>
-          <div className="alreadyRegistered__container">
-            <p className="alreadyRegisterd">Don't have a Rone ID? </p>
-            <Link to="/">
-              <p className="login__AlreadyRegisterd"> Register / Login</p>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

@@ -23,9 +23,9 @@ function App() {
       <div className="app">
         <Switch>
           {/* <Route path="/" exact component={DevelopmentMode} /> */}
-          <Route path="/" exact component={RegisterSendOtp} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />
-          <Route path="/roneidlogin" component={HomePage} />
           <Route exact path="/profile" component={Main} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
           <Route path="/createuser" component={CreateUser} />

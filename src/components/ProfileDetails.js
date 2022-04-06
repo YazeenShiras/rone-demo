@@ -41,9 +41,11 @@ const optionsMobile = {
 };
 
 const ProfileDetails = () => {
+  const [roneId, setRoneId] = useState("");
   const [isShare, setShare] = useState(false);
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
+  const [username, setUsername] = useState("");
   const [origin, setOrigin] = useState("");
 
   const [facebookLink, setFacebookLink] = useState("");
@@ -57,18 +59,21 @@ const ProfileDetails = () => {
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
 
+    var rone_id = localStorage.getItem("roneid");
+    setRoneId(rone_id);
+
     console.log("userid : " + userid);
 
     const endpoint = `${window.location.href}/share`;
     let originForShare = new URL(endpoint);
-    originForShare.searchParams.set("id", userid);
-
-    let url = new URL("https://testdatassz.herokuapp.com/user_details");
-    url.search = new URLSearchParams({
-      user_id: userid,
-    });
+    originForShare.searchParams.set("user", username);
 
     const getUser = async () => {
+      let url = new URL("https://testdatassz.herokuapp.com/user_details");
+      url.search = new URLSearchParams({
+        user_id: userid,
+      });
+
       const req = await fetch(url, {
         method: "GET",
         headers: {
@@ -78,6 +83,7 @@ const ProfileDetails = () => {
       const data = await req.json();
       console.log(data);
       setUserData(data);
+      setUsername(data.username);
       localStorage.setItem("nameForWallet", data.name);
       localStorage.setItem("mobileNumberWtsp", data.phone_num);
     };
@@ -113,7 +119,7 @@ const ProfileDetails = () => {
     } else {
       console.log("userid not found or null");
     }
-  }, [userid]);
+  }, [userid, username]);
 
   const shareToSocial = () => {
     var shareIconsContainer = document.getElementById("shareIconsContainer");
@@ -201,6 +207,7 @@ const ProfileDetails = () => {
           <div className="left__profile__title">
             <h2>{userData.name}</h2>
             <p>{userData.proff}</p>
+            <p>{roneId}</p>
             <div className="rating__container">
               <img src={starRed} alt="" />
               <img src={starRed} alt="" />
