@@ -12,6 +12,7 @@ import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState("");
@@ -176,6 +177,8 @@ const EditProfile = () => {
   }
 
   async function updateProfile() {
+    document.getElementById("updateProfileLoader").style.display = "block";
+    document.getElementById("updateProfileText").style.display = "none";
     console.log(name);
     console.log(email);
     console.log(location);
@@ -212,7 +215,9 @@ const EditProfile = () => {
     if (data.status === 200) {
       updatePhoto();
       updateSocial();
-      window.location.href = "/profile";
+      setTimeout(() => {
+        window.location.href = "/profile";
+      }, 3000);
     }
   }
 
@@ -259,6 +264,8 @@ const EditProfile = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
+      document.getElementById("updateProfileLoader").style.display = "none";
+      document.getElementById("updateProfileText").style.display = "block";
       console.log("all set");
     }
   }
@@ -463,7 +470,13 @@ const EditProfile = () => {
                   Please fill all social links fields
                 </p>
                 <div onClick={updateProfile} className="updateProfileButton">
-                  UPDATE
+                  <div
+                    className="loader__container__login"
+                    id="updateProfileLoader"
+                  >
+                    <PulseLoader color="#ffffff" />
+                  </div>
+                  <p id="updateProfileText">UPDATE</p>
                 </div>
               </form>
             </div>
