@@ -14,6 +14,9 @@ const CreateUser = () => {
   const [isdetails, setIsdetails] = useState(false);
   const [newmob, setNewMob] = useState("");
 
+  const [roneId, setRoneId] = useState("");
+  const [pan, setPan] = useState("");
+
   useEffect(() => {
     window.onbeforeunload = function (e) {
       window.onunload = function () {
@@ -26,6 +29,11 @@ const CreateUser = () => {
     };
     var newmob = localStorage.getItem("newmob");
     setNewMob(newmob);
+
+    var rone_id = localStorage.getItem("roneid");
+    setRoneId(rone_id);
+    var pan_id = localStorage.getItem("pan");
+    setPan(pan_id);
   }, []);
 
   async function handleSubmit() {
@@ -57,6 +65,51 @@ const CreateUser = () => {
     if (data.detail === "mobile  number already exists!") {
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML = data.detail;
+    }
+  }
+
+  /* first call roneidDetails */
+  // eslint-disable-next-line no-unused-vars
+  async function roneidDetails() {
+    document.getElementById("loaderRegisterUser").style.display = "block";
+    document.getElementById("RegisterUser").style.display = "none";
+
+    const res = await fetch(
+      "https://testdatassz.herokuapp.com/we_can_try_roneuser_verification",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          rone_id: roneId,
+          pancard: pan,
+          mobile_number: number,
+          status_verification: "pending",
+        }),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    if (data.data.status_verification === "pending") {
+      document.getElementById("statusMessage").style.display = "block";
+      document.getElementById("statusMessage").innerHTML = "REQUEST PENDING...";
+      document.getElementById("statusMessage").style.color = "#e1c80b";
+    }
+    if (data.data.status_verification === "rejected") {
+      document.getElementById("statusMessage").style.display = "block";
+      document.getElementById("statusMessage").innerHTML =
+        "REQUEST REJECTED...";
+      document.getElementById("statusMessage").style.color = "#FF0000";
+    }
+    if (data.data.status_verification === "success") {
+      document.getElementById("statusMessage").style.display = "block";
+      document.getElementById("statusMessage").innerHTML =
+        "REQUEST APPROVED...";
+      document.getElementById("statusMessage").style.color = "#4BB543";
+      /* if request success create user */
+
+      /* registerClick(); */
     }
   }
 
@@ -177,6 +230,9 @@ const CreateUser = () => {
               <p id="RegisterUser">REGISTER</p>
             </div>
           </form>
+          <div className="statusContainer">
+            <p id="statusMessage">REQUEST PENDING...</p>
+          </div>
         </div>
       </div>
     </div>

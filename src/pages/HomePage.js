@@ -18,10 +18,11 @@ const HomePage = () => {
     document.getElementById("nextText").style.display = "none";
 
     let url = new URL(
-      "https://testdatassz.herokuapp.com/rone_id_authentication"
+      "https://testdatassz.herokuapp.com/roneid_with_pan_authentication"
     );
     url.search = new URLSearchParams({
       rone_id: roneId,
+      pancard: pan,
     });
 
     const res = await fetch(url, {
@@ -32,17 +33,19 @@ const HomePage = () => {
     });
     const data = await res.json();
     console.log(data);
-    if (data.status !== 404) {
+    if (data.status === 200) {
       localStorage.setItem("roneid", data.RONEID);
       localStorage.setItem("pan", data.PAN);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       window.location.href = "/register";
-    } else {
+    }
+    if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
-      document.getElementById("errorRoneId").innerHTML = "invalid RONE ID";
+      document.getElementById("errorRoneId").innerHTML =
+        "invalid RONE ID or PAN";
     }
   }
 

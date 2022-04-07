@@ -200,6 +200,18 @@
   display: none;
 }
 
+.statusContainer {
+  margin-top: 20px;
+}
+
+.statusContainer > p {
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #e1c80b;
+  display: none;
+}
+
 @media only screen and (max-width: 500px) {
   .content__bodyRegister {
     flex-direction: column;
