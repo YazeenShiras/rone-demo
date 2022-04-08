@@ -11,8 +11,13 @@ import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Wallet = () => {
   const [userid, setUserId] = useState("");
-  const [roneId, setRoneId] = useState("");
   const [userNameCard, SetUserNameCard] = useState("");
+
+  const [roneId, setRoneId] = useState("");
+  const [pan, setPan] = useState("");
+
+  const [initialcards, setInitialcards] = useState("");
+  const [totalcards, setTotalcards] = useState("");
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -23,10 +28,6 @@ const Wallet = () => {
   const [resNumber, setResNumber] = useState("");
 
   const [isdetails, setIsdetails] = useState(false);
-
-  const [cardBalance, setCardBalance] = useState(0);
-  // eslint-disable-next-line no-unused-vars
-  const [cardUsed, setCardUsed] = useState(0);
 
   const [buyCardCount, setBuyCardCount] = useState(1);
   const [totalPrice, setTotalPrice] = useState(1500);
@@ -47,7 +48,41 @@ const Wallet = () => {
     setUserId(newid);
     var rone_id = localStorage.getItem("roneid");
     setRoneId(rone_id);
+    var panid = localStorage.getItem("pan");
+    setPan(panid);
   }, []);
+
+  useEffect(() => {
+    async function cardDetails() {
+      let url = "https://test-rone-server.herokuapp.com/cardBalance";
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          panId: "DKIPS7358C",
+          roneId: "RONE7839216",
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data) {
+        setInitialcards(data.balance.initialcards);
+        setTotalcards(data.balance.totalcards);
+      }
+    }
+
+    if (
+      pan !== "" &&
+      pan !== undefined &&
+      roneId !== "" &&
+      roneId !== undefined
+    ) {
+      cardDetails();
+    }
+  }, [pan, roneId]);
 
   /* const [refDetails, setRefDetails] = useState([]);
 
@@ -135,7 +170,6 @@ const Wallet = () => {
   };
 
   async function handleSubmit() {
-    setCardBalance(cardUsed + 1);
     document.getElementById("formForGenerateLink").style.display = "none";
     document.getElementById("loaderWidget").style.display = "block";
     let url = "https://rone-card.herokuapp.com/generateLink";
@@ -212,7 +246,7 @@ const Wallet = () => {
   }, [buyCardCount]);
 
   const buyRoneCardClick = () => {
-    setCardBalance(buyCardCount);
+    console.log("buy card click");
   };
 
   async function sendClick() {
@@ -301,7 +335,7 @@ const Wallet = () => {
                   <div className="cardBalanceContainer">
                     <p>Card Balance</p>
                     <h3>
-                      {cardUsed}\{cardBalance}
+                      {initialcards}\{totalcards}
                     </h3>
                   </div>
                 </div>

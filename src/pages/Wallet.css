@@ -24,30 +24,35 @@
 }
 
 .leftContaniner__roneCard > img {
-  height: 50px;
+  height: 45px;
   object-fit: contain;
-  margin-left: -70px;
+  margin-left: -100px;
 }
 
 .bottomContainer__leftContainer__roneCard {
   display: flex;
+  width: 300px;
+  justify-content: space-between;
   align-items: flex-end;
   margin-top: 80px;
 }
 
 .cardHolder {
   color: #ffffff;
-  margin-right: 50px;
+}
+
+.cardHolder > h5 {
+  font-weight: normal;
+  font-size: 15px;
 }
 
 .cardHolder > p {
   color: #fbe9e9;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .cardBalanceContainer {
-  margin-left: 110px;
   display: flex;
   flex-direction: column;
 }
@@ -394,19 +399,21 @@
   }
   .leftContaniner__roneCard > img {
     height: 40px;
-    margin-left: -50px;
+    margin-left: -100px;
   }
   .bottomContainer__leftContainer__roneCard {
-    margin-top: 70px;
-  }
-  .bottomContainer__leftContainer__roneCard > h5 {
-    margin-left: 10px;
+    margin-top: 60px;
+    width: 270px;
   }
   .cardBalanceContainer {
-    margin-left: 120px;
     display: flex;
     flex-direction: column;
   }
+
+  .cardBalanceContainer > h3 {
+    font-size: 18px;
+  }
+
   .roneCard__container > p {
     margin-right: -125px;
     font-size: 12px;
