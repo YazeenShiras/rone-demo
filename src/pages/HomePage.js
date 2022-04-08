@@ -34,8 +34,8 @@ const HomePage = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === 200) {
-      localStorage.setItem("roneid", data.RONEID);
-      localStorage.setItem("pan", data.PAN);
+      localStorage.setItem("roneid", roneId);
+      localStorage.setItem("pan", pan);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       window.location.href = "/register";

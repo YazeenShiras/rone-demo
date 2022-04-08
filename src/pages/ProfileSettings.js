@@ -19,6 +19,8 @@ const EditProfile = () => {
 
   const [imageFile, setImageFile] = useState("");
 
+  const [isProfileChanged, setIsProfileChanged] = useState(false);
+
   const [name, setName] = useState("");
   const [profession, setProfession] = useState("");
   const [bio, setBio] = useState("");
@@ -41,9 +43,6 @@ const EditProfile = () => {
 
   useEffect(() => {
     setIdForUpdate(idForUpdateForm);
-    console.log(idForUpdate);
-
-    console.log("Update Page ID: " + idForUpdate);
 
     let url = new URL("https://testdatassz.herokuapp.com/user_details");
     url.search = new URLSearchParams({
@@ -84,37 +83,33 @@ const EditProfile = () => {
         },
       });
       const data = await req.json();
-      console.log(data.data);
       setFacebookLink(data.data.fb_link);
       setInstagramLink(data.data.insta_link);
       setTwitterLink(data.data.twitter_link);
       setLinkedInLink(data.data.linkdin_link);
       setTelegramLink(data.data.teligram_link);
       setWhatsappLink(data.data.whatssapp_link);
-
-      console.log(data.data.fb_link);
-      console.log(data.data.insta_link);
-      console.log(data.data.twitter_link);
-      console.log(data.data.linkdin_link);
-      console.log(data.data.teligram_link);
-      console.log(data.data.whatssapp_link);
     };
 
     if (idForUpdate !== "" && idForUpdate !== undefined) {
       getUser();
       getSocial();
-    } else {
-      console.log("error: idForUpdate not found or null");
     }
   }, [idForUpdate, idForUpdateForm]);
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
+    console.log(name);
     setProfession(document.getElementById("profession").value);
+    console.log(profession);
     setBio(document.getElementById("bio").value);
+    console.log(bio);
     setLocation(document.getElementById("location").value);
+    console.log(location);
     setAddress(document.getElementById("address").value);
+    console.log(address);
     setEmail(document.getElementById("email").value);
+    console.log(email);
   };
 
   const storeLinks = () => {
@@ -141,14 +136,13 @@ const EditProfile = () => {
           100,
           0,
           (uri) => {
-            console.log(uri);
             setImageFile(uri);
+            setIsProfileChanged(true);
           },
           "base64",
           200,
           200
         );
-        console.log(imageFile);
       } catch (err) {
         console.log(err);
       }
@@ -213,11 +207,13 @@ const EditProfile = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
-      updatePhoto();
+      if (isProfileChanged) {
+        updatePhoto();
+      }
       updateSocial();
       setTimeout(() => {
-        window.location.href = "/profile";
-      }, 3000);
+        /* window.location.href = "/profile"; */
+      }, 2000);
     }
   }
 

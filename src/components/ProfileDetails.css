@@ -27,6 +27,7 @@
   backdrop-filter: blur(10px);
   margin: 0px 8vw;
   height: 80%;
+  min-width: 83%;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -35,6 +36,23 @@
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin-top: 30px;
+  display: none;
+}
+
+.loadingContainer__profileDetails {
+  backdrop-filter: blur(10px);
+  margin: 0px 8vw;
+  height: 80%;
+  width: 83%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-top: 30px;
+  
 }
 
 .leftContainer__profileDetails {
@@ -331,6 +349,7 @@
   .profileContainer__profileDetails {
     backdrop-filter: blur(10px);
     height: 85%;
+    min-width: 85%;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -339,6 +358,20 @@
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    display: none;
+  }
+  .loadingContainer__profileDetails {
+    backdrop-filter: blur(10px);
+    height: 85%;
+    width: 85%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
   }
   .leftContainer__profileDetails {
     height: 30%;

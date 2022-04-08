@@ -27,6 +27,7 @@ import phoneIcon from "../assets/phone.svg";
 import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import Pdf from "react-to-pdf";
+import { GridLoader } from "react-spinners";
 const ref = React.createRef();
 const options = {
   orientation: "landscape",
@@ -86,6 +87,12 @@ const ProfileDetails = () => {
       setUsername(data.username);
       localStorage.setItem("nameForWallet", data.name);
       localStorage.setItem("mobileNumberWtsp", data.phone_num);
+      if (data) {
+        document.getElementById("loadingProfile").style.display = "none";
+        document.getElementById(
+          "profileContainer__profileDetails"
+        ).style.display = "flex";
+      }
     };
 
     const getSocial = async () => {
@@ -326,6 +333,9 @@ const ProfileDetails = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="loadingContainer__profileDetails" id="loadingProfile">
+        <GridLoader size={25} margin={2} color="#d52a33" />
       </div>
     </div>
   );
