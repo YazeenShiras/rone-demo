@@ -57,7 +57,6 @@ const EditProfile = () => {
         },
       });
       const data = await req.json();
-      /* console.log(data); */
       setUserData(data);
       setImg(data.img);
       setName(data.name);
@@ -212,7 +211,9 @@ const EditProfile = () => {
       }
       updateSocial();
       setTimeout(() => {
-        /* window.location.href = "/profile"; */
+        document.getElementById("updateProfileLoader").style.display = "none";
+        document.getElementById("updateProfileText").style.display = "block";
+        window.location.href = "/profile";
       }, 2000);
     }
   }
@@ -260,9 +261,7 @@ const EditProfile = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === 200) {
-      document.getElementById("updateProfileLoader").style.display = "none";
-      document.getElementById("updateProfileText").style.display = "block";
-      console.log("all set");
+      console.log("social links Updated");
     }
   }
 
