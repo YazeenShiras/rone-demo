@@ -122,9 +122,6 @@ const VerifyOtpRegister = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link className="loginButton__container" to="/login">
-            <PrimaryButton content="Login" />
-          </Link>
           <div className="header__menu__container">
             <img src={menu} alt="" />
           </div>

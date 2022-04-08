@@ -108,9 +108,6 @@ const RegisterSendOtp = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link className="loginButton__container" to="/login">
-            <PrimaryButton content="Login" />
-          </Link>
           <div className="header__menu__container">
             <img src={menu} alt="" />
           </div>
@@ -144,12 +141,6 @@ const RegisterSendOtp = () => {
               <p id="sentOTPRegister">SENT OTP</p>
             </div>
           </form>
-          <div className="alreadyRegistered__container">
-            <p className="alreadyRegisterd">already registered ? </p>
-            <Link to="/login">
-              <p className="login__AlreadyRegisterd">Login</p>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
