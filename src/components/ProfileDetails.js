@@ -88,7 +88,6 @@ const ProfileDetails = () => {
       setUserData(data);
       setUsername(data.username);
       localStorage.setItem("nameForWallet", data.name);
-      localStorage.setItem("mobileNumberWtsp", data.phone_num);
       if (data) {
         document.getElementById("loadingProfile").style.display = "none";
         document.getElementById(

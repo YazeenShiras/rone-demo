@@ -399,7 +399,7 @@ const ShareProfile = () => {
                   <h4>₹{product.product_price}</h4>
                   <div className="buttonsContainer__productCard">
                     <a
-                      href={`https://api.whatsapp.com/send?phone=${userData.phone_num}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20from%20ronedcard.com`}
+                      href={`https://api.whatsapp.com/send?phone=${whatsappLink}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20from%20ronedcard.com`}
                       className="sendEnquiry__button"
                     >
                       Send Enquiry

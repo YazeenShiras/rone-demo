@@ -27,17 +27,6 @@ const Products = () => {
   const inpFile = document.getElementById("inpFileProduct");
 
   useEffect(() => {
-    let num = localStorage.getItem("mobileNumberWtsp");
-    setWhatsappNumber(num);
-  }, []);
-
-  const storeValues = () => {
-    setName(document.getElementById("productName").value);
-    setPrice(document.getElementById("price").value);
-    setDescription(document.getElementById("description").value);
-  };
-
-  useEffect(() => {
     setProductsId(idForProducts);
     console.log(productsId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,6 +66,37 @@ const Products = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsId, isResponse]);
+
+  useEffect(() => {
+    const getSocial = async () => {
+      let socialUrl = new URL(
+        "https://testdatassz.herokuapp.com/get_social_links"
+      );
+      socialUrl.search = new URLSearchParams({
+        user_id: productsId,
+      });
+
+      const req = await fetch(socialUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await req.json();
+      console.log(data.data.fb_link);
+      setWhatsappNumber(data.data.whatssapp_link);
+    };
+
+    if (productsId !== "" && productsId !== undefined) {
+      getSocial();
+    }
+  }, [productsId]);
+
+  const storeValues = () => {
+    setName(document.getElementById("productName").value);
+    setPrice(document.getElementById("price").value);
+    setDescription(document.getElementById("description").value);
+  };
 
   async function uploadProductImage() {
     document.getElementById("loadingAnimationproducts").style.display = "flex";
