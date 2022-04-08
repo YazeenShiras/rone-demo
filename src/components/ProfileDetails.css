@@ -330,7 +330,6 @@
   .download__mobile {
     display: block;
   }
-
   .download__web {
     display: none;
   }
@@ -348,7 +347,7 @@
   }
   .profileContainer__profileDetails {
     backdrop-filter: blur(10px);
-    height: 85%;
+    height: 80%;
     min-width: 85%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -380,6 +379,7 @@
     padding-left: 0vw;
     padding-top: 20px;
     margin-right: 0px;
+    margin-top: 20px;
   }
   .imgContainer__profile {
     width: 25vh;
