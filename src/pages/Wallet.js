@@ -16,8 +16,8 @@ const Wallet = () => {
   const [roneId, setRoneId] = useState("");
   const [pan, setPan] = useState("");
 
-  const [initialcards, setInitialcards] = useState("");
-  const [totalcards, setTotalcards] = useState("");
+  const [initialcards, setInitialcards] = useState(49);
+  const [totalcards, setTotalcards] = useState(50);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -68,9 +68,10 @@ const Wallet = () => {
       });
       const data = await response.json();
       console.log(data);
-      if (data) {
+      if (data.balance) {
         setInitialcards(data.balance.initialcards);
         setTotalcards(data.balance.totalcards);
+        setRoneId(data.balance.roneId);
       }
     }
 
