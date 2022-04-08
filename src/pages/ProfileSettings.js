@@ -15,8 +15,6 @@ import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
 const EditProfile = () => {
-  const [userData, setUserData] = useState("");
-
   const [imageFile, setImageFile] = useState("");
 
   const [isProfileChanged, setIsProfileChanged] = useState(false);
@@ -57,7 +55,7 @@ const EditProfile = () => {
         },
       });
       const data = await req.json();
-      setUserData(data);
+      console.log(data);
       setImg(data.img);
       setName(data.name);
       setProfession(data.proff);
@@ -99,17 +97,10 @@ const EditProfile = () => {
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
-    console.log(name);
     setProfession(document.getElementById("profession").value);
-    console.log(profession);
     setBio(document.getElementById("bio").value);
-    console.log(bio);
     setLocation(document.getElementById("location").value);
-    console.log(location);
     setAddress(document.getElementById("address").value);
-    console.log(address);
-    setEmail(document.getElementById("email").value);
-    console.log(email);
   };
 
   const storeLinks = () => {
@@ -322,7 +313,7 @@ const EditProfile = () => {
                       id="name"
                       type="text"
                       name="username"
-                      defaultValue={userData.name}
+                      defaultValue={name}
                     />
                   </div>
                 </fieldset>
@@ -334,7 +325,7 @@ const EditProfile = () => {
                       id="profession"
                       type="text"
                       name="profession"
-                      defaultValue={userData.proff}
+                      defaultValue={profession}
                     />
                   </div>
                 </fieldset>
@@ -345,11 +336,11 @@ const EditProfile = () => {
                       onChange={storeValues}
                       name="bio"
                       id="bio"
-                      defaultValue={userData.bio}
+                      defaultValue={bio}
+                      maxLength="250"
                     ></textarea>
                   </div>
                 </fieldset>
-                {/* <PlaceSearch /> */}
                 <fieldset className="input__container__form__update">
                   <legend>Location</legend>
                   <div className="input__box__form__update">
@@ -358,7 +349,7 @@ const EditProfile = () => {
                       id="location"
                       type="text"
                       name="location"
-                      defaultValue={userData.location}
+                      defaultValue={location}
                     />
                   </div>
                 </fieldset>
@@ -370,7 +361,7 @@ const EditProfile = () => {
                       type="text"
                       name="address"
                       id="address"
-                      defaultValue={userData.address}
+                      defaultValue={address}
                     />
                   </div>
                 </fieldset>
@@ -390,18 +381,6 @@ const EditProfile = () => {
                   <legend>District</legend>
                   <div className="input__box__form__update">
                     <input type="text" name="district" id="district" />
-                  </div>
-                </fieldset>
-                <fieldset className="input__container__form__update">
-                  <legend>Email</legend>
-                  <div className="input__box__form__update">
-                    <input
-                      onChange={storeValues}
-                      id="email"
-                      type="email"
-                      name="email"
-                      defaultValue={userData.email}
-                    />
                   </div>
                 </fieldset>
                 <div className="socialContainerTitle">

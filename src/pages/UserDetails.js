@@ -280,23 +280,47 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Location</legend>
-            <div className="input__box">
-              <input
-                id="location"
-                type="text"
-                name="location"
-                onChange={storeValues}
-              />
-            </div>
-          </fieldset>
-          <fieldset className="input__container">
             <legend>Profession</legend>
             <div className="input__box">
               <input
                 id="profession"
                 type="text"
                 name="profession"
+                onChange={storeValues}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
+            <legend>Bio</legend>
+            <div className="input__box__textArea">
+              <textarea
+                name="bio"
+                id="bio"
+                cols="10"
+                rows="3"
+                maxLength="250"
+                onChange={storeValues}
+              ></textarea>
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
+            <legend>Address</legend>
+            <div className="input__box">
+              <input
+                id="address"
+                type="text"
+                name="address"
+                onChange={storeValues}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
+            <legend>Location</legend>
+            <div className="input__box">
+              <input
+                id="location"
+                type="text"
+                name="location"
                 onChange={storeValues}
               />
             </div>
@@ -317,29 +341,6 @@ function UserDetails() {
             <legend>District</legend>
             <div className="input__box">
               <input id="district" type="text" name="district" />
-            </div>
-          </fieldset>
-          <fieldset className="input__container">
-            <legend>Address</legend>
-            <div className="input__box">
-              <input
-                id="address"
-                type="text"
-                name="address"
-                onChange={storeValues}
-              />
-            </div>
-          </fieldset>
-          <fieldset className="input__container">
-            <legend>Bio</legend>
-            <div className="input__box__textArea">
-              <textarea
-                name="bio"
-                id="bio"
-                cols="10"
-                rows="3"
-                onChange={storeValues}
-              ></textarea>
             </div>
           </fieldset>
           <div id="errorContainer" className="errorContainer">
