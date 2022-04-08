@@ -214,7 +214,7 @@ const EditProfile = () => {
       setTimeout(() => {
         document.getElementById("updateProfileLoader").style.display = "none";
         document.getElementById("updateProfileText").style.display = "block";
-        /* window.location.href = "/profile"; */
+        window.location.href = "/profile";
       }, 2000);
     }
   }
