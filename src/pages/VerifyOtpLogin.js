@@ -32,9 +32,7 @@ const VerifyOtpLogin = () => {
   async function handleSubmit() {
     document.getElementById("loaderVeryfyLogin").style.display = "block";
     document.getElementById("veryfyLogin").style.display = "none";
-    let url = new URL(
-      "https://testdatassz.herokuapp.com/otp_verification_login"
-    );
+    let url = new URL("http://ronecard.herokuapp.com/otp_verification_login");
     url.search = new URLSearchParams({
       mobile: mob,
       otp: otp,
@@ -67,9 +65,7 @@ const VerifyOtpLogin = () => {
   }
 
   async function resendOtp() {
-    let url = new URL(
-      "https://testdatassz.herokuapp.com/OTP_Genarator/rone/login"
-    );
+    let url = new URL("http://ronecard.herokuapp.com/OTP_Genarator/rone/login");
     url.search = new URLSearchParams({
       mobile_num: mob,
     });

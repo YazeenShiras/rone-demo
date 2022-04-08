@@ -72,7 +72,7 @@ const ProfileDetails = () => {
     originForShare.searchParams.set("user", username);
 
     const getUser = async () => {
-      let url = new URL("https://testdatassz.herokuapp.com/user_details");
+      let url = new URL("http://ronecard.herokuapp.com/user_details");
       url.search = new URLSearchParams({
         user_id: userid,
       });
@@ -97,9 +97,7 @@ const ProfileDetails = () => {
     };
 
     const getSocial = async () => {
-      let socialUrl = new URL(
-        "https://testdatassz.herokuapp.com/get_social_links"
-      );
+      let socialUrl = new URL("http://ronecard.herokuapp.com/get_social_links");
       socialUrl.search = new URLSearchParams({
         user_id: userid,
       });

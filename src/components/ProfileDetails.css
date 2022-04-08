@@ -378,7 +378,7 @@
     flex-direction: row;
     padding-left: 0vw;
     padding-top: 20px;
-    margin-right: 0px;
+    margin-right: 20px;
     margin-top: 20px;
   }
   .imgContainer__profile {
@@ -483,7 +483,7 @@
     height: calc(90vh - 80px);
   }
   .profileContainer__profileDetails {
-    height: 85%;
+    height: 70%;
   }
   .imgContainer__profile {
     width: 150px;
@@ -509,9 +509,9 @@
 
 @media only screen and (max-width: 360px) {
   .profileDetails {
-    height: calc(100vh - 80px);
+    height: calc(90vh - 80px);
   }
   .profileContainer__profileDetails {
-    height: 85%;
+    height: 75%;
   }
 }

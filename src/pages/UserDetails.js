@@ -87,7 +87,7 @@ function UserDetails() {
   async function uploadPhoto() {
     console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
-    const endpoint = "https://testdatassz.herokuapp.com/profile_upload_url";
+    const endpoint = "http://ronecard.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -123,7 +123,7 @@ function UserDetails() {
 
       console.log(userid);
 
-      let url = new URL("https://testdatassz.herokuapp.com/user__details");
+      let url = new URL("http://ronecard.herokuapp.com/user__details");
 
       url.search = new URLSearchParams({
         user_id: userid,

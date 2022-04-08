@@ -35,7 +35,7 @@ const Products = () => {
   useEffect(() => {
     async function getAllProducts() {
       console.log("access to getAllProducts");
-      const endpoint = "https://testdatassz.herokuapp.com/products";
+      const endpoint = "http://ronecard.herokuapp.com/products";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -69,9 +69,7 @@ const Products = () => {
 
   useEffect(() => {
     const getSocial = async () => {
-      let socialUrl = new URL(
-        "https://testdatassz.herokuapp.com/get_social_links"
-      );
+      let socialUrl = new URL("http://ronecard.herokuapp.com/get_social_links");
       socialUrl.search = new URLSearchParams({
         user_id: productsId,
       });
@@ -102,7 +100,7 @@ const Products = () => {
     document.getElementById("loadingAnimationproducts").style.display = "flex";
     console.log(productsId);
 
-    const url = "https://testdatassz.herokuapp.com/products_img";
+    const url = "http://ronecard.herokuapp.com/products_img";
 
     const formData = new FormData();
     formData.append("file", inpFile.files[0]);
@@ -133,7 +131,7 @@ const Products = () => {
   };
 
   async function productDetails() {
-    let url = new URL("https://testdatassz.herokuapp.com/products");
+    let url = new URL("http://ronecard.herokuapp.com/products");
 
     url.search = new URLSearchParams({
       user_id: productsId,
@@ -176,7 +174,7 @@ const Products = () => {
   };
 
   async function deleteProduct(deleteId) {
-    let url = new URL("https://testdatassz.herokuapp.com/products_delete");
+    let url = new URL("http://ronecard.herokuapp.com/products_delete");
 
     url.search = new URLSearchParams({
       product_id: deleteId,

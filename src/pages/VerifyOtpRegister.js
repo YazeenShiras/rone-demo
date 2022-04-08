@@ -32,7 +32,7 @@ const VerifyOtpRegister = () => {
     document.getElementById("veryfyRegister").style.display = "none";
 
     let url = new URL(
-      "https://testdatassz.herokuapp.com/otp_verification_for_singup"
+      "http://ronecard.herokuapp.com/otp_verification_for_singup"
     );
     url.search = new URLSearchParams({
       otp: otp,
@@ -61,7 +61,7 @@ const VerifyOtpRegister = () => {
 
   async function resendOtp() {
     let url = new URL(
-      "https://testdatassz.herokuapp.com/OTP_Genarator/rone/singup"
+      "http://ronecard.herokuapp.com/OTP_Genarator/rone/singup"
     );
     url.search = new URLSearchParams({
       mobile_num: newmob,
