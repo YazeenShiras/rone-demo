@@ -7,10 +7,12 @@ import PulseLoader from "react-spinners/PulseLoader";
 const HomePage = () => {
   const [roneId, setRoneId] = useState("");
   const [pan, setPan] = useState("");
+  const [email, setEmail] = useState("");
 
   const storeValue = () => {
     setRoneId(document.getElementById("roneId").value);
     setPan(document.getElementById("pan").value);
+    setEmail(document.getElementById("email").value);
   };
 
   async function handleSubmit() {
@@ -50,7 +52,7 @@ const HomePage = () => {
   }
 
   const nextClick = () => {
-    if (roneId === "" || pan === "") {
+    if (roneId === "" || pan === "" || email === "") {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
@@ -94,6 +96,12 @@ const HomePage = () => {
               <legend>PAN*</legend>
               <div className="input__box">
                 <input onChange={storeValue} id="pan" type="text" />
+              </div>
+            </fieldset>
+            <fieldset className="input__container">
+              <legend>Email*</legend>
+              <div className="input__box">
+                <input onChange={storeValue} id="email" type="email" />
               </div>
             </fieldset>
             <p className="errorText" id="errorRoneId">
