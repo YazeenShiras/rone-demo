@@ -443,7 +443,7 @@ const EditProfile = () => {
                   <input
                     id="whatsappLink"
                     type="text"
-                    placeholder="Enter your Whatsapp number"
+                    placeholder="Enter your Whatsapp number with Country code"
                     onChange={storeLinks}
                     defaultValue={whatsappLink}
                   />
