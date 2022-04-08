@@ -37,6 +37,7 @@ const HomePage = () => {
     console.log(data);
     if (data.status === 200) {
       localStorage.setItem("roneid", roneId);
+      localStorage.setItem("emailrone", email);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       window.location.href = "/register";

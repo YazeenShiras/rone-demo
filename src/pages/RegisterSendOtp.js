@@ -26,6 +26,7 @@ const RegisterSendOtp = () => {
       },
     });
     const data = await res.json();
+    console.log(data);
     if (data.status === 202) {
       window.onbeforeunload = function (e) {
         window.onunload = function () {
@@ -38,6 +39,7 @@ const RegisterSendOtp = () => {
       };
       localStorage.setItem("newmob", data.mob);
       localStorage.setItem("token", data.otp);
+      console.log(data.otp);
       document.getElementById("loaderSentOtpRegister").style.display = "none";
       document.getElementById("sentOTPRegister").style.display = "block";
       window.location.href = "/verifyotpregister";
