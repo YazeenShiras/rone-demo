@@ -217,6 +217,7 @@ const ShareProfile = () => {
         <div
           className="profileContainer__profileDetails"
           id="profileContainer__profileDetails"
+          style={{ display: "flex", marginTop: "50px" }}
         >
           <div className="leftContainer__profileDetails">
             <div
