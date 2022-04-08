@@ -158,6 +158,7 @@ const Products = () => {
       setIsResponse(true);
       document.getElementById("formContainerProductAdd").style.display = "none";
       document.getElementById("addProductsButtonFirst").style.display = "flex";
+      window.location.reload();
     }
   }
 
@@ -173,6 +174,26 @@ const Products = () => {
     document.getElementById("formContainerProductAdd").style.display = "flex";
     document.getElementById("addProductsButtonFirst").style.display = "none";
   };
+
+  async function deleteProduct(deleteId) {
+    let url = new URL("https://testdatassz.herokuapp.com/products_delete");
+
+    url.search = new URLSearchParams({
+      product_id: deleteId,
+    });
+
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.status === 200) {
+      window.location.reload();
+    }
+  }
 
   return (
     <div className="products">
@@ -263,7 +284,10 @@ const Products = () => {
         {allProducts.map((product, index) => {
           return (
             <div className="productCard" key={index}>
-              <div className="menuContainer">
+              <div
+                className="menuContainer"
+                onClick={() => deleteProduct(product.id)}
+              >
                 <div className="deleteButton">
                   <img src={deleteIcon} alt="" />
                   Delete
