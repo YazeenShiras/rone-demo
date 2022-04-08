@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
-import PrimaryButton from "../components/PrimaryButton";
 import "./AuthStyles.css";
 import PulseLoader from "react-spinners/PulseLoader";
 

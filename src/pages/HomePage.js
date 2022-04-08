@@ -88,7 +88,7 @@ const HomePage = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-            Enter your <br /> RONE ID and PAN
+            Enter your <br /> RONE ID, PAN and Email
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">

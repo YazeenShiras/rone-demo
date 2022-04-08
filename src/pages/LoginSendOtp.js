@@ -109,7 +109,7 @@ const LoginSendOtp = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link to="/register">
+          <Link to="/">
             <SecondaryButton content="Register" />
           </Link>
           <div className="header__menu__container">
@@ -145,7 +145,7 @@ const LoginSendOtp = () => {
           </form>
           <div className="alreadyRegistered__container">
             <p className="alreadyRegisterd">Not registered ? </p>
-            <Link to="/register">
+            <Link to="/">
               <p className="login__AlreadyRegisterd">Register</p>
             </Link>
           </div>
