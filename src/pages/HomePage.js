@@ -39,7 +39,7 @@ const HomePage = () => {
       localStorage.setItem("roneid", roneId);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
-      /* window.location.href = "/register"; */
+      window.location.href = "/register";
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
