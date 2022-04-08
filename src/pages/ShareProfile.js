@@ -198,7 +198,7 @@ const ShareProfile = () => {
 
   return (
     <div className="shareProfile">
-      <div className="header">
+      <div className="header" style={{ height: "80px" }}>
         <div className="header__logo">
           <a href="/">
             <img src={logo} alt="Rone-logo" />
@@ -210,10 +210,7 @@ const ShareProfile = () => {
           </Link>
         </div>
       </div>
-      <div
-        className="profileDetails"
-        style={{ marginTop: "80px", backgroundImage: `url(${bg})` }}
-      >
+      <div className="profileDetails" style={{ backgroundImage: `url(${bg})` }}>
         <div
           className="profileContainer__profileDetails"
           id="profileContainer__profileDetails"
