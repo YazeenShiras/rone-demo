@@ -8,12 +8,10 @@ import PrimaryButton from "../components/PrimaryButton";
 
 const HomePage = () => {
   const [roneId, setRoneId] = useState("");
-  const [pan, setPan] = useState("");
   const [email, setEmail] = useState("");
 
   const storeValue = () => {
     setRoneId(document.getElementById("roneId").value);
-    setPan(document.getElementById("pan").value);
     setEmail(document.getElementById("email").value);
   };
 
@@ -26,7 +24,7 @@ const HomePage = () => {
     );
     url.search = new URLSearchParams({
       rone_id: roneId,
-      pancard: pan,
+      email: email,
     });
 
     const res = await fetch(url, {
@@ -39,22 +37,21 @@ const HomePage = () => {
     console.log(data);
     if (data.status === 200) {
       localStorage.setItem("roneid", roneId);
-      localStorage.setItem("pan", pan);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
-      window.location.href = "/register";
+      /* window.location.href = "/register"; */
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       document.getElementById("errorRoneId").innerHTML =
-        "invalid RONE ID or PAN";
+        "invalid RONE ID or Email";
     }
   }
 
   const nextClick = () => {
-    if (roneId === "" || pan === "" || email === "") {
+    if (roneId === "" || email === "") {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
@@ -88,19 +85,13 @@ const HomePage = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-            Enter your <br /> RONE ID, PAN and Email
+            Enter your <br /> RONE ID and Email
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
               <legend>Rone ID*</legend>
               <div className="input__box">
                 <input onChange={storeValue} id="roneId" type="text" />
-              </div>
-            </fieldset>
-            <fieldset className="input__container">
-              <legend>PAN*</legend>
-              <div className="input__box">
-                <input onChange={storeValue} id="pan" type="text" />
               </div>
             </fieldset>
             <fieldset className="input__container">
