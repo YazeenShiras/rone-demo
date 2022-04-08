@@ -36,7 +36,8 @@ const RegisterSendOtp = () => {
       window.onload = function () {
         window.localStorage.isMySessionActive = "true";
       };
-      localStorage.setItem("newmob", number);
+      localStorage.setItem("newmob", data.mob);
+      localStorage.setItem("token", data.otp);
       document.getElementById("loaderSentOtpRegister").style.display = "none";
       document.getElementById("sentOTPRegister").style.display = "block";
       window.location.href = "/verifyotpregister";

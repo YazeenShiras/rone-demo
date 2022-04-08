@@ -11,6 +11,7 @@ const VerifyOtpLogin = () => {
   const [otp, setOtp] = useState("");
   const [isotp, setIsotp] = useState(false);
   const [mob, setMob] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     window.onbeforeunload = function (e) {
@@ -24,6 +25,8 @@ const VerifyOtpLogin = () => {
     };
     var mob = localStorage.getItem("mob");
     setMob(mob);
+    var newtoken = localStorage.getItem("token");
+    setToken(newtoken);
   }, []);
 
   async function handleSubmit() {
@@ -37,10 +40,13 @@ const VerifyOtpLogin = () => {
       otp: otp,
     });
     const res = await fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        refresh_token: token,
+      }),
     });
     const data = await res.json();
     console.log(data);

@@ -9,6 +9,7 @@ const VerifyOtpRegister = () => {
   const [otp, setOtp] = useState("");
   const [isotp, setIsotp] = useState(false);
   const [newmob, setNewMob] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     window.onbeforeunload = function (e) {
@@ -22,6 +23,8 @@ const VerifyOtpRegister = () => {
     };
     var newmob = localStorage.getItem("newmob");
     setNewMob(newmob);
+    var newtoken = localStorage.getItem("token");
+    setToken(newtoken);
   }, []);
 
   async function handleSubmit() {
@@ -29,10 +32,9 @@ const VerifyOtpRegister = () => {
     document.getElementById("veryfyRegister").style.display = "none";
 
     let url = new URL(
-      "https://testdatassz.herokuapp.com/otp_verification_singup"
+      "https://testdatassz.herokuapp.com/otp_verification_for_singup"
     );
     url.search = new URLSearchParams({
-      mobile: newmob,
       otp: otp,
     });
     const res = await fetch(url, {
@@ -40,6 +42,9 @@ const VerifyOtpRegister = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        refresh_token: token,
+      }),
     });
     const data = await res.json();
     if (data.status === 202) {

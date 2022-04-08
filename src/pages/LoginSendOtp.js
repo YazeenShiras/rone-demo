@@ -38,7 +38,8 @@ const LoginSendOtp = () => {
       window.onload = function () {
         window.localStorage.isMySessionActive = "true";
       };
-      localStorage.setItem("mob", loginNumber);
+      localStorage.setItem("mob", data.mob);
+      localStorage.setItem("token", data.otp);
       document.getElementById("loaderSentOtp").style.display = "none";
       document.getElementById("sentOTP").style.display = "block";
       window.location.href = "/verifyotplogin";
