@@ -33,16 +33,16 @@ const Header = () => {
           <nav>
             <ul>
               <li>
-                <a href="https://roneinfotrade.in">Legal</a>
+                <a href="/">Legal</a>
               </li>
               <li>
-                <a href="/https://roneinfotrade.in">Forum</a>
+                <a href="/">Forum</a>
               </li>
               <li>
-                <a href="https://roneinfotrade.in">FAQ</a>
+                <a href="/">FAQ</a>
               </li>
               <li>
-                <a href="https://roneinfotrade.in">Contact</a>
+                <a href="/">Contact</a>
               </li>
             </ul>
           </nav>
@@ -71,16 +71,16 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="https://roneinfotrade.in">Legal</a>
+              <a href="/">Legal</a>
             </li>
             <li>
-              <a href="https://roneinfotrade.in">Forum</a>
+              <a href="/">Forum</a>
             </li>
             <li>
-              <a href="https://roneinfotrade.in">FAQ</a>
+              <a href="/">FAQ</a>
             </li>
             <li>
-              <a href="https://roneinfotrade.in">Contact</a>
+              <a href="/">Contact</a>
             </li>
           </ul>
         </nav>

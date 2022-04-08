@@ -85,7 +85,7 @@ const Wallet = () => {
     }
   }, [pan, roneId]);
 
-  /* const [refDetails, setRefDetails] = useState([]);
+  const [refDetails, setRefDetails] = useState([]);
 
   useEffect(() => {
     async function getRefferralDetails() {
@@ -101,15 +101,21 @@ const Wallet = () => {
         }),
       });
       const data = await response.json();
-      setRefDetails(data.referral);
+      console.log(data);
+      if (data === "Data not Found") {
+        console.log("no links available");
+      }
+      if (data.referral) {
+        setRefDetails(data.referral);
+      }
     }
     if (userid !== "" && userid !== undefined) {
       getRefferralDetails();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid]); */
+  }, [userid]);
 
-  /* const [refHistory, setRefHistory] = useState([]);
+  const [refHistory, setRefHistory] = useState([]);
 
   useEffect(() => {
     async function getTransactionHistory() {
@@ -125,13 +131,19 @@ const Wallet = () => {
         }),
       });
       const data = await response.json();
-      setRefHistory(data.history);
+      console.log(data);
+      if (data.message === "No data found") {
+        console.log("no transaction history");
+      }
+      if (data.history) {
+        setRefHistory(data.history);
+      }
     }
     if (userid !== "" && userid !== undefined) {
       getTransactionHistory();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid]); */
+  }, [userid]);
 
   useEffect(() => {
     if (name !== "") {
@@ -188,6 +200,7 @@ const Wallet = () => {
       }),
     });
     const data = await response.json();
+    console.log(data);
     setCopyLinkText(data.referral);
     setResName(data.username);
     setResNumber(data.phone);
@@ -273,23 +286,6 @@ const Wallet = () => {
       }
     }
   }
-
-  /* async function sendClickLoop(link) {
-    let urlSend = "https://rone-card.herokuapp.com/shareLink";
-
-    const response = await fetch(urlSend, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        url: link,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-  } */
 
   return (
     <div className="settingsPage">
@@ -446,7 +442,7 @@ const Wallet = () => {
               <div className="TransactionLink__card">
                 <div className="left__card__transaction">
                   <p>
-                    1.<span>{resName}</span>
+                    {refDetails.length + 1}.<span>{resName}</span>
                   </p>
                 </div>
                 <div className="middleLeft__card__transaction">
@@ -462,7 +458,7 @@ const Wallet = () => {
               </div>
             </div>
 
-            {/* <div className="transactionLinks__containerMount">
+            <div className="transactionLinks__containerMount">
               {refDetails
                 .slice(0)
                 .reverse()
@@ -487,7 +483,7 @@ const Wallet = () => {
                     </div>
                   );
                 })}
-            </div> */}
+            </div>
 
             <div className="TransactionContainerTitle transactionHistoryTitle">
               <span></span>
@@ -501,7 +497,7 @@ const Wallet = () => {
                 <p className="statusTitle">Status</p>
               </div>
 
-              {/* {refHistory
+              {refHistory
                 .slice(0)
                 .reverse()
                 .map((history, index) => {
@@ -516,14 +512,11 @@ const Wallet = () => {
                       </p>
                     </div>
                   );
-                })} */}
+                })}
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="footerContainerWallet">
-        <Footer />
-      </div> */}
     </div>
   );
 };
