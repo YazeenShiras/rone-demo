@@ -113,7 +113,7 @@ const ShareProfile = () => {
 
     if (username !== "" && username !== undefined) {
       getUser();
-      /* getSocial(); */
+      getSocial();
     } else {
       console.log("username not found or null");
     }

@@ -56,6 +56,8 @@ const ProfileDetails = () => {
   const [instagramLink, setInstagramLink] = useState("");
   const [telegramLink, setTelegramLink] = useState("");
 
+  const [isSocialNull, setIsSocialNull] = useState(true);
+
   useEffect(() => {
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
@@ -127,6 +129,21 @@ const ProfileDetails = () => {
       console.log("userid not found or null");
     }
   }, [userid, username]);
+
+  useEffect(() => {
+    if (facebookLink === "" || facebookLink === undefined) {
+      setIsSocialNull(true);
+    } else {
+      setIsSocialNull(false);
+    }
+  }, [
+    facebookLink,
+    instagramLink,
+    twitterLink,
+    linkedInLink,
+    telegramLink,
+    whatsappLink,
+  ]);
 
   const shareToSocial = () => {
     var shareIconsContainer = document.getElementById("shareIconsContainer");
