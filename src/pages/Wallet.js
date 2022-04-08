@@ -62,8 +62,8 @@ const Wallet = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          panId: "DKIPS7358C",
-          roneId: "RONE7839216",
+          panId: pan,
+          roneId: roneId,
         }),
       });
       const data = await response.json();
