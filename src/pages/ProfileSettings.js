@@ -82,6 +82,7 @@ const EditProfile = () => {
         },
       });
       const data = await req.json();
+      console.log(data);
       setFacebookLink(data.data.fb_link);
       setInstagramLink(data.data.insta_link);
       setTwitterLink(data.data.twitter_link);
@@ -213,7 +214,7 @@ const EditProfile = () => {
       setTimeout(() => {
         document.getElementById("updateProfileLoader").style.display = "none";
         document.getElementById("updateProfileText").style.display = "block";
-        window.location.href = "/profile";
+        /* window.location.href = "/profile"; */
       }, 2000);
     }
   }
@@ -414,6 +415,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter your facebook username"
                     onChange={storeLinks}
+                    defaultValue={facebookLink}
                   />
                 </div>
                 <div className="socialLinksinputContainer">
@@ -423,6 +425,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter your LinkedIn link"
                     onChange={storeLinks}
+                    defaultValue={linkedInLink}
                   />
                 </div>
                 <div className="socialLinksinputContainer">
@@ -432,6 +435,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter your Twitter username"
                     onChange={storeLinks}
+                    defaultValue={twitterLink}
                   />
                 </div>
                 <div className="socialLinksinputContainer">
@@ -441,6 +445,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter your Whatsapp number"
                     onChange={storeLinks}
+                    defaultValue={whatsappLink}
                   />
                 </div>
                 <div className="socialLinksinputContainer">
@@ -450,6 +455,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter your Instagram username"
                     onChange={storeLinks}
+                    defaultValue={instagramLink}
                   />
                 </div>
                 <div className="socialLinksinputContainer">
@@ -459,6 +465,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter your Telegram username"
                     onChange={storeLinks}
+                    defaultValue={telegramLink}
                   />
                 </div>
                 <p id="errorProfileEdit" className="errorProfileEdit">
