@@ -42,7 +42,7 @@ const EditProfile = () => {
   useEffect(() => {
     setIdForUpdate(idForUpdateForm);
 
-    let url = new URL("http://ronecard.herokuapp.com/user_details");
+    let url = new URL("https://ronecard.herokuapp.com/user_details");
     url.search = new URLSearchParams({
       user_id: idForUpdate,
     });
@@ -65,7 +65,7 @@ const EditProfile = () => {
       setAddress(data.address);
     };
 
-    let socialUrl = new URL("http://ronecard.herokuapp.com/get_social_links");
+    let socialUrl = new URL("https://ronecard.herokuapp.com/get_social_links");
     socialUrl.search = new URLSearchParams({
       user_id: idForUpdate,
     });
@@ -139,7 +139,7 @@ const EditProfile = () => {
   };
 
   async function updatePhoto() {
-    const endpoint = "http://ronecard.herokuapp.com/profile_upload_url";
+    const endpoint = "https://ronecard.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -169,7 +169,7 @@ const EditProfile = () => {
     console.log(address);
     console.log(bio);
 
-    let url = new URL("http://ronecard.herokuapp.com/updat_user__details");
+    let url = new URL("https://ronecard.herokuapp.com/updat_user__details");
 
     url.search = new URLSearchParams({
       user_id: idForUpdate,
@@ -228,7 +228,7 @@ const EditProfile = () => {
     console.log(telegramLink);
     console.log(whatsappLink);
 
-    let url = new URL("http://ronecard.herokuapp.com/social_links");
+    let url = new URL("https://ronecard.herokuapp.com/social_links");
 
     url.search = new URLSearchParams({
       user_id: idForUpdate,

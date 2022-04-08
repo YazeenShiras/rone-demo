@@ -22,7 +22,7 @@ const HomePage = () => {
     document.getElementById("nextText").style.display = "none";
 
     let url = new URL(
-      "http://ronecard.herokuapp.com/roneid_with_pan_authentication"
+      "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
     );
     url.search = new URLSearchParams({
       rone_id: roneId,

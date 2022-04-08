@@ -55,7 +55,7 @@ const ImageGalleryMain = () => {
   useEffect(() => {
     async function getAllImages() {
       console.log("access to getAllImages");
-      const endpoint = "http://ronecard.herokuapp.com/access_image_gallery";
+      const endpoint = "https://ronecard.herokuapp.com/access_image_gallery";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -95,7 +95,7 @@ const ImageGalleryMain = () => {
     console.log("access to UploadPhotofromFiles");
     document.getElementById("selectFromFileContainer").style.display = "flex";
 
-    const endpoint = "http://ronecard.herokuapp.com/self_upload-file";
+    const endpoint = "https://ronecard.herokuapp.com/self_upload-file";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({

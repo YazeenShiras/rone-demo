@@ -40,7 +40,7 @@ const CreateUser = () => {
     document.getElementById("loaderRegisterUser").style.display = "block";
     document.getElementById("RegisterUser").style.display = "none";
 
-    const res = await fetch("http://ronecard.herokuapp.com/create_user", {
+    const res = await fetch("https://ronecard.herokuapp.com/create_user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const CreateUser = () => {
     document.getElementById("RegisterUser").style.display = "none";
 
     const res = await fetch(
-      "http://ronecard.herokuapp.com/we_can_try_roneuser_verification",
+      "https://ronecard.herokuapp.com/we_can_try_roneuser_verification",
       {
         method: "POST",
         headers: {
