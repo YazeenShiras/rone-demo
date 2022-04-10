@@ -33,16 +33,13 @@ const Header = () => {
           <nav>
             <ul>
               <li>
-                <a href="/">Legal</a>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a href="/">Forum</a>
+                <Link to="/terms-and-conditions">Terms and Conditions</Link>
               </li>
               <li>
-                <a href="/">FAQ</a>
-              </li>
-              <li>
-                <a href="/">Contact</a>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </li>
             </ul>
           </nav>
@@ -71,16 +68,19 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="/">Legal</a>
+              <Link className="link" to="/about">
+                About
+              </Link>
             </li>
             <li>
-              <a href="/">Forum</a>
+              <Link className="link" to="/terms-and-conditions">
+                Terms and Conditions
+              </Link>
             </li>
             <li>
-              <a href="/">FAQ</a>
-            </li>
-            <li>
-              <a href="/">Contact</a>
+              <Link className="link" to="/privacy-policy">
+                Privacy Policy
+              </Link>
             </li>
           </ul>
         </nav>

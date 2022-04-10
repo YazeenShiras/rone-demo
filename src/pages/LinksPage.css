@@ -1,0 +1,16 @@
+.contentContainer {
+    margin: 100px 8vw;
+}
+
+.contentContainer > h5 {
+    margin-top: 20px;
+}
+
+.contentContainer > p {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.contentContainer > p > a {
+    color: #0000EE;
+}

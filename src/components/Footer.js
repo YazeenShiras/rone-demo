@@ -9,12 +9,6 @@ const Footer = () => {
         <div className="logo__footer">
           <img src={logo} alt="" />
         </div>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
       </div>
       <div className="right__footer__container">
         <div className="left__footerLinks__container LinksContainer__footer">
@@ -22,20 +16,20 @@ const Footer = () => {
           <ul>
             <li>
               <span>
-                <a href="/">Home</a>
+                <a href="/profile">Home</a>
               </span>
-            </li>
-            <li>
-              <a href="/">Terms & Conditions</a>
             </li>
             <li>
               <a href="/">Register</a>
             </li>
             <li>
-              <a href="/">FAQ</a>
+              <a href="/login">login</a>
             </li>
             <li>
-              <a href="/">Contact</a>
+              <a href="#products">Products</a>
+            </li>
+            <li>
+              <a href="#imageGallery">Image Gallery</a>
             </li>
           </ul>
         </div>
@@ -43,19 +37,19 @@ const Footer = () => {
           <h4>Quick Links</h4>
           <ul>
             <li>
-              <a href="/">Legal</a>
+              <a href="/">logout</a>
             </li>
             <li>
-              <a href="/">Terms & Conditions</a>
+              <a href="/settings/profile">Profile Settings</a>
             </li>
             <li>
-              <a href="/">Register</a>
+              <a href="/settings/account">Account Settings</a>
             </li>
             <li>
-              <a href="/">FAQ</a>
+              <a href="/settings/Wallet">Wallet</a>
             </li>
             <li>
-              <a href="/">Contact</a>
+              <a href="/settings/QR-code">QR Code</a>
             </li>
           </ul>
         </div>
@@ -63,39 +57,39 @@ const Footer = () => {
           <h4>Policies</h4>
           <ul>
             <li>
-              <a href="/">Legal</a>
+              <a href="/disclaimer">Disclaimer</a>
             </li>
             <li>
-              <a href="/">Terms & Conditions</a>
+              <a href="/terms-and-conditions">Terms & Conditions</a>
             </li>
             <li>
-              <a href="/">Register</a>
+              <a href="/privacy-policy">Privacy Policy</a>
             </li>
             <li>
-              <a href="/">FAQ</a>
+              <a href="/cookie-policy">Cookie Policy</a>
             </li>
             <li>
-              <a href="/">Contact</a>
+              <a href="/refund-policy">Refund Policy</a>
             </li>
           </ul>
         </div>
         <div className="right__footerLinks__container LinksContainer__footer">
-          <h4>What arclif provides</h4>
+          <h4>What Rone provides</h4>
           <ul>
             <li>
-              <a href="/">Legal</a>
+              <a href="/settings/Wallet">Rone Card</a>
             </li>
             <li>
-              <a href="/">Terms & Conditions</a>
+              <a href="/buyronecard">Buy Rone Card</a>
             </li>
             <li>
-              <a href="/">Register</a>
+              <a href="/settings/QR-code">Scan QR</a>
             </li>
             <li>
-              <a href="/">FAQ</a>
+              <a href="/settings/Wallet">Transaction history</a>
             </li>
             <li>
-              <a href="/">Contact</a>
+              <a href="/profile">Profile</a>
             </li>
           </ul>
         </div>

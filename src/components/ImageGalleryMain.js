@@ -117,6 +117,7 @@ const ImageGalleryMain = () => {
       const data = res.data;
       console.log(data);
       if (data.Result === "OK") {
+        window.location.reload();
         document.getElementById("selectFromFileContainer").style.display =
           "none";
         setImgtest(data.path);
@@ -144,7 +145,7 @@ const ImageGalleryMain = () => {
   }; */
 
   return (
-    <div className="imageGalleryMain">
+    <div className="imageGalleryMain" id="imageGallery">
       <div className="title__container__imageGalleryMain">
         <h3>Image Gallery</h3>
         <div className="viewAll__button">View All</div>

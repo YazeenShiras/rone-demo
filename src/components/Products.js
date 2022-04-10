@@ -196,7 +196,7 @@ const Products = () => {
   }
 
   return (
-    <div className="products">
+    <div className="products" id="products">
       <div className="title__container__products">
         <h3>Products</h3>
         <div className="viewAll__button">View All</div>
