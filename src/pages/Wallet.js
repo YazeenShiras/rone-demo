@@ -54,7 +54,7 @@ const Wallet = () => {
 
   useEffect(() => {
     async function cardDetails() {
-      let url = "https://test-rone-server.herokuapp.com/cardBalance";
+      let url = "https://rone-card.herokkuapp/cardBalance";
 
       const response = await fetch(url, {
         method: "POST",
