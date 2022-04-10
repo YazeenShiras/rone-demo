@@ -31,7 +31,7 @@ function App() {
           <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
-          <Route exact path="/discliamer" component={Disclaimer} />
+          <Route exact path="/disclimer" component={Disclaimer} />
           <Route exact path="/terms-and-conditions" component={Tc} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />

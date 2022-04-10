@@ -33,8 +33,8 @@ const Header = () => {
           <nav>
             <ul>
               <li>
-                <Link className="link" to="/discliamer">
-                  Discliamer
+                <Link className="link" to="/disclimer">
+                  Disclimer
                 </Link>
               </li>
               <li>
@@ -70,8 +70,8 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <Link className="link" to="/discliamer">
-                Discliamer
+              <Link className="link" to="/disclimer">
+                Disclimer
               </Link>
             </li>
             <li>
