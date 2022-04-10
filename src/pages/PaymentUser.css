@@ -21,3 +21,15 @@
   align-items: center;
   justify-content: center;
 }
+
+@media only screen and (max-width: 500px) {
+  .container__paymnetUser > h2 {
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
+
+  .container__paymnetUser {
+    justify-content: flex-start;
+  }
+
+}
