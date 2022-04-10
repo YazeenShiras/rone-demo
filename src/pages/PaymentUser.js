@@ -142,10 +142,14 @@ const PaymentUser = () => {
                 id="price"
                 type="text"
                 name="price"
-                value="₹ 1500"
+                value="₹ 1500 + Fee*"
               />
             </div>
           </fieldset>
+          <p style={{ fontSize: "12px", color: "#686868" }}>
+            *A convenience fee will be charged depending on your choice of
+            payment method.
+          </p>
           <div onClick={handlePayment} className="saveProfileButton">
             <div className="loader__container__login"></div>
             <p>PAY WITH RAZORPAY</p>
