@@ -6,6 +6,7 @@ import ClockLoader from "react-spinners/ClipLoader";
 import "./ImageGalleryMain.css";
 import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
+import deleteIcon from "../assets/delete.svg";
 import Resizer from "react-image-file-resizer";
 
 const ImageGalleryMain = () => {
@@ -191,6 +192,10 @@ const ImageGalleryMain = () => {
               style={{ backgroundImage: `url('${imageForGallery.img_url}')` }}
               className="card__products__imageContainer"
             >
+              <div className="deleteButton deleteButtonImageGallery">
+                <img src={deleteIcon} alt="" />
+                Delete
+              </div>
               {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
             </div>
           );

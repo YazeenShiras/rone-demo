@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Resizer from "react-image-file-resizer";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -25,6 +26,11 @@ const EditProfile = () => {
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
+
+  const [country, setCountry] = useState("");
+  const [district, setDistrict] = useState("");
+  const [state, setState] = useState("");
+  const [pincode, setPinCode] = useState("");
 
   const [facebookLink, setFacebookLink] = useState("");
   const [linkedInLink, setLinkedInLink] = useState("");
@@ -99,6 +105,11 @@ const EditProfile = () => {
     setBio(document.getElementById("bio").value);
     setLocation(document.getElementById("location").value);
     setAddress(document.getElementById("address").value);
+
+    setCountry(document.getElementById("country").value);
+    setDistrict(document.getElementById("district").value);
+    setState(document.getElementById("state").value);
+    setPinCode(document.getElementById("pincode").value);
   };
 
   const storeLinks = () => {
@@ -366,19 +377,45 @@ const EditProfile = () => {
                 <fieldset className="input__container__form__update">
                   <legend>Country</legend>
                   <div className="input__box__form__update">
-                    <input type="text" name="country" id="country" />
+                    <input
+                      type="text"
+                      name="country"
+                      id="country"
+                      onChange={storeValues}
+                    />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>State</legend>
                   <div className="input__box__form__update">
-                    <input type="text" name="state" id="state" />
+                    <input
+                      type="text"
+                      name="state"
+                      id="state"
+                      onChange={storeValues}
+                    />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>District</legend>
                   <div className="input__box__form__update">
-                    <input type="text" name="district" id="district" />
+                    <input
+                      type="text"
+                      name="district"
+                      id="district"
+                      onChange={storeValues}
+                    />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>Pincode</legend>
+                  <div className="input__box__form__update">
+                    <input
+                      type="text"
+                      name="pincode"
+                      id="pincode"
+                      onChange={storeValues}
+                    />
                   </div>
                 </fieldset>
                 <div className="socialContainerTitle">
@@ -455,7 +492,7 @@ const EditProfile = () => {
                   >
                     <PulseLoader color="#ffffff" />
                   </div>
-                  <p id="updateProfileText">UPDATE</p>
+                  <p id="updateProfileText">UPDATE PROFILE</p>
                 </div>
               </form>
             </div>

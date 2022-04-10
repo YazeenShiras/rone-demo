@@ -17,6 +17,11 @@ function UserDetails() {
   const [address, setAddress] = useState("");
   const [bio, setBio] = useState("");
 
+  const [country, setCountry] = useState("");
+  const [district, setDistrict] = useState("");
+  const [state, setState] = useState("");
+  const [pincode, setPinCode] = useState("");
+
   const [username, setUserName] = useState("");
   const [usermob, setUsermob] = useState("");
   const [userid, setUserId] = useState("");
@@ -82,6 +87,11 @@ function UserDetails() {
     setAddress(document.getElementById("address").value);
     setBio(document.getElementById("bio").value);
     setProfession(document.getElementById("profession").value);
+
+    setCountry(document.getElementById("country").value);
+    setDistrict(document.getElementById("district").value);
+    setState(document.getElementById("state").value);
+    setPinCode(document.getElementById("pincode").value);
   };
 
   async function uploadPhoto() {
@@ -110,8 +120,42 @@ function UserDetails() {
     }
   }
 
+  async function saveAddress() {
+    console.log(country);
+    console.log(state);
+    console.log(district);
+    console.log(pincode);
+
+    console.log(userid);
+
+    let url = new URL("https://ronecard.herokuapp.com/roneuser_address");
+
+    url.search = new URLSearchParams({
+      user_id: userid,
+    });
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        counrty: country,
+        state: state,
+        distric: district,
+        pincode: pincode,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.status === 200) {
+      setIsProfilePhotoUploaded(true);
+    }
+  }
+
   async function saveProfile() {
     uploadPhoto();
+    /* saveAddress(); */
     if (isProfilePhotoUploaded) {
       document.getElementById("saveProfileLoader").style.display = "block";
       document.getElementById("saveProfileText").style.display = "none";
@@ -120,6 +164,10 @@ function UserDetails() {
       console.log(profession);
       console.log(address);
       console.log(bio);
+      console.log(country);
+      console.log(state);
+      console.log(district);
+      console.log(pincode);
 
       console.log(userid);
 
@@ -175,12 +223,34 @@ function UserDetails() {
             setIsdetails(true);
             if (bio !== "") {
               setIsdetails(true);
+              if (country !== "") {
+                setIsdetails(true);
+                if (state !== "") {
+                  setIsdetails(true);
+                  if (district !== "") {
+                    setIsdetails(true);
+                    if (pincode !== "") {
+                      setIsdetails(true);
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
-  }, [email, location, address, bio, profession]);
+  }, [
+    email,
+    location,
+    address,
+    bio,
+    profession,
+    country,
+    state,
+    district,
+    pincode,
+  ]);
 
   const saveClick = () => {
     if (
@@ -188,7 +258,11 @@ function UserDetails() {
       location === "" ||
       profession === "" ||
       address === "" ||
-      bio === ""
+      bio === "" ||
+      country === "" ||
+      state === "" ||
+      district === "" ||
+      pincode === ""
     ) {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
@@ -254,6 +328,7 @@ function UserDetails() {
                 name="username"
                 onChange={storeValues}
                 value={username}
+                readOnly
               />
             </div>
           </fieldset>
@@ -265,6 +340,7 @@ function UserDetails() {
                 name="mobile"
                 onChange={storeValues}
                 value={usermob}
+                readOnly
               />
             </div>
           </fieldset>
@@ -328,19 +404,45 @@ function UserDetails() {
           <fieldset className="input__container">
             <legend>Country</legend>
             <div className="input__box">
-              <input id="country" type="text" name="country" />
+              <input
+                id="country"
+                type="text"
+                name="country"
+                onChange={storeValues}
+              />
             </div>
           </fieldset>
           <fieldset className="input__container">
             <legend>State</legend>
             <div className="input__box">
-              <input id="state" type="text" name="state" />
+              <input
+                id="state"
+                type="text"
+                name="state"
+                onChange={storeValues}
+              />
             </div>
           </fieldset>
           <fieldset className="input__container">
             <legend>District</legend>
             <div className="input__box">
-              <input id="district" type="text" name="district" />
+              <input
+                id="district"
+                type="text"
+                name="district"
+                onChange={storeValues}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="input__container">
+            <legend>Pincode</legend>
+            <div className="input__box">
+              <input
+                id="pincode"
+                type="text"
+                name="pincode"
+                onChange={storeValues}
+              />
             </div>
           </fieldset>
           <div id="errorContainer" className="errorContainer">

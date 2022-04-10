@@ -14,3 +14,16 @@
 .contentContainer > p > a {
     color: #0000EE;
 }
+
+.aboutContainer > h2 {
+    margin-bottom: 20px;
+}
+
+.aboutContainer > h3 {
+    margin-top: 20px;
+}
+
+.aboutContainer > p {
+    margin-top: 10px;
+    font-size: 13px;
+}

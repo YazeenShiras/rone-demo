@@ -15,10 +15,10 @@ import ShareProfile from "./pages/ShareProfile";
 import PaymentUser from "./pages/PaymentUser";
 import SuccessPage from "./pages/SuccessPage";
 import QrScan from "./pages/QrScan";
-import About from "./pages/About";
 import Tc from "./pages/Tc";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
+import About from "./pages/About";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
           <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
+          <Route path="/about" component={About} />
           <Route exact path="/disclimer" component={Disclaimer} />
           <Route exact path="/terms-and-conditions" component={Tc} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />

@@ -111,7 +111,7 @@
     justify-content: center;
   }
   .headerMobile > nav > ul > li {
-    height: 70px;
+    height: 50px;
     width: 100%;
     display: flex;
     align-items: center;

@@ -33,6 +33,11 @@ const Header = () => {
           <nav>
             <ul>
               <li>
+                <Link className="link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link className="link" to="/disclimer">
                   Disclimer
                 </Link>
@@ -69,6 +74,11 @@ const Header = () => {
       <div className="headerMobile" id="headerMobile">
         <nav>
           <ul>
+            <li>
+              <Link className="link" to="/about">
+                About
+              </Link>
+            </li>
             <li>
               <Link className="link" to="/disclimer">
                 Disclimer
