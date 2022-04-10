@@ -19,6 +19,8 @@ import Tc from "./pages/Tc";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
 import About from "./pages/About";
+import CookiePolicy from "./pages/CookiePolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -32,9 +34,11 @@ function App() {
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
           <Route path="/about" component={About} />
-          <Route exact path="/disclimer" component={Disclaimer} />
-          <Route exact path="/terms-and-conditions" component={Tc} />
-          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/disclimer" component={Disclaimer} />
+          <Route path="/terms-and-conditions" component={Tc} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/cookie-policy" component={CookiePolicy} />
+          <Route path="/refund-policy" component={RefundPolicy} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
           <Route path="/createuser" component={CreateUser} />
           <Route path="/userdetails" component={UserDetails} />
