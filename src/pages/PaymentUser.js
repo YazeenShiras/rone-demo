@@ -94,7 +94,7 @@ const PaymentUser = () => {
   }, [Razorpay, name, email, number, orderId]);
 
   return (
-    <div className="paymnetUser">
+    <div className="paymnetUser" style={{ height: "80px" }}>
       <div className="header">
         <div className="header__logo">
           <a href="/">
