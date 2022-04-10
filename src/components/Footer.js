@@ -54,10 +54,10 @@ const Footer = () => {
           </ul>
         </div>
         <div className="rightCenter__footerLinks__container LinksContainer__footer">
-          <h4>Policies</h4>
+          <h4>Rone Policies</h4>
           <ul>
             <li>
-              <a href="/disclaimer">Disclaimer</a>
+              <a href="/discliamer">Disclaimer</a>
             </li>
             <li>
               <a href="/terms-and-conditions">Terms & Conditions</a>

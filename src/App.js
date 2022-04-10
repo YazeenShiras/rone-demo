@@ -18,6 +18,7 @@ import QrScan from "./pages/QrScan";
 import About from "./pages/About";
 import Tc from "./pages/Tc";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Disclaimer from "./pages/Disclaimer";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
           <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/discliamer" component={Disclaimer} />
           <Route exact path="/terms-and-conditions" component={Tc} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />

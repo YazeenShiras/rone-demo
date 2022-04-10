@@ -185,6 +185,7 @@ const Wallet = () => {
   async function handleSubmit() {
     document.getElementById("formForGenerateLink").style.display = "none";
     document.getElementById("loaderWidget").style.display = "block";
+
     let url = "https://ronecard.herokuapp.com/generateLink";
 
     const response = await fetch(url, {
