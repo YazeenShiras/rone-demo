@@ -15,6 +15,7 @@ const Wallet = () => {
 
   const [roneId, setRoneId] = useState("");
   const [pan, setPan] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [emailRone, setEmailRone] = useState("");
 
   const [initialcards, setInitialcards] = useState(49);
@@ -221,7 +222,7 @@ const Wallet = () => {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
-        "Enter Name, Mobile Number and Email";
+        "Must fill all *Required fields";
     } else {
       let isnum = /^\d+$/.test(number);
       if (number.length === 10) {
@@ -374,7 +375,7 @@ const Wallet = () => {
               </div>
               <div
                 onClick={buyRoneCardClick}
-                className="generateNewLink__button"
+                className="generateNewLink__button buyRoneCardButton"
               >
                 BUY RONE CARD
               </div>
@@ -391,7 +392,7 @@ const Wallet = () => {
             <div className="formForGenerateLink" id="formForGenerateLink">
               <form autoComplete="off" className="form__sumbitForGenerate">
                 <fieldset className="input__container__form__update">
-                  <legend>Name</legend>
+                  <legend>Name*</legend>
                   <div className="input__box__form__update">
                     <input
                       onChange={storeValues}
@@ -402,7 +403,7 @@ const Wallet = () => {
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
-                  <legend>Mobile Number</legend>
+                  <legend>Mobile Number*</legend>
                   <div className="input__box__form__update">
                     <input
                       onChange={storeValues}
@@ -413,7 +414,7 @@ const Wallet = () => {
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
-                  <legend>Email</legend>
+                  <legend>Email*</legend>
                   <div className="input__box__form__update">
                     <input
                       onChange={storeValues}

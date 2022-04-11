@@ -129,13 +129,13 @@ const RegisterSendOtp = () => {
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
-              <legend>Mobile Number</legend>
+              <legend>Mobile Number*</legend>
               <div className="input__box">
                 <input onChange={storeValues} id="number" type="text" />
               </div>
             </fieldset>
             <p className="errorText" id="errorMobile">
-              Enter your Mobile Number
+              Mobile Number *Required
             </p>
             <div onClick={sendOTPClick} className="register__button__form">
               <div

@@ -139,13 +139,13 @@ const VerifyOtpRegister = () => {
           <h2>Verify OTP</h2>
           <form className="form" action="">
             <fieldset className="input__container">
-              <legend>Enter OTP</legend>
+              <legend>Enter OTP*</legend>
               <div className="input__box">
                 <input onChange={storeOtp} id="otp" type="text" />
               </div>
             </fieldset>
             <p id="errorVarifyOtp" className="error__varifyOtp">
-              Please enter OTP
+              OTP *Required
             </p>
             <div onClick={verifyClick} className="register__button__form">
               <div

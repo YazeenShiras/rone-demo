@@ -245,7 +245,8 @@ function UserDetails() {
     ) {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
-      document.getElementById("errorMobile").innerHTML = "Must fill all fields";
+      document.getElementById("errorMobile").innerHTML =
+        "Must fill all *Required fields";
     } else {
       let isEmail = email.includes("@") && email.includes(".com");
       if (isEmail) {
@@ -324,7 +325,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Email</legend>
+            <legend>Email*</legend>
             <div className="input__box">
               <input
                 id="email"
@@ -335,7 +336,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Profession</legend>
+            <legend>Profession*</legend>
             <div className="input__box">
               <input
                 id="profession"
@@ -346,7 +347,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Bio</legend>
+            <legend>Bio*</legend>
             <div className="input__box__textArea">
               <textarea
                 name="bio"
@@ -359,7 +360,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Location</legend>
+            <legend>Location*</legend>
             <div className="input__box">
               <input
                 id="location"
@@ -370,7 +371,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Country</legend>
+            <legend>Country*</legend>
             <div className="input__box">
               <input
                 id="country"
@@ -381,7 +382,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>State</legend>
+            <legend>State*</legend>
             <div className="input__box">
               <input
                 id="state"
@@ -392,7 +393,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>District</legend>
+            <legend>District*</legend>
             <div className="input__box">
               <input
                 id="district"
@@ -403,7 +404,7 @@ function UserDetails() {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Pincode</legend>
+            <legend>Pincode*</legend>
             <div className="input__box">
               <input
                 id="pincode"

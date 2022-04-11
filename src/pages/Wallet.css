@@ -207,6 +207,10 @@
   margin-top: -15px;
 }
 
+.buyRoneCardButton {
+  margin-top: 20px;
+}
+
 .transactionLinks__containerMount {
   width: 100%;
 }

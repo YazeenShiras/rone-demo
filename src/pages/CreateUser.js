@@ -151,7 +151,8 @@ const CreateUser = () => {
     if (name === "" || number === "" || username === "") {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
-      document.getElementById("errorMobile").innerHTML = "Must fill all fields";
+      document.getElementById("errorMobile").innerHTML =
+        "Must fill all *Required fields";
     } else {
       let isnum = /^\d+$/.test(number);
       if (number.length === 10) {
@@ -218,13 +219,13 @@ const CreateUser = () => {
               </div>
             </fieldset>
             <fieldset className="input__container">
-              <legend>Name</legend>
+              <legend>Name*</legend>
               <div className="input__box">
                 <input onChange={storeValues} id="name" type="text" />
               </div>
             </fieldset>
             <fieldset className="input__container">
-              <legend>Username</legend>
+              <legend>Username*</legend>
               <div className="input__box">
                 <input onChange={storeValues} id="username" type="text" />
               </div>

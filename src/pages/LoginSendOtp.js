@@ -76,7 +76,7 @@ const LoginSendOtp = () => {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
-        "Mobile Number required";
+        "Mobile Number *Required";
     } else {
       let isnum = /^\d+$/.test(loginNumber);
       if (loginNumber.length === 10) {
@@ -129,7 +129,7 @@ const LoginSendOtp = () => {
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
-              <legend>Mobile Number</legend>
+              <legend>Mobile Number*</legend>
               <div className="input__box">
                 <input onChange={storeMobile} id="number" type="text" />
               </div>
