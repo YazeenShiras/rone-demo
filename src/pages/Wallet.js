@@ -15,6 +15,7 @@ const Wallet = () => {
 
   const [roneId, setRoneId] = useState("");
   const [pan, setPan] = useState("");
+  const [emailRone, setEmailRone] = useState("");
 
   const [initialcards, setInitialcards] = useState(49);
   const [totalcards, setTotalcards] = useState(50);
@@ -50,6 +51,8 @@ const Wallet = () => {
     setRoneId(rone_id);
     var panid = localStorage.getItem("pan");
     setPan(panid);
+    var emailrone = localStorage.getItem("emailrone");
+    setEmailRone(emailrone);
   }, []);
 
   useEffect(() => {
