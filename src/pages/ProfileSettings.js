@@ -71,7 +71,6 @@ const EditProfile = () => {
       setLocation(data.location);
       setBio(data.bio);
       setEmail(data.email);
-      setAddress(data.address);
       setCountry(data.address.country);
       setDistrict(data.address.distric);
       setState(data.address.state);
