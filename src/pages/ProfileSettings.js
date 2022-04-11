@@ -24,9 +24,7 @@ const EditProfile = () => {
   const [profession, setProfession] = useState("");
   const [bio, setBio] = useState("");
   const [location, setLocation] = useState("");
-  const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
-
   const [country, setCountry] = useState("");
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
@@ -71,7 +69,6 @@ const EditProfile = () => {
       setLocation(data.location);
       setBio(data.bio);
       setEmail(data.email);
-      setAddress(data.address);
       setCountry(data.address.country);
       setDistrict(data.address.distric);
       setState(data.address.state);
@@ -111,8 +108,6 @@ const EditProfile = () => {
     setProfession(document.getElementById("profession").value);
     setBio(document.getElementById("bio").value);
     setLocation(document.getElementById("location").value);
-    setAddress(document.getElementById("address").value);
-
     setCountry(document.getElementById("country").value);
     setDistrict(document.getElementById("district").value);
     setState(document.getElementById("state").value);
@@ -212,7 +207,6 @@ const EditProfile = () => {
     console.log(email);
     console.log(location);
     console.log(profession);
-    console.log(address);
     console.log(bio);
 
     let url = new URL("https://ronecard.herokuapp.com/updat_user__details");
@@ -230,7 +224,7 @@ const EditProfile = () => {
         client: {
           email_id: email,
           location: location,
-          address: address,
+          address: "",
           profession: profession,
           bio: bio,
         },

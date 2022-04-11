@@ -9,10 +9,12 @@ import PrimaryButton from "../components/PrimaryButton";
 const HomePage = () => {
   const [roneId, setRoneId] = useState("");
   const [email, setEmail] = useState("");
+  const [pan, setPan] = useState("");
 
   const storeValue = () => {
     setRoneId(document.getElementById("roneId").value);
     setEmail(document.getElementById("email").value);
+    setPan(document.getElementById("pan").value);
   };
 
   async function handleSubmit() {
@@ -96,6 +98,12 @@ const HomePage = () => {
               </div>
             </fieldset>
             <fieldset className="input__container">
+              <legend>PAN*</legend>
+              <div className="input__box">
+                <input onChange={storeValue} id="pan" type="text" />
+              </div>
+            </fieldset>
+            <fieldset className="input__container">
               <legend>Email*</legend>
               <div className="input__box">
                 <input onChange={storeValue} id="email" type="email" />
@@ -111,12 +119,6 @@ const HomePage = () => {
               <p id="nextText">NEXT</p>
             </div>
           </form>
-          <div className="alreadyRegistered__container">
-            <p className="alreadyRegisterd">already registered ? </p>
-            <Link to="/login">
-              <p className="login__AlreadyRegisterd">Login</p>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

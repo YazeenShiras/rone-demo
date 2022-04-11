@@ -14,9 +14,7 @@ function UserDetails() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [profession, setProfession] = useState("");
-  const [address, setAddress] = useState("");
   const [bio, setBio] = useState("");
-
   const [country, setCountry] = useState("");
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
@@ -84,10 +82,8 @@ function UserDetails() {
   const storeValues = () => {
     setEmail(document.getElementById("email").value);
     setLocation(document.getElementById("location").value);
-    setAddress(document.getElementById("address").value);
     setBio(document.getElementById("bio").value);
     setProfession(document.getElementById("profession").value);
-
     setCountry(document.getElementById("country").value);
     setDistrict(document.getElementById("district").value);
     setState(document.getElementById("state").value);
@@ -160,7 +156,6 @@ function UserDetails() {
       console.log(email);
       console.log(location);
       console.log(profession);
-      console.log(address);
       console.log(bio);
       console.log(country);
       console.log(state);
@@ -183,7 +178,7 @@ function UserDetails() {
         body: JSON.stringify({
           email_id: email,
           location: location,
-          address: address,
+          address: "",
           profession: profession,
           bio: bio,
         }),
@@ -217,19 +212,17 @@ function UserDetails() {
         setIsdetails(true);
         if (profession !== "") {
           setIsdetails(true);
-          if (address !== "") {
+          setIsdetails(true);
+          if (bio !== "") {
             setIsdetails(true);
-            if (bio !== "") {
+            if (country !== "") {
               setIsdetails(true);
-              if (country !== "") {
+              if (state !== "") {
                 setIsdetails(true);
-                if (state !== "") {
+                if (district !== "") {
                   setIsdetails(true);
-                  if (district !== "") {
+                  if (pincode !== "") {
                     setIsdetails(true);
-                    if (pincode !== "") {
-                      setIsdetails(true);
-                    }
                   }
                 }
               }
@@ -238,24 +231,13 @@ function UserDetails() {
         }
       }
     }
-  }, [
-    email,
-    location,
-    address,
-    bio,
-    profession,
-    country,
-    state,
-    district,
-    pincode,
-  ]);
+  }, [email, location, bio, profession, country, state, district, pincode]);
 
   const saveClick = () => {
     if (
       email === "" ||
       location === "" ||
       profession === "" ||
-      address === "" ||
       bio === "" ||
       country === "" ||
       state === "" ||
@@ -375,17 +357,6 @@ function UserDetails() {
                 maxLength="250"
                 onChange={storeValues}
               ></textarea>
-            </div>
-          </fieldset>
-          <fieldset className="input__container">
-            <legend>Address</legend>
-            <div className="input__box">
-              <input
-                id="address"
-                type="text"
-                name="address"
-                onChange={storeValues}
-              />
             </div>
           </fieldset>
           <fieldset className="input__container">
