@@ -52,6 +52,7 @@ const CreateUser = () => {
       }),
     });
     const data = await res.json();
+    console.log(data);
     if (data.status === "true") {
       localStorage.setItem("username", username);
       localStorage.setItem("usermob", number);
@@ -63,6 +64,14 @@ const CreateUser = () => {
       window.location.href = "/userdetails";
     }
     if (data.detail === "mobile  number already exists!") {
+      document.getElementById("loaderRegisterUser").style.display = "none";
+      document.getElementById("RegisterUser").style.display = "block";
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML = data.detail;
+    }
+    if (data.detail === "username already exists!") {
+      document.getElementById("loaderRegisterUser").style.display = "none";
+      document.getElementById("RegisterUser").style.display = "block";
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML = data.detail;
     }
@@ -204,6 +213,7 @@ const CreateUser = () => {
                   onChange={storeValues}
                   id="number"
                   type="text"
+                  readOnly
                 />
               </div>
             </fieldset>

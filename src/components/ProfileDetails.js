@@ -61,11 +61,8 @@ const ProfileDetails = () => {
   useEffect(() => {
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
-
     var rone_id = localStorage.getItem("roneid");
     setRoneId(rone_id);
-
-    console.log("userid : " + userid);
 
     const endpoint = `${window.location.href}/share`;
     let originForShare = new URL(endpoint);
@@ -125,8 +122,6 @@ const ProfileDetails = () => {
       getUser();
       getSocial();
       setOrigin(originForShare.href);
-    } else {
-      console.log("userid not found or null");
     }
   }, [userid, username]);
 

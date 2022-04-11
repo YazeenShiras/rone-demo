@@ -45,7 +45,6 @@ function UserDetails() {
           100,
           0,
           (uri) => {
-            console.log(uri);
             setImageFile(uri);
             setIsProfilePhotoUploaded(true);
           },

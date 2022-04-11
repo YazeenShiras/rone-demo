@@ -238,14 +238,14 @@ const EditProfile = () => {
     if (data.status === 200) {
       if (isProfileChanged) {
         updatePhoto();
-        saveAddress();
       }
+      saveAddress();
       updateSocial();
       setTimeout(() => {
         document.getElementById("updateProfileLoader").style.display = "none";
         document.getElementById("updateProfileText").style.display = "block";
         window.location.href = "/profile";
-      }, 2000);
+      }, 3000);
     }
   }
 

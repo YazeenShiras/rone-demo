@@ -3,8 +3,6 @@ import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import PulseLoader from "react-spinners/PulseLoader";
-import { Link } from "react-router-dom";
-import PrimaryButton from "../components/PrimaryButton";
 
 const HomePage = () => {
   const [roneId, setRoneId] = useState("");
@@ -75,9 +73,6 @@ const HomePage = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link className="loginButton__container" to="/login">
-            <PrimaryButton content="Login" />
-          </Link>
           <div className="header__menu__container">
             <img src={menu} alt="" />
           </div>

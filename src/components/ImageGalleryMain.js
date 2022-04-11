@@ -50,12 +50,10 @@ const ImageGalleryMain = () => {
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
-    console.log(idForImg);
   }, [idForImg]);
 
   useEffect(() => {
     async function getAllImages() {
-      console.log("access to getAllImages");
       const endpoint = "https://ronecard.herokuapp.com/access_image_gallery";
 
       let url = new URL(endpoint);
@@ -81,7 +79,6 @@ const ImageGalleryMain = () => {
           }
           if (data.data) {
             setAllImages(data.data);
-            console.log(allImages);
           }
         })
         .catch(console.error);
@@ -132,6 +129,27 @@ const ImageGalleryMain = () => {
       uploadPhotofromFiles();
     }
   };
+
+  async function deleteImage(imgId, publicId) {
+    let url = new URL("https://ronecard.herokuapp.com/Delete/file/gallery");
+
+    url.search = new URLSearchParams({
+      img_id: imgId,
+      public_id: publicId,
+    });
+
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.status === 200) {
+      window.location.reload();
+    }
+  }
 
   /* const loadMore = () => {
     var loadMoreButton = document.getElementById("loadMore__button");
@@ -185,14 +203,19 @@ const ImageGalleryMain = () => {
         id="imageGalleryContent"
         className="content__container__imageGalleryMain"
       >
-        {allImages.map((imageForGallery, index) => {
+        {allImages.map((imageData, index) => {
           return (
             <div
               key={index}
-              style={{ backgroundImage: `url('${imageForGallery.img_url}')` }}
+              style={{ backgroundImage: `url('${imageData.img_url}')` }}
               className="card__products__imageContainer"
             >
-              <div className="deleteButton deleteButtonImageGallery">
+              <div
+                onClick={() =>
+                  deleteImage(imageData.id, imageData.img_public_id)
+                }
+                className="deleteButton deleteButtonImageGallery"
+              >
                 <img src={deleteIcon} alt="" />
                 Delete
               </div>
