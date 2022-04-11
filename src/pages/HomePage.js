@@ -40,6 +40,7 @@ const HomePage = () => {
     if (data.status === 200) {
       localStorage.setItem("roneid", roneId);
       localStorage.setItem("emailrone", email);
+      localStorage.setItem("pan", pan);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       window.location.href = "/register";
@@ -54,7 +55,7 @@ const HomePage = () => {
   }
 
   const nextClick = () => {
-    if (roneId === "" || email === "") {
+    if (roneId === "" || email === "" || pan === "") {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
