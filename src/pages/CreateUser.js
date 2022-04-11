@@ -53,7 +53,7 @@ const CreateUser = () => {
     });
     const data = await res.json();
     if (data.status === "true") {
-      localStorage.setItem("username", name);
+      localStorage.setItem("username", username);
       localStorage.setItem("usermob", number);
       localStorage.setItem("newuserid", data.id);
       localStorage.setItem("access_token", data.access_token);

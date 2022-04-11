@@ -126,16 +126,14 @@ function UserDetails() {
     console.log(district);
     console.log(pincode);
 
-    console.log(userid);
-
     let url = new URL("https://ronecard.herokuapp.com/roneuser_address");
 
     url.search = new URLSearchParams({
-      user_id: userid,
+      username: username,
     });
 
     const response = await fetch(url, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -155,7 +153,7 @@ function UserDetails() {
 
   async function saveProfile() {
     uploadPhoto();
-    /* saveAddress(); */
+    saveAddress();
     if (isProfilePhotoUploaded) {
       document.getElementById("saveProfileLoader").style.display = "block";
       document.getElementById("saveProfileText").style.display = "none";

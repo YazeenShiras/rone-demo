@@ -42,11 +42,14 @@ const EditProfile = () => {
   const [img, setImg] = useState("");
 
   const [idForUpdate, setIdForUpdate] = useState();
+  const [username, setUserName] = useState("");
 
   var idForUpdateForm = localStorage.getItem("newuserid");
+  var newName = localStorage.getItem("username");
 
   useEffect(() => {
     setIdForUpdate(idForUpdateForm);
+    setUserName(newName);
 
     let url = new URL("https://ronecard.herokuapp.com/user_details");
     url.search = new URLSearchParams({
@@ -69,6 +72,10 @@ const EditProfile = () => {
       setBio(data.bio);
       setEmail(data.email);
       setAddress(data.address);
+      setCountry(data.address.country);
+      setDistrict(data.address.distric);
+      setState(data.address.state);
+      setPinCode(data.address.pincode);
     };
 
     let socialUrl = new URL("https://ronecard.herokuapp.com/get_social_links");
@@ -97,7 +104,7 @@ const EditProfile = () => {
       getUser();
       getSocial();
     }
-  }, [idForUpdate, idForUpdateForm]);
+  }, [idForUpdate, idForUpdateForm, newName, username]);
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
@@ -170,6 +177,34 @@ const EditProfile = () => {
     console.log(data);
   }
 
+  async function saveAddress() {
+    console.log(country);
+    console.log(state);
+    console.log(district);
+    console.log(pincode);
+
+    let url = new URL("https://ronecard.herokuapp.com/roneuser_address");
+
+    url.search = new URLSearchParams({
+      username: username,
+    });
+
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        counrty: country,
+        state: state,
+        distric: district,
+        pincode: pincode,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  }
+
   async function updateProfile() {
     document.getElementById("updateProfileLoader").style.display = "block";
     document.getElementById("updateProfileText").style.display = "none";
@@ -209,6 +244,7 @@ const EditProfile = () => {
     if (data.status === 200) {
       if (isProfileChanged) {
         updatePhoto();
+        saveAddress();
       }
       updateSocial();
       setTimeout(() => {
@@ -363,18 +399,6 @@ const EditProfile = () => {
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
-                  <legend>Address</legend>
-                  <div className="input__box__form__update">
-                    <input
-                      onChange={storeValues}
-                      type="text"
-                      name="address"
-                      id="address"
-                      defaultValue={address}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset className="input__container__form__update">
                   <legend>Country</legend>
                   <div className="input__box__form__update">
                     <input
@@ -382,6 +406,7 @@ const EditProfile = () => {
                       name="country"
                       id="country"
                       onChange={storeValues}
+                      defaultValue={country}
                     />
                   </div>
                 </fieldset>
@@ -393,6 +418,7 @@ const EditProfile = () => {
                       name="state"
                       id="state"
                       onChange={storeValues}
+                      defaultValue={state}
                     />
                   </div>
                 </fieldset>
@@ -404,6 +430,7 @@ const EditProfile = () => {
                       name="district"
                       id="district"
                       onChange={storeValues}
+                      defaultValue={district}
                     />
                   </div>
                 </fieldset>
@@ -415,6 +442,7 @@ const EditProfile = () => {
                       name="pincode"
                       id="pincode"
                       onChange={storeValues}
+                      defaultValue={pincode}
                     />
                   </div>
                 </fieldset>

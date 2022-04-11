@@ -49,6 +49,7 @@ const VerifyOtpLogin = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === 202) {
+      localStorage.setItem("username", data.username);
       localStorage.setItem("loggedAccessToken", data.access_token);
       localStorage.setItem("loggedRefreshToken", data.refresh_token);
       localStorage.setItem("loggedImg", data.profile);
