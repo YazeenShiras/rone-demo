@@ -21,6 +21,8 @@ import Disclaimer from "./pages/Disclaimer";
 import About from "./pages/About";
 import CookiePolicy from "./pages/CookiePolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import SelectCountry from "./components/SelectCountry";
+import EmailVerification from "./pages/EmailVerification";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={DevelopmentMode} /> */}
           <Route path="/" exact component={HomePage} />
+          <Route path="/selectCountry" component={SelectCountry} />
           <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
@@ -49,6 +52,7 @@ function App() {
           <Route path="/settings/QR-code" component={QrScan} />
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
+          <Route path="/email/:id" component={EmailVerification} />
           <Route path="/:id" component={PaymentUser} />
         </Switch>
       </div>

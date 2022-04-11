@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+/* import { Country, State, City } from "country-state-city"; */
 import user from "../assets/user.svg";
 import logo from "../assets/Logo1.svg";
 import photoIcon from "../assets/image.svg";
