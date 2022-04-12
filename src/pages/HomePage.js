@@ -14,6 +14,8 @@ const HomePage = () => {
   };
 
   async function handleSubmit() {
+    document.getElementById("loaderNextButton").style.display = "block";
+    document.getElementById("nextText").style.display = "none";
     let url = new URL(
       "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
     );
