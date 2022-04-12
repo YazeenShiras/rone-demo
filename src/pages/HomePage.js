@@ -7,32 +7,11 @@ import PulseLoader from "react-spinners/PulseLoader";
 const HomePage = () => {
   const [roneId, setRoneId] = useState("");
   const [email, setEmail] = useState("");
-  const [pan, setPan] = useState("");
 
   const storeValue = () => {
     setRoneId(document.getElementById("roneId").value);
     setEmail(document.getElementById("email").value);
-    setPan(document.getElementById("pan").value);
   };
-
-  /* async function verifyEmail() {
-    let url = new URL("https://ronecard.herokuapp.com/Email-verification");
-    url.search = new URLSearchParams({
-      emailid: email,
-    });
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-    console.log(data);
-    if (data.status === 200) {
-      localStorage.setItem("tokenEmail", data.token);
-    }
-  } */
 
   async function handleSubmit() {
     document.getElementById("loaderNextButton").style.display = "block";
@@ -55,15 +34,11 @@ const HomePage = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === 200) {
-      localStorage.setItem("roneid", roneId);
-      localStorage.setItem("emailrone", email);
-      localStorage.setItem("pan", pan);
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
-      document.getElementById("emailSent").style.display = "block";
-      document.getElementById("nextButton").style.display = "none";
+      localStorage.setItem("roneid", roneId);
+      localStorage.setItem("emailrone", email);
       window.location.href = "/register";
-      /* verifyEmail(); */
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -75,7 +50,7 @@ const HomePage = () => {
   }
 
   const nextClick = () => {
-    if (roneId === "" || email === "" || pan === "") {
+    if (roneId === "" || email === "") {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
@@ -116,12 +91,6 @@ const HomePage = () => {
               </div>
             </fieldset>
             <fieldset className="input__container">
-              <legend>PAN*</legend>
-              <div className="input__box">
-                <input onChange={storeValue} id="pan" type="text" />
-              </div>
-            </fieldset>
-            <fieldset className="input__container">
               <legend>Email*</legend>
               <div className="input__box">
                 <input onChange={storeValue} id="email" type="email" />
@@ -141,9 +110,6 @@ const HomePage = () => {
               <p id="nextText">NEXT</p>
             </div>
           </form>
-          {/* <p className="errorText" id="emailSent">
-            verification email sent successfully!
-          </p> */}
         </div>
       </div>
     </div>
