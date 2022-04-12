@@ -58,7 +58,7 @@ const Wallet = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          roneId: "RONEGOLDCARD22",
+          roneId: roneId,
         }),
       });
       const data = await response.json();

@@ -85,7 +85,6 @@ const ProfileDetails = () => {
       setUserData(data);
       setUsername(data.username);
       localStorage.setItem("username", data.username);
-      localStorage.setItem("nameForWallet", data.name);
       if (data) {
         document.getElementById("loadingProfile").style.display = "none";
         document.getElementById(
