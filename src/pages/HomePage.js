@@ -15,7 +15,7 @@ const HomePage = () => {
     setPan(document.getElementById("pan").value);
   };
 
-  async function verifyEmail() {
+  /* async function verifyEmail() {
     let url = new URL("https://ronecard.herokuapp.com/Email-verification");
     url.search = new URLSearchParams({
       emailid: email,
@@ -31,12 +31,8 @@ const HomePage = () => {
     console.log(data);
     if (data.status === 200) {
       localStorage.setItem("tokenEmail", data.token);
-      document.getElementById("loaderNextButton").style.display = "none";
-      document.getElementById("nextText").style.display = "block";
-      document.getElementById("emailSent").style.display = "block";
-      document.getElementById("nextButton").style.display = "none";
     }
-  }
+  } */
 
   async function handleSubmit() {
     document.getElementById("loaderNextButton").style.display = "block";
@@ -62,7 +58,12 @@ const HomePage = () => {
       localStorage.setItem("roneid", roneId);
       localStorage.setItem("emailrone", email);
       localStorage.setItem("pan", pan);
-      verifyEmail();
+      document.getElementById("loaderNextButton").style.display = "none";
+      document.getElementById("nextText").style.display = "block";
+      document.getElementById("emailSent").style.display = "block";
+      document.getElementById("nextButton").style.display = "none";
+      window.location.href = "/register";
+      /* verifyEmail(); */
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -140,9 +141,9 @@ const HomePage = () => {
               <p id="nextText">NEXT</p>
             </div>
           </form>
-          <p className="errorText" id="emailSent">
+          {/* <p className="errorText" id="emailSent">
             verification email sent successfully!
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
