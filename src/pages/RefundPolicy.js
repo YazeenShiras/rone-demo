@@ -128,9 +128,7 @@ const RefundPolicy = () => {
         </p>
         <p>
           By email:{" "}
-          <a href="mailto:support@roneinfotrade.co.in">
-            support@roneinfotrade.co.in
-          </a>
+          <a href="mailto:support@ronedcard.com">support@ronedcard.com</a>
         </p>
       </div>
     </div>

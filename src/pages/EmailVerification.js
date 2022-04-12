@@ -7,12 +7,13 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 const EmailVerification = () => {
   const [tokenLink, setTokenLink] = useState("");
-  const [tokenLocal, setTokenLocal] = useState("");
+  const [email, setEmail] = useState("");
 
-  function getParameters() {
+  function getToken() {
     let urlString = window.location.href;
     let paramString = urlString.split("?")[1];
-    let queryString = new URLSearchParams(paramString);
+    let valueString = paramString.split("&")[0];
+    let queryString = new URLSearchParams(valueString);
     for (let pair of queryString.entries()) {
       console.log("Key is:" + pair[0]);
       console.log("Value is:" + pair[1]);
@@ -20,30 +21,53 @@ const EmailVerification = () => {
     }
   }
 
+  function getEmail() {
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let valueString = paramString.split("&")[1];
+    let queryString = new URLSearchParams(valueString);
+    for (let pair of queryString.entries()) {
+      console.log("Key is:" + pair[0]);
+      console.log("Value is:" + pair[1]);
+      setEmail(pair[1]);
+    }
+  }
+
   useEffect(() => {
-    getParameters();
-    var token = localStorage.getItem("tokenEmail");
-    setTokenLocal(token);
+    getEmail();
+    getToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleSubmit() {
-    document.getElementById("loaderVerifyEmail").style.display = "block";
-    document.getElementById("veryfyEmail").style.display = "none";
-    let url = new URL(
-      "https://ronecard.herokuapp.com/otp_verification_for_email"
-    );
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email_link_token: tokenLink,
-        lockal_storage_token: tokenLocal,
-      }),
-    });
-    const data = await res.json();
-    console.log(data);
+    console.log(tokenLink);
+    console.log(email);
+    if (email !== "" && tokenLink !== "") {
+      document.getElementById("loaderVerifyEmail").style.display = "block";
+      document.getElementById("veryfyEmail").style.display = "none";
+      let url = new URL(
+        "https://ronecard.herokuapp.com/otp_verification_for_email"
+      );
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email_link_token: tokenLink,
+          email: email,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.status === 404) {
+        document.getElementById("message").innerHTML =
+          "Your Email verification Failed";
+        document.getElementById("loaderVerifyEmail").style.display = "none";
+        document.getElementById("veryfyEmail").style.display = "block";
+        document.getElementById("errorEmailValidation").style.display = "flex";
+      }
+    }
   }
 
   return (
@@ -68,7 +92,7 @@ const EmailVerification = () => {
           <img src={register} alt="" />
         </div>
         <div className="inputs__container__bodyRegister">
-          <h2>Your Email verification Pending</h2>
+          <h2 id="message">Your Email verification Pending...</h2>
           <form className="form" action="">
             <div className="register__button__form" onClick={handleSubmit}>
               <div className="loader__container__login" id="loaderVerifyEmail">
@@ -77,6 +101,12 @@ const EmailVerification = () => {
               <p id="veryfyEmail">VERIFY EMAIL</p>
             </div>
           </form>
+          <p className="error__varifyOtp" id="errorEmailValidation">
+            Invalid token or expired token
+            <a style={{ color: "#0000EE", marginTop: "10px" }} href="/">
+              back to home
+            </a>
+          </p>
         </div>
       </div>
     </div>

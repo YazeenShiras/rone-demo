@@ -115,10 +115,7 @@ const Disclaimer = () => {
           If you have any questions about this Disclaimer, You can contact Us:
         </p>
         <p>
-          By email :{" "}
-          <a href="mailto:support@roneinfotrade.co.in">
-            support@roneinfotrade.co.in
-          </a>
+          By email : <a href="support@ronedcard.com">support@ronedcard.com</a>
         </p>
       </div>
     </div>

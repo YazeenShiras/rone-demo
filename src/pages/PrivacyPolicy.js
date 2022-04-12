@@ -372,10 +372,7 @@ const PrivacyPolicy = () => {
           us:
         </p>
         <p>
-          By email :{" "}
-          <a href="mailto:support@roneinfotrade.co.in">
-            support@roneinfotrade.co.in
-          </a>
+          By email : <a href="support@ronedcard.com">support@ronedcard.com</a>
         </p>
       </div>
     </div>

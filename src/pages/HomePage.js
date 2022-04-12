@@ -14,9 +14,6 @@ const HomePage = () => {
   };
 
   async function handleSubmit() {
-    document.getElementById("loaderNextButton").style.display = "block";
-    document.getElementById("nextText").style.display = "none";
-
     let url = new URL(
       "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
     );
@@ -38,14 +35,43 @@ const HomePage = () => {
       document.getElementById("nextText").style.display = "block";
       localStorage.setItem("roneid", roneId);
       localStorage.setItem("emailrone", email);
-      window.location.href = "/register";
+      document.getElementById("emailSent").style.display = "block";
+      document.getElementById("nextButton").style.display = "none";
+      /* window.location.href = "/register"; */
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
-      document.getElementById("loaderNextButton").style.display = "none";
-      document.getElementById("nextText").style.display = "block";
       document.getElementById("errorRoneId").innerHTML =
         "invalid RONE ID or Email";
+      document.getElementById("loaderNextButton").style.display = "none";
+      document.getElementById("nextText").style.display = "block";
+    }
+  }
+
+  async function verifyEmail() {
+    document.getElementById("loaderNextButton").style.display = "block";
+    document.getElementById("nextText").style.display = "none";
+    let url = new URL("https://ronecard.herokuapp.com/Email-otp_genarator");
+    url.search = new URLSearchParams({
+      emailid: email,
+    });
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status === 200) {
+      handleSubmit();
+      console.log(data.message);
+    } else if (data.status === 404) {
+      document.getElementById("errorRoneId").style.display = "block";
+      document.getElementById("errorRoneId").innerHTML = data.message;
+      document.getElementById("loaderNextButton").style.display = "none";
+      document.getElementById("nextText").style.display = "block";
     }
   }
 
@@ -54,7 +80,7 @@ const HomePage = () => {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
-      handleSubmit();
+      verifyEmail();
     }
   };
 
@@ -110,6 +136,9 @@ const HomePage = () => {
               <p id="nextText">NEXT</p>
             </div>
           </form>
+          <p className="errorText" id="emailSent">
+            verification email sent successfully!
+          </p>
         </div>
       </div>
     </div>
