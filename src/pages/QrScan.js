@@ -7,26 +7,24 @@ import QRCode from "react-qr-code";
 
 const QrScan = () => {
   const [qrName, setQrName] = useState("");
-  const [userid, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
   const [origin, setOrigin] = useState("");
 
   useEffect(() => {
-    var newid = localStorage.getItem("newuserid");
-    setUserId(newid);
     const name = localStorage.getItem("nameForWallet");
     setQrName(name);
-
-    console.log("userid : " + userid);
+    const useName = localStorage.getItem("username");
+    setUserName(useName);
 
     const endpoint = "https://ronedcard.com/profile/share";
     let originForShare = new URL(endpoint);
-    originForShare.searchParams.set("id", userid);
+    originForShare.searchParams.set("user", userName);
 
-    if (userid !== "") {
+    if (userName !== "") {
       setOrigin(originForShare.href);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid]);
+  }, [userName]);
 
   return (
     <div className="settingsPage qrSettings">

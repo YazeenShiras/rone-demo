@@ -15,6 +15,29 @@ const HomePage = () => {
     setPan(document.getElementById("pan").value);
   };
 
+  async function verifyEmail() {
+    let url = new URL("https://ronecard.herokuapp.com/Email-verification");
+    url.search = new URLSearchParams({
+      emailid: email,
+    });
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status === 200) {
+      localStorage.setItem("tokenEmail", data.token);
+      document.getElementById("loaderNextButton").style.display = "none";
+      document.getElementById("nextText").style.display = "block";
+      document.getElementById("emailSent").style.display = "block";
+      document.getElementById("nextButton").style.display = "none";
+    }
+  }
+
   async function handleSubmit() {
     document.getElementById("loaderNextButton").style.display = "block";
     document.getElementById("nextText").style.display = "none";
@@ -39,9 +62,7 @@ const HomePage = () => {
       localStorage.setItem("roneid", roneId);
       localStorage.setItem("emailrone", email);
       localStorage.setItem("pan", pan);
-      document.getElementById("loaderNextButton").style.display = "none";
-      document.getElementById("nextText").style.display = "block";
-      window.location.href = "/register";
+      verifyEmail();
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -108,13 +129,20 @@ const HomePage = () => {
             <p className="errorText" id="errorRoneId">
               Must fill *Required fields
             </p>
-            <div className="register__button__form" onClick={nextClick}>
+            <div
+              id="nextButton"
+              className="register__button__form"
+              onClick={nextClick}
+            >
               <div className="loader__container__login" id="loaderNextButton">
                 <PulseLoader color="#ffffff" />
               </div>
               <p id="nextText">NEXT</p>
             </div>
           </form>
+          <p className="errorText" id="emailSent">
+            verification email sent successfully!
+          </p>
         </div>
       </div>
     </div>

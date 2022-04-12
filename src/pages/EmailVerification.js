@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
@@ -6,9 +6,44 @@ import "./AuthStyles.css";
 import PulseLoader from "react-spinners/PulseLoader";
 
 const EmailVerification = () => {
+  const [tokenLink, setTokenLink] = useState("");
+  const [tokenLocal, setTokenLocal] = useState("");
+
+  function getParameters() {
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let queryString = new URLSearchParams(paramString);
+    for (let pair of queryString.entries()) {
+      console.log("Key is:" + pair[0]);
+      console.log("Value is:" + pair[1]);
+      setTokenLink(pair[1]);
+    }
+  }
+
+  useEffect(() => {
+    getParameters();
+    var token = localStorage.getItem("tokenEmail");
+    setTokenLocal(token);
+  }, []);
+
   async function handleSubmit() {
     document.getElementById("loaderVerifyEmail").style.display = "block";
     document.getElementById("veryfyEmail").style.display = "none";
+    let url = new URL(
+      "https://ronecard.herokuapp.com/otp_verification_for_email"
+    );
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email_link_token: tokenLink,
+        lockal_storage_token: tokenLocal,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
   }
 
   return (
@@ -39,7 +74,7 @@ const EmailVerification = () => {
               <div className="loader__container__login" id="loaderVerifyEmail">
                 <PulseLoader color="#ffffff" />
               </div>
-              <p id="veryfyEmail">CONTINUE</p>
+              <p id="veryfyEmail">VERIFY EMAIL</p>
             </div>
           </form>
         </div>
