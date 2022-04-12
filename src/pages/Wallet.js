@@ -14,12 +14,8 @@ const Wallet = () => {
   const [userNameCard, SetUserNameCard] = useState("");
 
   const [roneId, setRoneId] = useState("");
-  const [pan, setPan] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [emailRone, setEmailRone] = useState("");
 
-  const [initialcards, setInitialcards] = useState(49);
-  const [totalcards, setTotalcards] = useState(50);
+  const [initialcards, setInitialcards] = useState(50);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -44,21 +40,17 @@ const Wallet = () => {
     window.onload = function () {
       window.localStorage.isMySessionActive = "true";
     };
-    var newName = localStorage.getItem("nameForWallet");
-    SetUserNameCard(newName);
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
     var rone_id = localStorage.getItem("roneid");
     setRoneId(rone_id);
-    var panid = localStorage.getItem("pan");
-    setPan(panid);
-    var emailrone = localStorage.getItem("emailrone");
-    setEmailRone(emailrone);
   }, []);
 
   useEffect(() => {
+    console.log(roneId);
+
     async function cardDetails() {
-      let url = "https://rone-card.herokkuapp/cardBalance";
+      let url = "https://rone-card.herokuapp.com/cardBalance";
 
       const response = await fetch(url, {
         method: "POST",
@@ -66,28 +58,21 @@ const Wallet = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          panId: pan,
-          roneId: roneId,
+          roneId: "RONEGOLDCARD22",
         }),
       });
       const data = await response.json();
       console.log(data);
-      if (data.balance) {
-        setInitialcards(data.balance.initialcards);
-        setTotalcards(data.balance.totalcards);
-        setRoneId(data.balance.roneId);
+      if (data.card) {
+        setInitialcards(data.card.initialcards);
+        SetUserNameCard(data.card.name);
       }
     }
 
-    if (
-      pan !== "" &&
-      pan !== undefined &&
-      roneId !== "" &&
-      roneId !== undefined
-    ) {
+    if (roneId !== "" && roneId !== undefined) {
       cardDetails();
     }
-  }, [pan, roneId]);
+  }, [roneId]);
 
   const [refDetails, setRefDetails] = useState([]);
 
@@ -335,10 +320,8 @@ const Wallet = () => {
                     <p>{roneId}</p>
                   </div>
                   <div className="cardBalanceContainer">
-                    <p>Card Balance</p>
-                    <h3>
-                      {initialcards}\{totalcards}
-                    </h3>
+                    <p>Intial Cards</p>
+                    <h3>{initialcards}</h3>
                   </div>
                 </div>
               </div>
