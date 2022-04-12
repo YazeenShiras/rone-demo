@@ -37,7 +37,7 @@ function App() {
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
           <Route path="/about" component={About} />
-          <Route path="/disclimer" component={Disclaimer} />
+          <Route path="/disclaimer" component={Disclaimer} />
           <Route path="/terms-and-conditions" component={Tc} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/cookie-policy" component={CookiePolicy} />

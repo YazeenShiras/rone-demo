@@ -38,8 +38,8 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/disclimer">
-                  Disclimer
+                <Link className="link" to="/disclaimer">
+                  Disclaimer
                 </Link>
               </li>
               <li>
@@ -80,8 +80,8 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link className="link" to="/disclimer">
-                Disclimer
+              <Link className="link" to="/disclaimer">
+                Disclaimer
               </Link>
             </li>
             <li>
