@@ -15,7 +15,7 @@ const Wallet = () => {
 
   const [roneId, setRoneId] = useState("");
 
-  const [initialcards, setInitialcards] = useState(50);
+  const [initialcards, setInitialcards] = useState(0);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
