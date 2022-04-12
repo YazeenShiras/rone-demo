@@ -37,7 +37,7 @@ const HomePage = () => {
       localStorage.setItem("emailrone", email);
       document.getElementById("emailSent").style.display = "block";
       document.getElementById("nextButton").style.display = "none";
-      /* window.location.href = "/register"; */
+      window.location.href = "/register";
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -80,7 +80,7 @@ const HomePage = () => {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
-      verifyEmail();
+      handleSubmit();
     }
   };
 
