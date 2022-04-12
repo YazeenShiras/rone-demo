@@ -10,10 +10,10 @@ import PulseLoader from "react-spinners/PulseLoader";
 const LoginSendOtp = () => {
   const [isdetails, setIsdetails] = useState(false);
   const [loginNumber, setLoginNumber] = useState("");
+  const [roneId, setRoneId] = useState("");
+  const [email, setEmail] = useState("");
 
   async function handleSubmit() {
-    document.getElementById("loaderSentOtp").style.display = "block";
-    document.getElementById("sentOTP").style.display = "none";
     let url = new URL(
       "https://ronecard.herokuapp.com/OTP_Genarator/rone/login"
     );
@@ -52,8 +52,44 @@ const LoginSendOtp = () => {
     }
   }
 
+  async function roneCheck() {
+    document.getElementById("loaderSentOtp").style.display = "block";
+    document.getElementById("sentOTP").style.display = "none";
+    let url = new URL(
+      "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
+    );
+    url.search = new URLSearchParams({
+      rone_id: roneId,
+      email: email,
+    });
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status === 200) {
+      document.getElementById("loaderSentOtp").style.display = "none";
+    document.getElementById("sentOTP").style.display = "block";
+      localStorage.setItem("roneid", roneId);
+      handleSubmit();
+    }
+    if (data.status === 404) {
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML =
+        "invalid RONE ID or Email";
+        document.getElementById("loaderSentOtp").style.display = "none";
+        document.getElementById("sentOTP").style.display = "block";
+    }
+  }
+
   const storeMobile = () => {
     setLoginNumber(document.getElementById("number").value);
+    setRoneId(document.getElementById("roneId").value)
+    setEmail(document.getElementById("email").value);
   };
 
   useEffect(() => {
@@ -65,6 +101,12 @@ const LoginSendOtp = () => {
         } else {
           setIsdetails(false);
         }
+        if(roneId !== "") {
+          setIsdetails(true)
+          if(email !== "") {
+            setIsdetails(true)
+          }
+        }
       } else {
         setIsdetails(false);
       }
@@ -72,11 +114,11 @@ const LoginSendOtp = () => {
   }, [loginNumber]);
 
   const loginClick = () => {
-    if (loginNumber === "") {
+    if (loginNumber === "" || roneId === "" || email === "") {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
-        "Mobile Number *Required";
+        "Must fill *Required fields";
     } else {
       let isnum = /^\d+$/.test(loginNumber);
       if (loginNumber.length === 10) {
@@ -93,7 +135,7 @@ const LoginSendOtp = () => {
           "Enter a valid Mobile Number";
       }
       if (isdetails) {
-        handleSubmit();
+        roneCheck();
       }
     }
   };
@@ -110,7 +152,7 @@ const LoginSendOtp = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link to="/register">
+          <Link to="/">
             <SecondaryButton content="Register" />
           </Link>
           <div className="header__menu__container">
@@ -128,6 +170,18 @@ const LoginSendOtp = () => {
             Mobile Number
           </h2>
           <form autoComplete="off" className="form" action="">
+          <fieldset className="input__container">
+              <legend>RONE ID*</legend>
+              <div className="input__box">
+                <input onChange={storeMobile} id="roneId" type="text" />
+              </div>
+            </fieldset>
+            <fieldset className="input__container">
+              <legend>Email*</legend>
+              <div className="input__box">
+                <input onChange={storeMobile} id="email" type="email" />
+              </div>
+            </fieldset>
             <fieldset className="input__container">
               <legend>Mobile Number*</legend>
               <div className="input__box">
@@ -141,12 +195,12 @@ const LoginSendOtp = () => {
               <div className="loader__container__login" id="loaderSentOtp">
                 <PulseLoader color="#ffffff" />
               </div>
-              <p id="sentOTP">SENT OTP</p>
+              <p id="sentOTP">SENT OTP TO MOBILE</p>
             </div>
           </form>
           <div className="alreadyRegistered__container">
             <p className="alreadyRegisterd">Not registered ? </p>
-            <Link to="/register">
+            <Link to="/">
               <p className="login__AlreadyRegisterd">Register</p>
             </Link>
           </div>

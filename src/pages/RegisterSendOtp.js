@@ -4,8 +4,6 @@ import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import "./AuthStyles.css";
 import PulseLoader from "react-spinners/PulseLoader";
-import { Link } from "react-router-dom";
-import PrimaryButton from "../components/PrimaryButton";
 
 const RegisterSendOtp = () => {
   const [number, setNumber] = useState("");
@@ -111,9 +109,6 @@ const RegisterSendOtp = () => {
           </div>
         </div>
         <div className="header__right">
-          <Link className="loginButton__container" to="/login">
-            <PrimaryButton content="Login" />
-          </Link>
           <div className="header__menu__container">
             <img src={menu} alt="" />
           </div>
@@ -147,12 +142,6 @@ const RegisterSendOtp = () => {
               <p id="sentOTPRegister">SENT OTP</p>
             </div>
           </form>
-          <div className="alreadyRegistered__container">
-            <p className="alreadyRegisterd">Already Registered ? </p>
-            <Link to="/login">
-              <p className="login__AlreadyRegisterd">Login</p>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

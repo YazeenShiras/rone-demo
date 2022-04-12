@@ -8,6 +8,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 const EmailVerification = () => {
   const [tokenLink, setTokenLink] = useState("");
   const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
 
   function getToken() {
     let urlString = window.location.href;
@@ -33,16 +34,36 @@ const EmailVerification = () => {
     }
   }
 
+  function getRoneID() {
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let valueString = paramString.split("&")[2];
+    let queryString = new URLSearchParams(valueString);
+    for (let pair of queryString.entries()) {
+      console.log("Key is:" + pair[0]);
+      console.log("Value is:" + pair[1]);
+      localStorage.setItem("roneid", pair[1]);
+    }
+  }
+
   useEffect(() => {
     getEmail();
     getToken();
+    getRoneID();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    let n = 2;
+    let first = tokenLink.substring(n);
+    setToken(first.substring(0, first.length - 1));
+    console.log(token);
+  }, [tokenLink, token]);
+
   async function handleSubmit() {
-    console.log(tokenLink);
+    console.log(token);
     console.log(email);
-    if (email !== "" && tokenLink !== "") {
+    if (email !== "" && token !== "") {
       document.getElementById("loaderVerifyEmail").style.display = "block";
       document.getElementById("veryfyEmail").style.display = "none";
       let url = new URL(
@@ -54,12 +75,19 @@ const EmailVerification = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email_link_token: tokenLink,
+          email_link_token: token,
           email: email,
         }),
       });
       const data = await res.json();
       console.log(data);
+      if (data.status === 202) {
+        document.getElementById("message").innerHTML =
+          "Your Email verification Success";
+        document.getElementById("loaderVerifyEmail").style.display = "none";
+        document.getElementById("veryfyEmail").style.display = "block";
+        window.location.href = "/register";
+      }
       if (data.status === 404) {
         document.getElementById("message").innerHTML =
           "Your Email verification Failed";
