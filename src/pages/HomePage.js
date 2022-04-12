@@ -35,8 +35,8 @@ const HomePage = () => {
       document.getElementById("nextText").style.display = "block";
       localStorage.setItem("roneid", roneId);
       localStorage.setItem("emailrone", email);
-      document.getElementById("emailSent").style.display = "block";
-      document.getElementById("nextButton").style.display = "none";
+      /* document.getElementById("emailSent").style.display = "block";
+      document.getElementById("nextButton").style.display = "none"; */
       window.location.href = "/register";
     }
     if (data.status === 404) {
@@ -48,7 +48,7 @@ const HomePage = () => {
     }
   }
 
-  async function verifyEmail() {
+  /* async function verifyEmail() {
     document.getElementById("loaderNextButton").style.display = "block";
     document.getElementById("nextText").style.display = "none";
     let url = new URL("https://ronecard.herokuapp.com/Email-otp_genarator");
@@ -73,7 +73,7 @@ const HomePage = () => {
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
     }
-  }
+  } */
 
   const nextClick = () => {
     if (roneId === "" || email === "") {
