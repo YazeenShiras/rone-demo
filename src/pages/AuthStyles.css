@@ -216,6 +216,15 @@
   display: none;
 }
 
+.input__box > select{
+  width: 92%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+}
+
 @media only screen and (max-width: 500px) {
   .content__bodyRegister {
     flex-direction: column;

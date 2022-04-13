@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useEffect, useState } from 'react'
 import { Country, State, City } from 'country-state-city';
 
 function SelectCountry() {
@@ -6,19 +6,25 @@ function SelectCountry() {
   const [city, setCity] = useState("")
 
   const [country, setCountry] = useState("")
+  const [state, setState] = useState("")
+  const [citi, setCiti] = useState("")
 
   useEffect(() => {
     console.log(country);
-  }, [country])
+    console.log(state);
+    console.log(citi);
+  }, [country, state, citi])
 
   const Countries = Country.getAllCountries().map((country) => {
-    return <option key={country.isoCode} id={country.isoCode} value={country.isoCode}>{country.name}</option>
+    return <option key={country.isoCode} value={[country.isoCode,country.name]}>{country.name}</option>
   })
 
   const handleCountry = (e) => {
-    setCountry(e.target.value)
+      const code = e.target.value.split(",")
+      const countryName = code[1]
+      setCountry(countryName)
     const States = State.getAllStates().filter((state) => {
-      return state.countryCode === e.target.value
+      return state.countryCode === code[0]
     })
     setstates(States)
   }
@@ -26,13 +32,16 @@ function SelectCountry() {
   let States;
   if (allStates) {
     States = allStates.map((state) => {
-      return <option key={state.isoCode} value={state.isoCode}>{state.name}</option>
+      return <option key={state.isoCode} value={[state.isoCode,state.name]}>{state.name}</option>
     })
   }
 
   const handlestate = (e) => {
+    const code = e.target.value.split(",")
+    const stateName = code[1]
+    setState(stateName)
     const city = City.getAllCities().filter((city) => {
-      return city.stateCode === e.target.value
+      return city.stateCode === code[0]
     })
      setCity(city)
   }
@@ -46,38 +55,34 @@ function SelectCountry() {
   }
 
   const handlecity = (e) => {
+    setCiti(e.target.value)
     console.log(e.target.value)
   }
 
   return (
     <>
-      <div className='max-w-full min-h-screen bg-gray-200 flex flex-col items-center justify-center'>
-        <div className="flex flex-col justify-center">
-          <div className="mb-3 xl:w-96">
-            <select className="m-0 form-select appearance-none block w-full px-3  py-1.5  font-normal  text-base  text-gray-700   bg-white bg-clip-padding bg-no-repeat   border border-solid border-gray-300 rounded  transition   ease-in-out
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" onClick={handleCountry}>
-             <option id="select" value="country"> Select Country</option>
+      <div>
+        <div>
+          <div>
+            <select onClick={handleCountry}>
+              <option selected>Open this select your country</option>
               {Countries}
             </select>
           </div>
-          <div className="mb-3 xl:w-96">
-            <select className="m-0 form-select appearance-none block w-full px-3  py-1.5  font-normal  text-base  text-gray-700   bg-white bg-clip-padding bg-no-repeat   border border-solid border-gray-300 rounded  transition   ease-in-out
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" onClick={handlestate}>
-              <option value="">Select State</option>
+          <div>
+            <select onClick={handlestate}>
+              <option selected>Open this select state</option>
               {States ? States : ""}
             </select>
           </div>
-          <div className="mb-3 xl:w-96">
-            <select className="m-0 form-select appearance-none block w-full px-3  py-1.5  font-normal  text-base  text-gray-700   bg-white bg-clip-padding bg-no-repeat   border border-solid border-gray-300 rounded  transition   ease-in-out
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" onClick={handlecity}>
-              <option value="">Select City</option>
+          <div>
+            <select onClick={handlecity}>
+              <option selected>Open this select city</option>
               {cities ? cities : ""}
             </select>
           </div>
         </div>
-
       </div>
-
     </>
   )
 }

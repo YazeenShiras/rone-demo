@@ -54,6 +54,7 @@ const CreateUser = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === "true") {
+      localStorage.setItem("name", name)
       localStorage.setItem("username", username);
       localStorage.setItem("usermob", number);
       localStorage.setItem("newuserid", data.id);

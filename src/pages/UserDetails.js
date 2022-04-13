@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-/* import { Country, State, City } from "country-state-city"; */
+import { Country, State, City } from 'country-state-city';
 import user from "../assets/user.svg";
 import logo from "../assets/Logo1.svg";
 import photoIcon from "../assets/image.svg";
@@ -14,11 +14,16 @@ function UserDetails() {
   const [location, setLocation] = useState("");
   const [profession, setProfession] = useState("");
   const [bio, setBio] = useState("");
+
+  const [allStates, setstates] = useState("")
+  const [city, setCity] = useState("")
+
   const [country, setCountry] = useState("");
-  const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
+  const [district, setDistrict] = useState("");
   const [pincode, setPinCode] = useState("");
 
+  const [name, setName] = useState("")
   const [username, setUserName] = useState("");
   const [usermob, setUsermob] = useState("");
   const [userid, setUserId] = useState("");
@@ -28,6 +33,51 @@ function UserDetails() {
   const [isdetails, setIsdetails] = useState(false);
 
   const [isProfilePhotoUploaded, setIsProfilePhotoUploaded] = useState(false);
+
+
+  const Countries = Country.getAllCountries().map((country) => {
+    return <option key={country.isoCode} value={[country.isoCode,country.name]}>{country.name}</option>
+  })
+
+  const handleCountry = (e) => {
+      const code = e.target.value.split(",")
+      const countryName = code[1]
+      setCountry(countryName)
+    const States = State.getAllStates().filter((state) => {
+      return state.countryCode === code[0]
+    })
+    setstates(States)
+  }
+
+  let States;
+  if (allStates) {
+    States = allStates.map((state) => {
+      return <option key={state.isoCode} value={[state.isoCode,state.name]}>{state.name}</option>
+    })
+  }
+
+  const handlestate = (e) => {
+    const code = e.target.value.split(",")
+    const stateName = code[1]
+    setState(stateName)
+    const city = City.getAllCities().filter((city) => {
+      return city.stateCode === code[0]
+    })
+     setCity(city)
+  }
+
+
+  let cities;
+  if (city) {
+    cities = city.map((city) => {
+      return <option key={city.id} value={city.name}>{city.name}</option>
+    })
+  }
+
+  const handlecity = (e) => {
+    setDistrict(e.target.value)
+    console.log(e.target.value)
+  }
 
   const fileChangedHandler = (event) => {
     var fileInput = false;
@@ -69,6 +119,8 @@ function UserDetails() {
     window.onload = function () {
       window.localStorage.isMySessionActive = "true";
     };
+    var nameNew = localStorage.getItem("name");
+    setName(nameNew)
     var newName = localStorage.getItem("username");
     setUserName(newName);
     var newMob = localStorage.getItem("usermob");
@@ -82,9 +134,6 @@ function UserDetails() {
     setLocation(document.getElementById("location").value);
     setBio(document.getElementById("bio").value);
     setProfession(document.getElementById("profession").value);
-    setCountry(document.getElementById("country").value);
-    setDistrict(document.getElementById("district").value);
-    setState(document.getElementById("state").value);
     setPinCode(document.getElementById("pincode").value);
   };
 
@@ -238,6 +287,9 @@ function UserDetails() {
       profession === "" ||
       bio === "" ||
       country === "" ||
+      country === undefined ||
+      state === undefined ||
+      district === undefined ||
       state === "" ||
       district === "" ||
       pincode === ""
@@ -306,7 +358,7 @@ function UserDetails() {
                 type="text"
                 name="username"
                 onChange={storeValues}
-                value={username}
+                value={name}
                 readOnly
               />
             </div>
@@ -372,34 +424,28 @@ function UserDetails() {
           <fieldset className="input__container">
             <legend>Country*</legend>
             <div className="input__box">
-              <input
-                id="country"
-                type="text"
-                name="country"
-                onChange={storeValues}
-              />
+            <select onClick={handleCountry}>
+              <option selected>Select Country</option>
+              {Countries}
+            </select>
             </div>
           </fieldset>
           <fieldset className="input__container">
             <legend>State*</legend>
             <div className="input__box">
-              <input
-                id="state"
-                type="text"
-                name="state"
-                onChange={storeValues}
-              />
+            <select onClick={handlestate}>
+              <option selected>Select State</option>
+              {States ? States : ""}
+            </select>
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>District*</legend>
+            <legend>City*</legend>
             <div className="input__box">
-              <input
-                id="district"
-                type="text"
-                name="district"
-                onChange={storeValues}
-              />
+            <select onClick={handlecity}>
+              <option selected>Select City</option>
+              {cities ? cities : ""}
+            </select>
             </div>
           </fieldset>
           <fieldset className="input__container">
