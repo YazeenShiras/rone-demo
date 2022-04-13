@@ -111,7 +111,7 @@ const LoginSendOtp = () => {
         setIsdetails(false);
       }
     }
-  }, [loginNumber]);
+  }, [loginNumber, roneId, email]);
 
   const loginClick = () => {
     if (loginNumber === "" || roneId === "" || email === "") {
@@ -166,8 +166,7 @@ const LoginSendOtp = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-            Login with <br />
-            Mobile Number
+          Enter your RONE ID, Email<br />and Mobile Number to Login
           </h2>
           <form autoComplete="off" className="form" action="">
           <fieldset className="input__container">
