@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
@@ -151,6 +152,13 @@ const ImageGalleryMain = () => {
     }
   }
 
+  const sureDelete = (imgId, publicId) => {
+    let confirmAction = confirm("Are you sure to Delete?");
+    if(confirmAction) {
+      deleteImage(imgId, publicId)
+    }
+  }
+
   /* const loadMore = () => {
     var loadMoreButton = document.getElementById("loadMore__button");
     var loadMoreContainer = document.getElementById("loadmoreContainer");
@@ -212,7 +220,7 @@ const ImageGalleryMain = () => {
             >
               <div
                 onClick={() =>
-                  deleteImage(imageData.id, imageData.img_public_id)
+                  sureDelete(imageData.id, imageData.img_public_id)
                 }
                 className="deleteButton deleteButtonImageGallery"
               >

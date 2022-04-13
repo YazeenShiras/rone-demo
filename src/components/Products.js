@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from "react";
 import "./Products.css";
 import sort from "../assets/sort.svg";
@@ -195,6 +196,13 @@ const Products = () => {
     }
   }
 
+  const sureDelete = (deleteId) => {
+    let confirmAction = confirm("Are you sure to Delete?");
+    if(confirmAction) {
+      deleteProduct(deleteId)
+    }
+  }
+
   return (
     <div className="products" id="products">
       <div className="title__container__products">
@@ -286,7 +294,7 @@ const Products = () => {
             <div className="productCard" key={index}>
               <div
                 className="menuContainer"
-                onClick={() => deleteProduct(product.id)}
+                onClick={() => sureDelete(product.id)}
               >
                 <div className="deleteButton">
                   <img src={deleteIcon} alt="" />
