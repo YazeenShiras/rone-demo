@@ -275,6 +275,7 @@ const Products = () => {
                   id="description"
                   cols="10"
                   rows="3"
+                  maxLength="100"
                   onChange={storeValues}
                 ></textarea>
               </div>
