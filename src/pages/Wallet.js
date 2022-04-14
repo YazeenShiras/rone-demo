@@ -58,19 +58,19 @@ const Wallet = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          roneId: roneId,
+          roneId: "RONE9354781",
         }),
       });
       const data = await response.json();
       console.log(data);
       if (data.card) {
         document.getElementById("loaderRoneCard").style.display = "none"
-        document.getElementById("bottomRoneCard").style.marginTop = "70px"
+        document.getElementById("bottomRoneCard").style.marginTop = "60px"
         setInitialcards(data.card.initialcards);
         SetUserNameCard(data.card.name);
       } if(data.message === "No data found") {
         document.getElementById("loaderRoneCard").style.display = "none"
-        document.getElementById("bottomRoneCard").style.marginTop = "70px"
+        document.getElementById("bottomRoneCard").style.marginTop = "60px"
       }
     }
 
@@ -255,7 +255,7 @@ const Wallet = () => {
   }, [buyCardCount]);
 
   const buyRoneCardClick = () => {
-    console.log("buy card click");
+    console.log("buy rone card");
   };
 
   async function sendClick() {
@@ -450,7 +450,7 @@ const Wallet = () => {
                 >
                   <p id="sendText">Send</p>
                 </div>
-                <div className="deleteButton__transaction__card">Delete</div>
+                {/* <div className="deleteButton__transaction__card">Delete</div> */}
               </div>
             </div>
 
@@ -473,9 +473,9 @@ const Wallet = () => {
                       <div className="middleRight__card__transaction">
                         <p>Expired</p>
                       </div>
-                      <div className="deleteButton__transaction__card">
+                      {/* <div className="deleteButton__transaction__card">
                         Delete
-                      </div>
+                      </div> */}
                     </div>
                   );
                 })}

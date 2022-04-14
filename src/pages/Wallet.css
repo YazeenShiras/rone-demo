@@ -277,6 +277,7 @@
   font-size: 13px;
   margin-left: 5px;
   color: #d52a33;
+  margin-right: 20px;
 }
 
 .deleteButton__transaction__card {
@@ -392,6 +393,7 @@
   transition: all 0.2s ease;
   letter-spacing: 1px;
   font-family: inherit;
+  margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 414px) {
@@ -408,23 +410,21 @@
   }
   .leftContaniner__roneCard > img {
     height: 40px;
-    margin-left: -100px;
+    margin-left: -90px;
   }
   .bottomContainer__leftContainer__roneCard {
-    margin-top: 60px;
-    width: 270px;
+    margin-top: 30px;
+    width: 250px;
   }
   .cardBalanceContainer {
     display: flex;
     flex-direction: column;
   }
-
   .cardBalanceContainer > h3 {
-    font-size: 18px;
+    font-size: 15px;
   }
-
   .roneCard__container > p {
-    margin-right: -125px;
+    margin-right: -120px;
     font-size: 12px;
   }
   .buyMoretext {
@@ -448,6 +448,7 @@
     font-size: 11px;
     margin-left: 3px;
     width: 30px;
+    margin-right: 20px;
   }
   .deleteButton__transaction__card {
     height: 25px;
@@ -482,14 +483,20 @@
     margin-top: 20px;
   }
   .leftContaniner__roneCard > img {
-    height: 40px;
-    margin-left: -50px;
+    height: 35px;
+    margin-left: -100px;
   }
   .bottomContainer__leftContainer__roneCard {
-    margin-top: 50px;
+    margin-top: 30px;
   }
   .bottomContainer__leftContainer__roneCard > h5 {
     margin-left: 10px;
+  }
+  .cardHolder > h5 {
+    font-size: 13px;
+  }
+  .cardHolder > p {
+    font-size: 12px;
   }
   .cardBalanceContainer {
     margin-left: 90px;
@@ -497,8 +504,9 @@
     flex-direction: column;
   }
   .roneCard__container > p {
-    margin-right: -115px;
-    font-size: 12px;
+    margin-right: -120px;
+    font-size: 7px;
+    margin-top: -40px;
   }
   .buyMoretext {
     font-size: 15px;
@@ -521,11 +529,11 @@
     font-size: 11px;
     margin-left: 3px;
     width: 35px;
+    margin-right: 20px;
   }
   .deleteButton__transaction__card {
     font-size: 10px;
   }
-
   .typetransactionHistory,
   .dateTransactionHistory,
   .statusTransactionHistory {
