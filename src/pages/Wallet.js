@@ -64,6 +64,8 @@ const Wallet = () => {
       const data = await response.json();
       console.log(data);
       if (data.card) {
+        document.getElementById("loaderRoneCard").style.display = "none"
+        document.getElementById("bottomRoneCard").style.marginTop = "90px"
         setInitialcards(data.card.initialcards);
         SetUserNameCard(data.card.name);
       }
@@ -314,7 +316,10 @@ const Wallet = () => {
             >
               <div className="leftContaniner__roneCard">
                 <img src={ronelogoCard} alt="" />
-                <div className="bottomContainer__leftContainer__roneCard">
+                <div className="loader__container__card" id="loaderRoneCard">
+              <PropagateLoader color="#ffffff" />
+            </div>
+                <div className="bottomContainer__leftContainer__roneCard" id="bottomRoneCard">
                   <div className="cardHolder">
                     <h5>{userNameCard}</h5>
                     <p>{roneId}</p>
