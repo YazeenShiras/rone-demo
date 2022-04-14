@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "./QrScan.css";
 import bg from "../assets/settingsBg.png";
-import QRCode from "react-qr-code";
+import QRCode from 'qrcode.react';
+
 
 const QrScan = () => {
-  const [qrName, setQrName] = useState("");
   const [userName, setUserName] = useState("");
   const [origin, setOrigin] = useState("");
 
   useEffect(() => {
-    const name = localStorage.getItem("nameForWallet");
-    setQrName(name);
     const useName = localStorage.getItem("username");
     setUserName(useName);
 
@@ -25,6 +23,18 @@ const QrScan = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userName]);
+
+  const downloadQRCode = () => {
+    const qrCodeURL = document.getElementById('qrCodeEl')
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    let aEl = document.createElement("a");
+    aEl.href = qrCodeURL;
+    aEl.download = "QR_Code.png";
+    document.body.appendChild(aEl);
+    aEl.click();
+    document.body.removeChild(aEl);
+  }
 
   return (
     <div className="settingsPage qrSettings">
@@ -55,25 +65,23 @@ const QrScan = () => {
           </div>
           <div className="QrContent__container">
             <div className="qrContainer__wallet webViewConatiner">
-              <QRCode
-                size={300}
-                level="H"
-                title={`${qrName} - Rone`}
-                value={origin}
-              />
-              <div className="shareThisqr__button scanQr__container">
-                Scan QR
+            <QRCode
+        id="qrCodeEl"
+        size={300}
+        value={origin}
+      />
+              <div onClick={downloadQRCode} className="shareThisqr__button scanQr__container">
+                Download QR
               </div>
             </div>
             <div className="qrContainer__wallet mobileViewConatiner">
-              <QRCode
-                size={200}
-                level="H"
-                title={`${qrName} - Rone`}
-                value={origin}
-              />
-              <div className="shareThisqr__button scanQr__container">
-                Scan QR
+            <QRCode
+        id="qrCodeEl"
+        size={200}
+        value={origin}
+      />
+              <div onClick={downloadQRCode} className="shareThisqr__button scanQr__container">
+                Download QR
               </div>
             </div>
           </div>
