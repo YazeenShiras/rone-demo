@@ -65,12 +65,12 @@ const Wallet = () => {
       console.log(data);
       if (data.card) {
         document.getElementById("loaderRoneCard").style.display = "none"
-        document.getElementById("bottomRoneCard").style.marginTop = "90px"
+        document.getElementById("bottomRoneCard").style.marginTop = "80px"
         setInitialcards(data.card.initialcards);
         SetUserNameCard(data.card.name);
       } if(data.message === "No data found") {
         document.getElementById("loaderRoneCard").style.display = "none"
-        document.getElementById("bottomRoneCard").style.marginTop = "90px"
+        document.getElementById("bottomRoneCard").style.marginTop = "80px"
       }
     }
 
