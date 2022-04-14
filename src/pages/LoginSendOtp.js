@@ -11,7 +11,6 @@ const LoginSendOtp = () => {
   const [isdetails, setIsdetails] = useState(false);
   const [loginNumber, setLoginNumber] = useState("");
   const [roneId, setRoneId] = useState("");
-  const [email, setEmail] = useState("");
 
   async function handleSubmit() {
     let url = new URL(
@@ -55,12 +54,9 @@ const LoginSendOtp = () => {
   async function roneCheck() {
     document.getElementById("loaderSentOtp").style.display = "block";
     document.getElementById("sentOTP").style.display = "none";
-    let url = new URL(
-      "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
-    );
+    let url = new URL("https://ronecard.herokuapp.com/rone_id_authentication");
     url.search = new URLSearchParams({
       rone_id: roneId,
-      email: email,
     });
 
     const res = await fetch(url, {
@@ -71,9 +67,9 @@ const LoginSendOtp = () => {
     });
     const data = await res.json();
     console.log(data);
-    if (data.status === 200) {
+    if (data.RONE_ID === roneId) {
       document.getElementById("loaderSentOtp").style.display = "none";
-    document.getElementById("sentOTP").style.display = "block";
+      document.getElementById("sentOTP").style.display = "block";
       localStorage.setItem("roneid", roneId);
       handleSubmit();
     }
@@ -81,15 +77,14 @@ const LoginSendOtp = () => {
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
         "invalid RONE ID or Email";
-        document.getElementById("loaderSentOtp").style.display = "none";
-        document.getElementById("sentOTP").style.display = "block";
+      document.getElementById("loaderSentOtp").style.display = "none";
+      document.getElementById("sentOTP").style.display = "block";
     }
   }
 
   const storeMobile = () => {
     setLoginNumber(document.getElementById("number").value);
-    setRoneId(document.getElementById("roneId").value)
-    setEmail(document.getElementById("email").value);
+    setRoneId(document.getElementById("roneId").value);
   };
 
   useEffect(() => {
@@ -101,20 +96,17 @@ const LoginSendOtp = () => {
         } else {
           setIsdetails(false);
         }
-        if(roneId !== "") {
-          setIsdetails(true)
-          if(email !== "") {
-            setIsdetails(true)
-          }
+        if (roneId !== "") {
+          setIsdetails(true);
         }
       } else {
         setIsdetails(false);
       }
     }
-  }, [loginNumber, roneId, email]);
+  }, [loginNumber, roneId]);
 
   const loginClick = () => {
-    if (loginNumber === "" || roneId === "" || email === "") {
+    if (loginNumber === "" || roneId === "") {
       setIsdetails(false);
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML =
@@ -166,19 +158,15 @@ const LoginSendOtp = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-          Enter your RONE ID, Email<br />and Mobile Number to Login
+            Enter your RONE ID
+            <br />
+            and Mobile Number to Login
           </h2>
           <form autoComplete="off" className="form" action="">
-          <fieldset className="input__container">
+            <fieldset className="input__container">
               <legend>RONE ID*</legend>
               <div className="input__box">
                 <input onChange={storeMobile} id="roneId" type="text" />
-              </div>
-            </fieldset>
-            <fieldset className="input__container">
-              <legend>Email*</legend>
-              <div className="input__box">
-                <input onChange={storeMobile} id="email" type="email" />
               </div>
             </fieldset>
             <fieldset className="input__container">

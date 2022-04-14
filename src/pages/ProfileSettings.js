@@ -14,7 +14,7 @@ import instagram from "../assets/instagram.svg";
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
-import { Country, State, City } from 'country-state-city';
+import { Country, State, City } from "country-state-city";
 
 const EditProfile = () => {
   const [imageFile, setImageFile] = useState("");
@@ -27,8 +27,8 @@ const EditProfile = () => {
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
 
-  const [allStates, setstates] = useState("")
-  const [city, setCity] = useState("")
+  const [allStates, setstates] = useState("");
+  const [city, setCity] = useState("");
 
   const [country, setCountry] = useState("");
   const [district, setDistrict] = useState("");
@@ -109,50 +109,60 @@ const EditProfile = () => {
     }
   }, [idForUpdate, idForUpdateForm, newName, username]);
 
-
   const Countries = Country.getAllCountries().map((country) => {
-    return <option key={country.isoCode} value={[country.isoCode,country.name]}>{country.name}</option>
-  })
+    return (
+      <option key={country.isoCode} value={[country.isoCode, country.name]}>
+        {country.name}
+      </option>
+    );
+  });
 
   const handleCountry = (e) => {
-      const code = e.target.value.split(",")
-      const countryName = code[1]
-      setCountry(countryName)
+    const code = e.target.value.split(",");
+    const countryName = code[1];
+    setCountry(countryName);
     const States = State.getAllStates().filter((state) => {
-      return state.countryCode === code[0]
-    })
-    setstates(States)
-  }
+      return state.countryCode === code[0];
+    });
+    setstates(States);
+  };
 
   let States;
   if (allStates) {
     States = allStates.map((state) => {
-      return <option key={state.isoCode} value={[state.isoCode,state.name]}>{state.name}</option>
-    })
+      return (
+        <option key={state.isoCode} value={[state.isoCode, state.name]}>
+          {state.name}
+        </option>
+      );
+    });
   }
 
   const handlestate = (e) => {
-    const code = e.target.value.split(",")
-    const stateName = code[1]
-    setState(stateName)
+    const code = e.target.value.split(",");
+    const stateName = code[1];
+    setState(stateName);
     const city = City.getAllCities().filter((city) => {
-      return city.stateCode === code[0]
-    })
-     setCity(city)
-  }
-
+      return city.stateCode === code[0];
+    });
+    setCity(city);
+  };
 
   let cities;
   if (city) {
     cities = city.map((city) => {
-      return <option key={city.id} value={city.name}>{city.name}</option>
-    })
+      return (
+        <option key={city.id} value={city.name}>
+          {city.name}
+        </option>
+      );
+    });
   }
 
   const handlecity = (e) => {
-    setDistrict(e.target.value)
-    console.log(e.target.value)
-  }
+    setDistrict(e.target.value);
+    console.log(e.target.value);
+  };
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
@@ -443,28 +453,28 @@ const EditProfile = () => {
                 <fieldset className="input__container__form__update">
                   <legend>Country</legend>
                   <div className="input__box__form__update">
-                  <select onClick={handleCountry}>
-              <option selected>{country}</option>
-              {Countries}
-            </select>
+                    <select onClick={handleCountry}>
+                      <option selected>Select Country</option>
+                      {Countries}
+                    </select>
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>State</legend>
                   <div className="input__box__form__update">
-                  <select onClick={handlestate}>
-              <option selected>{state}</option>
-              {States ? States : ""}
-            </select>
+                    <select onClick={handlestate}>
+                      <option selected>Select State</option>
+                      {States ? States : ""}
+                    </select>
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>City</legend>
                   <div className="input__box__form__update">
-                  <select onClick={handlecity}>
-              <option selected>{district}</option>
-              {cities ? cities : ""}
-            </select>
+                    <select onClick={handlecity}>
+                      <option selected>Select City</option>
+                      {cities ? cities : ""}
+                    </select>
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
