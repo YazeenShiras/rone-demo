@@ -28,9 +28,6 @@ const EditProfile = () => {
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
 
-  const [allStates, setstates] = useState("");
-  const [city, setCity] = useState("");
-
   const [country, setCountry] = useState("");
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
@@ -431,6 +428,7 @@ const EditProfile = () => {
                       type="text"
                       value={country !== "" ? country : ""}
                       name="country"
+                      readOnly
                     />
                   </div>
                 </fieldset>
@@ -442,6 +440,7 @@ const EditProfile = () => {
                       value={state !== "" ? state : ""}
                       type="text"
                       name="state"
+                      readOnly
                     />
                   </div>
                 </fieldset>
@@ -453,6 +452,7 @@ const EditProfile = () => {
                       value={district !== "" ? district : ""}
                       type="text"
                       name="city"
+                      readOnly
                     />
                   </div>
                 </fieldset>
