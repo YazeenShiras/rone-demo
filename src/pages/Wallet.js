@@ -64,13 +64,14 @@ const Wallet = () => {
       const data = await response.json();
       console.log(data);
       if (data.card) {
-        document.getElementById("loaderRoneCard").style.display = "none"
-        document.getElementById("bottomRoneCard").style.marginTop = "60px"
+        document.getElementById("loaderRoneCard").style.display = "none";
+        document.getElementById("bottomRoneCard").style.marginTop = "60px";
         setInitialcards(data.card.initialcards);
         SetUserNameCard(data.card.name);
-      } if(data.message === "No data found") {
-        document.getElementById("loaderRoneCard").style.display = "none"
-        document.getElementById("bottomRoneCard").style.marginTop = "60px"
+      }
+      if (data.message === "No data found") {
+        document.getElementById("loaderRoneCard").style.display = "none";
+        document.getElementById("bottomRoneCard").style.marginTop = "60px";
       }
     }
 
@@ -320,9 +321,12 @@ const Wallet = () => {
               <div className="leftContaniner__roneCard">
                 <img src={ronelogoCard} alt="" />
                 <div className="loader__container__card" id="loaderRoneCard">
-              <PropagateLoader color="#ffffff" />
-            </div>
-                <div className="bottomContainer__leftContainer__roneCard" id="bottomRoneCard">
+                  <PropagateLoader color="#ffffff" />
+                </div>
+                <div
+                  className="bottomContainer__leftContainer__roneCard"
+                  id="bottomRoneCard"
+                >
                   <div className="cardHolder">
                     <h5>{userNameCard}</h5>
                     <p>{roneId}</p>
@@ -336,9 +340,9 @@ const Wallet = () => {
               <p>RONE CARD</p>
             </div>
             <p className="buyMoretext">Low card balance? Buy More</p>
-            <div onClick={buyMoreCarsClick} className="buyMoreCards__button">
+            {/* <div onClick={buyMoreCarsClick} className="buyMoreCards__button">
               Buy More Cards
-            </div>
+            </div> */}
             <div className="buyMoreCardsContainer" id="buyMoreCardsContainer">
               <div className="cardCountContainer">
                 <div className="inputContainerbuyMoreCard">
