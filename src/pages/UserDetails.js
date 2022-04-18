@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Country, State, City } from "country-state-city";
 import user from "../assets/user.svg";
 import logo from "../assets/Logo1.svg";
 import photoIcon from "../assets/image.svg";
@@ -8,15 +7,13 @@ import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
 import PulseLoader from "react-spinners/PulseLoader";
 import Resizer from "react-image-file-resizer";
+import axios from "axios";
 
 function UserDetails() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [profession, setProfession] = useState("");
   const [bio, setBio] = useState("");
-
-  const [allStates, setstates] = useState("");
-  const [city, setCity] = useState("");
 
   const [country, setCountry] = useState("Select country");
   const [state, setState] = useState("Select State");
@@ -34,60 +31,29 @@ function UserDetails() {
 
   const [isProfilePhotoUploaded, setIsProfilePhotoUploaded] = useState(false);
 
-  const Countries = Country.getAllCountries().map((country) => {
-    return (
-      <option key={country.isoCode} value={[country.isoCode, country.name]}>
-        {country.name}
-      </option>
-    );
-  });
+  useEffect(() => {
+    async function getLocationDetails() {
+      console.log("access to getAllProducts");
+      const endpoint = `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}%20&format=json&apiKey=41ff15ef6d914c4aa4d53d1c7c848744`;
 
-  const handleCountry = (e) => {
-    const code = e.target.value.split(",");
-    const countryName = code[1];
-    setCountry(countryName);
-    const States = State.getAllStates().filter((state) => {
-      return state.countryCode === code[0];
-    });
-    setstates(States);
-  };
+      await axios
+        .get(endpoint)
+        .then((res) => {
+          const data = res.data;
+          console.log(data);
+          if (data.results) {
+            setCountry(data.results[0].country);
+            setState(data.results[0].state);
+            setDistrict(data.results[0].county);
+          }
+        })
+        .catch(console.error);
+    }
 
-  let States;
-  if (allStates) {
-    States = allStates.map((state) => {
-      return (
-        <option key={state.isoCode} value={[state.isoCode, state.name]}>
-          {state.name}
-        </option>
-      );
-    });
-  }
-
-  const handlestate = (e) => {
-    const code = e.target.value.split(",");
-    const stateName = code[1];
-    setState(stateName);
-    const city = City.getAllCities().filter((city) => {
-      return city.stateCode === code[0];
-    });
-    setCity(city);
-  };
-
-  let cities;
-  if (city) {
-    cities = city.map((city) => {
-      return (
-        <option key={city.id} value={city.name}>
-          {city.name}
-        </option>
-      );
-    });
-  }
-
-  const handlecity = (e) => {
-    setDistrict(e.target.value);
-    console.log(e.target.value);
-  };
+    if (location.length > 2) {
+      getLocationDetails();
+    }
+  }, [location]);
 
   const fileChangedHandler = (event) => {
     var fileInput = false;
@@ -141,10 +107,13 @@ function UserDetails() {
 
   const storeValues = () => {
     setEmail(document.getElementById("email").value);
-    setLocation(document.getElementById("location").value);
     setBio(document.getElementById("bio").value);
     setProfession(document.getElementById("profession").value);
     setPinCode(document.getElementById("pincode").value);
+  };
+
+  const storeLocation = () => {
+    setLocation(document.getElementById("location").value);
   };
 
   async function uploadPhoto() {
@@ -427,35 +396,41 @@ function UserDetails() {
                 id="location"
                 type="text"
                 name="location"
-                onChange={storeValues}
+                onChange={storeLocation}
               />
             </div>
           </fieldset>
           <fieldset className="input__container">
             <legend>Country*</legend>
             <div className="input__box">
-              <select onClick={handleCountry}>
-                <option selected>Select Country</option>
-                {Countries}
-              </select>
+              <input
+                id="country"
+                type="text"
+                value={country !== "" ? country : ""}
+                name="country"
+              />
             </div>
           </fieldset>
           <fieldset className="input__container">
             <legend>State*</legend>
             <div className="input__box">
-              <select onClick={handlestate}>
-                <option selected>Select State</option>
-                {States ? States : ""}
-              </select>
+              <input
+                id="state"
+                value={state !== "" ? state : ""}
+                type="text"
+                name="state"
+              />
             </div>
           </fieldset>
           <fieldset className="input__container">
             <legend>City*</legend>
             <div className="input__box">
-              <select onClick={handlecity}>
-                <option selected>Select City</option>
-                {cities ? cities : ""}
-              </select>
+              <input
+                id="city"
+                value={district !== "" ? district : ""}
+                type="text"
+                name="city"
+              />
             </div>
           </fieldset>
           <fieldset className="input__container">

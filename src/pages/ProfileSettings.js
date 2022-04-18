@@ -15,6 +15,7 @@ import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { Country, State, City } from "country-state-city";
+import axios from "axios";
 
 const EditProfile = () => {
   const [imageFile, setImageFile] = useState("");
@@ -109,67 +110,39 @@ const EditProfile = () => {
     }
   }, [idForUpdate, idForUpdateForm, newName, username]);
 
-  const Countries = Country.getAllCountries().map((country) => {
-    return (
-      <option key={country.isoCode} value={[country.isoCode, country.name]}>
-        {country.name}
-      </option>
-    );
-  });
+  useEffect(() => {
+    async function getLocationDetails() {
+      console.log("access to getAllProducts");
+      const endpoint = `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}%20&format=json&apiKey=41ff15ef6d914c4aa4d53d1c7c848744`;
 
-  const handleCountry = (e) => {
-    const code = e.target.value.split(",");
-    const countryName = code[1];
-    setCountry(countryName);
-    const States = State.getAllStates().filter((state) => {
-      return state.countryCode === code[0];
-    });
-    setstates(States);
-  };
+      await axios
+        .get(endpoint)
+        .then((res) => {
+          const data = res.data;
+          console.log(data);
+          if (data.results) {
+            setCountry(data.results[0].country);
+            setState(data.results[0].state);
+            setDistrict(data.results[0].county);
+          }
+        })
+        .catch(console.error);
+    }
 
-  let States;
-  if (allStates) {
-    States = allStates.map((state) => {
-      return (
-        <option key={state.isoCode} value={[state.isoCode, state.name]}>
-          {state.name}
-        </option>
-      );
-    });
-  }
-
-  const handlestate = (e) => {
-    const code = e.target.value.split(",");
-    const stateName = code[1];
-    setState(stateName);
-    const city = City.getAllCities().filter((city) => {
-      return city.stateCode === code[0];
-    });
-    setCity(city);
-  };
-
-  let cities;
-  if (city) {
-    cities = city.map((city) => {
-      return (
-        <option key={city.id} value={city.name}>
-          {city.name}
-        </option>
-      );
-    });
-  }
-
-  const handlecity = (e) => {
-    setDistrict(e.target.value);
-    console.log(e.target.value);
-  };
+    if (location.length > 2) {
+      getLocationDetails();
+    }
+  }, [location]);
 
   const storeValues = () => {
     setName(document.getElementById("name").value);
     setProfession(document.getElementById("profession").value);
     setBio(document.getElementById("bio").value);
-    setLocation(document.getElementById("location").value);
     setPinCode(document.getElementById("pincode").value);
+  };
+
+  const storeLocation = () => {
+    setLocation(document.getElementById("location").value);
   };
 
   const storeLinks = () => {
@@ -442,7 +415,7 @@ const EditProfile = () => {
                   <legend>Location</legend>
                   <div className="input__box__form__update">
                     <input
-                      onChange={storeValues}
+                      onChange={storeLocation}
                       id="location"
                       type="text"
                       name="location"
@@ -453,28 +426,34 @@ const EditProfile = () => {
                 <fieldset className="input__container__form__update">
                   <legend>Country</legend>
                   <div className="input__box__form__update">
-                    <select onClick={handleCountry}>
-                      <option selected>Select Country</option>
-                      {Countries}
-                    </select>
+                    <input
+                      id="country"
+                      type="text"
+                      value={country !== "" ? country : ""}
+                      name="country"
+                    />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>State</legend>
                   <div className="input__box__form__update">
-                    <select onClick={handlestate}>
-                      <option selected>Select State</option>
-                      {States ? States : ""}
-                    </select>
+                    <input
+                      id="state"
+                      value={state !== "" ? state : ""}
+                      type="text"
+                      name="state"
+                    />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>City</legend>
                   <div className="input__box__form__update">
-                    <select onClick={handlecity}>
-                      <option selected>Select City</option>
-                      {cities ? cities : ""}
-                    </select>
+                    <input
+                      id="city"
+                      value={district !== "" ? district : ""}
+                      type="text"
+                      name="city"
+                    />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
