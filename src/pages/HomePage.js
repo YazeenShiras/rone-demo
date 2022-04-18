@@ -5,6 +5,7 @@ import register from "../assets/register.svg";
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/PrimaryButton";
+import "./HomePage.css";
 
 const HomePage = () => {
   const [roneId, setRoneId] = useState("");
@@ -105,7 +106,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="content__bodyRegister">
+      <div className="content__homePage">
         <div className="image__container__bodyRegister">
           <img src={register} alt="" />
         </div>
@@ -153,6 +154,34 @@ const HomePage = () => {
               <p className="login__AlreadyRegisterd">Login</p>
             </Link>
           </div>
+        </div>
+      </div>
+      <div className="FooterLinks__home">
+        <div className="top__footerLinks__home">
+          <ul>
+            <li>
+              <a href="/about">About</a>
+            </li>
+            <li>
+              <a href="/terms-and-conditions">Terms & Conditions</a>
+            </li>
+            <li>
+              <a href="/privacy-policy">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div className="bottom__footerLinks__home">
+          <ul>
+            <li>
+              <a href="/disclaimer">Disclaimer</a>
+            </li>
+            <li>
+              <a href="/cookie-policy">Cookie Policy</a>
+            </li>
+            <li>
+              <a href="/refund-policy">Refund Policy</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

@@ -57,7 +57,7 @@ const Footer = () => {
           <h4>Rone Policies</h4>
           <ul>
             <li>
-              <a href="/discliamer">Disclimer</a>
+              <a href="/disclaimer">Disclaimer</a>
             </li>
             <li>
               <a href="/terms-and-conditions">Terms & Conditions</a>
