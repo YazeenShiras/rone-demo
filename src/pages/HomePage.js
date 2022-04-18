@@ -160,26 +160,26 @@ const HomePage = () => {
         <div className="top__footerLinks__home">
           <ul>
             <li>
-              <a href="/about">About</a>
+              <a href="/link/about">About</a>
             </li>
             <li>
-              <a href="/terms-and-conditions">Terms & Conditions</a>
+              <a href="/link/terms-and-conditions">Terms & Conditions</a>
             </li>
             <li>
-              <a href="/privacy-policy">Privacy Policy</a>
+              <a href="/link/privacy-policy">Privacy Policy</a>
             </li>
           </ul>
         </div>
         <div className="bottom__footerLinks__home">
           <ul>
             <li>
-              <a href="/disclaimer">Disclaimer</a>
+              <a href="/link/disclaimer">Disclaimer</a>
             </li>
             <li>
-              <a href="/cookie-policy">Cookie Policy</a>
+              <a href="/link/cookie-policy">Cookie Policy</a>
             </li>
             <li>
-              <a href="/refund-policy">Refund Policy</a>
+              <a href="/link/refund-policy">Refund Policy</a>
             </li>
           </ul>
         </div>

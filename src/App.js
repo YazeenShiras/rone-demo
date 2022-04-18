@@ -18,7 +18,13 @@ import QrScan from "./pages/QrScan";
 import Tc from "./pages/Tc";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
+import DisclaimerHome from "./pages/DisclaimerHome";
+import TcHome from "./pages/TcHome";
+import PrivacyPolicyHome from "./pages/PrivacyPolicyHome";
+import CookiePolicyHome from "./pages/CookiePolicyHome";
+import RefundPolicyHome from "./pages/RefundPolicyHome";
 import About from "./pages/About";
+import AboutHome from "./pages/AboutHome";
 import CookiePolicy from "./pages/CookiePolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import EmailVerification from "./pages/EmailVerification";
@@ -35,11 +41,17 @@ function App() {
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
           <Route path="/about" component={About} />
+          <Route path="/link/about" component={AboutHome} />
           <Route path="/disclaimer" component={Disclaimer} />
+          <Route path="/link/disclaimer" component={DisclaimerHome} />
           <Route path="/terms-and-conditions" component={Tc} />
+          <Route path="/link/terms-and-conditions" component={TcHome} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/link/privacy-policy" component={PrivacyPolicyHome} />
           <Route path="/cookie-policy" component={CookiePolicy} />
+          <Route path="/link/cookie-policy" component={CookiePolicyHome} />
           <Route path="/refund-policy" component={RefundPolicy} />
+          <Route path="/link/refund-policy" component={RefundPolicyHome} />
           <Route path="/verifyotpregister" component={VerifyOtpRegister} />
           <Route path="/createuser" component={CreateUser} />
           <Route path="/userdetails" component={UserDetails} />
