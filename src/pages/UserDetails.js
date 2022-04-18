@@ -15,9 +15,9 @@ function UserDetails() {
   const [profession, setProfession] = useState("");
   const [bio, setBio] = useState("");
 
-  const [country, setCountry] = useState("Select country");
-  const [state, setState] = useState("Select State");
-  const [district, setDistrict] = useState("Select city");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [district, setDistrict] = useState("");
   const [pincode, setPinCode] = useState("");
 
   const [name, setName] = useState("");
@@ -408,6 +408,7 @@ function UserDetails() {
                 type="text"
                 value={country !== "" ? country : ""}
                 name="country"
+                readOnly
               />
             </div>
           </fieldset>
@@ -419,6 +420,7 @@ function UserDetails() {
                 value={state !== "" ? state : ""}
                 type="text"
                 name="state"
+                readOnly
               />
             </div>
           </fieldset>
@@ -430,6 +432,7 @@ function UserDetails() {
                 value={district !== "" ? district : ""}
                 type="text"
                 name="city"
+                readOnly
               />
             </div>
           </fieldset>
