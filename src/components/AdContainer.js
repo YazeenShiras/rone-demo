@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdContainer.css";
-import ad1 from "../assets/ads/ad1.png";
-import ad2 from "../assets/ads/ad2.png";
+import ad1 from "../assets/ads/roneAd1.jpeg";
+import ad2 from "../assets/ads/roneAd2.jpeg";
 
 const AdContainer = () => {
   return (

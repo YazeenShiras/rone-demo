@@ -16,8 +16,6 @@ const HomePage = () => {
   };
 
   async function handleSubmit() {
-    document.getElementById("loaderNextButton").style.display = "block";
-    document.getElementById("nextText").style.display = "none";
     let url = new URL(
       "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
     );
@@ -38,10 +36,9 @@ const HomePage = () => {
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       localStorage.setItem("roneid", roneId);
-      /* document.getElementById("emailSent").style.display = "block";
+      document.getElementById("emailSent").style.display = "block";
       document.getElementById("nextButton").style.display = "none";
-      document.getElementById("alreadyRegisterdLogin").style.display = "none" */
-      window.location.href = "/register"
+      document.getElementById("alreadyRegisterdLogin").style.display = "none";
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -52,10 +49,10 @@ const HomePage = () => {
     }
   }
 
-  /* async function verifyEmail() {
+  async function verifyEmail() {
     document.getElementById("loaderNextButton").style.display = "block";
     document.getElementById("nextText").style.display = "none";
-    let url = new URL("https://ronecard.herokuapp.com/Email-otp_genarator");
+    let url = new URL("https://ronecard.herokuapp.com/Email-verification");
     url.search = new URLSearchParams({
       emailid: email,
     });
@@ -77,14 +74,14 @@ const HomePage = () => {
       document.getElementById("nextText").style.display = "block";
     }
   }
- */
+
   const nextClick = () => {
     if (roneId === "" || email === "") {
       document.getElementById("errorRoneId").style.display = "block";
     } else {
       document.getElementById("errorRoneId").style.display = "none";
-      /* verifyEmail(); */
-      handleSubmit();
+      verifyEmail();
+      /* handleSubmit(); */
     }
   };
 
@@ -100,7 +97,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="header__right">
-        <Link className="loginButton__container" to="/login">
+          <Link className="loginButton__container" to="/login">
             <PrimaryButton content="Login" />
           </Link>
           <div className="header__menu__container">
@@ -114,7 +111,8 @@ const HomePage = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-            Enter your <br />RONE ID and Email  to Register
+            Enter your <br />
+            RONE ID and Email to Register
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
@@ -146,7 +144,10 @@ const HomePage = () => {
           <p className="errorText" id="emailSent">
             verification email sent successfully!
           </p>
-          <div className="alreadyRegistered__container" id="alreadyRegisterdLogin">
+          <div
+            className="alreadyRegistered__container"
+            id="alreadyRegisterdLogin"
+          >
             <p className="alreadyRegisterd">Already Registered ? </p>
             <Link to="/login">
               <p className="login__AlreadyRegisterd">Login</p>

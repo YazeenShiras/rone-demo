@@ -1,6 +1,6 @@
 .adContainer {
   padding: 0px 8vw;
-  height: 300px;
+  height: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,6 +10,13 @@
 .adCard {
   height: 100%;
   width: 49.5%;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media only screen and (max-width: 500px) {
+  .adContainer {
+    height: 420px;
+  }
 }
