@@ -158,13 +158,13 @@ const LoginSendOtp = () => {
         </div>
         <div className="inputs__container__bodyRegister">
           <h2>
-            Enter your RONE ID
+            Enter your rONE ID
             <br />
             and Mobile Number to Login
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
-              <legend>RONE ID*</legend>
+              <legend>rONE ID*</legend>
               <div className="input__box">
                 <input onChange={storeMobile} id="roneId" type="text" />
               </div>
