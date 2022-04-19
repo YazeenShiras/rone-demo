@@ -14,7 +14,6 @@ import instagram from "../assets/instagram.svg";
 import telegram from "../assets/telegram.svg";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
-import { Country, State, City } from "country-state-city";
 import axios from "axios";
 
 const EditProfile = () => {

@@ -243,9 +243,9 @@ const Wallet = () => {
     }
   };
 
-  const buyMoreCarsClick = () => {
+  /* const buyMoreCarsClick = () => {
     document.getElementById("buyMoreCardsContainer").style.display = "flex";
-  };
+  }; */
 
   const onCardInputChange = () => {
     setBuyCardCount(document.getElementById("numberOfCards").value);
