@@ -108,7 +108,7 @@ const PaymentUser = () => {
         </div>
       </div>
       <div className="container__paymnetUser" id="containerPaymnetUser">
-        <h2>Rone Payment</h2>
+        <h2>rONE Payment</h2>
         <form action="" autoComplete="off" className="form">
           <fieldset className="input__container">
             <legend>Name</legend>

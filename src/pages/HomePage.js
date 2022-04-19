@@ -113,11 +113,11 @@ const HomePage = () => {
         <div className="inputs__container__bodyRegister">
           <h2>
             Enter your <br />
-            RONE ID and Email to Register
+            rONE ID and Email to Register
           </h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
-              <legend>Rone ID*</legend>
+              <legend>rONE ID*</legend>
               <div className="input__box">
                 <input onChange={storeValue} id="roneId" type="text" />
               </div>

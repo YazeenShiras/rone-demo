@@ -337,7 +337,7 @@ const Wallet = () => {
                   </div>
                 </div>
               </div>
-              <p>RONE CARD</p>
+              <p>rONE CARD</p>
             </div>
             <p className="buyMoretext">Low card balance? Buy More</p>
             {/* <div onClick={buyMoreCarsClick} className="buyMoreCards__button">
