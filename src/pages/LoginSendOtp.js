@@ -75,8 +75,7 @@ const LoginSendOtp = () => {
     }
     if (data.status === 404) {
       document.getElementById("errorMobile").style.display = "block";
-      document.getElementById("errorMobile").innerHTML =
-        "invalid RONE ID or Email";
+      document.getElementById("errorMobile").innerHTML = "invalid rONE ID";
       document.getElementById("loaderSentOtp").style.display = "none";
       document.getElementById("sentOTP").style.display = "block";
     }
@@ -175,7 +174,7 @@ const LoginSendOtp = () => {
                 <input onChange={storeMobile} id="number" type="text" />
               </div>
             </fieldset>
-            <p id="errorMobile" className="error__varifyOtp errorLoginSendOtp">
+            <p id="errorMobile" className="error__varifyOtp">
               Enter a valid Mobile Number
             </p>
             <div onClick={loginClick} className="register__button__form">

@@ -43,8 +43,7 @@ const HomePage = () => {
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
-      document.getElementById("errorRoneId").innerHTML =
-        "invalid RONE ID or Email";
+      document.getElementById("errorRoneId").innerHTML = "invalid rONE ID";
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
     }
