@@ -156,9 +156,9 @@
   object-fit: contain;
 }
 
-.pageChange {
-  height: 40px;
-  width: 130px;
+.browseImageContainerlist {
+  margin-top: 30px;
+  display: none;
 }
 
 .title__container__imageGalleryMain {
@@ -339,6 +339,10 @@
   margin-left: 10px;
 }
 
+.deleteButtonImageGallery > p {
+  font-size: 13px;
+}
+
 @media only screen and (max-width: 500px) {
   .title__container__imageGalleryMain > h3 {
     font-size: 18px;
@@ -350,22 +354,19 @@
     font-size: 13px;
   }
   .content__container__imageGalleryMain {
-    width: 100%;
-    display: grid;
-    margin-top: 30px;
-    align-items: center;
-    justify-content: space-between;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
   }
-
   .card__products__imageContainer {
+    height: 200px;
+  }
+  .buttonContainer__imageGallery {
     display: flex;
     flex-direction: column;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 1px solid #fbe9e9;
-    height: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+  .AddPhotosButton {
+    margin-left: 20px;
+    margin-bottom: 20px;
   }
 }

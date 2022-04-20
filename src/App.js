@@ -28,7 +28,6 @@ import AboutHome from "./pages/AboutHome";
 import CookiePolicy from "./pages/CookiePolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import EmailVerification from "./pages/EmailVerification";
-import BrowseImage from "./components/BrowseImage";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -36,7 +35,7 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/test" exact component={BrowseImage} />
+          {/* <Route path="/" exact component={DevelopmentMode} /> */}
           <Route path="/" exact component={HomePage} />
           <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />

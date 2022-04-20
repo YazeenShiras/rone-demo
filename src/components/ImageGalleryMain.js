@@ -9,6 +9,7 @@ import sort from "../assets/sort.svg";
 import image from "../assets/image.svg";
 import deleteIcon from "../assets/delete.svg";
 import Resizer from "react-image-file-resizer";
+import BrowseImage from "./BrowseImage";
 
 const ImageGalleryMain = () => {
   const [imageFile, setImageFile] = useState("");
@@ -154,22 +155,19 @@ const ImageGalleryMain = () => {
 
   const sureDelete = (imgId, publicId) => {
     let confirmAction = confirm("Are you sure to Delete?");
-    if(confirmAction) {
-      deleteImage(imgId, publicId)
+    if (confirmAction) {
+      deleteImage(imgId, publicId);
     }
-  }
+  };
 
-  /* const loadMore = () => {
-    var loadMoreButton = document.getElementById("loadMore__button");
-    var loadMoreContainer = document.getElementById("loadmoreContainer");
-    if (loadMoreButton.innerHTML === "Show Less") {
-      loadMoreContainer.style.display = "none";
-      loadMoreButton.innerHTML = "Load More";
+  const browseImageClick = () => {
+    let browseContainer = document.getElementById("browseImageContainer");
+    if (browseContainer.style.display === "flex") {
+      browseContainer.style.display = "none";
     } else {
-      loadMoreContainer.style.display = "flex";
-      loadMoreButton.innerHTML = "Show Less";
+      browseContainer.style.display = "flex";
     }
-  }; */
+  };
 
   return (
     <div className="imageGalleryMain" id="imageGallery">
@@ -194,19 +192,20 @@ const ImageGalleryMain = () => {
           <img src={image} alt="" />
           Choose Photo
         </div>
-        {/* <img className="displayImageForUpload" src={imageFile} alt="" />
-        <div className="UploadToImageGalleryButton" onClick={confirmFetch}>
-          Upload To Image Gallery
-        </div> */}
+        <div onClick={browseImageClick} className="BrowsePhotoButton">
+          <img src={image} alt="" />
+          Browse Photo
+        </div>
       </div>
-
+      <div className="browseImageContainerlist" id="browseImageContainer">
+        <BrowseImage />
+      </div>
       <div className="selectFromFile__container" id="selectFromFileContainer">
         <div className="loading__animation" id="loadingAnimation">
           <ClockLoader size={30} color="#d52a33" />
           <p> Uploading...</p>
         </div>
       </div>
-
       <div
         id="imageGalleryContent"
         className="content__container__imageGalleryMain"
@@ -225,35 +224,13 @@ const ImageGalleryMain = () => {
                 className="deleteButton deleteButtonImageGallery"
               >
                 <img src={deleteIcon} alt="" />
-                Delete
+                <p>Delete</p>
               </div>
               {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
             </div>
           );
         })}
       </div>
-      {/* <div
-        id="loadmoreContainer"
-        className="loadMore__contaner__imageContainer"
-      >
-        <div className="extendedImageGalleryContainer">
-          {photos.map((photo) => {
-            console.log(photo);
-            return (
-              <div
-                key={photo.id}
-                style={{
-                  backgroundColor: photo.color,
-                  backgroundImage: `url(${photo.urls.full})`,
-                }}
-                className="imageCard__imageGallery"
-              >
-                <h4>{photo.title}</h4>
-              </div>
-            );
-          })}
-        </div>
-      </div> */}
       <div className="buttonContainer__imageContainer">
         <div id="loadMore__button" className="loadMore__button">
           Load More
