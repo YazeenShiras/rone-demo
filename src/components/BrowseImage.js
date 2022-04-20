@@ -76,7 +76,7 @@ const BrowseImage = () => {
       <div className="searchBar__container">
         <input
           type="search"
-          placeholder="Search Image"
+          placeholder="Million of royalty free images"
           onChange={handleChange}
         />
         <div onClick={getImages}>Search</div>

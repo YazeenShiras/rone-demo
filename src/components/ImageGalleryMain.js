@@ -190,16 +190,10 @@ const ImageGalleryMain = () => {
             onChange={confirmFetch}
           />
           <img src={image} alt="" />
-          Choose Photo
-        </div>
-        <div onClick={browseImageClick} className="BrowsePhotoButton">
-          <img src={image} alt="" />
-          Browse Photo
+          Upload Photo
         </div>
       </div>
-      <div className="browseImageContainerlist" id="browseImageContainer">
-        <BrowseImage />
-      </div>
+      <BrowseImage />
       <div className="selectFromFile__container" id="selectFromFileContainer">
         <div className="loading__animation" id="loadingAnimation">
           <ClockLoader size={30} color="#d52a33" />

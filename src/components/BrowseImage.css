@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   width: calc(100vw - 16vw);
+  margin-top: 30px;
 }
 
 .searchBar__container {
@@ -14,6 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
 .searchBar__container > input {
