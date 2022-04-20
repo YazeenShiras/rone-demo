@@ -216,13 +216,19 @@
   display: none;
 }
 
-.input__box > select{
+.input__box > select {
   width: 92%;
   height: 100%;
   border: none;
   outline: none;
   background: transparent;
   font-family: inherit;
+}
+
+.errorLoginSendOtp {
+  font-size: 14px;
+  color: #d52a33;
+  padding-bottom: 10px;
 }
 
 @media only screen and (max-width: 500px) {

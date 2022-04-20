@@ -175,7 +175,7 @@ const LoginSendOtp = () => {
                 <input onChange={storeMobile} id="number" type="text" />
               </div>
             </fieldset>
-            <p id="errorMobile" className="error__varifyOtp">
+            <p id="errorMobile" className="error__varifyOtp errorLoginSendOtp">
               Enter a valid Mobile Number
             </p>
             <div onClick={loginClick} className="register__button__form">
