@@ -249,7 +249,7 @@ const Products = () => {
               <legend>Product Name</legend>
               <div className="input__box">
                 <input
-                  maxLength="30"
+                  maxLength="25"
                   type="text"
                   name="name"
                   id="productName"
@@ -277,7 +277,7 @@ const Products = () => {
                   id="description"
                   cols="10"
                   rows="3"
-                  maxLength="100"
+                  maxLength="50"
                   onChange={storeValues}
                 ></textarea>
               </div>
@@ -292,39 +292,42 @@ const Products = () => {
         </div>
       </div>
       <div className="productsCard__container">
-        {allProducts.map((product, index) => {
-          return (
-            <div className="productCard" key={index}>
-              <div className="top__productCard">
-                <div className="imageContainer__productCard">
-                  <img src={product.img_url} alt="" />
+        {allProducts
+          .slice(0)
+          .reverse()
+          .map((product, index) => {
+            return (
+              <div className="productCard" key={index}>
+                <div className="top__productCard">
+                  <div className="imageContainer__productCard">
+                    <img src={product.img_url} alt="" />
+                  </div>
+                  <div className="productDetails__container__profileCard">
+                    <h3>{product.product_name}</h3>
+                    <p>{product.product_decsription}</p>
+                    <h4>₹ {product.product_price}</h4>
+                  </div>
                 </div>
-                <div className="productDetails__container__profileCard">
-                  <h3>{product.product_name}</h3>
-                  <p>{product.product_decsription}</p>
-                  <h4>₹ {product.product_price}</h4>
-                </div>
-              </div>
-              <div className="buttonsContainer__productCard">
-                <a
-                  href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20on%20ronedcard.com`}
-                  className="sendEnquiry__button"
-                >
-                  Send Enquiry
-                </a>
-                <div
-                  className="menuContainer"
-                  onClick={() => sureDelete(product.id)}
-                >
-                  <div className="deleteButton">
-                    <img src={deleteIcon} alt="" />
-                    <p>Delete</p>
+                <div className="buttonsContainer__productCard">
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20on%20ronedcard.com`}
+                    className="sendEnquiry__button"
+                  >
+                    Send Enquiry
+                  </a>
+                  <div
+                    className="menuContainer"
+                    onClick={() => sureDelete(product.id)}
+                  >
+                    <div className="deleteButton">
+                      <img src={deleteIcon} alt="" />
+                      <p>Delete</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

@@ -204,26 +204,29 @@ const ImageGalleryMain = () => {
         id="imageGalleryContent"
         className="content__container__imageGalleryMain"
       >
-        {allImages.map((imageData, index) => {
-          return (
-            <div
-              key={index}
-              style={{ backgroundImage: `url('${imageData.img_url}')` }}
-              className="card__products__imageContainer"
-            >
+        {allImages
+          .slice(0)
+          .reverse()
+          .map((imageData, index) => {
+            return (
               <div
-                onClick={() =>
-                  sureDelete(imageData.id, imageData.img_public_id)
-                }
-                className="deleteButton deleteButtonImageGallery"
+                key={index}
+                style={{ backgroundImage: `url('${imageData.img_url}')` }}
+                className="card__products__imageContainer"
               >
-                <img src={deleteIcon} alt="" />
-                <p>Delete</p>
+                <div
+                  onClick={() =>
+                    sureDelete(imageData.id, imageData.img_public_id)
+                  }
+                  className="deleteButton deleteButtonImageGallery"
+                >
+                  <img src={deleteIcon} alt="" />
+                  <p>Delete</p>
+                </div>
+                {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
               </div>
-              {/* <h4>Lorem Ipsum is simply dummy text of the</h4> */}
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       <div className="buttonContainer__imageContainer">
         <div id="loadMore__button" className="loadMore__button">

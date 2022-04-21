@@ -9,6 +9,7 @@
     "axios": "^0.26.1",
     "country-state-city": "^3.0.1",
     "firebase-tools": "^10.6.0",
+    "google-map-react": "^2.1.10",
     "qrcode.react": "^3.0.1",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
@@ -23,6 +24,7 @@
     "react-share": "^4.4.0",
     "react-spinners": "^0.11.0",
     "react-to-pdf": "0.0.14",
+    "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
