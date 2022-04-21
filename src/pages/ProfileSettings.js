@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Resizer from "react-image-file-resizer";
 import SyncLoader from "react-spinners/SyncLoader";
 import "./ProfileSettings.css";
+import locationImg from "../assets/location.svg";
 import Header from "../components/Header";
 import bg from "../assets/settingsBg.png";
 import camera from "../assets/camera.svg";
@@ -12,6 +13,7 @@ import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
 import telegram from "../assets/telegram.svg";
+import youtube from "../assets/youtube.svg";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import axios from "axios";
@@ -409,7 +411,7 @@ const EditProfile = () => {
                 </fieldset>
                 <fieldset className="input__container__form__update">
                   <legend>Location</legend>
-                  <div className="input__box__form__update">
+                  <div className="input__box__form__update__location">
                     <input
                       onChange={storeLocation}
                       id="location"
@@ -417,6 +419,7 @@ const EditProfile = () => {
                       name="location"
                       defaultValue={location}
                     />
+                    <img src={locationImg} alt="" />
                   </div>
                 </fieldset>
                 <fieldset className="input__container__form__update">
@@ -529,6 +532,15 @@ const EditProfile = () => {
                     placeholder="Enter your Telegram username"
                     onChange={storeLinks}
                     defaultValue={telegramLink}
+                  />
+                </div>
+                <div className="socialLinksinputContainer">
+                  <img src={youtube} alt="" />
+                  <input
+                    id="youtubeLink"
+                    type="text"
+                    placeholder="Youtube link"
+                    onChange={storeLinks}
                   />
                 </div>
                 <p id="errorProfileEdit" className="errorProfileEdit">

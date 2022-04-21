@@ -262,7 +262,7 @@ const Wallet = () => {
   async function sendClick() {
     if (document.getElementById("sendText").innerHTML === "Send") {
       document.getElementById("sendText").innerHTML = "sending...";
-      document.getElementById("sendText").style.color = "#F48D43";
+      document.getElementById("sendText").style.color = "#ffffff";
       let urlSend = "https://rone-card.herokuapp.com/shareLink";
 
       const response = await fetch(urlSend, {
@@ -278,7 +278,7 @@ const Wallet = () => {
       const data = await response.json();
       if (data.status === 202) {
         document.getElementById("sendText").innerHTML = "success";
-        document.getElementById("sendText").style.color = "#00ad07";
+        document.getElementById("sendText").style.color = "#ffffff";
       }
     }
   }
@@ -452,9 +452,10 @@ const Wallet = () => {
                   onClick={sendClick}
                   className="middleRight__card__transaction"
                 >
-                  <p id="sendText">Send</p>
+                  <p id="sendText" className="sendButton">
+                    Send
+                  </p>
                 </div>
-                {/* <div className="deleteButton__transaction__card">Delete</div> */}
               </div>
             </div>
 
@@ -475,11 +476,8 @@ const Wallet = () => {
                         <p>{`+91 ` + data.phone}</p>
                       </div>
                       <div className="middleRight__card__transaction">
-                        <p>Expired</p>
+                        <p className="expiredButton">Expired</p>
                       </div>
-                      {/* <div className="deleteButton__transaction__card">
-                        Delete
-                      </div> */}
                     </div>
                   );
                 })}

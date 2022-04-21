@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import user from "../assets/user.svg";
 import logo from "../assets/Logo1.svg";
 import photoIcon from "../assets/image.svg";
+import locationImg from "../assets/location.svg";
 import "./AuthStyles.css";
 import "./UserDetails.css";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -391,13 +392,14 @@ function UserDetails() {
           </fieldset>
           <fieldset className="input__container">
             <legend>Location*</legend>
-            <div className="input__box">
+            <div className="location__input__box">
               <input
                 id="location"
                 type="text"
                 name="location"
                 onChange={storeLocation}
               />
+              <img src={locationImg} alt="" />
             </div>
           </fieldset>
           <fieldset className="input__container">

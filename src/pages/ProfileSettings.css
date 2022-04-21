@@ -170,7 +170,7 @@
   margin-top: -30px;
 }
 
-.input__box__form__update > select{
+.input__box__form__update > select {
   width: 85%;
   height: 100%;
   border: none;
@@ -257,6 +257,33 @@
   align-items: center;
   justify-content: center;
   z-index: -1000;
+}
+
+.input__box__form__update__location {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1000;
+}
+
+.input__box__form__update__location > input {
+  width: 75%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: #686868;
+}
+
+.input__box__form__update__location > img {
+  margin-left: 10px;
+  cursor: pointer;
+  height: 20px;
+  object-fit: contain;
 }
 
 .input__box__form__update > input {

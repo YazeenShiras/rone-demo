@@ -198,10 +198,10 @@ const Products = () => {
 
   const sureDelete = (deleteId) => {
     let confirmAction = confirm("Are you sure to Delete?");
-    if(confirmAction) {
-      deleteProduct(deleteId)
+    if (confirmAction) {
+      deleteProduct(deleteId);
     }
-  }
+  };
 
   return (
     <div className="products" id="products">
@@ -249,6 +249,7 @@ const Products = () => {
               <legend>Product Name</legend>
               <div className="input__box">
                 <input
+                  maxLength="30"
                   type="text"
                   name="name"
                   id="productName"
@@ -264,6 +265,7 @@ const Products = () => {
                   type="text"
                   name="price"
                   onChange={storeValues}
+                  maxLength="8"
                 />
               </div>
             </fieldset>
@@ -293,29 +295,31 @@ const Products = () => {
         {allProducts.map((product, index) => {
           return (
             <div className="productCard" key={index}>
-              <div
-                className="menuContainer"
-                onClick={() => sureDelete(product.id)}
-              >
-                <div className="deleteButton">
-                  <img src={deleteIcon} alt="" />
-                  Delete
+              <div className="top__productCard">
+                <div className="imageContainer__productCard">
+                  <img src={product.img_url} alt="" />
+                </div>
+                <div className="productDetails__container__profileCard">
+                  <h3>{product.product_name}</h3>
+                  <p>{product.product_decsription}</p>
+                  <h4>₹ {product.product_price}</h4>
                 </div>
               </div>
-              <div className="imageContainer__productCard">
-                <img src={product.img_url} alt="" />
-              </div>
-              <div className="productDetails__container__profileCard">
-                <h3>{product.product_name}</h3>
-                <p>{product.product_decsription}</p>
-                <h4>₹{product.product_price}</h4>
-                <div className="buttonsContainer__productCard">
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20on%20ronedcard.com`}
-                    className="sendEnquiry__button"
-                  >
-                    Send Enquiry
-                  </a>
+              <div className="buttonsContainer__productCard">
+                <a
+                  href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=I%20would%20like%20to%20learn%20more%20about%20${product.product_name}%20(product)%20on%20ronedcard.com`}
+                  className="sendEnquiry__button"
+                >
+                  Send Enquiry
+                </a>
+                <div
+                  className="menuContainer"
+                  onClick={() => sureDelete(product.id)}
+                >
+                  <div className="deleteButton">
+                    <img src={deleteIcon} alt="" />
+                    <p>Delete</p>
+                  </div>
                 </div>
               </div>
             </div>
