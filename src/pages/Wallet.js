@@ -189,6 +189,7 @@ const Wallet = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        roneId: roneId,
         Id: userid,
         username: name,
         phone: number,
