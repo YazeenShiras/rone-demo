@@ -64,7 +64,7 @@ const PaymentUser = () => {
 
   const handlePayment = useCallback(() => {
     const options = {
-      key: "rzp_live_vGwfsaITsW3f2s",
+      key: "rzp_test_ebPS0dfN5A4uYA",
       amount: "1500",
       currency: "INR",
       name: "Rone Payment",
