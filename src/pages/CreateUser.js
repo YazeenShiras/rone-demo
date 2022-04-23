@@ -40,7 +40,7 @@ const CreateUser = () => {
     document.getElementById("loaderRegisterUser").style.display = "block";
     document.getElementById("RegisterUser").style.display = "none";
 
-    const res = await fetch("https://ronecard.herokuapp.com/create_user", {
+    const res = await fetch("https://ronedcard.herokuapp.com/create_user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const CreateUser = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === "true") {
-      localStorage.setItem("name", name)
+      localStorage.setItem("name", name);
       localStorage.setItem("username", username);
       localStorage.setItem("usermob", number);
       localStorage.setItem("newuserid", data.id);
@@ -85,7 +85,7 @@ const CreateUser = () => {
     document.getElementById("RegisterUser").style.display = "none";
 
     const res = await fetch(
-      "https://ronecard.herokuapp.com/we_can_try_roneuser_verification",
+      "https://ronedcard.herokuapp.com/we_can_try_roneuser_verification",
       {
         method: "POST",
         headers: {

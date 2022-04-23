@@ -67,7 +67,7 @@ const EmailVerification = () => {
       document.getElementById("loaderVerifyEmail").style.display = "block";
       document.getElementById("veryfyEmail").style.display = "none";
       let url = new URL(
-        "https://ronecard.herokuapp.com/otp_verification_for_email"
+        "https://ronedcard.herokuapp.com/otp_verification_for_email"
       );
       const res = await fetch(url, {
         method: "POST",

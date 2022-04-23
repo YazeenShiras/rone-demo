@@ -120,7 +120,7 @@ function UserDetails() {
   async function uploadPhoto() {
     console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
-    const endpoint = "https://ronecard.herokuapp.com/profile_upload_url";
+    const endpoint = "https://ronedcard.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -149,7 +149,7 @@ function UserDetails() {
     console.log(district);
     console.log(pincode);
 
-    let url = new URL("https://ronecard.herokuapp.com/roneuser_address");
+    let url = new URL("https://ronedcard.herokuapp.com/roneuser_address");
 
     url.search = new URLSearchParams({
       username: username,
@@ -191,7 +191,7 @@ function UserDetails() {
 
       console.log(userid);
 
-      let url = new URL("https://ronecard.herokuapp.com/user__details");
+      let url = new URL("https://ronedcard.herokuapp.com/user__details");
 
       url.search = new URLSearchParams({
         user_id: userid,

@@ -28,7 +28,9 @@ import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import Pdf from "react-to-pdf";
 import { GridLoader } from "react-spinners";
+
 const ref = React.createRef();
+
 const options = {
   orientation: "landscape",
   unit: "in",
@@ -69,7 +71,7 @@ const ProfileDetails = () => {
     originForShare.searchParams.set("user", username);
 
     const getUser = async () => {
-      let url = new URL("https://ronecard.herokuapp.com/user_details");
+      let url = new URL("https://ronedcard.herokuapp.com/user_details");
       url.search = new URLSearchParams({
         user_id: userid,
       });
@@ -95,7 +97,7 @@ const ProfileDetails = () => {
 
     const getSocial = async () => {
       let socialUrl = new URL(
-        "https://ronecard.herokuapp.com/get_social_links"
+        "https://ronedcard.herokuapp.com/get_social_links"
       );
       socialUrl.search = new URLSearchParams({
         user_id: userid,

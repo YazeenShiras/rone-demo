@@ -56,7 +56,7 @@ const ImageGalleryMain = () => {
 
   useEffect(() => {
     async function getAllImages() {
-      const endpoint = "https://ronecard.herokuapp.com/access_image_gallery";
+      const endpoint = "https://ronedcard.herokuapp.com/access_image_gallery";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -95,7 +95,7 @@ const ImageGalleryMain = () => {
     console.log("access to UploadPhotofromFiles");
     document.getElementById("selectFromFileContainer").style.display = "flex";
 
-    const endpoint = "https://ronecard.herokuapp.com/self_upload-file";
+    const endpoint = "https://ronedcard.herokuapp.com/self_upload-file";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -133,7 +133,7 @@ const ImageGalleryMain = () => {
   };
 
   async function deleteImage(imgId, publicId) {
-    let url = new URL("https://ronecard.herokuapp.com/Delete/file/gallery");
+    let url = new URL("https://ronedcard.herokuapp.com/Delete/file/gallery");
 
     url.search = new URLSearchParams({
       img_id: imgId,

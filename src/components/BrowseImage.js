@@ -20,7 +20,7 @@ const BrowseImage = () => {
   async function uploadPhotofromSearch() {
     console.log("access to UploadPhotofromSearch");
 
-    let endpoint = new URL("https://ronecard.herokuapp.com/public_img_urls");
+    let endpoint = new URL("https://ronedcard.herokuapp.com/public_img_urls");
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({

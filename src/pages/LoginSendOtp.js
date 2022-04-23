@@ -14,7 +14,7 @@ const LoginSendOtp = () => {
 
   async function handleSubmit() {
     let url = new URL(
-      "https://ronecard.herokuapp.com/OTP_Genarator/rone/login"
+      "https://ronedcard.herokuapp.com/OTP_Genarator/rone/login"
     );
     url.search = new URLSearchParams({
       mobile_num: loginNumber,
@@ -54,7 +54,7 @@ const LoginSendOtp = () => {
   async function roneCheck() {
     document.getElementById("loaderSentOtp").style.display = "block";
     document.getElementById("sentOTP").style.display = "none";
-    let url = new URL("https://ronecard.herokuapp.com/rone_id_authentication");
+    let url = new URL("https://ronedcard.herokuapp.com/rone_id_authentication");
     url.search = new URLSearchParams({
       rone_id: roneId,
     });

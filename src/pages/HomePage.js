@@ -18,7 +18,7 @@ const HomePage = () => {
 
   async function handleSubmit() {
     let url = new URL(
-      "https://ronecard.herokuapp.com/roneid_with_pan_authentication"
+      "https://ronedcard.herokuapp.com/roneid_with_pan_authentication"
     );
     url.search = new URLSearchParams({
       rone_id: roneId,
@@ -52,7 +52,7 @@ const HomePage = () => {
   async function verifyEmail() {
     document.getElementById("loaderNextButton").style.display = "block";
     document.getElementById("nextText").style.display = "none";
-    let url = new URL("https://ronecard.herokuapp.com/Email-verification");
+    let url = new URL("https://ronedcard.herokuapp.com/Email-verification");
     url.search = new URLSearchParams({
       emailid: email,
     });
