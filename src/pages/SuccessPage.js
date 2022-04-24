@@ -10,6 +10,9 @@ import axios from "axios";
 const SuccessPage = () => {
   const [payId, setPayId] = useState("");
 
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+
   function getParameters() {
     let urlString = window.location.href;
     let paramString = urlString.split("?")[1];
@@ -33,12 +36,50 @@ const SuccessPage = () => {
         .then((response) => {
           const data = response.data;
           console.log(data);
+          setEmail(data.receipt.email);
+          setNumber(data.receipt.contact);
         });
     }
     if (payId !== undefined && payId !== "") {
       paymnetReciept();
     }
   }, [payId]);
+
+  useEffect(() => {
+    async function createRoneId() {
+      let endpoint = "https://ronedcard.herokuapp.com/Email-Roneid";
+
+      let url = new URL(endpoint);
+      url.search = new URLSearchParams({
+        emailid: email,
+        mobile: number,
+      });
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.status === 200) {
+        document.getElementById("emailsentLink").style.display = "block";
+      }
+      if (data.status === 404) {
+        document.getElementById("emailsentLink").innerHTML =
+          "Email already used to create rONE ID";
+        document.getElementById("emailsentLink").style.display = "block";
+        document.getElementById("emailsentLink").style.color = "#d52a33";
+      }
+    }
+
+    if (email !== "" && number !== "") {
+      createRoneId();
+    } else {
+      console.log("not found email");
+    }
+  }, [email, number]);
 
   return (
     <div className="successPage">
@@ -55,9 +96,17 @@ const SuccessPage = () => {
         </div>
       </div>
       <div className="successPageContainer">
-        <p>
+        <p className="paymnetSuccessText">
           your payment was successful <br /> check your mail for <br />
           confirmation
+        </p>
+        <p id="emailsentLink" className="emailSent">
+          Your rONE ID sended to <br />{" "}
+          <span
+            style={{ color: "blueviolet", marginTop: "20px", fontSize: "14px" }}
+          >
+            {email}
+          </span>
         </p>
         <img src={successImg} alt="" />
       </div>

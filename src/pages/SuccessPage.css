@@ -7,9 +7,15 @@
   justify-content: center;
 }
 
-.successPageContainer > p {
+.paymnetSuccessText {
   text-align: center;
   margin-bottom: 20px;
   font-size: 18px;
   font-family: inherit;
+}
+
+.emailSent {
+  display: none;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
