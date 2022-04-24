@@ -65,7 +65,7 @@ const About = () => {
           Energize the charitable activities to help the poor and deserving
           people.
         </p>
-        <h5>Contact Us</h5>
+        <h3>Contact Us</h3>
         <p>If you have any questions about rONE, You can contact us:</p>
         <p>
           By email: <a href="support@ronedcard.com">support@ronedcard.com</a>
