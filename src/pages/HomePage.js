@@ -37,9 +37,7 @@ const HomePage = () => {
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
       localStorage.setItem("roneid", roneId);
-      document.getElementById("emailSent").style.display = "block";
-      document.getElementById("nextButton").style.display = "none";
-      document.getElementById("alreadyRegisterdLogin").style.display = "none";
+      window.location.href = "/email-verification";
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -66,6 +64,7 @@ const HomePage = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === 200) {
+      localStorage.setItem("tokenFromEmail", data.token);
       handleSubmit();
     } else if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
@@ -81,7 +80,6 @@ const HomePage = () => {
     } else {
       document.getElementById("errorRoneId").style.display = "none";
       verifyEmail();
-      /* handleSubmit(); */
     }
   };
 
@@ -141,9 +139,6 @@ const HomePage = () => {
               <p id="nextText">NEXT</p>
             </div>
           </form>
-          <p className="errorText" id="emailSent">
-            verification email sent successfully!
-          </p>
           <div
             className="alreadyRegistered__container"
             id="alreadyRegisterdLogin"

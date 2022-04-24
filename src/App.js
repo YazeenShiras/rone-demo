@@ -61,7 +61,7 @@ function App() {
           <Route path="/settings/QR-code" component={QrScan} />
           <Route path="/buyronecard" component={BuyRoneCard} />
           <Route path="/profile/:id" component={ShareProfile} />
-          <Route path="/email/:id" component={EmailVerification} />
+          <Route path="/email-verification" component={EmailVerification} />
           <Route path="/:id" component={PaymentUser} />
         </Switch>
       </div>
