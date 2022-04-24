@@ -62,6 +62,7 @@ const EmailVerification = () => {
       document.getElementById("veryfyRegister").style.display = "block";
       document.getElementById("errorVarifyOtp").innerHTML = "OTP expired";
       document.getElementById("errorVarifyOtp").style.display = "block";
+      document.getElementById("recentOTP").style.display = "block";
     }
   }
 
@@ -111,11 +112,15 @@ const EmailVerification = () => {
               <p id="veryfyRegister">VERIFY EMAIL</p>
             </div>
           </form>
-          {/* <div className="alreadyRegistered__container">
-            <p style={{ cursor: "pointer" }} className="alreadyRegisterd">
+          <div className="alreadyRegistered__container" id="recentOTP">
+            <a
+              href="/"
+              style={{ cursor: "pointer" }}
+              className="alreadyRegisterd"
+            >
               Resend OTP
-            </p>
-          </div> */}
+            </a>
+          </div>
         </div>
       </div>
     </div>
