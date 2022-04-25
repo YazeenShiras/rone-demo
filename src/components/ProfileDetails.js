@@ -306,10 +306,7 @@ const ProfileDetails = () => {
             </a>
           </div>
           <div className="other__buttons__container">
-            <a
-              href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjE5JPHx6_3AhV1k2YCHdGMBloYABABGgJzbQ&ae=1&ohost=www.google.com&cid=CAASJORojXfZk0dc5i13AxXJz3Gqbs4JA3ZbYIsbQC147TIeFNpt2w&sig=AOD64_2dqx87vhq78ikZ0DueFQbcfeJVBQ&q&adurl=https://tez.google.com/?destination%3DCAGaAwoIgICAgIDkmJEL%26utm_campaign%3Dgpay_sem_re-branding_q1-q4_2022%26utm_medium%3Dre-branding%26utm_source%3Dsem%26gclsrc%3Daw.ds%26gclid%3DEAIaIQobChMIxOSTx8ev9wIVdZNmAh3RjAZaEAAYASAAEgKUpvD_BwE&ved=2ahUKEwjL9YzHx6_3AhXP73MBHZLHDoIQ0Qx6BAgEEAE"
-              className="payment__button"
-            >
+            <a href="https://gpay.app.goo.gl/bjy4" className="payment__button">
               <img src={payment} alt="" />
               Make Payment
             </a>
