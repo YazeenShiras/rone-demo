@@ -100,6 +100,7 @@ const PaymentUser = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://rone-card.herokuapp.com",
       },
       body: JSON.stringify({
         username: name,
