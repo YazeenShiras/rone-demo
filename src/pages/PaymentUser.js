@@ -10,6 +10,7 @@ import "./UserDetails.css";
 import useRazorpay from "react-razorpay";
 import axios from "axios";
 import GridLoader from "react-spinners/GridLoader";
+import { PulseLoader } from "react-spinners";
 
 const PaymentUser = () => {
   const Razorpay = useRazorpay();
@@ -27,8 +28,6 @@ const PaymentUser = () => {
     let paramString = urlString.split("?")[1];
     let queryString = new URLSearchParams(paramString);
     for (let pair of queryString.entries()) {
-      console.log("Key is:" + pair[0]);
-      console.log("Value is:" + pair[1]);
       setId(pair[1]);
     }
   }
@@ -37,19 +36,17 @@ const PaymentUser = () => {
     getParameters();
 
     async function getUserdata() {
-      console.log(id);
       axios
         .post("https://rone-card.herokuapp.com/paymentUser", {
           userId: id,
         })
         .then((response) => {
           const data = response.data;
-          console.log(data);
           if (response.status === 200) {
             setname(data.userData.username);
             setEmail(data.userData.email);
             setNumber(data.userData.phone);
-            setUserId(data.userData.userId);
+            setUserId(data.userData.roneId);
             setOrderId(data.order.id);
             document.getElementById("containerPaymnetUser").style.display =
               "flex";
@@ -94,22 +91,32 @@ const PaymentUser = () => {
   }, [Razorpay, name, email, number, orderId]);
 
   async function cashOnDelivery() {
+    document.getElementById("loadercashOndelivery").style.display = "block";
+    document.getElementById("sentcod").style.display = "none";
+
     let url = "https://rone-card.herokuapp.com/cashOnDelivery";
 
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://rone-card.herokuapp.com",
       },
       body: JSON.stringify({
         username: name,
-        userId: id,
+        userId: userId,
         phone: number,
         email: email,
       }),
     });
     const data = await response.json();
+    console.log(data);
+    if (data.status === 200) {
+      window.location.href = `https://ronedcard.com/success-payment/paymentSuccess?id=${data.paymentId}`;
+    }
+    if (data.status === 500) {
+      document.getElementById("loaderSentOtp").style.display = "block";
+      document.getElementById("sentOTP").style.display = "none";
+    }
   }
 
   return (
@@ -174,8 +181,10 @@ const PaymentUser = () => {
             <p>PAY WITH RAZORPAY</p>
           </div>
           <div onClick={cashOnDelivery} className="saveProfileButton">
-            <div className="loader__container__login"></div>
-            <p>CASH ON DELIVERY</p>
+            <div className="loader__container__cod" id="loadercashOndelivery">
+              <PulseLoader color="#ffffff" />
+            </div>
+            <p id="sentcod">CASH ON DELIVERY</p>
           </div>
         </form>
       </div>

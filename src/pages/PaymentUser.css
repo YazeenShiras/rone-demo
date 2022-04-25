@@ -12,6 +12,10 @@
   margin-bottom: 30px;
 }
 
+.loader__container__cod {
+  display: none;
+}
+
 .loader__container__paymnetUser {
   margin-top: 80px;
   width: 100vw;
@@ -31,5 +35,4 @@
   .container__paymnetUser {
     justify-content: flex-start;
   }
-
 }
