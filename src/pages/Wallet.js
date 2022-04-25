@@ -206,6 +206,14 @@ const Wallet = () => {
       document.getElementById("transactionLinksContainer").style.display =
         "flex";
     }
+    if (
+      data.message === "Card not found please purchase card or contact admin"
+    ) {
+      document.getElementById("transactionLinkCard").style.display = "none";
+      document.getElementById("transactionLinkCardNotFound").style.display =
+        "block";
+      document.getElementById("linkNotCreated").innerHTML = data.message;
+    }
   }
 
   const submitClick = () => {
@@ -277,6 +285,7 @@ const Wallet = () => {
         }),
       });
       const data = await response.json();
+      console.log(data);
       if (data.status === 202) {
         document.getElementById("sendText").innerHTML = "success";
         document.getElementById("sendText").style.color = "#ffffff";
@@ -440,7 +449,7 @@ const Wallet = () => {
               className="transactionLinks__container"
               id="transactionLinksContainer"
             >
-              <div className="TransactionLink__card">
+              <div id="transactionLinkCard" className="TransactionLink__card">
                 <div className="left__card__transaction">
                   <p>
                     {refDetails.length + 1}.<span>{resName}</span>
@@ -456,6 +465,17 @@ const Wallet = () => {
                   <p id="sendText" className="sendButton">
                     Send
                   </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="transactionLinks__container"
+              id="transactionLinkCardNotFound"
+            >
+              <div className="TransactionLink__card">
+                <div className="left__card__transaction">
+                  <p id="linkNotCreated"></p>
                 </div>
               </div>
             </div>

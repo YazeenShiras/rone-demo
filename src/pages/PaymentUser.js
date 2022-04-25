@@ -93,6 +93,24 @@ const PaymentUser = () => {
     rzpay.open();
   }, [Razorpay, name, email, number, orderId]);
 
+  async function cashOnDelivery() {
+    let url = "https://rone-card.herokuapp.com/cashOnDelivery";
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: name,
+        userId: id,
+        phone: number,
+        email: email,
+      }),
+    });
+    const data = await response.json();
+  }
+
   return (
     <div className="paymnetUser" style={{ height: "80px" }}>
       <div className="header">
@@ -154,7 +172,7 @@ const PaymentUser = () => {
             <div className="loader__container__login"></div>
             <p>PAY WITH RAZORPAY</p>
           </div>
-          <div className="saveProfileButton">
+          <div onClick={cashOnDelivery} className="saveProfileButton">
             <div className="loader__container__login"></div>
             <p>CASH ON DELIVERY</p>
           </div>

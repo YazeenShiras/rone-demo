@@ -73,6 +73,15 @@
   font-size: 20px;
 }
 
+#transactionLinkCardNotFound {
+  display: none;
+}
+
+#linkNotCreated {
+  margin-left: 30px;
+  color: #d52a33;
+}
+
 .roneCard__container > p {
   transform: rotate(-90deg);
   margin-right: -130px;
