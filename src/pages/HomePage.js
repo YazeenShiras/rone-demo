@@ -151,6 +151,16 @@ const HomePage = () => {
         </div>
       </div>
       <div className="FooterLinks__home">
+        <div className="callCustomerCare" id="alreadyRegisterdLogin">
+          <p className="callUs">Email and rONE ID doesn't match?</p>
+          <p>
+            Call Us :
+            <a href="tel:9298300300" className="callNumber">
+              {" "}
+              +91 9298 300 300
+            </a>
+          </p>
+        </div>
         <div className="top__footerLinks__home">
           <ul>
             <li>

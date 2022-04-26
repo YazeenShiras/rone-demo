@@ -231,6 +231,21 @@
   display: none;
 }
 
+.callCustomerCare {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  color: #5b5b5b;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.callNumber {
+  color: blueviolet;
+  font-size: 11px;
+}
+
 @media only screen and (max-width: 500px) {
   .content__bodyRegister {
     flex-direction: column;
@@ -238,5 +253,8 @@
   .image__container__bodyRegister > img {
     height: 200px;
     object-fit: contain;
+  }
+  .callCustomerCare {
+    margin-bottom: 10px;
   }
 }
