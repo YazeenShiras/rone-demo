@@ -304,10 +304,13 @@ const ShareProfile = () => {
               </a>
             </div>
             <div className="other__buttons__container">
-              <div className="payment__button">
+              <a
+                href="https://gpay.app.goo.gl/bjy4"
+                className="payment__button"
+              >
                 <img src={payment} alt="" />
                 Make Payment
-              </div>
+              </a>
               <div className="download__web" id="downloadWeb">
                 <Pdf
                   targetRef={ref}
