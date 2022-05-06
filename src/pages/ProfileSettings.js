@@ -336,7 +336,7 @@ const EditProfile = () => {
         <div className="formContainer__settings">
           <div className="titleContainer__formContainer">
             <p className="activeHeader titleHeaderlink">Profile</p>
-            <p className="accountSettings titleHeaderlink">Account</p>
+            <Link to="/settings/Accont" className="accountSettings titleHeaderlink">Account</Link>
             <Link
               to="/settings/Wallet"
               className="walletSettings titleHeaderlink"

@@ -12,8 +12,7 @@ const About = () => {
       >
         <h2>About Us</h2>
         <p>
-          rONE INFOTRADE PVT. LTD. is a Digital Start-up venture, Headquartered
-          at Thrissur, the cultural capital of Kerala. The Company incorporated
+        RONE INFOTRADE PVT.LTD. Door No: 1709, 7th Floor, HILITE Business Park Thondayad bypass, Kozhikode, Kerala, India- 673014. The Company incorporated
           as a ‘Private limited’ firm on 15th of October 2020, under the
           Companies Act 2013 (18 of 2013). The Company registered with GST Dept.
           on 14th of November, 2020 and Business commenced on 1st of April,

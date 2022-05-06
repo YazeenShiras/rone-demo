@@ -8,6 +8,7 @@ import UserDetails from "./pages/UserDetails";
 import LoginSendOtp from "./pages/LoginSendOtp";
 import VerifyOtpLogin from "./pages/VerifyOtpLogin";
 import ProfileSettings from "./pages/ProfileSettings";
+import AccountSettings from './pages/AccountSettings'
 import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";
@@ -57,6 +58,7 @@ function App() {
           <Route path="/login" component={LoginSendOtp} />
           <Route path="/verifyotplogin" component={VerifyOtpLogin} />
           <Route path="/settings/profile" component={ProfileSettings} />
+          <Route path="/settings/Accont" component={AccountSettings} />
           <Route path="/settings/Wallet" component={Wallet} />
           <Route path="/settings/QR-code" component={QrScan} />
           <Route path="/buyronecard" component={BuyRoneCard} />

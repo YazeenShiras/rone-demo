@@ -309,7 +309,7 @@ const Wallet = () => {
             >
               Profile
             </Link>
-            <p className="accountSettings titleHeaderlink">Account</p>
+            <Link to="/settings/Accont" className="accountSettings titleHeaderlink">Account</Link>
             <Link
               to="/settings/Wallet"
               className="activeHeaderWallet titleHeaderlink"

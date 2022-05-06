@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./ProfileDetails.css";
+import logo from "../assets/Logo1.svg";
 import bg from "../assets/images/mainBg.png";
 import share from "../assets/shareWhite.svg";
 import settings from "../assets/settings.svg";
@@ -28,6 +29,7 @@ import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import Pdf from "react-to-pdf";
 import { GridLoader } from "react-spinners";
+import useRazorpay from "react-razorpay";
 
 const ref = React.createRef();
 
@@ -44,12 +46,16 @@ const optionsMobile = {
 };
 
 const ProfileDetails = () => {
+  const Razorpay = useRazorpay();
+
   const [roneId, setRoneId] = useState("");
   const [isShare, setShare] = useState(false);
   const [userid, setUserId] = useState("");
   const [userData, setUserData] = useState("");
   const [username, setUsername] = useState("");
   const [origin, setOrigin] = useState("");
+
+  const [orderId, setOrderId] = useState("");
 
   const [facebookLink, setFacebookLink] = useState("");
   const [linkedInLink, setLinkedInLink] = useState("");
@@ -155,6 +161,38 @@ const ProfileDetails = () => {
       setShare(false);
     }
   };
+
+
+  const handlePayment = useCallback(() => {
+    const options = {
+      key: "rzp_live_vGwfsaITsW3f2s",
+      amount: "1500",
+      currency: "INR",
+      name: "Rone Payment",
+      description: "",
+      image: logo,
+      order_id: orderId,
+      callback_url: "https://rone-card.herokuapp.com/verifyPayment",
+      redirect: true,
+      handler: (res) => {
+        console.log(res);
+      },
+      prefill: {
+        name: "",
+        email: "",
+        contact: "",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#d52a33",
+      },
+    };
+
+    const rzpay = new Razorpay(options);
+    rzpay.open();
+  }, [Razorpay, orderId]);
 
   return (
     <div
@@ -306,10 +344,10 @@ const ProfileDetails = () => {
             </a>
           </div>
           <div className="other__buttons__container">
-            <a href="https://gpay.app.goo.gl/bjy4" className="payment__button">
+            <div onClick={handlePayment} className="payment__button">
               <img src={payment} alt="" />
               Make Payment
-            </a>
+            </div>
             <div className="download__web" id="downloadWeb">
               <Pdf
                 targetRef={ref}
