@@ -11,8 +11,10 @@ const LoginSendOtp = () => {
   const [isdetails, setIsdetails] = useState(false);
   const [loginNumber, setLoginNumber] = useState("");
   const [roneId, setRoneId] = useState("");
+  const [emailRes, setEmailRes] = useState("")
 
   async function handleSubmit() {
+    console.log("access to handleSubmit")
     let url = new URL(
       "https://ronedcard.herokuapp.com/OTP_Genarator/rone/login"
     );
@@ -51,10 +53,37 @@ const LoginSendOtp = () => {
     }
   }
 
+  async function checkOldUserId() {
+    let url = new URL("https://ronedtest.herokuapp.com/if_old_user_createroneid");
+
+    url.search = new URLSearchParams({
+      emailid : emailRes,
+      mobile: loginNumber,
+      roneid: roneId,
+    });
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    if(data.status === 404) {
+      handleSubmit()
+    } else {
+      document.getElementById("errorMobile").style.display = "block";
+      document.getElementById("errorMobile").innerHTML = "error occured";
+      document.getElementById("loaderSentOtp").style.display = "none";
+      document.getElementById("sentOTP").style.display = "block";
+    }
+  }
+
   async function roneCheck() {
     document.getElementById("loaderSentOtp").style.display = "block";
     document.getElementById("sentOTP").style.display = "none";
-    let url = new URL("https://ronedcard.herokuapp.com/rone_id_authentication");
+    let url = new URL("https://ronedtest.herokuapp.com/rone_id_authentication");
     url.search = new URLSearchParams({
       rone_id: roneId,
     });
@@ -67,13 +96,16 @@ const LoginSendOtp = () => {
     });
     const data = await res.json();
     console.log(data);
-    if (data.RONE_ID === roneId) {
+    if(data.New_user !== null) {
+      setEmailRes(data.New_user.email);
+    }
+    if (data.New_user !== null || data.Old_users !== null) {
       document.getElementById("loaderSentOtp").style.display = "none";
       document.getElementById("sentOTP").style.display = "block";
       localStorage.setItem("roneid", roneId);
-      handleSubmit();
+          checkOldUserId()
     }
-    if (data.status === 404) {
+    if (data.New_user === null && data.Old_users === null) {
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML = "invalid rONE ID";
       document.getElementById("loaderSentOtp").style.display = "none";

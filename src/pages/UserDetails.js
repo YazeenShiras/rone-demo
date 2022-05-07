@@ -120,7 +120,10 @@ function UserDetails() {
   async function uploadPhoto() {
     console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
-    const endpoint = "https://ronedcard.herokuapp.com/profile_upload_url";
+    
+    const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url"
+
+    /* const endpoint = "https://ronedcard.herokuapp.com/profile_upload_url"; */
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({

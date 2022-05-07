@@ -163,7 +163,7 @@ const ProfileDetails = () => {
   };
 
 
-  const handlePayment = useCallback(() => {
+  /* const handlePayment = useCallback(() => {
     const options = {
       key: "rzp_live_vGwfsaITsW3f2s",
       amount: "1500",
@@ -192,7 +192,7 @@ const ProfileDetails = () => {
 
     const rzpay = new Razorpay(options);
     rzpay.open();
-  }, [Razorpay, orderId]);
+  }, [Razorpay, orderId]); */
 
   return (
     <div
@@ -344,10 +344,10 @@ const ProfileDetails = () => {
             </a>
           </div>
           <div className="other__buttons__container">
-            <div onClick={handlePayment} className="payment__button">
+            <Link to="/settings/Accont" className="payment__button">
               <img src={payment} alt="" />
-              Make Payment
-            </div>
+              Add UPI
+            </Link>
             <div className="download__web" id="downloadWeb">
               <Pdf
                 targetRef={ref}

@@ -8,3 +8,27 @@
   background-size: cover;
   align-items: center;
 }
+
+.popupContainer {
+  height : 350px;
+  background-color: white;
+  width: 300px;
+  margin-bottom: -150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.popupContainer > img {
+  border: 1px solid #0000001a;
+  margin-top: 30px;
+  width: 200px;
+  object-fit: contain;
+}
+
+.popupContainer > h5 {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
