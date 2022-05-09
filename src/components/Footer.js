@@ -80,7 +80,7 @@ const Footer = () => {
               <a href="/settings/Wallet">Rone Card</a>
             </li>
             <li>
-              <a href="/buyronecard">Buy Rone Card</a>
+              <a href="https://www.roneinfotrade.org/">Buy Rone Card</a>
             </li>
             <li>
               <a href="/settings/QR-code">Scan QR</a>

@@ -17,7 +17,7 @@ import youtube from "../assets/youtube.svg";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import axios from "axios";
-import user from "../assets/user.svg";
+import photoIcon from "../assets/image.svg";
 
 const EditProfile = () => {
   const [imageFile, setImageFile] = useState("");
@@ -140,6 +140,7 @@ const EditProfile = () => {
     setProfession(document.getElementById("profession").value);
     setBio(document.getElementById("bio").value);
     setPinCode(document.getElementById("pincode").value);
+    setEmail(document.getElementById("email").value)
   };
 
   const storeLocation = () => {
@@ -280,6 +281,10 @@ const EditProfile = () => {
         window.location.href = "/profile";
       }, 3000);
     }
+    if(data.data === "Enter your details first") {
+      window.location.href = '/userdetails'
+      console.log("first")
+    }
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -358,7 +363,7 @@ const EditProfile = () => {
             <div
               className="imageUpdateContainer"
               style={{
-                backgroundImage: `url(${img !== "" ? img : user})`,
+                backgroundImage: `url(${imageFile !== "" ? imageFile : img})`,
               }}
             >
               <div className="loader__container" id="loaderImage">
@@ -398,6 +403,18 @@ const EditProfile = () => {
                       type="text"
                       name="profession"
                       defaultValue={profession}
+                    />
+                  </div>
+                </fieldset>
+                <fieldset className="input__container__form__update">
+                  <legend>Email</legend>
+                  <div className="input__box__form__update">
+                    <input
+                      onChange={storeValues}
+                      id="email"
+                      type="text"
+                      name="email"
+                      defaultValue={email ? email : "" }
                     />
                   </div>
                 </fieldset>

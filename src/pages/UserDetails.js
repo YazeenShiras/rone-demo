@@ -341,8 +341,7 @@ function UserDetails() {
                 type="text"
                 name="username"
                 onChange={storeValues}
-                value={name}
-                readOnly
+                defaultValue={name}
               />
             </div>
           </fieldset>
