@@ -68,7 +68,7 @@ const SuccessPage = () => {
       }
       if (data.message === "please try after 20 seconds again") {
         document.getElementById("emailsentLink").innerHTML =
-          "please wait for 5 minute.";
+          "please wait for 5 seconds.";
         document.getElementById("emailsentLink").style.display = "block";
         document.getElementById("emailsentLink").style.color = "#d52a33";
         setTimeout(() => {
