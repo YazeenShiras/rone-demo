@@ -47,7 +47,7 @@ const SuccessPage = () => {
 
   useEffect(() => {
     async function createRoneId() {
-      let endpoint = "https://ronedtest.herokuapp.com/Email-Roneid";
+      let endpoint = "https://ronedtest.herokuapp.com//create_roneid_for_newuser";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
