@@ -72,7 +72,7 @@ const SuccessPage = () => {
         document.getElementById("emailsentLink").style.display = "block";
         document.getElementById("emailsentLink").style.color = "#d52a33";
         setTimeout(() => {
-          createRoneId()
+          createRoneId();
         }, 5000);
       }
       if (data.message === "already use this mail_id") {

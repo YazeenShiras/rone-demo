@@ -17,6 +17,7 @@ import youtube from "../assets/youtube.svg";
 import { Link } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import axios from "axios";
+import user from "../assets/user.svg";
 
 const EditProfile = () => {
   const [imageFile, setImageFile] = useState("");
@@ -127,8 +128,10 @@ const EditProfile = () => {
         .catch(console.error);
     }
 
-    if (location.length > 2) {
-      getLocationDetails();
+    if(location !== "" && location !== undefined) {
+      if (location.length > 2) {
+        getLocationDetails();
+      }
     }
   }, [location]);
 
@@ -183,8 +186,6 @@ const EditProfile = () => {
   async function updatePhoto() {
 
     const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url";
-
-    /* const endpoint = "https://ronedcard.herokuapp.com/profile_upload_url"; */
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -357,7 +358,7 @@ const EditProfile = () => {
             <div
               className="imageUpdateContainer"
               style={{
-                backgroundImage: `url(${imageFile !== "" ? imageFile : img})`,
+                backgroundImage: `url(${img !== "" ? img : user})`,
               }}
             >
               <div className="loader__container" id="loaderImage">
