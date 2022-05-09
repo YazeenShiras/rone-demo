@@ -21,7 +21,7 @@ const HomePage = () => {
       "https://ronedtest.herokuapp.com/newrone_credantials"
     );
     url.search = new URLSearchParams({
-      rone_id: roneId,
+      roneid: roneId,
       email: email,
     });
 
