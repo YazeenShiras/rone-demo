@@ -18,7 +18,7 @@ const HomePage = () => {
 
   async function handleSubmit() {
     let url = new URL(
-      "https://ronedcard.herokuapp.com/roneid_with_pan_authentication"
+      "https://ronedtest.herokuapp.com/newrone_credantials"
     );
     url.search = new URLSearchParams({
       rone_id: roneId,
@@ -41,7 +41,7 @@ const HomePage = () => {
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
-      document.getElementById("errorRoneId").innerHTML = "invalid rONE ID";
+      document.getElementById("errorRoneId").innerHTML = "invalid rONE ID or Email";
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
     }
