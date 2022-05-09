@@ -50,7 +50,7 @@ const HomePage = () => {
   async function verifyEmail() {
     document.getElementById("loaderNextButton").style.display = "block";
     document.getElementById("nextText").style.display = "none";
-    let url = new URL("https://ronedcard.herokuapp.com/Email-verification");
+    let url = new URL("https://ronedtest.herokuapp.com/Email-verification");
     url.search = new URLSearchParams({
       emailid: email,
     });
