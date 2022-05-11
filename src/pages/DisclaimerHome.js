@@ -110,12 +110,14 @@ const Disclaimer = () => {
           Service or for any consequential, special or similar damages, even if
           advised of the possibility of such damages.
         </p>
-        <h5>Contact Us</h5>
+        <h3>Contact Us</h3>
+        <p>Reach out to our Customer Care Executives for any queries/ Complaints:</p>
+        <p>Call our customer care at <a href="tel:+91929300300">+91 9298 300 300</a></p>
         <p>
-          If you have any questions about this Disclaimer, You can contact Us:
+        For any technical issues (Invalid email id or rONE id/Page loading issues/wallet issues), you may write to us at: <a href="mailto:support@ronedcard.com">support@ronedcard.com</a> from your registered e-mail ID.
         </p>
         <p>
-          By email : <a href="support@ronedcard.com">support@ronedcard.com</a>
+        For non technical issues(account updation and other account related queries), please write to: <a href="mailto:care@ronedcard.com">care@ronedcard.com</a>.
         </p>
       </div>
     </div>

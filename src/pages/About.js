@@ -64,10 +64,14 @@ const About = () => {
           Energize the charitable activities to help the poor and deserving
           people.
         </p>
-        <h5>Contact us</h5>
-        <p>If you have any questions about rONE, You can contact us:</p>
+        <<h3>Contact Us</h3>
+        <p>Reach out to our Customer Care Executives for any queries/ Complaints:</p>
+        <p>Call our customer care at <a href="tel:+91929300300">+91 9298 300 300</a></p>
         <p>
-          By email: <a href="support@ronedcard.com">support@ronedcard.com</a>
+        For any technical issues (Invalid email id or rONE id/Page loading issues/wallet issues), you may write to us at: <a href="mailto:support@ronedcard.com">support@ronedcard.com</a> from your registered e-mail ID.
+        </p>
+        <p>
+        For non technical issues(account updation and other account related queries), please write to: <a href="mailto:care@ronedcard.com">care@ronedcard.com</a>.
         </p>
       </div>
     </div>

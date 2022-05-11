@@ -366,13 +366,14 @@ const PrivacyPolicy = () => {
           changes. Changes to this Privacy Policy are effective when they are
           posted on this page.
         </p>
-        <h5>Contact Us</h5>
+        <h3>Contact Us</h3>
+        <p>Reach out to our Customer Care Executives for any queries/ Complaints:</p>
+        <p>Call our customer care at <a href="tel:+91929300300">+91 9298 300 300</a></p>
         <p>
-          If you have any questions about this Privacy Policy, You can contact
-          us:
+        For any technical issues (Invalid email id or rONE id/Page loading issues/wallet issues), you may write to us at: <a href="mailto:support@ronedcard.com">support@ronedcard.com</a> from your registered e-mail ID.
         </p>
         <p>
-          By email : <a href="support@ronedcard.com">support@ronedcard.com</a>
+        For non technical issues(account updation and other account related queries), please write to: <a href="mailto:care@ronedcard.com">care@ronedcard.com</a>.
         </p>
       </div>
     </div>
