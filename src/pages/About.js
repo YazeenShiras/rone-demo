@@ -64,7 +64,7 @@ const About = () => {
           Energize the charitable activities to help the poor and deserving
           people.
         </p>
-        <<h3>Contact Us</h3>
+        <h3>Contact Us</h3>
         <p>Reach out to our Customer Care Executives for any queries/ Complaints:</p>
         <p>Call our customer care at <a href="tel:+91929300300">+91 9298 300 300</a></p>
         <p>
