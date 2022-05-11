@@ -82,7 +82,7 @@ const AccountSettings = () => {
             const endpoint = "https://rone-card.herokuapp.com/upiPayment";
 
             const response = await fetch(endpoint, {
-              method: "POST",
+              method: "PUT",
               headers: {
                 "content-Type": "application/json",
               },

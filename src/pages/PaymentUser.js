@@ -43,6 +43,7 @@ const PaymentUser = () => {
         .then((response) => {
           const data = response.data;
           if (response.status === 200) {
+            console.log(data)
             setname(data.userData.username);
             setEmail(data.userData.email);
             setNumber(data.userData.phone);
