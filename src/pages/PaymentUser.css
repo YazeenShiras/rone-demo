@@ -35,4 +35,8 @@
   .container__paymnetUser {
     justify-content: flex-start;
   }
+
+  .popupContainer {
+    margin-left: 100px
+  }
 }
