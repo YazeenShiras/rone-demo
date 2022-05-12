@@ -120,8 +120,8 @@ function UserDetails() {
   async function uploadPhoto() {
     console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
-    
-    const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url"
+
+    const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url";
 
     /* const endpoint = "https://ronedcard.herokuapp.com/profile_upload_url"; */
 
@@ -342,6 +342,7 @@ function UserDetails() {
                 name="username"
                 onChange={storeValues}
                 defaultValue={name}
+                maxLength="15"
               />
             </div>
           </fieldset>

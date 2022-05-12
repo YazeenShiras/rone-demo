@@ -128,7 +128,7 @@ const EditProfile = () => {
         .catch(console.error);
     }
 
-    if(location !== "" && location !== undefined) {
+    if (location !== "" && location !== undefined) {
       if (location.length > 2) {
         getLocationDetails();
       }
@@ -140,7 +140,7 @@ const EditProfile = () => {
     setProfession(document.getElementById("profession").value);
     setBio(document.getElementById("bio").value);
     setPinCode(document.getElementById("pincode").value);
-    setEmail(document.getElementById("email").value)
+    setEmail(document.getElementById("email").value);
   };
 
   const storeLocation = () => {
@@ -185,7 +185,6 @@ const EditProfile = () => {
   };
 
   async function updatePhoto() {
-
     const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url";
 
     let url = new URL(endpoint);
@@ -281,9 +280,9 @@ const EditProfile = () => {
         window.location.href = "/profile";
       }, 3000);
     }
-    if(data.data === "Enter your details first") {
-      window.location.href = '/userdetails'
-      console.log("first")
+    if (data.data === "Enter your details first") {
+      window.location.href = "/userdetails";
+      console.log("first");
     }
   }
 
@@ -345,7 +344,12 @@ const EditProfile = () => {
         <div className="formContainer__settings">
           <div className="titleContainer__formContainer">
             <p className="activeHeader titleHeaderlink">Profile</p>
-            <Link to="/settings/Accont" className="accountSettings titleHeaderlink">Account</Link>
+            <Link
+              to="/settings/Accont"
+              className="accountSettings titleHeaderlink"
+            >
+              Account
+            </Link>
             <Link
               to="/settings/Wallet"
               className="walletSettings titleHeaderlink"
@@ -391,6 +395,7 @@ const EditProfile = () => {
                       type="text"
                       name="username"
                       defaultValue={name}
+                      maxLength="15"
                     />
                   </div>
                 </fieldset>
@@ -414,7 +419,7 @@ const EditProfile = () => {
                       id="email"
                       type="text"
                       name="email"
-                      defaultValue={email ? email : "" }
+                      defaultValue={email ? email : ""}
                     />
                   </div>
                 </fieldset>
