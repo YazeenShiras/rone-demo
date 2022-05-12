@@ -449,6 +449,14 @@
   .footerContainerProfileSettings {
     margin-top: 1100px;
   }
+
+  .uploadQr {
+    margin-left: -20px;
+  }
+
+  .qrCodeContainerUpi {
+    margin-left: 40px;
+  }
 }
 
 @media only screen and (max-width: 360px) {

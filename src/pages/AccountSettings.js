@@ -172,7 +172,7 @@ const AccountSettings = () => {
                   <div className="imageQrConatiner" id="imageQRConatiner">
                     <img src={imageFile !== "" ? imageFile : ""} alt="" />
                   </div>
-                  <div className="AddPhotosButton">
+                  <div className="AddPhotosButton uploadQr">
                     <input
                       name="file"
                       id="inpFile"
