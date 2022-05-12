@@ -10,7 +10,7 @@
 }
 
 .popupContainer {
-  height : 350px;
+  height: 350px;
   background-color: white;
   width: 300px;
   margin-bottom: -150px;
@@ -24,11 +24,10 @@
   border: 1px solid #0000001a;
   margin-top: 30px;
   width: 200px;
-  object-fit: contain;
+  height: 200px;
 }
 
 .popupContainer > h5 {
   margin-top: 30px;
   font-size: 18px;
 }
-

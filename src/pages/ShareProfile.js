@@ -25,7 +25,7 @@ import logo from "../assets/Logo1.svg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/PrimaryButton";
-import Popup from 'reactjs-popup';
+import Popup from "reactjs-popup";
 
 const ref = React.createRef();
 const options = {
@@ -39,7 +39,6 @@ const optionsMobile = {
   unit: "in",
   format: [8, 11],
 };
-
 
 const ShareProfile = () => {
   const [username, setUsername] = useState("");
@@ -56,8 +55,8 @@ const ShareProfile = () => {
   const [allImages, setAllImages] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
-  const [upi, setUpi] = useState("")
-  const [qr, setQr] = useState("")
+  const [upi, setUpi] = useState("");
+  const [qr, setQr] = useState("");
 
   function getParameters() {
     let urlString = window.location.href;
@@ -199,7 +198,7 @@ const ShareProfile = () => {
 
     const getUserUpi = async () => {
       let url = "https://rone-card.herokuapp.com/getupiPayment";
-  
+
       const req = await fetch(url, {
         method: "POST",
         headers: {
@@ -207,13 +206,13 @@ const ShareProfile = () => {
         },
         body: JSON.stringify({
           userId: userid,
-      }),
+        }),
       });
       const data = await req.json();
       console.log(data);
-      if(data.status === 200) {
+      if (data.status === 200) {
         setUpi(data.success.upiId);
-      setQr(data.success.QrCode);
+        setQr(data.success.QrCode);
       }
     };
 
@@ -331,19 +330,21 @@ const ShareProfile = () => {
               </a>
             </div>
             <div className="other__buttons__container">
-            <Popup trigger={<div
-                className="payment__button"
+              <Popup
+                trigger={
+                  <div className="payment__button">
+                    <img src={payment} alt="" />
+                    Make Payment
+                  </div>
+                }
+                position="top center"
               >
-                <img src={payment} alt="" />
-                Make Payment
-              </div>} position="top center">
-              <div className="popupContainer">
-              
-              <img src={qr} alt="" />
-              <h5>{upi}</h5>
-              </div>
+                <div className="popupContainer">
+                  <img src={qr} alt="" />
+                  <h5>{upi}</h5>
+                </div>
               </Popup>
-              
+
               <div className="download__web" id="downloadWeb">
                 <Pdf
                   targetRef={ref}
