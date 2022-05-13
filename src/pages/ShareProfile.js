@@ -342,13 +342,18 @@ const ShareProfile = () => {
                 position="top center"
               >
                 <div className="popupContainer">
-                  <img src={qr} alt="" />
+                  <div id="qrupi2" className="qrImageContainer_upi">
+                    <img src={qr} alt="" />
+                  </div>
+                  <a href={qr} download={upi} className="dowload_qr_upi">
+                    DOWNLOAD QR
+                  </a>
                   <div className="upiContent">
                     <h5>{upi}</h5>
                     <CopyToClipboard text={upi}>
                       <div className="copyUpiButton">
                         <img src={copy} alt="" />
-                        <p>COPY</p>
+                        <p>COPY UPI</p>
                       </div>
                     </CopyToClipboard>
                   </div>
