@@ -10,7 +10,7 @@
 }
 
 .popupContainer {
-  height: 350px;
+  height: 360px;
   background-color: white;
   width: 300px;
   margin-bottom: -150px;
@@ -65,7 +65,7 @@
 .dowload_qr_upi {
   margin-top: 10px;
   background-color: #d52a33;
-  height: 22px;
+  height: 25px;
   cursor: pointer;
   border-radius: 5px;
   width: 110px;
@@ -73,4 +73,6 @@
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  font-weight: normal;
+  color: #ffffff;
 }

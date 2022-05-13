@@ -29,6 +29,7 @@ import AboutHome from "./pages/AboutHome";
 import CookiePolicy from "./pages/CookiePolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import EmailVerification from "./pages/EmailVerification";
+import EmailUpdate from "./pages/EmailUpdate";
 /* import DevelopmentMode from "./pages/DevelopmentMode"; */
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/register" component={RegisterSendOtp} />
           <Route path="/success-payment" component={SuccessPage} />
           <Route exact path="/profile" component={Main} />
+          <Route path="/admin/email-update" component={EmailUpdate} />
           <Route path="/about" component={About} />
           <Route path="/link/about" component={AboutHome} />
           <Route path="/disclaimer" component={Disclaimer} />

@@ -46,7 +46,7 @@ const optionsMobile = {
 };
 
 const ProfileDetails = () => {
-  const Razorpay = useRazorpay();
+  /* const Razorpay = useRazorpay(); */
 
   const [roneId, setRoneId] = useState("");
   const [isShare, setShare] = useState(false);
@@ -55,7 +55,7 @@ const ProfileDetails = () => {
   const [username, setUsername] = useState("");
   const [origin, setOrigin] = useState("");
 
-  const [orderId, setOrderId] = useState("");
+  /* const [orderId, setOrderId] = useState(""); */
 
   const [facebookLink, setFacebookLink] = useState("");
   const [linkedInLink, setLinkedInLink] = useState("");
