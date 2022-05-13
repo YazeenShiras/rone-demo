@@ -31,13 +31,13 @@ const BuyRoneCard = () => {
   const handlePayment = useCallback(() => {
     const options = {
       key: "rzp_live_vGwfsaITsW3f2s",
-      amount: "1500",
+      amount: "150000",
       currency: "INR",
       name: "Rone Payment",
       description: "",
       image: logo,
       order_id: orderId,
-      callback_url: "https://rone-card.herokuapp.com/verifyPayment",
+      callback_url: "https://rone-card.herokuapp.com/buynow/verifypayment",
       redirect: true,
       handler: (res) => {
         console.log(res);
@@ -59,9 +59,36 @@ const BuyRoneCard = () => {
     rzpay.open();
   }, [Razorpay, name, email, number, orderId]);
 
-  const makePayment = () => {
-    console.log("payment initiated");
-  };
+  async function createOrder() {
+    if (name !== "" && email !== "" && number !== "") {
+      document.getElementById("loaderpaywithrazorpay").style.display = "block";
+      document.getElementById("payText").style.display = "none";
+
+      let url = "https://rone-card.herokuapp.com/buynow/order";
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: name,
+          email: email,
+          mobile: number,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.status === 200) {
+        setOrderId(data.orderId);
+        setTimeout(() => {
+          handlePayment();
+        }, 1000);
+      }
+    } else {
+      document.getElementById("errorBuyRoneCard").style.display = "block";
+    }
+  }
 
   /* async function cashOnDelivery() {
     document.getElementById("loadercashOndelivery").style.display = "block";
@@ -113,7 +140,7 @@ const BuyRoneCard = () => {
         <h2>rONE Payment</h2>
         <form action="" autoComplete="off" className="form">
           <fieldset className="input__container">
-            <legend>Name</legend>
+            <legend>Name*</legend>
             <div className="input__box">
               <input
                 onChange={storeValues}
@@ -124,7 +151,7 @@ const BuyRoneCard = () => {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Mobile Number</legend>
+            <legend>Mobile Number*</legend>
             <div className="input__box">
               <input
                 onChange={storeValues}
@@ -135,7 +162,7 @@ const BuyRoneCard = () => {
             </div>
           </fieldset>
           <fieldset className="input__container">
-            <legend>Email</legend>
+            <legend>Email*</legend>
             <div className="input__box">
               <input
                 onChange={storeValues}
@@ -157,13 +184,21 @@ const BuyRoneCard = () => {
               />
             </div>
           </fieldset>
+          <p className="error__varifyOtp" id="errorBuyRoneCard">
+            Must fill all *Required
+          </p>
           <p style={{ fontSize: "12px", color: "#686868" }}>
             *A convenience fee will be charged depending on your choice of
             payment method.
           </p>
-          <div onClick={makePayment} className="saveProfileButton">
-            <div className="loader__container__login"></div>
-            <p>PAY WITH RAZORPAY</p>
+          <div onClick={createOrder} className="saveProfileButton">
+            <div
+              className="loader__container__login"
+              id="loaderpaywithrazorpay"
+            >
+              <PulseLoader color="#ffffff" />
+            </div>
+            <p id="payText">PAY WITH RAZORPAY</p>
           </div>
           {/* <div onClick={cashOnDelivery} className="saveProfileButton">
             <div className="loader__container__cod" id="loadercashOndelivery">
