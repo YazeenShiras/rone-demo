@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from "react";
 import "./ProfileDetails.css";
-import logo from "../assets/Logo1.svg";
+/* import logo from "../assets/Logo1.svg"; */
 import bg from "../assets/images/mainBg.png";
 import share from "../assets/shareWhite.svg";
 import settings from "../assets/settings.svg";
@@ -161,7 +161,6 @@ const ProfileDetails = () => {
       setShare(false);
     }
   };
-
 
   /* const handlePayment = useCallback(() => {
     const options = {

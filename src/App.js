@@ -8,7 +8,7 @@ import UserDetails from "./pages/UserDetails";
 import LoginSendOtp from "./pages/LoginSendOtp";
 import VerifyOtpLogin from "./pages/VerifyOtpLogin";
 import ProfileSettings from "./pages/ProfileSettings";
-import AccountSettings from './pages/AccountSettings'
+import AccountSettings from "./pages/AccountSettings";
 import Wallet from "./pages/Wallet";
 import BuyRoneCard from "./pages/BuyRoneCard";
 import HomePage from "./pages/HomePage";

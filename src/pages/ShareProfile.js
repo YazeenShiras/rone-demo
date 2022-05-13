@@ -22,10 +22,12 @@ import locationIcon from "../assets/location.svg";
 import Pdf from "react-to-pdf";
 import "../components/Header.css";
 import logo from "../assets/Logo1.svg";
+import copy from "../assets/copy_red.svg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/PrimaryButton";
 import Popup from "reactjs-popup";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ref = React.createRef();
 const options = {
@@ -334,14 +336,22 @@ const ShareProfile = () => {
                 trigger={
                   <div className="payment__button">
                     <img src={payment} alt="" />
-                    Make Payment
+                    UPI Payment
                   </div>
                 }
                 position="top center"
               >
                 <div className="popupContainer">
                   <img src={qr} alt="" />
-                  <h5>{upi}</h5>
+                  <div className="upiContent">
+                    <h5>{upi}</h5>
+                    <CopyToClipboard text={upi}>
+                      <div className="copyUpiButton">
+                        <img src={copy} alt="" />
+                        <p>COPY</p>
+                      </div>
+                    </CopyToClipboard>
+                  </div>
                 </div>
               </Popup>
 
