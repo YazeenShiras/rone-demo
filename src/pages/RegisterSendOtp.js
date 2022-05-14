@@ -4,8 +4,8 @@ import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
 import "./AuthStyles.css";
 import PulseLoader from "react-spinners/PulseLoader";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+/* import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css"; */
 
 const RegisterSendOtp = () => {
   const [number, setNumber] = useState("");
@@ -125,13 +125,6 @@ const RegisterSendOtp = () => {
             Enter your Mobile <br /> Number to Register
           </h2>
           <form autoComplete="off" className="form" action="">
-            <PhoneInput
-              inputProps={{
-                name: "phone",
-                required: true,
-                autoFocus: true,
-              }}
-            />
             <fieldset className="input__container">
               <legend>Mobile Number*</legend>
               <div className="input__box">
