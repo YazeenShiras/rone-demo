@@ -49,8 +49,6 @@ const VerifyOtpRegister = () => {
     const data = await res.json();
     console.log(data);
     if (data.status === 200) {
-      document.getElementById("loaderVerifyRegister").style.display = "none";
-      document.getElementById("veryfyRegister").style.display = "block";
       window.location.href = "/createuser";
     } else if (data.status === 404) {
       document.getElementById("loaderVerifyRegister").style.display = "none";

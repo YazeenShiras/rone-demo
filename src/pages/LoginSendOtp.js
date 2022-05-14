@@ -11,10 +11,10 @@ const LoginSendOtp = () => {
   const [isdetails, setIsdetails] = useState(false);
   const [loginNumber, setLoginNumber] = useState("");
   const [roneId, setRoneId] = useState("");
-  const [emailRes, setEmailRes] = useState("")
+  const [emailRes, setEmailRes] = useState("");
 
   async function handleSubmit() {
-    console.log("access to handleSubmit")
+    console.log("access to handleSubmit");
     let url = new URL(
       "https://ronedcard.herokuapp.com/OTP_Genarator/rone/login"
     );
@@ -41,8 +41,6 @@ const LoginSendOtp = () => {
       };
       localStorage.setItem("mob", data.mob);
       localStorage.setItem("token", data.otp);
-      document.getElementById("loaderSentOtp").style.display = "none";
-      document.getElementById("sentOTP").style.display = "block";
       window.location.href = "/verifyotplogin";
     } else if (data.status === 404) {
       document.getElementById("loaderSentOtp").style.display = "none";
@@ -54,10 +52,12 @@ const LoginSendOtp = () => {
   }
 
   async function checkOldUserId() {
-    let url = new URL("https://ronedtest.herokuapp.com/if_old_user_createroneid");
+    let url = new URL(
+      "https://ronedtest.herokuapp.com/if_old_user_createroneid"
+    );
 
     url.search = new URLSearchParams({
-      emailid : emailRes,
+      emailid: emailRes,
       mobile: loginNumber,
       roneid: roneId,
     });
@@ -70,8 +70,8 @@ const LoginSendOtp = () => {
     });
     const data = await response.json();
     console.log(data);
-    if(data.status === 404) {
-      handleSubmit()
+    if (data.status === 404) {
+      handleSubmit();
     } else {
       document.getElementById("errorMobile").style.display = "block";
       document.getElementById("errorMobile").innerHTML = "error occured";
@@ -96,14 +96,14 @@ const LoginSendOtp = () => {
     });
     const data = await res.json();
     console.log(data);
-    if(data.New_user !== null) {
+    if (data.New_user !== null) {
       setEmailRes(data.New_user.email);
     }
     if (data.New_user !== null || data.Old_users !== null) {
       document.getElementById("loaderSentOtp").style.display = "none";
       document.getElementById("sentOTP").style.display = "block";
       localStorage.setItem("roneid", roneId);
-          checkOldUserId()
+      checkOldUserId();
     }
     if (data.New_user === null && data.Old_users === null) {
       document.getElementById("errorMobile").style.display = "block";
@@ -121,7 +121,7 @@ const LoginSendOtp = () => {
   useEffect(() => {
     if (loginNumber !== "") {
       let isnum = /^\d+$/.test(loginNumber);
-      if (loginNumber.length === 10) {
+      if (loginNumber.length !== 0) {
         if (isnum) {
           setIsdetails(true);
         } else {
@@ -144,7 +144,7 @@ const LoginSendOtp = () => {
         "Must fill *Required fields";
     } else {
       let isnum = /^\d+$/.test(loginNumber);
-      if (loginNumber.length === 10) {
+      if (loginNumber.length !== 0) {
         if (isnum) {
           document.getElementById("errorMobile").style.display = "none";
         } else {

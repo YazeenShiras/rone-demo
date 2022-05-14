@@ -10,6 +10,7 @@ import "react-phone-input-2/lib/style.css"; */
 const RegisterSendOtp = () => {
   const [number, setNumber] = useState("");
   const [isdetails, setIsdetails] = useState(false);
+  /* const [countryCode, setCountryCode] = useState("+91"); */
 
   async function handleSubmit() {
     document.getElementById("loaderSentOtpRegister").style.display = "block";
@@ -42,8 +43,6 @@ const RegisterSendOtp = () => {
       localStorage.setItem("newmob", data.mob);
       localStorage.setItem("token", data.otp);
       console.log(data.otp);
-      document.getElementById("loaderSentOtpRegister").style.display = "none";
-      document.getElementById("sentOTPRegister").style.display = "block";
       window.location.href = "/verifyotpregister";
     } else if (data.status === 400) {
       document.getElementById("loaderSentOtpRegister").style.display = "none";
@@ -57,7 +56,7 @@ const RegisterSendOtp = () => {
   useEffect(() => {
     if (number !== "") {
       let isnum = /^\d+$/.test(number);
-      if (number.length === 10) {
+      if (number.length !== 0) {
         if (isnum) {
           setIsdetails(true);
         } else {
@@ -80,7 +79,7 @@ const RegisterSendOtp = () => {
       document.getElementById("errorMobile").style.display = "block";
     } else {
       let isnum = /^\d+$/.test(number);
-      if (number.length === 10) {
+      if (number.length !== 0) {
         if (isnum) {
           document.getElementById("errorMobile").style.display = "none";
         } else {

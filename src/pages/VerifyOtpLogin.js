@@ -54,8 +54,6 @@ const VerifyOtpLogin = () => {
       localStorage.setItem("loggedRefreshToken", data.refresh_token);
       localStorage.setItem("loggedImg", data.profile);
       localStorage.setItem("newuserid", data.user_id);
-      document.getElementById("loaderVeryfyLogin").style.display = "none";
-      document.getElementById("veryfyLogin").style.display = "block";
       window.location.href = "/profile";
     } else if (data.status === 404) {
       document.getElementById("loaderVeryfyLogin").style.display = "none";
