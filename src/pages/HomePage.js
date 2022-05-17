@@ -16,9 +16,9 @@ const HomePage = () => {
     setEmail(document.getElementById("email").value);
   };
 
-  useEffect(() => {
+ /*  useEffect(() => {
     localStorage.clear();
-  }, []);
+  }, []); */
 
   async function handleSubmit() {
     let url = new URL("https://ronedtest.herokuapp.com/newrone_credantials");
