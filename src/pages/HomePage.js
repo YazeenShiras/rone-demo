@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
@@ -16,10 +16,12 @@ const HomePage = () => {
     setEmail(document.getElementById("email").value);
   };
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   async function handleSubmit() {
-    let url = new URL(
-      "https://ronedtest.herokuapp.com/newrone_credantials"
-    );
+    let url = new URL("https://ronedtest.herokuapp.com/newrone_credantials");
     url.search = new URLSearchParams({
       roneid: roneId,
       email: email,
@@ -41,7 +43,8 @@ const HomePage = () => {
     }
     if (data.status === 404) {
       document.getElementById("errorRoneId").style.display = "block";
-      document.getElementById("errorRoneId").innerHTML = "invalid rONE ID or Email";
+      document.getElementById("errorRoneId").innerHTML =
+        "invalid rONE ID or Email";
       document.getElementById("loaderNextButton").style.display = "none";
       document.getElementById("nextText").style.display = "block";
     }

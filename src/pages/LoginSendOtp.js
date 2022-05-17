@@ -13,6 +13,10 @@ const LoginSendOtp = () => {
   const [roneId, setRoneId] = useState("");
   const [emailRes, setEmailRes] = useState("");
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   async function handleSubmit() {
     console.log("access to handleSubmit");
     let url = new URL(
