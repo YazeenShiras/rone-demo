@@ -111,10 +111,7 @@ const HomePage = () => {
           <img src={register} alt="" />
         </div>
         <div className="inputs__container__bodyRegister">
-          <h2>
-            Enter your <br />
-            rONE ID and Email to Register
-          </h2>
+          <h2>Register</h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
               <legend>rONE ID*</legend>

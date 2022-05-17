@@ -192,11 +192,7 @@ const LoginSendOtp = () => {
           <img src={register} alt="" />
         </div>
         <div className="inputs__container__bodyRegister">
-          <h2>
-            Enter your rONE ID
-            <br />
-            and Mobile Number to Login
-          </h2>
+          <h2>Login</h2>
           <form autoComplete="off" className="form" action="">
             <fieldset className="input__container">
               <legend>rONE ID*</legend>
