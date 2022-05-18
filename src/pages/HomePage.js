@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../assets/Logo1.svg";
 import menu from "../assets/menuIcon.svg";
 import register from "../assets/register.svg";
@@ -15,10 +15,6 @@ const HomePage = () => {
     setRoneId(document.getElementById("roneId").value);
     setEmail(document.getElementById("email").value);
   };
-
- /*  useEffect(() => {
-    localStorage.clear();
-  }, []); */
 
   async function handleSubmit() {
     let url = new URL("https://ronedtest.herokuapp.com/newrone_credantials");

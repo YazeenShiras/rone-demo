@@ -13,10 +13,6 @@ const LoginSendOtp = () => {
   const [roneId, setRoneId] = useState("");
   const [emailRes, setEmailRes] = useState("");
 
-/*   useEffect(() => {
-    localStorage.clear();
-  }, []); */
-
   async function handleSubmit() {
     console.log("access to handleSubmit");
     let url = new URL(
@@ -45,7 +41,11 @@ const LoginSendOtp = () => {
       };
       localStorage.setItem("mob", data.mob);
       localStorage.setItem("token", data.otp);
-      window.location.href = "/verifyotplogin";
+      var mobilelocal = localStorage.getItem("mob");
+      console.log(mobilelocal);
+      setTimeout(() => {
+        window.location.href = "/verifyotplogin";
+      }, 1000);
     } else if (data.status === 404) {
       document.getElementById("loaderSentOtp").style.display = "none";
       document.getElementById("sentOTP").style.display = "block";

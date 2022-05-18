@@ -31,7 +31,7 @@ const BuyRoneCard = () => {
   const handlePayment = useCallback(() => {
     const options = {
       key: "rzp_live_vGwfsaITsW3f2s",
-      amount: "150000",
+      amount: 1465.51 * 100,
       currency: "INR",
       name: "Rone Payment",
       description: "",

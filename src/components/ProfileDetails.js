@@ -67,8 +67,18 @@ const ProfileDetails = () => {
   const [isSocialNull, setIsSocialNull] = useState(true);
 
   useEffect(() => {
+    window.onbeforeunload = function (e) {
+      window.onunload = function () {
+        window.localStorage.isMySessionActive = "false";
+      };
+      return undefined;
+    };
+    window.onload = function () {
+      window.localStorage.isMySessionActive = "true";
+    };
     var newid = localStorage.getItem("newuserid");
     setUserId(newid);
+    console.log(newid);
     var rone_id = localStorage.getItem("roneid");
     setRoneId(rone_id);
 
