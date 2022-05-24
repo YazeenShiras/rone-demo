@@ -8,8 +8,6 @@ import "../components/Header.css";
 import "./AuthStyles.css";
 import "./UserDetails.css";
 import useRazorpay from "react-razorpay";
-import axios from "axios";
-import GridLoader from "react-spinners/GridLoader";
 import { PulseLoader } from "react-spinners";
 
 const BuyRoneCard = () => {
@@ -20,44 +18,44 @@ const BuyRoneCard = () => {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
 
-  const [orderId, setOrderId] = useState("");
-
   const storeValues = () => {
     setName(document.getElementById("name").value);
     setNumber(document.getElementById("number").value);
     setEmail(document.getElementById("email").value);
   };
 
-  const handlePayment = useCallback(() => {
-    const options = {
-      key: "rzp_live_vGwfsaITsW3f2s",
-      amount: 1465.51 * 100,
-      currency: "INR",
-      name: "Rone Payment",
-      description: "",
-      image: logo,
-      order_id: orderId,
-      callback_url: "https://rone-card.herokuapp.com/buynow/verifypayment",
-      redirect: true,
-      handler: (res) => {
-        console.log(res);
-      },
-      prefill: {
-        name: `${name}`,
-        email: `${email}`,
-        contact: `${number}`,
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#d52a33",
-      },
-    };
+  const handlePayment = useCallback(
+    (order) => {
+      const options = {
+        key: "rzp_live_vGwfsaITsW3f2s",
+        currency: "INR",
+        name: "Rone Payment",
+        description: "",
+        image: logo,
+        order_id: order,
+        callback_url: "https://rone-card.herokuapp.com/buynow/verifypayment",
+        redirect: true,
+        handler: (res) => {
+          console.log(res);
+        },
+        prefill: {
+          name: `${name}`,
+          email: `${email}`,
+          contact: `${number}`,
+        },
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#d52a33",
+        },
+      };
 
-    const rzpay = new Razorpay(options);
-    rzpay.open();
-  }, [Razorpay, name, email, number, orderId]);
+      const rzpay = new Razorpay(options);
+      rzpay.open();
+    },
+    [Razorpay, name, email, number]
+  );
 
   async function createOrder() {
     if (name !== "" && email !== "" && number !== "") {
@@ -80,10 +78,9 @@ const BuyRoneCard = () => {
       const data = await response.json();
       console.log(data);
       if (data.status === 200) {
-        setOrderId(data.orderId);
-        setTimeout(() => {
-          handlePayment();
-        }, 1000);
+        if (data.orderId) {
+          handlePayment(data.orderId);
+        }
       }
     } else {
       document.getElementById("errorBuyRoneCard").style.display = "block";
