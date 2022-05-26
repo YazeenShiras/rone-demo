@@ -12,10 +12,43 @@ import Resizer from "react-image-file-resizer";
 import BrowseImage from "./BrowseImage";
 
 const ImageGalleryMain = () => {
+  const [imageFile, setImageFile] = useState("");
+
   const [idForImg, setIdForImg] = useState("");
+  const [imgtest, setImgtest] = useState("");
   const [allImages, setAllImages] = useState([]);
 
+  const inpFile = document.getElementById("inpFile");
   var idForImageGallery = localStorage.getItem("newuserid");
+
+  const fileChangedHandler = (event) => {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          event.target.files[0],
+          200,
+          200,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            uploadeImage(uri);
+          },
+          "base64",
+          200,
+          200
+        );
+        console.log(imageFile);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
@@ -56,64 +89,73 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg]);
+  }, [idForImg, imgtest]);
 
-  async function uploadPhoto(r) {
-    console.log("access to UploadPhoto");
+  /* async function uploadPhotofromFiles() {
+    console.log("access to UploadPhotofromFiles");
     document.getElementById("selectFromFileContainer").style.display = "flex";
 
-    const endpoint = `https://ronedtest.herokuapp.com/public_img_url`;
+    const endpoint = "https://ronedcard.herokuapp.com/self_upload-file";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
       user_id: idForImg,
     });
 
-    await axios
-      .post(url, {
-        img_url: r,
-      })
-      .then((res) => {
-        const data = res.data;
-        console.log(data);
-      });
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    const formData = new FormData();
+    formData.append("file", inpFile.files[0]);
+
+    console.log(formData);
+
+    await axios.post(url, formData, config).then((res) => {
+      const data = res.data;
+      console.log(data);
+      if (data.Result === "OK") {
+        window.location.reload();
+        document.getElementById("selectFromFileContainer").style.display =
+          "none";
+        setImgtest(data.path);
+      }
+    });
+  } */
+
+  async function uploadeImage(image) {
+    console.log("access upload image 2");
+    let url = new URL("https://ronedtest.herokuapp.com/public_img_urls");
+
+    url.search = new URLSearchParams({
+      user_id: idForImg,
+    });
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        img_url: image,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.path) {
+      window.location.reload();
+      document.getElementById("selectFromFileContainer").style.display = "none";
+    }
   }
 
-  const confirmFetch = (r) => {
+  /* const confirmFetch = () => {
     console.log("access to confirmFetch");
-    console.log(idForImg);
     if (idForImg !== "") {
-      uploadPhoto(r);
+      uploadPhotofromFiles();
     }
-  };
-
-  const fileChangedHandler = (event) => {
-    var fileInput = false;
-    if (event.target.files[0]) {
-      fileInput = true;
-    }
-    if (fileInput) {
-      try {
-        Resizer.imageFileResizer(
-          event.target.files[0],
-          200,
-          200,
-          "JPEG",
-          100,
-          0,
-          (uri) => {
-            console.log(uri);
-            confirmFetch(uri);
-          },
-          "base64",
-          200,
-          200
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  }; */
 
   async function deleteImage(imgId, publicId) {
     let url = new URL("https://ronedcard.herokuapp.com/Delete/file/gallery");
@@ -142,6 +184,15 @@ const ImageGalleryMain = () => {
       deleteImage(imgId, publicId);
     }
   };
+
+  /* const browseImageClick = () => {
+    let browseContainer = document.getElementById("browseImageContainer");
+    if (browseContainer.style.display === "flex") {
+      browseContainer.style.display = "none";
+    } else {
+      browseContainer.style.display = "flex";
+    }
+  }; */
 
   return (
     <div className="imageGalleryMain" id="imageGallery">
