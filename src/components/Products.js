@@ -7,25 +7,52 @@ import image from "../assets/image.svg";
 import deleteIcon from "../assets/delete.svg";
 import axios from "axios";
 import { ClockLoader } from "react-spinners";
+import Resizer from "react-image-file-resizer";
 
 const Products = () => {
   const [productsId, setProductsId] = useState("");
-  const [isImage, setIsImage] = useState("false");
   const [isResponse, setIsResponse] = useState("");
 
   const [whatsappNumber, setWhatsappNumber] = useState("");
 
-  const [resImgUrl, setResImgUrl] = useState("");
-  const [resImgId, setResImgId] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
   const [allProducts, setAllProducts] = useState([]);
 
+  const [imageURI, setImageURI] = useState("");
+
   var idForProducts = localStorage.getItem("newuserid");
 
-  const inpFile = document.getElementById("inpFileProduct");
+  const fileChangedHandler = (event) => {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          event.target.files[0],
+          200,
+          200,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            setImageURI(uri);
+            document.getElementById("resImageProduct").style.display = "block";
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   useEffect(() => {
     setProductsId(idForProducts);
@@ -99,41 +126,7 @@ const Products = () => {
     setDescription(document.getElementById("description").value);
   };
 
-  async function uploadProductImage() {
-    document.getElementById("loadingAnimationproducts").style.display = "flex";
-    console.log(productsId);
-
-    const url = "https://ronedcard.herokuapp.com/products_img";
-
-    const formData = new FormData();
-    formData.append("file", inpFile.files[0]);
-
-    await axios
-      .post(url, formData)
-      .then((res) => {
-        const data = res.data;
-        console.log(data);
-        if (data) {
-          setIsImage(true);
-          setResImgUrl(data.img_url);
-          setResImgId(data.img_public_id);
-          document.getElementById("resImageProduct").style.display = "block";
-          document.getElementById("loadingAnimationproducts").style.display =
-            "none";
-        }
-      })
-      .catch(console.error);
-  }
-
-  const confirmFetch = () => {
-    console.log("access to confirmFetch");
-    console.log(productsId);
-    if (productsId !== "") {
-      uploadProductImage();
-    }
-  };
-
-  async function productDetails() {
+  async function addProduct() {
     let url = new URL("https://ronedcard.herokuapp.com/products");
 
     url.search = new URLSearchParams({
@@ -149,8 +142,8 @@ const Products = () => {
         product_name: name,
         product_decsription: description,
         product_price: price,
-        img_url: resImgUrl,
-        img_public_id: resImgId,
+        img_url: imageURI,
+        img_public_id: "null",
       }),
     });
     const data = await response.json();
@@ -162,14 +155,6 @@ const Products = () => {
       window.location.reload();
     }
   }
-
-  const addProducts = () => {
-    console.log("add products");
-    if (isImage) {
-      console.log("image included");
-      productDetails();
-    }
-  };
 
   const addProductButtonClick = () => {
     document.getElementById("formContainerProductAdd").style.display = "flex";
@@ -232,14 +217,14 @@ const Products = () => {
             <ClockLoader size={20} color="#d52a33" />
             <p> Loading...</p>
           </div>
-          <img id="resImageProduct" src={resImgUrl} alt="" />
+          <img id="resImageProduct" src={imageURI} alt="" />
           <div className="AddPhotosButton">
             <input
               name="fileProduct"
               id="inpFileProduct"
               accept=".png"
               type="file"
-              onChange={confirmFetch}
+              onChange={fileChangedHandler}
             />
             <img src={image} alt="" />
             Choose Photo
@@ -285,7 +270,7 @@ const Products = () => {
             <div id="errorContainer" className="errorContainer">
               <p id="errorMobile">Please include all product details</p>
             </div>
-            <div onClick={addProducts} className="saveProfileButton">
+            <div onClick={addProduct} className="saveProfileButton">
               <p id="addProductText">ADD PRODUCT</p>
             </div>
           </form>

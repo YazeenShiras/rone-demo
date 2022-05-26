@@ -12,43 +12,10 @@ import Resizer from "react-image-file-resizer";
 import BrowseImage from "./BrowseImage";
 
 const ImageGalleryMain = () => {
-  const [imageFile, setImageFile] = useState("");
-
   const [idForImg, setIdForImg] = useState("");
-  const [imgtest, setImgtest] = useState("");
   const [allImages, setAllImages] = useState([]);
 
-  const inpFile = document.getElementById("inpFile");
   var idForImageGallery = localStorage.getItem("newuserid");
-
-  const fileChangedHandler = (event) => {
-    var fileInput = false;
-    if (event.target.files[0]) {
-      fileInput = true;
-    }
-    if (fileInput) {
-      try {
-        Resizer.imageFileResizer(
-          event.target.files[0],
-          200,
-          200,
-          "JPEG",
-          100,
-          0,
-          (uri) => {
-            console.log(uri);
-            setImageFile(uri);
-          },
-          "base64",
-          200,
-          200
-        );
-        console.log(imageFile);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
 
   useEffect(() => {
     setIdForImg(idForImageGallery);
@@ -89,46 +56,62 @@ const ImageGalleryMain = () => {
     if (idForImg !== "" && idForImg !== undefined) {
       getAllImages();
     }
-  }, [idForImg, imgtest]);
+  }, [idForImg]);
 
-  async function uploadPhotofromFiles() {
-    console.log("access to UploadPhotofromFiles");
+  async function uploadPhoto(r) {
+    console.log("access to UploadPhoto");
     document.getElementById("selectFromFileContainer").style.display = "flex";
 
-    const endpoint = "https://ronedcard.herokuapp.com/self_upload-file";
+    const endpoint = `https://ronedtest.herokuapp.com/public_img_url`;
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
       user_id: idForImg,
     });
 
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-
-    const formData = new FormData();
-    formData.append("file", inpFile.files[0]);
-
-    console.log(formData);
-
-    await axios.post(url, formData, config).then((res) => {
-      const data = res.data;
-      console.log(data);
-      if (data.Result === "OK") {
-        window.location.reload();
-        document.getElementById("selectFromFileContainer").style.display =
-          "none";
-        setImgtest(data.path);
-      }
-    });
+    await axios
+      .post(url, {
+        img_url: r,
+      })
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+      });
   }
 
-  const confirmFetch = () => {
+  const confirmFetch = (r) => {
     console.log("access to confirmFetch");
+    console.log(idForImg);
     if (idForImg !== "") {
-      uploadPhotofromFiles();
+      uploadPhoto(r);
+    }
+  };
+
+  const fileChangedHandler = (event) => {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          event.target.files[0],
+          200,
+          200,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            confirmFetch(uri);
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -160,15 +143,6 @@ const ImageGalleryMain = () => {
     }
   };
 
-  const browseImageClick = () => {
-    let browseContainer = document.getElementById("browseImageContainer");
-    if (browseContainer.style.display === "flex") {
-      browseContainer.style.display = "none";
-    } else {
-      browseContainer.style.display = "flex";
-    }
-  };
-
   return (
     <div className="imageGalleryMain" id="imageGallery">
       <div className="title__container__imageGalleryMain">
@@ -187,7 +161,7 @@ const ImageGalleryMain = () => {
             id="inpFile"
             accept=".png"
             type="file"
-            onChange={confirmFetch}
+            onChange={fileChangedHandler}
           />
           <img src={image} alt="" />
           Upload Photo
