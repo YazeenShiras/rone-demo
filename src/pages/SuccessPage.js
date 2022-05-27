@@ -30,7 +30,7 @@ const SuccessPage = () => {
     async function paymnetReciept() {
       console.log(payId);
       axios
-        .post("https://rone-card.herokuapp.com/orderDetails", {
+        .post("https://data-totality-351315.uc.r.appspot.com/orderDetails", {
           paymentId: payId,
         })
         .then((response) => {
@@ -47,7 +47,8 @@ const SuccessPage = () => {
 
   useEffect(() => {
     async function createRoneId() {
-      let endpoint = "https://ronedtest.herokuapp.com/create_roneid_for_newuser";
+      let endpoint =
+        "https://ronedtest.herokuapp.com/create_roneid_for_newuser";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({

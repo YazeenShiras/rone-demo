@@ -33,7 +33,8 @@ const BuyRoneCard = () => {
         description: "",
         image: logo,
         order_id: order,
-        callback_url: "https://rone-card.herokuapp.com/buynow/verifypayment",
+        callback_url:
+          "https://data-totality-351315.uc.r.appspot.com/buynow/verifypayment",
         redirect: true,
         handler: (res) => {
           console.log(res);
@@ -62,7 +63,7 @@ const BuyRoneCard = () => {
       document.getElementById("loaderpaywithrazorpay").style.display = "block";
       document.getElementById("payText").style.display = "none";
 
-      let url = "https://rone-card.herokuapp.com/buynow/order";
+      let url = "https://data-totality-351315.uc.r.appspot.com/buynow/order";
 
       const response = await fetch(url, {
         method: "POST",
@@ -91,7 +92,7 @@ const BuyRoneCard = () => {
     document.getElementById("loadercashOndelivery").style.display = "block";
     document.getElementById("sentcod").style.display = "none";
 
-    let url = "https://rone-card.herokuapp.com/cashOnDelivery";
+    let url = "https://data-totality-351315.uc.r.appspot.com/cashOnDelivery";
 
     const response = await fetch(url, {
       method: "POST",

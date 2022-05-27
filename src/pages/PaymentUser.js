@@ -37,7 +37,7 @@ const PaymentUser = () => {
 
     async function getUserdata() {
       axios
-        .post("https://rone-card.herokuapp.com/paymentUser", {
+        .post("https://data-totality-351315.uc.r.appspot.com/paymentUser", {
           userId: id,
         })
         .then((response) => {
@@ -69,7 +69,8 @@ const PaymentUser = () => {
       description: "",
       image: logo,
       order_id: orderId,
-      callback_url: "https://rone-card.herokuapp.com/verifyPayment",
+      callback_url:
+        "https://data-totality-351315.uc.r.appspot.com/verifyPayment",
       redirect: true,
       handler: (res) => {
         console.log(res);
@@ -95,7 +96,7 @@ const PaymentUser = () => {
     document.getElementById("loadercashOndelivery").style.display = "block";
     document.getElementById("sentcod").style.display = "none";
 
-    let url = "https://rone-card.herokuapp.com/cashOnDelivery";
+    let url = "https://data-totality-351315.uc.r.appspot.com/cashOnDelivery";
 
     const response = await fetch(url, {
       method: "POST",

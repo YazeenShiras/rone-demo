@@ -50,7 +50,7 @@ const Wallet = () => {
     console.log(roneId);
 
     async function cardDetails() {
-      let url = "https://rone-card.herokuapp.com/cardBalance";
+      let url = "https://data-totality-351315.uc.r.appspot.com/cardBalance";
 
       const response = await fetch(url, {
         method: "POST",
@@ -84,7 +84,7 @@ const Wallet = () => {
 
   useEffect(() => {
     async function getRefferralDetails() {
-      let url = "https://rone-card.herokuapp.com/referralDetails";
+      let url = "https://data-totality-351315.uc.r.appspot.com/referralDetails";
 
       const response = await fetch(url, {
         method: "POST",
@@ -114,7 +114,8 @@ const Wallet = () => {
 
   useEffect(() => {
     async function getTransactionHistory() {
-      let url = "https://rone-card.herokuapp.com/transcationHistory";
+      let url =
+        "https://data-totality-351315.uc.r.appspot.com/transcationHistory";
 
       const response = await fetch(url, {
         method: "POST",
@@ -181,7 +182,7 @@ const Wallet = () => {
     document.getElementById("formForGenerateLink").style.display = "none";
     document.getElementById("loaderWidget").style.display = "block";
 
-    let url = "https://rone-card.herokuapp.com/generateLink";
+    let url = "https://data-totality-351315.uc.r.appspot.com/generateLink";
 
     const response = await fetch(url, {
       method: "POST",
@@ -272,7 +273,7 @@ const Wallet = () => {
     if (document.getElementById("sendText").innerHTML === "Send") {
       document.getElementById("sendText").innerHTML = "sending...";
       document.getElementById("sendText").style.color = "#ffffff";
-      let urlSend = "https://rone-card.herokuapp.com/shareLink";
+      let urlSend = "https://data-totality-351315.uc.r.appspot.com/shareLink";
 
       const response = await fetch(urlSend, {
         method: "POST",
@@ -309,7 +310,12 @@ const Wallet = () => {
             >
               Profile
             </Link>
-            <Link to="/settings/Accont" className="accountSettings titleHeaderlink">Account</Link>
+            <Link
+              to="/settings/Accont"
+              className="accountSettings titleHeaderlink"
+            >
+              Account
+            </Link>
             <Link
               to="/settings/Wallet"
               className="activeHeaderWallet titleHeaderlink"

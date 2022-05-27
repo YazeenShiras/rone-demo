@@ -14,6 +14,7 @@ import twitter from "../assets/twitter.svg";
 import whatsapp from "../assets/whatsapp.svg";
 import instagram from "../assets/instagram.svg";
 import telegram from "../assets/telegram.svg";
+import youtube from "../assets/youtube.svg";
 import payment from "../assets/payment.svg";
 import download from "../assets/download.svg";
 import {
@@ -29,7 +30,6 @@ import mailIcon from "../assets/mail.svg";
 import locationIcon from "../assets/location.svg";
 import Pdf from "react-to-pdf";
 import { GridLoader } from "react-spinners";
-import useRazorpay from "react-razorpay";
 
 const ref = React.createRef();
 
@@ -324,6 +324,12 @@ const ProfileDetails = () => {
               className="telegram__contain social__button__profile"
             >
               <img src={telegram} alt="" />
+            </a>
+            <a
+              href={`https://www.youtube.com/`}
+              className="telegram__contain social__button__profile"
+            >
+              <img src={youtube} alt="" />
             </a>
           </div>
           <div className="otherOptions__container">

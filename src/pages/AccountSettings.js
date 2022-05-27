@@ -61,7 +61,7 @@ const AccountSettings = () => {
 
   /* async function saveClick() {
         if(apiKey !== "" && secretKey !== "") {
-            let url = "https://rone-card.herokuapp.com/credentials";
+            let url = "https://data-totality-351315.uc.r.appspot.com/credentials";
     
             const response = await fetch(url, {
               method: "POST",
@@ -87,7 +87,8 @@ const AccountSettings = () => {
     document.getElementById("saveQRLoader").style.display = "block";
     document.getElementById("saveQrText").style.display = "none";
     if (upi !== "" && imageFile !== "") {
-      const endpoint = "https://rone-card.herokuapp.com/upiPayment";
+      const endpoint =
+        "https://data-totality-351315.uc.r.appspot.com/upiPayment";
 
       const response = await fetch(endpoint, {
         method: "PUT",
