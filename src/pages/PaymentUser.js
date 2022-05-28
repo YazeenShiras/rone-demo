@@ -47,7 +47,7 @@ const PaymentUser = () => {
             setname(data.userData.username);
             setEmail(data.userData.email);
             setNumber(data.userData.phone);
-            setUserId(data.userData.roneId);
+            setUserId(data.userData.userId);
             setOrderId(data.order.id);
             document.getElementById("containerPaymnetUser").style.display =
               "flex";
