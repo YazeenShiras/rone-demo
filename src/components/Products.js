@@ -162,7 +162,7 @@ const Products = () => {
   };
 
   async function deleteProduct(deleteId) {
-    let url = new URL("https://ronedcard.herokuapp.com/products_delete");
+    let url = new URL("https://ronedtest.herokuapp.com/products_delete");
 
     url.search = new URLSearchParams({
       product_id: deleteId,

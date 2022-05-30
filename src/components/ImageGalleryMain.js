@@ -158,7 +158,7 @@ const ImageGalleryMain = () => {
   }; */
 
   async function deleteImage(imgId, publicId) {
-    let url = new URL("https://ronedcard.herokuapp.com/Delete/file/gallery");
+    let url = new URL("https://ronedtest.herokuapp.com/Delete/file/gallery");
 
     url.search = new URLSearchParams({
       img_id: imgId,
