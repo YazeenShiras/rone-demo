@@ -12,7 +12,7 @@ const DevelopmentMode = () => {
         color: "#D52A33",
       }}
     >
-      <h3>Website Under Development</h3>
+      <h3>Website Temporarily Disabled</h3>
     </div>
   );
 };
