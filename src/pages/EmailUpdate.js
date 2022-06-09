@@ -26,7 +26,7 @@ const EmailUpdate = () => {
       });
       const data = await response.json();
       console.log(data);
-      if (data.status === 200) {
+      if (data === 200) {
         document.getElementById("emailAlert").style.display = "block";
         setTimeout(() => {
           window.location.reload();
