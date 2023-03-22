@@ -121,9 +121,10 @@ function UserDetails() {
     console.log(userid);
     document.getElementById("loaderImage").style.display = "block";
 
-    const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url";
+    const endpoint =
+      "https://web-production-ece8.up.railway.app/profile_upload_url";
 
-    /* const endpoint = "https://ronedcard.herokuapp.com/profile_upload_url"; */
+    /* const endpoint = "https://web-production-ece8.up.railway.app/profile_upload_url"; */
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -152,7 +153,9 @@ function UserDetails() {
     console.log(district);
     console.log(pincode);
 
-    let url = new URL("https://ronedcard.herokuapp.com/roneuser_address");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/roneuser_address"
+    );
 
     url.search = new URLSearchParams({
       username: username,
@@ -194,7 +197,9 @@ function UserDetails() {
 
       console.log(userid);
 
-      let url = new URL("https://ronedcard.herokuapp.com/user__details");
+      let url = new URL(
+        "https://web-production-ece8.up.railway.app/user__details"
+      );
 
       url.search = new URLSearchParams({
         user_id: userid,

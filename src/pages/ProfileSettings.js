@@ -55,7 +55,9 @@ const EditProfile = () => {
     setIdForUpdate(idForUpdateForm);
     setUserName(newName);
 
-    let url = new URL("https://ronedcard.herokuapp.com/user_details");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/user_details"
+    );
     url.search = new URLSearchParams({
       user_id: idForUpdate,
     });
@@ -81,7 +83,9 @@ const EditProfile = () => {
       setPinCode(data.address.pincode);
     };
 
-    let socialUrl = new URL("https://ronedcard.herokuapp.com/get_social_links");
+    let socialUrl = new URL(
+      "https://web-production-ece8.up.railway.app/get_social_links"
+    );
     socialUrl.search = new URLSearchParams({
       user_id: idForUpdate,
     });
@@ -185,7 +189,8 @@ const EditProfile = () => {
   };
 
   async function updatePhoto() {
-    const endpoint = "https://ronedtest.herokuapp.com/profile_upload_url";
+    const endpoint =
+      "https://web-production-ece8.up.railway.app/profile_upload_url";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -211,7 +216,9 @@ const EditProfile = () => {
     console.log(district);
     console.log(pincode);
 
-    let url = new URL("https://ronedcard.herokuapp.com/roneuser_address");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/roneuser_address"
+    );
 
     url.search = new URLSearchParams({
       username: username,
@@ -242,7 +249,9 @@ const EditProfile = () => {
     console.log(profession);
     console.log(bio);
 
-    let url = new URL("https://ronedcard.herokuapp.com/updat_user__details");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/updat_user__details"
+    );
 
     url.search = new URLSearchParams({
       user_id: idForUpdate,
@@ -306,7 +315,9 @@ const EditProfile = () => {
     console.log(telegramLink);
     console.log(whatsappLink);
 
-    let url = new URL("https://ronedcard.herokuapp.com/social_links");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/social_links"
+    );
 
     url.search = new URLSearchParams({
       user_id: idForUpdate,

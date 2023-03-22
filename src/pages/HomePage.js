@@ -17,7 +17,9 @@ const HomePage = () => {
   };
 
   async function handleSubmit() {
-    let url = new URL("https://ronedtest.herokuapp.com/newrone_credantials");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/newrone_credantials"
+    );
     url.search = new URLSearchParams({
       roneid: roneId,
       email: email,
@@ -49,7 +51,9 @@ const HomePage = () => {
   async function verifyEmail() {
     document.getElementById("loaderNextButton").style.display = "block";
     document.getElementById("nextText").style.display = "none";
-    let url = new URL("https://ronedtest.herokuapp.com/Email-verification");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/Email-verification"
+    );
     url.search = new URLSearchParams({
       emailid: email,
     });

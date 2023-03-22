@@ -63,7 +63,7 @@ const Products = () => {
   useEffect(() => {
     async function getAllProducts() {
       console.log("access to getAllProducts");
-      const endpoint = "https://ronedcard.herokuapp.com/products";
+      const endpoint = "https://web-production-ece8.up.railway.app/products";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -98,7 +98,7 @@ const Products = () => {
   useEffect(() => {
     const getSocial = async () => {
       let socialUrl = new URL(
-        "https://ronedcard.herokuapp.com/get_social_links"
+        "https://web-production-ece8.up.railway.app/get_social_links"
       );
       socialUrl.search = new URLSearchParams({
         user_id: productsId,
@@ -127,7 +127,7 @@ const Products = () => {
   };
 
   async function addProduct() {
-    let url = new URL("https://ronedcard.herokuapp.com/products");
+    let url = new URL("https://web-production-ece8.up.railway.app/products");
 
     url.search = new URLSearchParams({
       user_id: productsId,
@@ -162,7 +162,9 @@ const Products = () => {
   };
 
   async function deleteProduct(deleteId) {
-    let url = new URL("https://ronedtest.herokuapp.com/products_delete");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/products_delete"
+    );
 
     url.search = new URLSearchParams({
       product_id: deleteId,

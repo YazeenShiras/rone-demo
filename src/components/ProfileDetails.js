@@ -87,7 +87,9 @@ const ProfileDetails = () => {
     originForShare.searchParams.set("user", username);
 
     const getUser = async () => {
-      let url = new URL("https://ronedcard.herokuapp.com/user_details");
+      let url = new URL(
+        "https://web-production-ece8.up.railway.app/user_details"
+      );
       url.search = new URLSearchParams({
         user_id: userid,
       });
@@ -113,7 +115,7 @@ const ProfileDetails = () => {
 
     const getSocial = async () => {
       let socialUrl = new URL(
-        "https://ronedcard.herokuapp.com/get_social_links"
+        "https://web-production-ece8.up.railway.app/get_social_links"
       );
       socialUrl.search = new URLSearchParams({
         user_id: userid,

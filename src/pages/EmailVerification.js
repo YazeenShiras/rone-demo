@@ -32,7 +32,7 @@ const EmailVerification = () => {
     document.getElementById("veryfyRegister").style.display = "none";
 
     let url = new URL(
-      "https://ronedcard.herokuapp.com/otp_verification_for_email"
+      "https://web-production-ece8.up.railway.app/otp_verification_for_email"
     );
     url.search = new URLSearchParams({
       otp: otp,

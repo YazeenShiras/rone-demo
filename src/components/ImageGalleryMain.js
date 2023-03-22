@@ -56,7 +56,8 @@ const ImageGalleryMain = () => {
 
   useEffect(() => {
     async function getAllImages() {
-      const endpoint = "https://ronedcard.herokuapp.com/access_image_gallery";
+      const endpoint =
+        "https://web-production-ece8.up.railway.app/access_image_gallery";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -95,7 +96,7 @@ const ImageGalleryMain = () => {
     console.log("access to UploadPhotofromFiles");
     document.getElementById("selectFromFileContainer").style.display = "flex";
 
-    const endpoint = "https://ronedcard.herokuapp.com/self_upload-file";
+    const endpoint = "https://web-production-ece8.up.railway.app/self_upload-file";
 
     let url = new URL(endpoint);
     url.search = new URLSearchParams({
@@ -127,7 +128,9 @@ const ImageGalleryMain = () => {
 
   async function uploadeImage(image) {
     console.log("access upload image 2");
-    let url = new URL("https://ronedtest.herokuapp.com/public_img_urls");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/public_img_urls"
+    );
 
     url.search = new URLSearchParams({
       user_id: idForImg,
@@ -158,7 +161,9 @@ const ImageGalleryMain = () => {
   }; */
 
   async function deleteImage(imgId, publicId) {
-    let url = new URL("https://ronedtest.herokuapp.com/Delete/file/gallery");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/Delete/file/gallery"
+    );
 
     url.search = new URLSearchParams({
       img_id: imgId,

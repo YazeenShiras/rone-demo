@@ -40,17 +40,20 @@ const CreateUser = () => {
     document.getElementById("loaderRegisterUser").style.display = "block";
     document.getElementById("RegisterUser").style.display = "none";
 
-    const res = await fetch("https://ronedcard.herokuapp.com/create_user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        mobile_number: number,
-        username: username,
-      }),
-    });
+    const res = await fetch(
+      "https://web-production-ece8.up.railway.app/create_user",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          mobile_number: number,
+          username: username,
+        }),
+      }
+    );
     const data = await res.json();
     console.log(data);
     if (data.status === "true") {
@@ -85,7 +88,7 @@ const CreateUser = () => {
     document.getElementById("RegisterUser").style.display = "none";
 
     const res = await fetch(
-      "https://ronedcard.herokuapp.com/we_can_try_roneuser_verification",
+      "https://web-production-ece8.up.railway.app/we_can_try_roneuser_verification",
       {
         method: "POST",
         headers: {

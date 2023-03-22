@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-/* import Main from "./pages/Main";
+import Main from "./pages/Main";
 import RegisterSendOtp from "./pages/RegisterSendOtp";
 import VerifyOtpRegister from "./pages/VerifyOtpRegister";
 import CreateUser from "./pages/CreateUser";
@@ -29,47 +29,44 @@ import AboutHome from "./pages/AboutHome";
 import CookiePolicy from "./pages/CookiePolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import EmailVerification from "./pages/EmailVerification";
-import EmailUpdate from "./pages/EmailUpdate"; */
-import DevelopmentMode from "./pages/DevelopmentMode";
+import EmailUpdate from "./pages/EmailUpdate";
+// import DevelopmentMode from "./pages/DevelopmentMode";
 
 function App() {
   return (
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/" exact component={DevelopmentMode} />
-          <Route path="/register" component={DevelopmentMode} />
-          <Route path="/success-payment" component={DevelopmentMode} />
-          <Route exact path="/profile" component={DevelopmentMode} />
-          <Route path="/admin/email-update" component={DevelopmentMode} />
-          <Route path="/about" component={DevelopmentMode} />
-          <Route path="/link/about" component={DevelopmentMode} />
-          <Route path="/disclaimer" component={DevelopmentMode} />
-          <Route path="/link/disclaimer" component={DevelopmentMode} />
-          <Route path="/terms-and-conditions" component={DevelopmentMode} />
-          <Route
-            path="/link/terms-and-conditions"
-            component={DevelopmentMode}
-          />
-          <Route path="/privacy-policy" component={DevelopmentMode} />
-          <Route path="/link/privacy-policy" component={DevelopmentMode} />
-          <Route path="/cookie-policy" component={DevelopmentMode} />
-          <Route path="/link/cookie-policy" component={DevelopmentMode} />
-          <Route path="/refund-policy" component={DevelopmentMode} />
-          <Route path="/link/refund-policy" component={DevelopmentMode} />
-          <Route path="/verifyotpregister" component={DevelopmentMode} />
-          <Route path="/createuser" component={DevelopmentMode} />
-          <Route path="/userdetails" component={DevelopmentMode} />
-          <Route path="/login" component={DevelopmentMode} />
-          <Route path="/verifyotplogin" component={DevelopmentMode} />
-          <Route path="/settings/profile" component={DevelopmentMode} />
-          <Route path="/settings/Accont" component={DevelopmentMode} />
-          <Route path="/settings/Wallet" component={DevelopmentMode} />
-          <Route path="/settings/QR-code" component={DevelopmentMode} />
-          <Route path="/buyronecard" component={DevelopmentMode} />
-          <Route path="/profile/:id" component={DevelopmentMode} />
-          <Route path="/email-verification" component={DevelopmentMode} />
-          <Route path="/:id" component={DevelopmentMode} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/register" component={RegisterSendOtp} />
+          <Route path="/success-payment" component={SuccessPage} />
+          <Route exact path="/profile" component={Main} />
+          <Route path="/admin/email-update" component={EmailUpdate} />
+          <Route path="/about" component={About} />
+          <Route path="/link/about" component={AboutHome} />
+          <Route path="/disclaimer" component={Disclaimer} />
+          <Route path="/link/disclaimer" component={DisclaimerHome} />
+          <Route path="/terms-and-conditions" component={Tc} />
+          <Route path="/link/terms-and-conditions" component={TcHome} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/link/privacy-policy" component={PrivacyPolicyHome} />
+          <Route path="/cookie-policy" component={CookiePolicy} />
+          <Route path="/link/cookie-policy" component={CookiePolicyHome} />
+          <Route path="/refund-policy" component={RefundPolicy} />
+          <Route path="/link/refund-policy" component={RefundPolicyHome} />
+          <Route path="/verifyotpregister" component={VerifyOtpRegister} />
+          <Route path="/createuser" component={CreateUser} />
+          <Route path="/userdetails" component={UserDetails} />
+          <Route path="/login" component={LoginSendOtp} />
+          <Route path="/verifyotplogin" component={VerifyOtpLogin} />
+          <Route path="/settings/profile" component={ProfileSettings} />
+          <Route path="/settings/Accont" component={AccountSettings} />
+          <Route path="/settings/Wallet" component={Wallet} />
+          <Route path="/settings/QR-code" component={QrScan} />
+          <Route path="/buyronecard" component={BuyRoneCard} />
+          <Route path="/profile/:id" component={PaymentUser} />
+          <Route path="/email-verification" component={EmailVerification} />
+          <Route path="/:id" component={ShareProfile} />
         </Switch>
       </div>
     </Router>

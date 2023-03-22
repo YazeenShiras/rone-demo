@@ -77,7 +77,7 @@ const ShareProfile = () => {
 
     const getUser = async () => {
       let url = new URL(
-        "https://ronedcard.herokuapp.com/user_details_from_username"
+        "https://web-production-ece8.up.railway.app/user_details_from_username"
       );
       url.search = new URLSearchParams({
         username: username,
@@ -96,7 +96,7 @@ const ShareProfile = () => {
 
     const getSocial = async () => {
       let socialUrl = new URL(
-        "https://ronedcard.herokuapp.com/get_social_links_from_username"
+        "https://web-production-ece8.up.railway.app/get_social_links_from_username"
       );
       socialUrl.search = new URLSearchParams({
         username: username,
@@ -131,7 +131,8 @@ const ShareProfile = () => {
 
     async function getAllImages() {
       console.log("access to getAllImages");
-      const endpoint = "https://ronedcard.herokuapp.com/access_image_gallery";
+      const endpoint =
+        "https://web-production-ece8.up.railway.app/access_image_gallery";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({
@@ -172,7 +173,7 @@ const ShareProfile = () => {
 
     async function getAllProducts() {
       console.log("access to getAllProducts");
-      const endpoint = "https://ronedcard.herokuapp.com/products";
+      const endpoint = "https://web-production-ece8.up.railway.app/products";
 
       let url = new URL(endpoint);
       url.search = new URLSearchParams({

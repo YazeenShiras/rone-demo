@@ -10,7 +10,7 @@ const EmailUpdate = () => {
   async function saveUpdatedMail() {
     if (roneId !== "" && email !== "") {
       let url = new URL(
-        "https://ronedtest.herokuapp.com/update/roneuser_email_address"
+        "https://web-production-ece8.up.railway.app/update/roneuser_email_address"
       );
 
       url.search = new URLSearchParams({

@@ -16,7 +16,7 @@ const LoginSendOtp = () => {
   async function handleSubmit() {
     console.log("access to handleSubmit");
     let url = new URL(
-      "https://ronedcard.herokuapp.com/OTP_Genarator/rone/login"
+      "https://web-production-ece8.up.railway.app/OTP_Genarator/rone/login"
     );
     url.search = new URLSearchParams({
       mobile_num: loginNumber,
@@ -57,7 +57,7 @@ const LoginSendOtp = () => {
 
   async function checkOldUserId() {
     let url = new URL(
-      "https://ronedtest.herokuapp.com/if_old_user_createroneid"
+      "https://web-production-ece8.up.railway.app/if_old_user_createroneid"
     );
 
     url.search = new URLSearchParams({
@@ -87,7 +87,9 @@ const LoginSendOtp = () => {
   async function roneCheck() {
     document.getElementById("loaderSentOtp").style.display = "block";
     document.getElementById("sentOTP").style.display = "none";
-    let url = new URL("https://ronedtest.herokuapp.com/rone_id_authentication");
+    let url = new URL(
+      "https://web-production-ece8.up.railway.app/rone_id_authentication"
+    );
     url.search = new URLSearchParams({
       rone_id: roneId,
     });
